@@ -1,3 +1,5 @@
+
+
 import Image from 'next/image'; // importamos el componente de Image de Next
 import styles from '../css/TextIcon.module.css'; // importamos los estilos como "styles"
 
@@ -10,4 +12,4 @@ const TextIcon = () => { // creo un Stateless Functional Component
     );
 }
 
-export default TextIcon;
+export default TextIcon; // exporto la función 

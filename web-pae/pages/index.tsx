@@ -15,7 +15,6 @@ const Home: NextPage = () => (
 
     <main >
       <h1>
-       
         <TextIcon />
       </h1>
     </main>
