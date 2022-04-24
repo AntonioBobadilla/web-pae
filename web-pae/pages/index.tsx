@@ -2,6 +2,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
+import TextIcon from '../components/TextIcon';
 
 
 const Home: NextPage = () => (
@@ -14,7 +15,8 @@ const Home: NextPage = () => (
 
     <main >
       <h1>
-        Welcome to <a href="#">PAE</a>
+       
+        <TextIcon />
       </h1>
     </main>
   </div>
