@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, viewsets
 
-# Create your views here.
+from . import serializers, models
+
+class TuteeViewSet(viewsets.ModelViewSet):
+	serializer_class = serializers.TuteeSerializer
+	queryset = models.Tutee.objects.all()
+
+class TutorViewSet(viewsets.ModelViewSet):
+	serializer_class = serializers.TutorSerializer
+	queryset = models.Tutor.objects.all()
