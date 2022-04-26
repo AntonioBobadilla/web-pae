@@ -22,4 +22,5 @@
 .primaryButton:active {
   width: 90%;
   height: 90%;
+  font-size: 11px;
 }
