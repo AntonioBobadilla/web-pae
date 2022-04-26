@@ -2,6 +2,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
+import ToggleButton from '../components/toggle-button';
 import ButtonTemplate from '../components/button-template';
 import TextInput from '../components/text-input';
 
@@ -14,6 +15,11 @@ const Home: NextPage = () => (
     </Head>
 
     <main>
+      <ToggleButton />
+
+      <h1>
+        Welcome to <a href="#">PAE</a>
+      </h1>
       <div>
         <TextInput></TextInput>
       </div>
