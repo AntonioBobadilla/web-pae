@@ -1,0 +1,32 @@
+.toggle {
+  width: 200px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.selected {
+  height: 100px;
+  width: 100px;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.5));
+}
+
+.flag {
+  height: 100px;
+  width: 100px;
+}
+
+.flag:hover {
+  transform: scale(1.05);
+}
+.description {
+  font-size: 15px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  color: #3f3b3b;
+  text-decoration: none;
+  padding-bottom: 15px;
+}

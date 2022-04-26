@@ -2,7 +2,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-
+import ToggleButton from '../components/toggle-button';
 
 const Home: NextPage = () => (
   <div>
@@ -12,7 +12,9 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main >
+    <main>
+      <ToggleButton />
+
       <h1>
         Welcome to <a href="#">PAE</a>
       </h1>
