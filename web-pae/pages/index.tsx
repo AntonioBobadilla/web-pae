@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import ButtonTemplate from '../components/button-template';
+import StepsRegister from '../components/steps-register';
 import TextInput from '../components/text-input';
 
 const Home: NextPage = () => (
@@ -15,7 +16,6 @@ const Home: NextPage = () => (
 
     <main>
       <div>
-        <TextInput></TextInput>
       </div>
     </main>
   </div>
