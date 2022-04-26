@@ -2,7 +2,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-
+import ButtonTemplate from '../components/button-template';
 
 const Home: NextPage = () => (
   <div>
@@ -12,10 +12,8 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main >
-      <h1>
-        Welcome to <a href="#">PAE</a>
-      </h1>
+    <main>
+      <ButtonTemplate></ButtonTemplate>
     </main>
   </div>
 );
