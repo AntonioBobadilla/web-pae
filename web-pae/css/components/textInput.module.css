@@ -1,0 +1,25 @@
+.textInputDiv {
+  width: 50vh;
+  height: 6vh;
+  padding-bottom: 3px;
+}
+
+.textInput {
+  background-color: #f1f1f1;
+  color: #7c7c7c;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 20px;
+  border-radius: 4px;
+}
+
+.textInput:hover {
+  border: 1.5px solid #7c7c7c;
+}
+
+.textInput:focus {
+  outline: none;
+  border: 2px solid #7c7c7c;
+}

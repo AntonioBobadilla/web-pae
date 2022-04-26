@@ -2,12 +2,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
+//import ToggleButton from '../components/toggle-button';
+//import ButtonTemplate from '../components/button-template';
+//import TextInput from '../components/text-input';
 
-import ToggleButton from '../components/toggle-button';
-import ButtonTemplate from '../components/button-template';
-import TextInput from '../components/text-input';
-
-const Home: NextPage = () => (
+const Login: NextPage = () => (
   <div>
     <Head>
       <title>WEB PAE</title>
@@ -16,17 +15,12 @@ const Home: NextPage = () => (
     </Head>
 
     <main>
-      <ToggleButton />
-
       <h1>
-        Welcome to <a href="#">PAE</a>
-        Data
+        Welcome to <a href="#">Login</a>
       </h1>
-      <div>
-        <TextInput></TextInput>
-      </div>
+      <div></div>
     </main>
   </div>
 );
 
-export default Home;
+export default Login;
