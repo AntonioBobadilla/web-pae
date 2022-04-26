@@ -1,0 +1,25 @@
+.buttonTemplate {
+  width: 24vw;
+  height: 10vh;
+}
+
+.primaryButton {
+  background-color: #039be5;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.primaryButton:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.primaryButton:active {
+  width: 90%;
+  height: 90%;
+}
