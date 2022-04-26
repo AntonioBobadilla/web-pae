@@ -4,11 +4,9 @@ from django.conf import settings
 
 
 class UserManager(BaseUserManager):
-	def create_user(self, unique_identifier, registration_number, password, name, email):
-		if not registration_number:
-			raise ValueError("must have registrationNumber")
+	def create_user(self, unique_identifier, password, name):
 
-		user = self.model(unique_identifier=unique_identifier, registration_number=registration_number, name=name, email=email)
+		user = self.model(unique_identifier=unique_identifier, name=name)
 		user.set_password(password)
 		user.save(using=self.db)
 
@@ -26,7 +24,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
 	unique_identifier = models.CharField(max_length=20, primary_key=True)
 	name = models.CharField(max_length=255)
-	email = models.EmailField(max_length=255, unique=True)
 	is_superuser = models.BooleanField(default=False)
 	is_staff = models.BooleanField(default=False)
 	is_tutor = models.BooleanField(default=False)
@@ -35,16 +32,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 	objects = UserManager()
 
 	USERNAME_FIELD = 'unique_identifier'
-	REQUIRED_FIELDS = ['registration_number', 'name', 'email']
+	REQUIRED_FIELDS = ['registration_number', 'name']
 
 
 class Tutor(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	email = models.EmailField(max_length=255, unique=True, default='')
 	registration_number = models.TextField(max_length=9, primary_key=True)
 	completed_hours = models.IntegerField(default=0)
 
 class Tutee(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	email = models.EmailField(max_length=255, unique=True, default='')
 	registration_number = models.TextField(max_length=9, primary_key=True)
 
 class Subject(models.Model):
