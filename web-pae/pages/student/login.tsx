@@ -8,11 +8,12 @@ import TextInput from '../../components/text-input';
 //import ButtonTemplate from '../components/button-template';
 //import TextInput from '../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
+import validator from 'validator';
 
 const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-
+  const [emailError, setEmailError] = useState('');
   const handleEmail = (e: {
     target: { value: React.SetStateAction<string> };
   }) => {
@@ -26,8 +27,13 @@ const Login: NextPage = () => {
   };
 
   const handleSubmit = () => {
-    const obj = { email: emailInput, password: passwordInput };
-    console.log(obj);
+    if (validator.isEmail(emailInput)) {
+      setEmailError('');
+      const obj = { email: emailInput, password: passwordInput };
+      console.log(obj);
+    } else {
+      setEmailError('Email no valido');
+    }
   };
 
   return (
@@ -76,12 +82,19 @@ const Login: NextPage = () => {
               </div>
             </div>
             <div className={styles.notUser}>
+              <p className={styles.emailError}>{emailError}</p>
               <a href="#" className={styles.forgotPassword}>
                 Olvidé mi contraseña
               </a>
               <h2 className={styles.register}>
-                ¿No tienes cuenta? <a href="#">Regístrate</a>
+                ¿No tienes cuenta?{' '}
+                <a href="#" className={styles.regLink}>
+                  Regístrate
+                </a>
               </h2>
+              <a href="#" className={styles.privacy}>
+                Aviso de privacidad
+              </a>
             </div>
           </div>
         </div>
