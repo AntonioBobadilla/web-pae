@@ -1,0 +1,52 @@
+.containerPopup {
+  width: 80vh;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: initial;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+  margin: 8% auto;
+  /* border: 1px solid #e5e5e5; */
+}
+
+.title {
+  font-size: 30px;
+  padding-top: 80px;
+  font-weight: 500;
+  color: #3f3b3b;
+}
+
+.logo {
+  position: absolute;
+  left: 0;
+  margin: 20px 20px;
+  height: 35px;
+}
+
+.horizontalLine {
+  width: 50%;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 425px) {
+  .containerPopup {
+    width: 80%;
+    margin: 50% auto;
+  }
+
+  .title {
+    font-size: 5.5vw;
+  }
+  .logo {
+    height: 25px;
+  }
+
+  .horizontalLine {
+    margin-top: 1.5vh;
+  }
+}
