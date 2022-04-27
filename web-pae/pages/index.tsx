@@ -6,6 +6,7 @@ import React from 'react';
 import ToggleButton from '../components/toggle-button';
 import ButtonTemplate from '../components/button-template';
 import TextInput from '../components/text-input';
+import ConfirmPopup from '../components/confirm-popup';
 
 const Home: NextPage = () => (
   <div>
@@ -16,15 +17,12 @@ const Home: NextPage = () => (
     </Head>
 
     <main>
-      <ToggleButton />
+      <ConfirmPopup url="http://www.google.com" />
 
       <h1>
         Welcome to <a href="#">PAE</a>
         Data
       </h1>
-      <div>
-        <TextInput></TextInput>
-      </div>
     </main>
   </div>
 );
