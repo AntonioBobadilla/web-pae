@@ -1,5 +1,5 @@
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
-import ButtonTemplateStyles from '../css/components/ButtonTemplate.module.css';
+import ButtonTemplateStyles from '../css/components/buttonTemplate.module.css';
 
 const ButtonTemplate = (props: { text: string }) => {
   // creo un Stateless Functional Component
