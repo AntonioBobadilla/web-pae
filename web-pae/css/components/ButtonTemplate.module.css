@@ -19,3 +19,9 @@
   height: 90%;
   font-size: 11px;
 }
+
+@media screen and (max-width: 800px) {
+  .primaryButton {
+    font-size: 1.5vw;
+  }
+}

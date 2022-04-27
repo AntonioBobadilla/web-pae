@@ -22,6 +22,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20vh;
+  align-items: center;
 }
 
 .paeLogin {
@@ -73,6 +74,13 @@
   align-items: center;
 }
 
+.emailError {
+  color: #ff0a1f;
+  font-weight: 600;
+  font-size: 1.5vw;
+  padding-bottom: 15px;
+}
+
 .notUser {
   color: #5b5b5b;
   margin-top: 15px;
@@ -88,7 +96,18 @@
 }
 
 .register {
-  font-size: 2vw;
+  font-size: 1vw;
+  font-weight: 500;
+}
+
+.regLink {
+  font-weight: 700;
+}
+
+.privacy {
+  padding-top: 75px;
+  color: #5b5b5b;
+  font-size: 1.5vw;
 }
 
 @media screen and (max-width: 1500px) {
@@ -113,5 +132,8 @@
   }
   .paeText {
     font-size: 4vw;
+  }
+  .register {
+    font-size: 2vw;
   }
 }
