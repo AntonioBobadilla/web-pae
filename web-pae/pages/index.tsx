@@ -5,6 +5,7 @@ import React from 'react';
 
 import ToggleButton from '../components/toggle-button';
 import ButtonTemplate from '../components/button-template';
+import StepsRegister from '../components/steps-register';
 import TextInput from '../components/text-input';
 import ConfirmPopup from '../components/confirm-popup';
 import ProgressBar from '../components/progress-bar';
