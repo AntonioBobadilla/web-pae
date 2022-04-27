@@ -18,7 +18,6 @@ const Login: NextPage = () => (
       <h1>
         Welcome to <a href="#">Login</a>
       </h1>
-      <div></div>
     </main>
   </div>
 );
