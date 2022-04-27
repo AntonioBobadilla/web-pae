@@ -1,11 +1,22 @@
+
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import ButtonTemplateStyles from '../css/components/buttonTemplate.module.css';
 
-const ButtonTemplate = (props: { text: string }) => {
+const ButtonTemplate = (props: {
+  onClickFunction: MouseEventHandler<HTMLButtonElement> | undefined;
+  color: any | undefined;
+  text: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined;
+}) => {
   // creo un Stateless Functional Component
 
   return (
-    <button className={ButtonTemplateStyles.primaryButton}>{props.text}</button>
+    <button
+      className={ButtonTemplateStyles.primaryButton}
+      onClick={props.onClickFunction}
+      style={{ backgroundColor: props.color }}
+    >
+      {props.text}
+    </button>
   );
 };
 

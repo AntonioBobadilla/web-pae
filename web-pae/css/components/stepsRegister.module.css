@@ -1,0 +1,39 @@
+.stepsRegisterWrap {
+    width: 550px;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    background:#f7f7f7;
+    border-radius: 8px;
+}
+.item {
+    display: flex;
+}
+
+.itemText {
+    margin-left: 5px;
+    color:#A9A9A9;
+    font-weight: 500;
+}
+
+.dots {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#A9A9A9;
+}
+
+.icon {
+    color:#A9A9A9;
+}
+
+.completed {
+    color:#545454;
+}
+
+.active {
+    color:#039BE5;
+}
