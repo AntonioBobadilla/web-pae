@@ -1,9 +1,3 @@
-.textInputDiv {
-  width: 50vh;
-  height: 6vh;
-  padding-bottom: 3px;
-}
-
 .textInput {
   background-color: #f1f1f1;
   color: #7c7c7c;
@@ -22,4 +16,11 @@
 .textInput:focus {
   outline: none;
   border: 2px solid #7c7c7c;
+}
+
+@media screen and (max-width: 970px) {
+  .textInput {
+    font-size: 1.3vw;
+    padding-left: 1vw;
+  }
 }

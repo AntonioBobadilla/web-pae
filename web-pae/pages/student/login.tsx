@@ -2,9 +2,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
+import ButtonTemplate from '../../components/button-template';
+import TextInput from '../../components/text-input';
 //import ToggleButton from '../components/toggle-button';
 //import ButtonTemplate from '../components/button-template';
 //import TextInput from '../components/text-input';
+import styles from '../../css/student/studentLogin.module.css';
 
 const Login: NextPage = () => (
   <div>
@@ -15,10 +18,43 @@ const Login: NextPage = () => (
     </Head>
 
     <main>
-      <h1>
-        Welcome to <a href="#">Login</a>
-      </h1>
-      <div></div>
+      <div className={styles.mainContainer}>
+        <div className={styles.leftCont}>
+          <img
+            src="/images/student-login-image.jpg"
+            className={styles.loginImage}
+          />
+        </div>
+        <div className={styles.signIn}>
+          <div className={styles.paeLogin}>
+            <img src="/images/pae-logo.png" className={styles.paeLogo} />
+            <h1 className={styles.paeText}> PAE | LOGIN</h1>
+          </div>
+          <div className={styles.line}></div>
+          <div className={styles.loginFields}>
+            <div className={styles.component}>
+              <TextInput
+                type="email"
+                placeholder="CORREO INSTITUCIONAL"
+              ></TextInput>
+            </div>
+            <div className={styles.component}>
+              <TextInput type="password" placeholder="CONTRASEÑA"></TextInput>
+            </div>
+            <div className={styles.componentB}>
+              <ButtonTemplate text="INICIAR SESION"></ButtonTemplate>
+            </div>
+          </div>
+          <div className={styles.notUser}>
+            <a href="#" className={styles.forgotPassword}>
+              Olvidé mi contraseña
+            </a>
+            <h2 className={styles.register}>
+              ¿No tienes cuenta? <a href="#">Regístrate</a>
+            </h2>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 );

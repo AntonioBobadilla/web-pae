@@ -1,14 +1,11 @@
+import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import ButtonTemplateStyles from '../css/components/ButtonTemplate.module.css';
 
-const ButtonTemplate = () => {
+const ButtonTemplate = (props: { text: string }) => {
   // creo un Stateless Functional Component
 
   return (
-    <div className={ButtonTemplateStyles.buttonTemplate}>
-      <button className={ButtonTemplateStyles.primaryButton}>
-        CONTINUAR CON REGISTRO
-      </button>
-    </div>
+    <button className={ButtonTemplateStyles.primaryButton}>{props.text}</button>
   );
 };
 
