@@ -1,10 +1,6 @@
-import {
-  MouseEventHandler,
-  ReactChild,
-  ReactFragment,
-  ReactPortal
-} from 'react';
-import ButtonTemplateStyles from '../css/components/ButtonTemplate.module.css';
+
+import { ReactChild, ReactFragment, ReactPortal } from 'react';
+import ButtonTemplateStyles from '../css/components/buttonTemplate.module.css';
 
 const ButtonTemplate = (props: {
   onClickFunction: MouseEventHandler<HTMLButtonElement> | undefined;

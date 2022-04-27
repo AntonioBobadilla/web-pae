@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
-import styles from '../../css/components/data-table.module.css';
+import styles from '../../css/components/dataTable.module.css';
 import FormatTime from '../../helpers/format-time';
 import { DataTableProps } from './types';
 
