@@ -3,7 +3,7 @@ import cx from 'classnames'
 
 const StepsStudent = () => {
   // creo un Stateless Functional Component
-
+ 
   return (
     <div className={styles.stepsRegisterWrap}>
       <div className={styles.item}>
