@@ -1,7 +1,8 @@
 .mainContainer {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
+  overflow-y: hidden;
 }
 
 .leftCont {
@@ -99,6 +100,7 @@
 @media screen and (max-width: 800px) {
   .mainContainer {
     flex-direction: column;
+    overflow-y: scroll;
   }
   .leftCont {
     width: 100%;
