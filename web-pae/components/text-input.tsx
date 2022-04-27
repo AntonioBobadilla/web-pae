@@ -1,16 +1,20 @@
+import { ChangeEventHandler } from 'react';
 import TextInputStyles from '../css/components/textInput.module.css';
 
-const TextInput = () => {
+const TextInput = (props: {
+  type: string | (string & {}) | undefined;
+  placeholder: string | undefined;
+  handleChange: ChangeEventHandler<HTMLInputElement> | undefined;
+}) => {
   // creo un Stateless Functional Component
 
   return (
-    <div className={TextInputStyles.textInputDiv}>
-      <input
-        className={TextInputStyles.textInput}
-        type="text"
-        placeholder="CORREO INSTITUCIONAL*"
-      ></input>
-    </div>
+    <input
+      className={TextInputStyles.textInput}
+      type={props.type}
+      placeholder={props.placeholder}
+      onChange={props.handleChange}
+    ></input>
   );
 };
 
