@@ -10,5 +10,6 @@ router.register('subject', views.SubjectViewSet)
 
 urlpatterns = [
 	path('', include(router.urls)),
-	path('logintutee/', views.LoginTutee.as_view())
+	path('logintutee/', views.LoginTutee.as_view()),
+	path('logintutor/', views.LoginTutor.as_view())
 ]

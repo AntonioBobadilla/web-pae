@@ -61,7 +61,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 		model = Subject
 		fields = ('code', 'name', 'semester')
 
-class LoginTuteeSerializer(serializers.Serializer):
+class LoginSerializer(serializers.Serializer):
 	registration_number = serializers.CharField(max_length=13)
 	password = serializers.CharField(max_length=50)
 
