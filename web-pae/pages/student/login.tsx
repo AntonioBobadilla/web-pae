@@ -12,6 +12,7 @@ import styles from '../../css/student/studentLogin.module.css';
 
 import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
+import Link from 'next/link';
 
 const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
@@ -105,14 +106,14 @@ const Login: NextPage = () => {
                 {emailError}
                 <br></br> {passwordError}
               </p>
-              <a href="#" className={styles.forgotPassword}>
-                Olvidé mi contraseña
-              </a>
+              <Link href="/student/forgot-password">
+                <a className={styles.forgotPassword}>Olvidé mi contraseña</a>
+              </Link>
               <h2 className={styles.register}>
                 ¿No tienes cuenta?{' '}
-                <a href="#" className={styles.regLink}>
-                  Regístrate
-                </a>
+                <Link href="/student/register">
+                  <a className={styles.regLink}>Regístrate</a>
+                </Link>
               </h2>
               <a href="#" className={styles.privacy}>
                 Aviso de privacidad
