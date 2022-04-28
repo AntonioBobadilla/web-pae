@@ -9,6 +9,7 @@ import TextInput from '../../components/text-input';
 //import TextInput from '../components/text-input';
 import styles from '../../css/tutor/tutorLogin.module.css';
 import validator from 'validator';
+import isTecEmail from '../../helpers/tec-email';
 
 const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
@@ -28,7 +29,11 @@ const Login: NextPage = () => {
   };
 
   const handleSubmit = () => {
-    if (!validator.isEmpty(passwordInput) && validator.isEmail(emailInput)) {
+    if (
+      !validator.isEmpty(passwordInput) &&
+      validator.isEmail(emailInput) &&
+      isTecEmail(emailInput)
+    ) {
       const obj = { email: emailInput, password: passwordInput };
       console.log(obj);
       setEmailError('');

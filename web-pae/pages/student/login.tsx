@@ -9,12 +9,14 @@ import TextInput from '../../components/text-input';
 //import TextInput from '../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
 import validator from 'validator';
+import isTecEmail from '../../helpers/tec-email';
 
 const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const tecMail = false;
   const handleEmail = (e: {
     target: { value: React.SetStateAction<string> };
   }) => {
@@ -28,7 +30,11 @@ const Login: NextPage = () => {
   };
 
   const handleSubmit = () => {
-    if (!validator.isEmpty(passwordInput) && validator.isEmail(emailInput)) {
+    if (
+      !validator.isEmpty(passwordInput) &&
+      validator.isEmail(emailInput) &&
+      isTecEmail(emailInput)
+    ) {
       const obj = { email: emailInput, password: passwordInput };
       console.log(obj);
       setEmailError('');
