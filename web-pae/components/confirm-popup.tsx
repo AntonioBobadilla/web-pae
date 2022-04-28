@@ -1,27 +1,30 @@
 import Link from 'next/link';
 import React from 'react';
 import confirmPopupStyles from '../css/components/confirmPopup.module.css';
+import Popup from './popup';
 
-const ConfirmationPopup = (props) => {
+interface ConfirmationPopupProps {
+  url: string;
+}
+
+const ConfirmationPopup = (props: ConfirmationPopupProps) => {
   // creo un Stateless Functional Component
-  const url = props.url;
+  const { url } = props;
 
   return (
-    <div className={confirmPopupStyles.containerPopup}>
-      <img className={confirmPopupStyles.logo} src="/images/logo.png" />
-      <h2 className={confirmPopupStyles.title}> ¡Registro completado! </h2>
+    <Popup title=" ¡Registro completado! " line={false}>
       <p className={confirmPopupStyles.paragraph}>
         Recibirás un correo cuando sea aprobado tu perfil
       </p>
       <div className={confirmPopupStyles.icon}>
-        <i className="bi bi-calendar-check"></i>
+        <i className="bi bi-calendar-check" />
       </div>
       <Link href={url}>
         <a className={confirmPopupStyles.linkStyle}>
           Regresar a página de inicio
         </a>
       </Link>
-    </div>
+    </Popup>
   );
 };
 

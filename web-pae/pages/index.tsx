@@ -10,6 +10,7 @@ import TextInput from '../components/text-input';
 import ConfirmPopup from '../components/confirm-popup';
 import ProgressBar from '../components/progress-bar';
 
+
 const Home: NextPage = () => (
   <div>
     <div style={{ width: '150px', height: '150px' }}>
