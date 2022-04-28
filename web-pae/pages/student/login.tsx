@@ -9,8 +9,6 @@ import TextInput from '../../components/text-input';
 // import ButtonTemplate from '../components/button-template';
 // import TextInput from '../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
-
-import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
 import Link from 'next/link';
 
@@ -77,7 +75,6 @@ const Login: NextPage = () => {
               <img src="/images/pae-logo.png" className={styles.paeLogo} />
               <h1 className={styles.paeText}> PAE | LOGIN</h1>
             </div>
-            <div className={styles.line} />
             <div className={styles.loginFields}>
               <div className={styles.component}>
                 <TextInput

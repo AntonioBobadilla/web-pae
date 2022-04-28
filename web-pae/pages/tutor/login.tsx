@@ -74,7 +74,6 @@ const Login: NextPage = () => {
               <img src="/images/pae-logo.png" className={styles.paeLogo} />
               <h1 className={styles.paeText}> PAE | LOGIN</h1>
             </div>
-            <div className={styles.line}></div>
             <div className={styles.loginFields}>
               <div className={styles.component}>
                 <TextInput
