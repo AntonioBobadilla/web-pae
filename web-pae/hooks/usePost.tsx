@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 
 
-const useFetch = (url, body) => {
+const usePost = (url, body) => {
 
 const requestOptions = {
     method: 'POST',
@@ -40,4 +40,4 @@ const requestOptions = {
   return { Confirm, isPending, error };
 }
  
-export default useFetch;
+export default usePost;
