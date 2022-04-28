@@ -1,37 +1,66 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { NextPage } from 'next';
-import Link from 'next/link';
-import React from 'react';
-import ButtonTemplate from '../../components/button-template';
-import Popup from '../../components/popup';
-import TextInput from '../../components/text-input';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import validator from 'validator';
+import ForgotPasswordPopup from '../../components/forgot-password-popup';
+import PasswordConfirmationPopup from '../../components/password-confirmation-popup';
 import styles from '../../css/student/forgot-password.module.css';
 
-const ForgotPassword: NextPage = () => (
-  <div className={styles.container}>
-    <div className={styles.background}>
-      <Popup title="Recuperación de contraseña" line>
-        <form className={styles.form}>
-          <div className={styles.input}>
-            <span className={styles.text}>Ingresa tu correo institucional</span>
-            <TextInput type="text" placeholder="AXXXXXXXX@tec.mx" />
-          </div>
-          <div className={styles.button}>
-            <ButtonTemplate text="RECUPERAR CONTRASEÑA" />
-          </div>
-        </form>
-        <div className={styles.links}>
-          <Link href="/student/login" passHref>
-            <a>Login</a>
-          </Link>
-          <Link href="/student/login" passHref>
-            <a>Registro</a>
-          </Link>
-        </div>
-      </Popup>
+const ForgotPassword: NextPage = () => {
+  const [emailInput, setEmailInput] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
+  const router = useRouter();
+  //   const { data, error, isPending } = useFetch(
+  //     'http://localhost:3000/api/forgot-password'
+  //   );
+  const handleEmail = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setEmailInput(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (validator.isEmail(emailInput)) {
+      setEmailError('');
+      const obj = { email: emailInput };
+      //   console.log(obj);
+      // fetch('http://localhost:3000/api/forgot-password', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(obj),
+      // })
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     console.log(data);
+      //   })
+      //   .catch(err => console.log(err));
+      //   router.push('/student/forgot-password');
+      setEmailSent(true);
+    } else {
+      setEmailError('Email no valido');
+    }
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.background}>
+        {!emailSent ? (
+          <ForgotPasswordPopup
+            handleEmail={handleEmail}
+            handleSubmit={handleSubmit}
+            emailError={emailError}
+          />
+        ) : (
+          <PasswordConfirmationPopup />
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ForgotPassword;
