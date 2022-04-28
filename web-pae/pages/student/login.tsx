@@ -2,12 +2,14 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React, { useState } from 'react';
+import validator from 'validator';
 import ButtonTemplate from '../../components/button-template';
 import TextInput from '../../components/text-input';
-//import ToggleButton from '../components/toggle-button';
-//import ButtonTemplate from '../components/button-template';
-//import TextInput from '../components/text-input';
+// import ToggleButton from '../components/toggle-button';
+// import ButtonTemplate from '../components/button-template';
+// import TextInput from '../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
+
 import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
 
@@ -74,28 +76,28 @@ const Login: NextPage = () => {
               <img src="/images/pae-logo.png" className={styles.paeLogo} />
               <h1 className={styles.paeText}> PAE | LOGIN</h1>
             </div>
-            <div className={styles.line}></div>
+            <div className={styles.line} />
             <div className={styles.loginFields}>
               <div className={styles.component}>
                 <TextInput
                   type="email"
                   placeholder="CORREO INSTITUCIONAL"
                   handleChange={handleEmail}
-                ></TextInput>
+                />
               </div>
               <div className={styles.component}>
                 <TextInput
                   type="password"
                   placeholder="CONTRASEÑA"
                   handleChange={handlePassword}
-                ></TextInput>
+                />
               </div>
               <div className={styles.componentB}>
                 <ButtonTemplate
                   text="INICIAR SESION"
                   onClickFunction={handleSubmit}
                   color={undefined}
-                ></ButtonTemplate>
+                />
               </div>
             </div>
             <div className={styles.notUser}>
