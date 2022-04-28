@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class UserManager(BaseUserManager):
-	def create_user(self, unique_identifier, password, name):
+	def create_user(self, unique_identifier, name, password):
 
 		user = self.model(unique_identifier=unique_identifier, name=name)
 		user.set_password(password)
@@ -37,16 +37,25 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Tutor(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	email = models.EmailField(max_length=255, unique=True, default='')
+	email = models.EmailField(max_length=255, unique=True)
 	registration_number = models.TextField(max_length=9, primary_key=True)
 	completed_hours = models.IntegerField(default=0)
 
 class Tutee(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	email = models.EmailField(max_length=255, unique=True, default='')
+	email = models.EmailField(max_length=255, unique=True)
 	registration_number = models.TextField(max_length=9, primary_key=True)
 
 class Subject(models.Model):
 	code = models.TextField(max_length=9, primary_key=True)
 	name = models.CharField(max_length=255, null=False)
 	semester = models.PositiveSmallIntegerField(null=False)
+
+class Schedule(models.Model):
+	# PERIOD_CHOICES = [1, 2, 3]
+	# DAY_WEEK_CHOICES = [1, 2, 3, 4, 5]
+	# HOUR_CHOICES = [x for x in range(7, 18)]  #[7, 17]
+	tutor = models.ForeignKey(Tutor, related_name='tutors', on_delete=models.CASCADE)
+	period = models.PositiveSmallIntegerField(null=False)
+	day_week = models.PositiveSmallIntegerField(null=False)
+	hour = models.PositiveSmallIntegerField(null=False)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Tutee, Tutor, Subject
+from .models import Schedule, User, Tutee, Tutor, Subject
 
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -28,8 +28,14 @@ class TuteeRegisterSerializer(serializers.ModelSerializer):
 		tutee = Tutee.objects.create(user=user, registration_number = validated_data['registration_number'], email=validated_data['email'])
 		return tutee
 
+class ScheduleSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Schedule
+		fields = ('period', 'day_week', 'hour')
+
 class TutorRegisterSerializer(serializers.ModelSerializer):
 	user = UserSerializer(required=True)
+	# tutor_schedule = ScheduleSerializer(many=True, read_only=True)
 
 	class Meta:
 		model = Tutor
@@ -44,9 +50,19 @@ class TutorRegisterSerializer(serializers.ModelSerializer):
 		unique_identifier = 'tutor' + validated_data['registration_number']
 		user = User.objects.create_user(unique_identifier, validated_data['user']['name'], validated_data['user']['password'])
 		tutor = Tutor.objects.create(user=user, registration_number = validated_data['registration_number'], email=validated_data['email'])
+		# schedules_data = validated_data.pop('tutor_schedule')
+		# for schedule_data in schedules_data:
+		# 	Schedule.objects.create(tutor=tutor, **schedule_data)
 		return tutor
+
 
 class SubjectSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Subject
 		fields = ('code', 'name', 'semester')
+
+class LoginTuteeSerializer(serializers.Serializer):
+	registration_number = serializers.CharField(max_length=13)
+	password = serializers.CharField(max_length=50)
+
+
