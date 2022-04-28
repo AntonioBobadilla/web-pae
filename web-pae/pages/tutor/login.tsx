@@ -14,6 +14,7 @@ const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const handleEmail = (e: {
     target: { value: React.SetStateAction<string> };
   }) => {
@@ -27,12 +28,22 @@ const Login: NextPage = () => {
   };
 
   const handleSubmit = () => {
-    if (validator.isEmail(emailInput)) {
-      setEmailError('');
+    if (!validator.isEmpty(passwordInput) && validator.isEmail(emailInput)) {
       const obj = { email: emailInput, password: passwordInput };
       console.log(obj);
-    } else {
-      setEmailError('Email no valido');
+      setEmailError('');
+      setPasswordError('');
+    } else if (!validator.isEmail(emailInput)) {
+      setEmailError('Email no válido');
+      if (!validator.isEmpty(passwordInput)) {
+        setPasswordError('');
+      }
+    }
+    if (validator.isEmpty(passwordInput)) {
+      setPasswordError('Por favor introduzca una contraseña');
+      if (validator.isEmail(emailInput)) {
+        setEmailError('');
+      }
     }
   };
 
@@ -82,7 +93,10 @@ const Login: NextPage = () => {
               </div>
             </div>
             <div className={styles.notUser}>
-              <p className={styles.emailError}>{emailError}</p>
+              <p className={styles.emailError}>
+                {emailError}
+                <br></br> {passwordError}
+              </p>
               <a href="#" className={styles.forgotPassword}>
                 Olvidé mi contraseña
               </a>
