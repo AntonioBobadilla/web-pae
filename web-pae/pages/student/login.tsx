@@ -10,8 +10,18 @@ import TextInput from '../../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
 import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
+import useFetch from '../../hooks/useFetch';
+import usePost from '../../hooks/usePost';
 
 const Login: NextPage = () => {
+  let obj = {
+    registration_number: "frank",
+    password: "123"
+  };
+  console.log(obj);
+
+  usePost('http://localhost:8000/logintutee/', obj);
+
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [emailError, setEmailError] = useState('');
