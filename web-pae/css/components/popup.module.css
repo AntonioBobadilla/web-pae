@@ -7,13 +7,14 @@
   flex-wrap: initial;
   position: relative;
   border-radius: 12px;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+  /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8); */
   margin: 8% auto;
-  /* border: 1px solid #e5e5e5; */
+  border: 1px solid #e5e5e5;
+  background-color: white;
 }
 
 .title {
-  font-size: 30px;
+  font-size: 28px;
   padding-top: 80px;
   font-weight: 500;
   color: #3f3b3b;
@@ -40,7 +41,7 @@
   }
 
   .title {
-    font-size: 5.5vw;
+    font-size: 5vw;
   }
   .logo {
     height: 25px;
