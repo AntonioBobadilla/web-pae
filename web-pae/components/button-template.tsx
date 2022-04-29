@@ -1,4 +1,3 @@
-
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import ButtonTemplateStyles from '../css/components/buttonTemplate.module.css';
 

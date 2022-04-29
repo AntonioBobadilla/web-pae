@@ -9,8 +9,6 @@ import TextInput from '../../components/text-input';
 // import ButtonTemplate from '../components/button-template';
 // import TextInput from '../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
-
-import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
 
 const Login: NextPage = () => {
@@ -103,7 +101,7 @@ const Login: NextPage = () => {
             <div className={styles.notUser}>
               <p className={styles.emailError}>
                 {emailError}
-                <br></br> {passwordError}
+                <br /> {passwordError}
               </p>
               <a href="#" className={styles.forgotPassword}>
                 Olvidé mi contraseña
