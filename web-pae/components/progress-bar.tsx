@@ -8,10 +8,10 @@ const ProgressBar = (props: { progress: number }) => {
   const [style, setStyle] = useState('');
 
   useEffect(() => {
-    if (progress == 1) setStyle('progress_bar1');
+    if (progress == 0) setStyle('progress_bar0');
+    else if (progress == 1) setStyle('progress_bar1');
     else if (progress == 2) setStyle('progress_bar2');
     else if (progress == 3) setStyle('progress_bar3');
-    else if (progress == 0) setStyle('progress_bar0');
   }, [progress]);
 
   console.log();
