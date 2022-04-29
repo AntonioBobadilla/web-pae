@@ -10,6 +10,7 @@ import TextInput from '../../components/text-input';
 import styles from '../../css/tutor/tutorLogin.module.css';
 import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
+import Link from 'next/link';
 
 const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
@@ -73,7 +74,6 @@ const Login: NextPage = () => {
               <img src="/images/pae-logo.png" className={styles.paeLogo} />
               <h1 className={styles.paeText}> PAE | LOGIN</h1>
             </div>
-            <div className={styles.line}></div>
             <div className={styles.loginFields}>
               <div className={styles.component}>
                 <TextInput
@@ -102,16 +102,20 @@ const Login: NextPage = () => {
                 {emailError}
                 <br></br> {passwordError}
               </p>
-              <a href="#" className={styles.forgotPassword}>
-                Olvidé mi contraseña
-              </a>
+              <Link href="/student/forgot-password">
+                <a href="#" className={styles.forgotPassword}>
+                  Olvidé mi contraseña
+                </a>
+              </Link>
               <h2 className={styles.register}>
                 ¿No tienes cuenta?{' '}
-                <a href="#" className={styles.regLink}>
-                  Regístrate
-                </a>
+                <Link href="/tutor/register">
+                  <a className={styles.regLink}>Regístrate</a>
+                </Link>
               </h2>
               <a href="#" className={styles.privacy}>
+                {' '}
+                {/* Add link to privacy page when ready */}
                 Aviso de privacidad
               </a>
             </div>

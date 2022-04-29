@@ -1,4 +1,9 @@
-import { ReactChild, ReactFragment, ReactPortal } from 'react';
+import {
+  MouseEventHandler,
+  ReactChild,
+  ReactFragment,
+  ReactPortal
+} from 'react';
 import ButtonTemplateStyles from '../css/components/buttonTemplate.module.css';
 
 const ButtonTemplate = (props: {
