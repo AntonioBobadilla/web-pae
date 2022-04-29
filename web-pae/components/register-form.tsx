@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from '../css/components/registerForm.module.css';
-import registerSteps from '../helpers/steps';
 import ButtonTemplate from './button-template';
 import TextInput from './text-input';
 
 interface RegisterFormProps {
-  setStep: (step: any) => void;
+  nextStep: () => void;
 }
 
-const RegisterForm = ({ setStep }: RegisterFormProps) => {
+const RegisterForm = ({ nextStep }: RegisterFormProps) => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -70,7 +69,7 @@ const RegisterForm = ({ setStep }: RegisterFormProps) => {
       passwordConfirmation.length > 0
     ) {
       setIsValid(true);
-      setStep(registerSteps.SCHEDULE);
+      nextStep();
     }
   };
 

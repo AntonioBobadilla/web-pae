@@ -1,19 +1,19 @@
 import cx from 'classnames';
 import React from 'react';
 import styles from '../css/components/stepsRegister.module.css';
-import registerSteps from '../helpers/steps';
+import { REGISTER, SCHEDULE, SUBJECTS } from '../helpers/steps';
 
 interface StepRegisterProps {
-  setStep: (step: any) => void;
+  handleStep: (step: string) => void;
 }
 
-const StepsRegister = ({ setStep }: StepRegisterProps) => (
+const StepsRegister = ({ handleStep }: StepRegisterProps) => (
   // creo un Stateless Functional Component
 
   <div className={styles.stepsRegisterWrap}>
     <div
       className={styles.item}
-      onClick={() => setStep(registerSteps.REGISTER)}
+      onClick={() => handleStep(REGISTER)}
       role="button"
       tabIndex={0}
     >
@@ -29,7 +29,7 @@ const StepsRegister = ({ setStep }: StepRegisterProps) => (
     </div>
     <div
       className={styles.item}
-      onClick={() => setStep(registerSteps.SCHEDULE)}
+      onClick={() => handleStep(SCHEDULE)}
       role="button"
       tabIndex={0}
     >
@@ -45,7 +45,7 @@ const StepsRegister = ({ setStep }: StepRegisterProps) => (
     </div>
     <div
       className={styles.item}
-      onClick={() => setStep(registerSteps.SUBJECTS)}
+      onClick={() => handleStep(SUBJECTS)}
       role="button"
       tabIndex={0}
     >
@@ -56,4 +56,5 @@ const StepsRegister = ({ setStep }: StepRegisterProps) => (
     </div>
   </div>
 );
-export default StepsRegister; // exporto la función
+
+export default StepsRegister;

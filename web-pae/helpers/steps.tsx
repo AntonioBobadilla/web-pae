@@ -1,13 +1,11 @@
-const registerSteps = {
-  REGISTER: {
-    title: 'Regístrate'
-  },
-  SCHEDULE: {
-    title: 'Elige tu horario'
-  },
-  SUBJECTS: {
-    title: 'Agrega tus unidades de formación'
-  }
-};
+export const REGISTER = 'REGISTER';
+export const SCHEDULE = 'SCHEDULE';
+export const SUBJECTS = 'SUBJECTS';
 
-export default registerSteps;
+export interface Step {
+  title: string;
+}
+
+export interface Steps {
+  [key: string]: Step;
+}

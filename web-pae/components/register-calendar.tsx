@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import registerSteps from '../helpers/steps';
 import ButtonTemplate from './button-template';
 
 interface RegisterCalendarProps {
-  setStep: (step: any) => void;
+  nextStep: () => void;
+  previousStep: () => void;
 }
 
-const RegisterCalendar = ({ setStep }: RegisterCalendarProps) => {
+const RegisterCalendar = ({
+  nextStep,
+  previousStep
+}: RegisterCalendarProps) => {
   const [subjects, setSubjects] = useState([]);
   const [subjectsFiltered, setSubjectsFiltered] = useState([]);
   const [subjectsSelected, setSubjectsSelected] = useState([]);
@@ -16,13 +19,13 @@ const RegisterCalendar = ({ setStep }: RegisterCalendarProps) => {
       <ButtonTemplate
         color="039BE5"
         text="ANTERIOR"
-        onClickFunction={() => setStep(registerSteps.REGISTER)}
+        onClickFunction={() => previousStep()}
       />
 
       <ButtonTemplate
         color="039BE5"
         text="SIGUIENTE"
-        onClickFunction={() => setStep(registerSteps.SUBJECTS)}
+        onClickFunction={() => nextStep()}
       />
     </div>
   );

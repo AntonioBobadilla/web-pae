@@ -4,10 +4,10 @@ import ButtonTemplate from './button-template';
 import SearchBar from './frontend-searchBar';
 
 interface RegisterSubjectsProps {
-  setStep: (step: any) => void;
+  previousStep: () => void;
 }
 
-const RegisterSubjects = ({ setStep }: RegisterSubjectsProps) => {
+const RegisterSubjects = ({ previousStep }: RegisterSubjectsProps) => {
   const [subjects, setSubjects] = useState([]);
   const [subjectsFiltered, setSubjectsFiltered] = useState([]);
   const [subjectsSelected, setSubjectsSelected] = useState([]);
@@ -16,6 +16,7 @@ const RegisterSubjects = ({ setStep }: RegisterSubjectsProps) => {
   return (
     <div>
       <SearchBar />
+
       <h2>MATERIAS SELECCIONADAS</h2>
       <ButtonTemplate
         color="039BE5"
