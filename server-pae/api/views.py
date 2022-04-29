@@ -20,8 +20,10 @@ class SubjectViewSet(viewsets.ModelViewSet):
 class LoginTutee(APIView):
 	serializer_class = serializers.LoginSerializer
 	def post(self, request):
-		registration_number = list(request.data.values())[1]
-		password = list(request.data.values())[2]
+		registration_number = request.data['registration_number']
+		password = request.data['password']
+
+		print(registration_number, password)
 
 		tutee = Tutee.objects.filter(registration_number=registration_number).exists()
 		if tutee:
@@ -36,8 +38,8 @@ class LoginTutee(APIView):
 class LoginTutor(APIView):
 	serializer_class = serializers.LoginSerializer
 	def post(self, request):
-		registration_number = list(request.data.values())[1]
-		password = list(request.data.values())[2]
+		registration_number = request.data['registration_number']
+		password = request.data['password']
 
 		tutee = Tutor.objects.filter(registration_number=registration_number).exists()
 		if tutee:
