@@ -14,7 +14,7 @@ export default function postRequest(url, body) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body
+        body: JSON.stringify(body)
     };
     
       useEffect(() => {
