@@ -101,7 +101,7 @@ const Login: NextPage = () => {
             <div className={styles.notUser}>
               <p className={styles.emailError}>
                 {emailError}
-                <br></br> {passwordError}
+                <br /> {passwordError}
               </p>
               <Link href="/student/forgot-password">
                 <a className={styles.forgotPassword}>Olvidé mi contraseña</a>

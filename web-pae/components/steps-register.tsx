@@ -1,41 +1,60 @@
-import styles from '../css/components/StepsRegister.module.css';
-import cx from 'classnames'
+import cx from 'classnames';
+import React from 'react';
+import styles from '../css/components/stepsRegister.module.css';
+import { REGISTER, SCHEDULE, SUBJECTS } from '../helpers/steps';
 
-const StepsRegister = () => {
+interface StepRegisterProps {
+  handleStep: (step: string) => void;
+}
+
+const StepsRegister = ({ handleStep }: StepRegisterProps) => (
   // creo un Stateless Functional Component
 
-  return (
-    <div className={styles.stepsRegisterWrap}>
-      <div className={styles.item}>
-        <div  className={cx(styles.icon, styles.completed)}>
-          <i className="bi bi-person"></i>
-        </div>
-        <p className={cx(styles.itemText, styles.active)}>Datos personales</p>
+  <div className={styles.stepsRegisterWrap}>
+    <div
+      className={styles.item}
+      onClick={() => handleStep(REGISTER)}
+      role="button"
+      tabIndex={0}
+    >
+      <div className={cx(styles.icon, styles.completed)}>
+        <i className="bi bi-person" />
       </div>
-      <div className={styles.dots}>
-        <div  className={cx(styles.icon)}>
-          <i className="bi bi-three-dots"></i>
-        </div>
-      </div>
-      <div className={styles.item}>
-        <div  className={cx(styles.icon)}>
-          <i className="bi bi-calendar-week"></i>
-        </div>
-        <p className={cx(styles.itemText)}>Horario</p>
-      </div>
-      <div  className={styles.dots}>
-        <div  className={cx(styles.icon)}>
-          <i className="bi bi-three-dots"></i>
-        </div>
-      </div>
-      <div className={styles.item}>
-        <div className={cx(styles.icon)}>
-          <i className="bi bi-stack"></i>
-        </div>
-        <p className={cx(styles.itemText)}>Unidades de formación</p>
+      <p className={cx(styles.itemText, styles.active)}>Datos personales</p>
+    </div>
+    <div className={styles.dots}>
+      <div className={cx(styles.icon)}>
+        <i className="bi bi-three-dots" />
       </div>
     </div>
-  );
-};
+    <div
+      className={styles.item}
+      onClick={() => handleStep(SCHEDULE)}
+      role="button"
+      tabIndex={0}
+    >
+      <div className={cx(styles.icon)}>
+        <i className="bi bi-calendar-week" />
+      </div>
+      <p className={cx(styles.itemText)}>Horario</p>
+    </div>
+    <div className={styles.dots}>
+      <div className={cx(styles.icon)}>
+        <i className="bi bi-three-dots" />
+      </div>
+    </div>
+    <div
+      className={styles.item}
+      onClick={() => handleStep(SUBJECTS)}
+      role="button"
+      tabIndex={0}
+    >
+      <div className={cx(styles.icon)}>
+        <i className="bi bi-stack" />
+      </div>
+      <p className={cx(styles.itemText)}>Unidades de formación</p>
+    </div>
+  </div>
+);
 
-export default StepsRegister; // exporto la función
+export default StepsRegister;
