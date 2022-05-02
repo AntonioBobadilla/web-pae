@@ -45,6 +45,14 @@ const Register: NextPage = () => {
                 />
               </div>
               <h2 className={styles.language}>Idioma / Language</h2>
+              <div className={styles.languageOptions}>
+                <div className={styles.toggle}>
+                  <ToggleButton flagType="/images/mxflag.png" desc="Español" />
+                </div>
+                <div className={styles.toggle}>
+                  <ToggleButton flagType="/images/usaflag.png" desc="English" />
+                </div>
+              </div>
             </div>
           </div>
         </div>

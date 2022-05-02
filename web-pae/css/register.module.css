@@ -56,7 +56,16 @@
   height: auto;
   align-items: center;
   width: 60%;
-  height: 45%;
+  height: 80%;
+}
+
+.languageOptions {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 .Button {
@@ -72,6 +81,10 @@
   margin-top: 30px;
   color: #3f3b3b;
   font-size: 1.5vw;
+}
+
+.toggle {
+  width: 50%;
 }
 
 @media screen and (max-width: 800px) {
@@ -96,5 +109,8 @@
   }
   .language {
     font-size: 2vw;
+  }
+  .toggle {
+    width: 25%;
   }
 }
