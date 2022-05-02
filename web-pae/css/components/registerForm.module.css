@@ -22,3 +22,13 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 425px) {
+  .registerForm {
+    width: 80%;
+  }
+
+  .registerForm .button {
+    width: 60%;
+  }
+}

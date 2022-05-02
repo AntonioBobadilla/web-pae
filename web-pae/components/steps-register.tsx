@@ -25,6 +25,7 @@ const StepsRegister = ({ handleStep }: StepRegisterProps) => (
     <div className={styles.dots}>
       <div className={cx(styles.icon)}>
         <i className="bi bi-three-dots" />
+        <i className="bi bi-three-dots" />
       </div>
     </div>
     <div
@@ -41,6 +42,7 @@ const StepsRegister = ({ handleStep }: StepRegisterProps) => (
     <div className={styles.dots}>
       <div className={cx(styles.icon)}>
         <i className="bi bi-three-dots" />
+        <i className="bi bi-three-dots" />
       </div>
     </div>
     <div
@@ -52,7 +54,8 @@ const StepsRegister = ({ handleStep }: StepRegisterProps) => (
       <div className={cx(styles.icon)}>
         <i className="bi bi-stack" />
       </div>
-      <p className={cx(styles.itemText)}>Unidades de formación</p>
+      <p className={cx(styles.itemText3)}>Unidades de formación</p>
+      <p className={cx(styles.itemText2)}>Materias</p>
     </div>
   </div>
 );

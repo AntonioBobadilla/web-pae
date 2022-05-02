@@ -93,7 +93,7 @@ const RegisterForm = ({ nextStep }: RegisterFormProps) => {
       </div>
       <div className={styles.input}>
         <TextInput
-          type="input"
+          type="password"
           placeholder="CONTRASEÑA*"
           handleChange={(e) => handlePassword(e)}
         />
@@ -101,7 +101,7 @@ const RegisterForm = ({ nextStep }: RegisterFormProps) => {
       </div>
       <div className={styles.input}>
         <TextInput
-          type="input"
+          type="password"
           placeholder="CONFIRMAR CONTRASEÑA*"
           handleChange={(e) => handlePasswordConfirmation(e)}
         />
@@ -111,7 +111,7 @@ const RegisterForm = ({ nextStep }: RegisterFormProps) => {
       </div>
       <div className={styles.button}>
         <ButtonTemplate
-          text="REGISTRARSE"
+          text="CONTINUAR CON REGISTRO"
           onClickFunction={() => handleSubmit()}
           color="039BE5"
         />

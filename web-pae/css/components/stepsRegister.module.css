@@ -18,6 +18,19 @@
   font-weight: 500;
 }
 
+.itemText3 {
+  margin-left: 5px;
+  color: #a9a9a9;
+  font-weight: 500;
+}
+
+.itemText2 {
+  margin-left: 5px;
+  color: #a9a9a9;
+  font-weight: 500;
+  display: none;
+}
+
 .dots {
   margin-left: 10px;
   margin-right: 10px;
@@ -37,4 +50,19 @@
 
 .active {
   color: #039be5;
+}
+
+@media screen and (max-width: 425px) {
+  .stepsRegisterWrap {
+    width: 92%;
+    font-size: 13px;
+  }
+
+  .itemText2 {
+    display: block;
+  }
+
+  .itemText3 {
+    display: none;
+  }
 }
