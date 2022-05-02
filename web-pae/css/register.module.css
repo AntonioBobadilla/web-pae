@@ -10,12 +10,12 @@
   height: 100%;
 }
 
-.loginImage {
+.registerImage {
   height: 100%;
   width: 100%;
 }
 
-.signIn {
+.register {
   width: 50%;
   height: 100%;
   display: flex;
@@ -25,10 +25,10 @@
   align-items: center;
 }
 
-.paeLogin {
+.paeRegister {
   color: #3f3b3b;
   display: flex;
-  width: 50%;
+  width: 60%;
   padding-bottom: 15px;
   border-bottom: 2px solid #3f3b3b;
   height: auto;
@@ -42,80 +42,49 @@
 }
 
 .paeText {
-  font-size: 46px;
+  font-size: 2vw;
   font-weight: 700;
   letter-spacing: 6px;
   margin-top: 15px;
   padding-left: 3px;
 }
 
-.loginFields {
+.registerOptions {
   margin-bottom: 35px;
   display: flex;
   flex-direction: column;
   height: auto;
   align-items: center;
-  width: 45%;
-}
-
-.component {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  margin-top: 35px;
-  justify-content: center;
-}
-
-.componentB {
   width: 60%;
-  height: 25%;
+  height: 80%;
+}
+
+.languageOptions {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.Button {
+  width: 100%;
+  height: 40%;
   display: flex;
   margin-top: 35px;
   align-items: center;
   justify-content: center;
 }
 
-.emailError {
-  color: #ff0a1f;
-  font-weight: 600;
+.language {
+  margin-top: 30px;
+  color: #3f3b3b;
   font-size: 1.5vw;
-  padding-bottom: 15px;
-  text-align: center;
 }
 
-.notUser {
-  color: #5b5b5b;
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding-bottom: 15px;
-}
-
-.forgotPassword {
-  color: #5b5b5b;
-  font-size: 1vw;
-}
-
-.register {
-  font-size: 1vw;
-  font-weight: 500;
-}
-
-.regLink {
-  font-weight: 700;
-}
-
-.privacy {
-  padding-top: 75px;
-  color: #5b5b5b;
-  font-size: 1vw;
-}
-
-@media screen and (max-width: 1500px) {
-  .paeText {
-    font-size: 2vw;
-  }
+.toggle {
+  width: 50%;
 }
 
 @media screen and (max-width: 800px) {
@@ -128,18 +97,20 @@
     height: 50vh;
     order: 2;
   }
-  .signIn {
+  .register {
     width: 100%;
     order: 1;
   }
   .paeText {
     font-size: 4vw;
   }
-  .register {
+  .registerOptions {
+    height: 50vh;
+  }
+  .language {
     font-size: 2vw;
   }
-
-  .forgotPassword {
-    font-size: 2vw;
+  .toggle {
+    width: 25%;
   }
 }

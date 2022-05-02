@@ -1,39 +1,40 @@
 .stepsRegisterWrap {
-    width: 550px;
-    display: flex;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-    background:#f7f7f7;
-    border-radius: 8px;
+  width: 550px;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7f7;
+  border-radius: 8px;
 }
 .item {
-    display: flex;
+  display: flex;
+  cursor: pointer;
 }
 
 .itemText {
-    margin-left: 5px;
-    color:#A9A9A9;
-    font-weight: 500;
+  margin-left: 5px;
+  color: #a9a9a9;
+  font-weight: 500;
 }
 
 .dots {
-    margin-left: 10px;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color:#A9A9A9;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a9a9a9;
 }
 
 .icon {
-    color:#A9A9A9;
+  color: #a9a9a9;
 }
 
 .completed {
-    color:#545454;
+  color: #545454;
 }
 
 .active {
-    color:#039BE5;
+  color: #039be5;
 }

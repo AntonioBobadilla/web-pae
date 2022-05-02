@@ -2,25 +2,27 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React, { useState } from 'react';
+import validator from 'validator';
 import ButtonTemplate from '../../components/button-template';
 import TextInput from '../../components/text-input';
-//import ToggleButton from '../components/toggle-button';
-//import ButtonTemplate from '../components/button-template';
-//import TextInput from '../components/text-input';
+// import ToggleButton from '../components/toggle-button';
+// import ButtonTemplate from '../components/button-template';
+// import TextInput from '../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
-import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
 import useFetch from '../../hooks/useFetch';
 import usePost from '../../hooks/usePost';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Login: NextPage = () => {
-  let obj = {
-    registration_number: "frank",
-    password: "123"
-  };
-  console.log(obj);
+  // let obj = {
+  //   registration_number: "frank",
+  //   password: "123"
+  // };
+  // console.log(obj);
+  const router = useRouter()
 
-  usePost('http://localhost:8000/logintutee/', obj);
 
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
@@ -41,20 +43,42 @@ const Login: NextPage = () => {
 
   const handleSubmit = () => {
     if (
-      !validator.isEmpty(passwordInput) &&
-      validator.isEmail(emailInput) &&
-      isTecEmail(emailInput)
+      !validator.isEmpty(passwordInput) // &&
+      // validator.isEmail(emailInput) &&
+      // isTecEmail(emailInput)
     ) {
-      const obj = { email: emailInput, password: passwordInput };
+      const obj = { registration_number: emailInput, password: passwordInput };
       console.log(obj);
+      fetch("http://localhost:8000/logintutee/", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+      })
+      .then(res => {
+        return res.status;
+      })
+      .then(status => {
+        if(status === 200){
+          console.log("bien")
+          router.push("/student/home")
+        }else{
+          setEmailError("usuario o contraseña incorrecto") 
+        }
+      })
+      .catch(err => {
+        // auto catches network / connection error
+        console.log(err.message);
+      })
+      
       setEmailError('');
       setPasswordError('');
-    } else if (!validator.isEmail(emailInput)) {
-      setEmailError('Email no válido');
-      if (!validator.isEmpty(passwordInput)) {
-        setPasswordError('');
-      }
     }
+    // } else if (!validator.isEmail(emailInput)) {
+    //   setEmailError('Email no válido');
+    //   if (!validator.isEmpty(passwordInput)) {
+    //     setPasswordError('');
+    //   }
+    // }
     if (validator.isEmpty(passwordInput)) {
       setPasswordError('Por favor introduzca una contraseña');
       if (validator.isEmail(emailInput)) {
@@ -84,43 +108,42 @@ const Login: NextPage = () => {
               <img src="/images/pae-logo.png" className={styles.paeLogo} />
               <h1 className={styles.paeText}> PAE | LOGIN</h1>
             </div>
-            <div className={styles.line}></div>
             <div className={styles.loginFields}>
               <div className={styles.component}>
                 <TextInput
                   type="email"
                   placeholder="CORREO INSTITUCIONAL"
                   handleChange={handleEmail}
-                ></TextInput>
+                />
               </div>
               <div className={styles.component}>
                 <TextInput
                   type="password"
                   placeholder="CONTRASEÑA"
                   handleChange={handlePassword}
-                ></TextInput>
+                />
               </div>
               <div className={styles.componentB}>
                 <ButtonTemplate
                   text="INICIAR SESION"
                   onClickFunction={handleSubmit}
                   color={undefined}
-                ></ButtonTemplate>
+                />
               </div>
             </div>
             <div className={styles.notUser}>
               <p className={styles.emailError}>
                 {emailError}
-                <br></br> {passwordError}
+                <br /> {passwordError}
               </p>
-              <a href="#" className={styles.forgotPassword}>
-                Olvidé mi contraseña
-              </a>
+              <Link href="/student/forgot-password">
+                <a className={styles.forgotPassword}>Olvidé mi contraseña</a>
+              </Link>
               <h2 className={styles.register}>
                 ¿No tienes cuenta?{' '}
-                <a href="#" className={styles.regLink}>
-                  Regístrate
-                </a>
+                <Link href="/student/register">
+                  <a className={styles.regLink}>Regístrate</a>
+                </Link>
               </h2>
               <a href="#" className={styles.privacy}>
                 Aviso de privacidad

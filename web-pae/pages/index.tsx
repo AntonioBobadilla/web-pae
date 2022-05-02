@@ -2,19 +2,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-
 import ToggleButton from '../components/toggle-button';
-import ButtonTemplate from '../components/button-template';
-import StepsRegister from '../components/steps-register';
-import TextInput from '../components/text-input';
-import ConfirmPopup from '../components/confirm-popup';
-import ProgressBar from '../components/progress-bar';
-
 
 const Home: NextPage = () => (
   <div>
     <div style={{ width: '150px', height: '150px' }}>
-      <ToggleButton />
+      <ToggleButton flagType="/images/mxflag.png" desc="Español" />
+    </div>
+
+    <div style={{ width: '150px', height: '150px' }}>
+      <ToggleButton flagType="/images/usaflag.png" desc="Inglés" />
     </div>
 
     <Head>
@@ -32,4 +29,4 @@ const Home: NextPage = () => (
 );
 
 export default Home;
-//<ConfirmPopup url="http://www.google.com" />
+// <ConfirmPopup url="http://www.google.com" />
