@@ -1,21 +1,21 @@
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Tutee, Tutor, User
+from .models import Tutee, Tutor, User, Subject
 
-from . import serializers, models
+from . import serializers
 
 class TuteeViewSet(viewsets.ModelViewSet):
 	serializer_class = serializers.TuteeRegisterSerializer
-	queryset = models.Tutee.objects.all()
+	queryset = Tutee.objects.all()
 
 class TutorViewSet(viewsets.ModelViewSet):
 	serializer_class = serializers.TutorRegisterSerializer
-	queryset = models.Tutor.objects.all()
+	queryset = Tutor.objects.all()
 
 class SubjectViewSet(viewsets.ModelViewSet):
 	serializer_class = serializers.SubjectSerializer
-	queryset = models.Subject.objects.all()
+	queryset = Subject.objects.all()
 
 class LoginTutee(APIView):
 	serializer_class = serializers.LoginSerializer

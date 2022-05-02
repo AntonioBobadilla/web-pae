@@ -41,6 +41,10 @@ class Tutor(models.Model):
 	registration_number = models.TextField(max_length=9, primary_key=True)
 	completed_hours = models.IntegerField(default=0)
 
+	@property
+	def schedules(self):
+		return self.schedule_set.all()
+
 class Tutee(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	email = models.EmailField(max_length=255, unique=True)
@@ -55,7 +59,7 @@ class Schedule(models.Model):
 	# PERIOD_CHOICES = [1, 2, 3]
 	# DAY_WEEK_CHOICES = [1, 2, 3, 4, 5]
 	# HOUR_CHOICES = [x for x in range(7, 18)]  #[7, 17]
-	tutor = models.ForeignKey(Tutor, related_name='tutors', on_delete=models.CASCADE)
+	tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
 	period = models.PositiveSmallIntegerField(null=False)
 	day_week = models.PositiveSmallIntegerField(null=False)
 	hour = models.PositiveSmallIntegerField(null=False)

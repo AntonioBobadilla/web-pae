@@ -35,11 +35,11 @@ class ScheduleSerializer(serializers.ModelSerializer):
 
 class TutorRegisterSerializer(serializers.ModelSerializer):
 	user = UserSerializer(required=True)
-	# tutor_schedule = ScheduleSerializer(many=True, read_only=True)
+	schedules = ScheduleSerializer(many=True)
 
 	class Meta:
 		model = Tutor
-		fields = ('user', 'registration_number', 'email', 'completed_hours')
+		fields = ('user', 'registration_number', 'email', 'completed_hours', 'schedules')
 		extra_kwargs = {
 			'completed_hours': {
 				'read_only': True
@@ -50,9 +50,9 @@ class TutorRegisterSerializer(serializers.ModelSerializer):
 		unique_identifier = 'tutor' + validated_data['registration_number']
 		user = User.objects.create_user(unique_identifier, validated_data['user']['name'], validated_data['user']['password'])
 		tutor = Tutor.objects.create(user=user, registration_number = validated_data['registration_number'], email=validated_data['email'])
-		# schedules_data = validated_data.pop('tutor_schedule')
-		# for schedule_data in schedules_data:
-		# 	Schedule.objects.create(tutor=tutor, **schedule_data)
+		schedules_data = validated_data.pop('schedules')
+		for schedule_data in schedules_data:
+			Schedule.objects.create(tutor=tutor, **schedule_data)
 		return tutor
 
 
