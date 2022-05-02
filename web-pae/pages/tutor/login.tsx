@@ -109,7 +109,7 @@ const Login: NextPage = () => {
               </Link>
               <h2 className={styles.register}>
                 ¿No tienes cuenta?{' '}
-                <Link href="/tutor/register">
+                <Link href="/register">
                   <a className={styles.regLink}>Regístrate</a>
                 </Link>
               </h2>

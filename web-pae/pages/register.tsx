@@ -6,8 +6,19 @@ import TextInput from '../components/text-input';
 import Link from 'next/link';
 import styles from '../css/register.module.css';
 import ToggleButton from '../components/toggle-button';
+import Router, { useRouter } from 'next/router';
 
 const Register: NextPage = () => {
+  const router = useRouter();
+
+  const studentHandle = () => {
+    router.push('/student/register');
+  };
+
+  const tutorHandle = () => {
+    router.push('/tutor/register');
+  };
+
   return (
     <div>
       <Head>
@@ -33,14 +44,14 @@ const Register: NextPage = () => {
               <div className={styles.Button}>
                 <ButtonTemplate
                   text="QUIERO UNA ASESORÍA"
-                  onClickFunction={undefined}
+                  onClickFunction={studentHandle}
                   color={undefined}
                 />
               </div>
               <div className={styles.Button}>
                 <ButtonTemplate
                   text="QUIERO DAR UNA ASESORÍA"
-                  onClickFunction={undefined}
+                  onClickFunction={tutorHandle}
                   color={'#C4C4C4'}
                 />
               </div>
