@@ -13,7 +13,11 @@ import ProgressBar from '../components/progress-bar';
 const Home: NextPage = () => (
   <div>
     <div style={{ width: '150px', height: '150px' }}>
-      <ToggleButton />
+      <ToggleButton flagType="/images/mxflag.png" desc="Español" />
+    </div>
+
+    <div style={{ width: '150px', height: '150px' }}>
+      <ToggleButton flagType="/images/usaflag.png" desc="Inglés" />
     </div>
 
     <Head>
