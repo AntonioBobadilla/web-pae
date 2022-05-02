@@ -1,9 +1,10 @@
-//Siempre se importa react
 import React from 'react';
 import toggleButtonStyles from '../css/components/toggleButton.module.css';
 import { useState } from 'react';
 
-const ToggleButton = () => {
+const ToggleButton = (props: { flagType: string; desc: string }) => {
+  const { flagType } = props; //descomposición del objeto props
+  const { desc } = props;
   // creo un Stateless Functional Component
   const [isToggled, setIsToggled] = useState(false); //used to store the state of the toggle button
 
@@ -18,9 +19,9 @@ const ToggleButton = () => {
         className={
           isToggled ? toggleButtonStyles.selected : toggleButtonStyles.flag
         } //terneario
-        src="/images/mxflag.png"
+        src={props.flagType}
       />
-      <p className={toggleButtonStyles.description}> Español </p>
+      <p className={toggleButtonStyles.description}> {props.desc} </p>
     </div>
   );
 };
@@ -28,3 +29,7 @@ const ToggleButton = () => {
 export default ToggleButton; // exporto la función
 
 //<button className={toggleButtonStyles.icons}> Hola </button>
+
+//<div style={{ width: '150px', height: '150px' }}>
+//  <ToggleButton flagType="/images/mxflag.png" desc="Español" />
+//</div>;

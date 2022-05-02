@@ -7,7 +7,11 @@ import ToggleButton from '../components/toggle-button';
 const Home: NextPage = () => (
   <div>
     <div style={{ width: '150px', height: '150px' }}>
-      <ToggleButton />
+      <ToggleButton flagType="/images/mxflag.png" desc="Español" />
+    </div>
+
+    <div style={{ width: '150px', height: '150px' }}>
+      <ToggleButton flagType="/images/usaflag.png" desc="Inglés" />
     </div>
 
     <Head>
