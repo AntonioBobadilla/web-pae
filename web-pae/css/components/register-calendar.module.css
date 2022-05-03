@@ -1,0 +1,12 @@
+.container {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+}
+
+.container .buttons {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  margin-left: 3vw;
+}
