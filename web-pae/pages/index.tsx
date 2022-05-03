@@ -2,7 +2,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-
 import ToggleButton from '../components/toggle-button';
 import ButtonTemplate from '../components/button-template';
 import StepsRegister from '../components/steps-register';
@@ -25,4 +24,4 @@ const Home: NextPage = () => (
 );
 
 export default Home;
-//<ConfirmPopup url="http://www.google.com" />
+// <ConfirmPopup url="http://www.google.com" />
