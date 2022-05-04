@@ -16,9 +16,21 @@
   border-bottom: 1px solid #575757;
 }
 
+.container .subtitle {
+  text-align: left;
+  width: 25vw;
+  color: #3f3b3b;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 425px) {
   .container .title {
     font-size: 5vw;
     margin: 10vh auto 6vh auto;
+  }
+  .container .subtitle {
+    font-size: 4.5vw;
+    width: 85%;
   }
 }

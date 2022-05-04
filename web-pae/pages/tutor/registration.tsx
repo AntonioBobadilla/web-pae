@@ -64,7 +64,7 @@ const Registration: NextPage = () => {
   const handleComponent = () => {
     switch (step) {
       case REGISTER:
-        return <RegisterForm nextStep={handleNextStep} />;
+        return <RegisterForm nextStep={handleNextStep} student={false} />;
       case SCHEDULE:
         return (
           <RegisterCalendar

@@ -5,9 +5,10 @@ import TextInput from './text-input';
 
 interface RegisterFormProps {
   nextStep: () => void;
+  student: boolean;
 }
 
-const RegisterForm = ({ nextStep }: RegisterFormProps) => {
+const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -68,6 +69,8 @@ const RegisterForm = ({ nextStep }: RegisterFormProps) => {
       password.length > 0 &&
       passwordConfirmation.length > 0
     ) {
+      // TODO:
+      // POST .then
       setIsValid(true);
       nextStep();
     }
@@ -111,7 +114,7 @@ const RegisterForm = ({ nextStep }: RegisterFormProps) => {
       </div>
       <div className={styles.button}>
         <ButtonTemplate
-          text="CONTINUAR CON REGISTRO"
+          text={student ? 'CONCLUIR REGISTRO' : 'CONTINUAR CON REGISTRO'}
           onClickFunction={() => handleSubmit()}
           color="039BE5"
         />
