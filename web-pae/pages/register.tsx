@@ -16,7 +16,7 @@ const Register: NextPage = () => {
   };
 
   const tutorHandle = () => {
-    router.push('/tutor/register');
+    router.push('/tutor/registration');
   };
 
   return (

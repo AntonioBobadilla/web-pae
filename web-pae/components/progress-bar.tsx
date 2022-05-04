@@ -1,6 +1,6 @@
 //Siempre se importa react
 import React, { useEffect } from 'react';
-import progressBarStyles from '../css/components/ProgressBar.module.css';
+import progressBarStyles from '../css/components/progressBar.module.css';
 import { useState } from 'react';
 
 const ProgressBar = (props: { progress: number }) => {

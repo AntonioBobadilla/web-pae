@@ -11,12 +11,15 @@ import TextInput from '../../components/text-input';
 import styles from '../../css/student/studentLogin.module.css';
 import isTecEmail from '../../helpers/tec-email';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const router = useRouter()
+
   const tecMail = false;
   const handleEmail = (e: {
     target: { value: React.SetStateAction<string> };
@@ -32,14 +35,34 @@ const Login: NextPage = () => {
 
   const handleSubmit = () => {
     if (
-      !validator.isEmpty(passwordInput) &&
-      validator.isEmail(emailInput) &&
-      isTecEmail(emailInput)
+      !validator.isEmpty(passwordInput) //&&
+      // validator.isEmail(emailInput) &&
+      // isTecEmail(emailInput)
     ) {
-      const obj = { email: emailInput, password: passwordInput };
+      const obj = { registration_number: emailInput, password: passwordInput };
       console.log(obj);
-      setEmailError('');
-      setPasswordError('');
+      fetch("http://localhost:8000/logintutee/", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+      })
+      .then(res => {
+        return res.status;
+      })
+      .then(status => {
+        if(status === 200){
+          console.log("bien")
+          router.push("/student/home")
+        }else{
+          setEmailError("usuario o contraseña incorrecto") 
+        }
+      })
+      .catch(err => {
+        // auto catches network / connection error
+        console.log(err.message);
+      })
+
+
     } else if (!validator.isEmail(emailInput)) {
       setEmailError('Email no válido');
       if (!validator.isEmpty(passwordInput)) {
