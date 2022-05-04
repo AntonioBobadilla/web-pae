@@ -1,18 +1,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React from 'react';
 import ButtonTemplate from '../components/button-template';
-import TextInput from '../components/text-input';
-import Link from 'next/link';
-import styles from '../css/register.module.css';
 import ToggleButton from '../components/toggle-button';
-import Router, { useRouter } from 'next/router';
+import styles from '../css/register.module.css';
 
 const Register: NextPage = () => {
   const router = useRouter();
 
   const studentHandle = () => {
-    router.push('/student/register');
+    router.push('/student/registration');
   };
 
   const tutorHandle = () => {
@@ -52,7 +50,7 @@ const Register: NextPage = () => {
                 <ButtonTemplate
                   text="QUIERO DAR UNA ASESORÍA"
                   onClickFunction={tutorHandle}
-                  color={'#C4C4C4'}
+                  color="#C4C4C4"
                 />
               </div>
               <h2 className={styles.language}>Idioma / Language</h2>
