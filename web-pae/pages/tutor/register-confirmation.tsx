@@ -8,7 +8,7 @@ import styles from '../../css/student/forgot-password.module.css';
 const RegisterConfirmation: NextPage = () => (
   <div className={styles.container}>
     <div className={styles.background}>
-      <ConfirmationPopup url="/tutor/login" />
+      <ConfirmationPopup url="/student/login" />
     </div>
   </div>
 );

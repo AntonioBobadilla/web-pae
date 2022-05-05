@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../css/components/registerForm.module.css';
+import request from '../helpers/request';
 import ButtonTemplate from './button-template';
 import TextInput from './text-input';
 
@@ -69,8 +70,15 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
       password.length > 0 &&
       passwordConfirmation.length > 0
     ) {
-      // TODO:
-      // POST .then
+      const result = request('http://localhost:8000/tutee/', {
+        user: {
+          name,
+          password,
+          confirm_password: passwordConfirmation
+        },
+        email
+      });
+      console.log(result);
       setIsValid(true);
       nextStep();
     }
