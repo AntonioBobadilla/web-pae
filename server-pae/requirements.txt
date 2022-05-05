@@ -2,3 +2,4 @@ django==4.0.4
 djangorestframework
 psycopg2-binary
 django-cors-headers
+django-environ
