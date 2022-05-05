@@ -1,37 +1,36 @@
 .wrapper {
   width: 80%;
   height: 50vh;
-  margin:100px auto;
+  margin: 25px auto;
 }
 
 .table {
-  background:white;
+  background: white;
   width: 100%;
   height: 100%;
-  border-spacing:0;
-  border-collapse:collapse;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 .table .heading {
-  padding:20px;
-  background:#F7FBFE;
+  padding: 20px;
+  background: #f7fbfe;
 }
 
-.table tbody tr td{
-  padding:15px;
-  border:1px solid #F1F1F1;
+.table tbody tr td {
+  padding: 15px;
+  border: 1px solid #f1f1f1;
   text-align: center;
 }
 
-
 .table tbody tr .titleHour {
-  background:white
+  background: white;
 }
 
 .tableHead {
-  border-bottom: 1px solid #F1F1F1;;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .border {
-  border:1px solid #F1F1F1;
+  border: 1px solid #f1f1f1;
 }
