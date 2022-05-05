@@ -11,12 +11,12 @@
 }
 
 .textInput:hover {
-  border: 1.5px solid #7c7c7c;
+  border: 0px solid #7c7c7c;
 }
 
 .textInput:focus {
   outline: none;
-  border: 2px solid #7c7c7c;
+  border: 0.5px solid #7c7c7c;
 }
 
 @media screen and (max-width: 970px) {

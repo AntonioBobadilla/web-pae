@@ -77,7 +77,7 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
   };
 
   return (
-    <div className={styles.registerForm}>
+    <form className={styles.registerForm}>
       <div className={styles.input}>
         <TextInput
           type="input"
@@ -119,7 +119,7 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
           color="039BE5"
         />
       </div>
-    </div>
+    </form>
   );
 };
 

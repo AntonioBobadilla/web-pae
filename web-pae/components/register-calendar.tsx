@@ -10,35 +10,65 @@ interface RegisterCalendarProps {
   previousStep: () => void;
 }
 
+interface Title {
+  [key: number]: string;
+}
+
+const titles: Title = {
+  0: 'Primer periodo',
+  1: 'Segundo periodo',
+  2: 'Tercer periodo'
+};
+
 const RegisterCalendar = ({
   nextStep,
   previousStep
 }: RegisterCalendarProps) => {
-  const [subjects, setSubjects] = useState([]);
-  const [subjectsFiltered, setSubjectsFiltered] = useState([]);
-  const [subjectsSelected, setSubjectsSelected] = useState([]);
-  const [query, setQuery] = useState('');
   const [progressBarState, setProgressBarState] = React.useState(0);
+  const [eventObj, setEventObj] = useState([]);
+  const [title, setTitle] = useState(titles[0]);
   const max = 3;
   const min = 0;
-  const back = () => {
-    if (progressBarState > min) {
-      setProgressBarState(progressBarState - 1);
+
+  const handleNextStep = () => {
+    if (progressBarState === max) {
+      nextStep();
     } else {
-      setProgressBarState(progressBarState);
+      setProgressBarState(progressBarState + 1);
+      setTitle(titles[progressBarState + 1]);
+      setEventObj([]);
     }
   };
 
-  const next = () => {
-    if (progressBarState < max) {
-      setProgressBarState(progressBarState + 1);
+  const handlePreviousStep = () => {
+    if (progressBarState === min) {
+      previousStep();
     } else {
-      setProgressBarState(progressBarState);
+      setProgressBarState(progressBarState - 1);
+      setTitle(titles[progressBarState - 1]);
     }
   };
+  // const back = () => {
+  //   if (progressBarState > min) {
+  //     setProgressBarState(progressBarState - 1);
+  //   } else {
+  //     setProgressBarState(progressBarState);
+  //   }
+  // };
+
+  // const next = () => {
+  //   if (progressBarState < max) {
+  //     setProgressBarState(progressBarState + 1);
+  //   } else {
+  //     setProgressBarState(progressBarState);
+  //   }
+  // };
   return (
     <div className={styles.container}>
-      <MyCalendar />
+      <div className={styles.calendar}>
+        <h3 className={styles.title}>{title}</h3>
+        <MyCalendar eventObj={eventObj} setEventObj={setEventObj} />
+      </div>
       <div className={styles.buttons}>
         <div className={RegisterStyle.completed}>
           <div className={RegisterStyle.box}>
@@ -53,12 +83,12 @@ const RegisterCalendar = ({
 
           <div className={RegisterStyle.buttons}>
             <ButtonTemplate
-              onClickFunction={back}
+              onClickFunction={handlePreviousStep}
               color="#DADADA"
               text="ANTERIOR"
             />
             <ButtonTemplate
-              onClickFunction={next}
+              onClickFunction={handleNextStep}
               color="#039BE5"
               text="SIGUIENTE"
             />

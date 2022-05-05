@@ -1,16 +1,16 @@
 /* eslint-disable react/function-component-definition */
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import React, { useState } from 'react';
+import validator from 'validator';
 import ButtonTemplate from '../../components/button-template';
 import TextInput from '../../components/text-input';
-//import ToggleButton from '../components/toggle-button';
-//import ButtonTemplate from '../components/button-template';
-//import TextInput from '../components/text-input';
+// import ToggleButton from '../components/toggle-button';
+// import ButtonTemplate from '../components/button-template';
+// import TextInput from '../components/text-input';
 import styles from '../../css/tutor/tutorLogin.module.css';
-import validator from 'validator';
 import isTecEmail from '../../helpers/tec-email';
-import Link from 'next/link';
 
 const Login: NextPage = () => {
   const [emailInput, setEmailInput] = useState('');
@@ -62,7 +62,7 @@ const Login: NextPage = () => {
       </Head>
 
       <main>
-        <div className={styles.mainContainer}>
+        <form className={styles.mainContainer}>
           <div className={styles.leftCont}>
             <img
               src="/images/tutor-login-image.jpg"
@@ -80,27 +80,27 @@ const Login: NextPage = () => {
                   type="email"
                   placeholder="CORREO INSTITUCIONAL"
                   handleChange={handleEmail}
-                ></TextInput>
+                />
               </div>
               <div className={styles.component}>
                 <TextInput
                   type="password"
                   placeholder="CONTRASEÑA"
                   handleChange={handlePassword}
-                ></TextInput>
+                />
               </div>
               <div className={styles.componentB}>
                 <ButtonTemplate
                   text="INICIAR SESION"
                   onClickFunction={handleSubmit}
                   color={undefined}
-                ></ButtonTemplate>
+                />
               </div>
             </div>
             <div className={styles.notUser}>
               <p className={styles.emailError}>
                 {emailError}
-                <br></br> {passwordError}
+                <br /> {passwordError}
               </p>
               <Link href="/student/forgot-password">
                 <a href="#" className={styles.forgotPassword}>
@@ -120,7 +120,7 @@ const Login: NextPage = () => {
               </a>
             </div>
           </div>
-        </div>
+        </form>
       </main>
     </div>
   );
