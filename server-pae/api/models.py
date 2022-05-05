@@ -4,22 +4,16 @@ from django.conf import settings
 
 
 class UserManager(BaseUserManager):
-	def create_user(self, unique_identifier, name, password):
+	def create_user(self, unique_identifier, name, password, confirm_password):
+		if confirm_password != password:
+			raise ValueError("Passwords do not match")
+
 
 		user = self.model(unique_identifier=unique_identifier, name=name)
 		user.set_password(password)
 		user.save(using=self.db)
 
 		return user 
-
-	def create_superuser(self, registration_number, password, name):
-		user = self.create_user(registration_number, password, name)
-
-		user.is_superuser = True
-		user.is_staff = True
-		user.save(using=self.db)
-
-		return user
 
 class User(AbstractBaseUser, PermissionsMixin):
 	unique_identifier = models.CharField(max_length=20, primary_key=True)
