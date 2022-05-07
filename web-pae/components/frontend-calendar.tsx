@@ -1,14 +1,16 @@
-import styles from '../css/components/calendar.module.css';
 import cx from 'classnames';
-import Cell from '../components/frontend-calendar-cellComponent';
+import React, { useEffect } from 'react';
+import styles from '../css/components/calendar.module.css';
 import AddEvent from './front-calendar-addEvent';
-import { useEffect, useState } from 'react';
-import { start } from 'repl';
+import Cell from './frontend-calendar-cellComponent';
 
-const MyCalendar = () => {
-  const [eventObj, setEventObj] = useState([]);
-  const [helper, setHelper] = useState();
 
+interface MyCalendarProps {
+  eventObj: never[];
+  setEventObj: React.Dispatch<React.SetStateAction<never[]>>;
+}
+
+const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
   useEffect(() => {
     const { startCell, finishCell } = findStartAndEndCells();
     if (startCell != null) {
@@ -18,25 +20,25 @@ const MyCalendar = () => {
   }, [eventObj]);
 
   const getCellsBetween = (startCell, finishCell) => {
-    let start = startCell.getAttribute('id').split(' ');
-    let dia = start[0];
-    let horaInicio = start[1];
+    const start = startCell.getAttribute('id').split(' ');
+    const dia = start[0];
+    const horaInicio = start[1];
 
-    let end = finishCell.getAttribute('id').split(' ');
-    let horaFin = end[1];
+    const end = finishCell.getAttribute('id').split(' ');
+    const horaFin = end[1];
 
-    let numInicio = parseInt(horaInicio.match(/(\d+)/)[0]);
-    let numFinal = parseInt(horaFin.match(/(\d+)/)[0]);
+    const numInicio = parseInt(horaInicio.match(/(\d+)/)[0]);
+    const numFinal = parseInt(horaFin.match(/(\d+)/)[0]);
 
-    let numberCycles = numFinal - numInicio;
+    const numberCycles = numFinal - numInicio;
 
     if (numberCycles == 1) {
       changeColorOfCell(startCell);
     } else {
       for (let i = 0; i <= numberCycles; i++) {
-        let formatoBusqueda = dia + ' ' + (numInicio + i) + 'am'; // cambiar am por el valor real dinamico
-        let suma = numInicio + i;
-        let cell = document.getElementById(formatoBusqueda);
+        const formatoBusqueda = `${dia} ${numInicio + i}am`; // cambiar am por el valor real dinamico
+        const suma = numInicio + i;
+        const cell = document.getElementById(formatoBusqueda);
         changeColorOfCell(cell);
       }
     }
@@ -45,13 +47,12 @@ const MyCalendar = () => {
   const findStartAndEndCells = () => {
     let startCell = null;
     let finishCell = null;
-
-    let cells = document.querySelectorAll('.data');
+    const cells = document.querySelectorAll('.data');
     eventObj.forEach((obj) => {
       cells.forEach((cell) => {
-        let attr = cell.getAttribute('id').split(' ');
-        let dia = attr[0];
-        let hora = attr[1];
+        const attr = cell.getAttribute('id').split(' ');
+        const dia = attr[0];
+        const hora = attr[1];
         if (obj.dia == dia && obj.inicio == hora) {
           startCell = cell;
         }
