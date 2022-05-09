@@ -82,16 +82,12 @@ const RegisterCalendar = ({
           </div>
 
           <div className={RegisterStyle.buttons}>
-            <ButtonTemplate
-              onClickFunction={handlePreviousStep}
-              color="#DADADA"
-              text="ANTERIOR"
-            />
-            <ButtonTemplate
-              onClickFunction={handleNextStep}
-              color="#039BE5"
-              text="SIGUIENTE"
-            />
+            <ButtonTemplate onClick={handlePreviousStep} variant="secondary">
+              ANTERIOR
+            </ButtonTemplate>
+            <ButtonTemplate onClick={handleNextStep} variant="primary">
+              SIGUIENTE
+            </ButtonTemplate>
           </div>
         </div>
       </div>

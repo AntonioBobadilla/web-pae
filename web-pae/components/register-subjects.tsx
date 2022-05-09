@@ -19,10 +19,11 @@ const RegisterSubjects = ({ previousStep }: RegisterSubjectsProps) => {
 
       <h2>MATERIAS SELECCIONADAS</h2>
       <ButtonTemplate
-        color="039BE5"
-        text="CONCLUIR REGISTRO"
-        onClickFunction={() => router.push('/tutor/register-confirmation')}
-      />
+        variant="primary"
+        onClick={() => router.push('/tutor/register-confirmation')}
+      >
+        CONCLUIR REGISTRO
+      </ButtonTemplate>
     </div>
   );
 };

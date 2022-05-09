@@ -1,21 +1,49 @@
-import { ChangeEventHandler } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import cx from 'classnames';
+import React from 'react';
+import {
+  Control,
+  Controller,
+  FieldError,
+  UseControllerProps
+} from 'react-hook-form';
 import TextInputStyles from '../css/components/textInput.module.css';
 
-const TextInput = (props: {
-  type: string | (string & {}) | undefined;
-  placeholder: string | undefined;
-  handleChange: ChangeEventHandler<HTMLInputElement> | undefined;
-}) => {
-  // creo un Stateless Functional Component
+interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  error: FieldError | undefined;
+  control: Control<any>;
+  rules: UseControllerProps['rules'];
+}
 
-  return (
-    <input
-      className={TextInputStyles.textInput}
-      type={props.type}
-      placeholder={props.placeholder}
-      onChange={props.handleChange}
-    ></input>
-  );
-};
+export interface RenderProps {
+  field: any;
+  fieldState: any;
+}
 
-export default TextInput; // exporto la función
+const TextInput = ({
+  name,
+  error,
+  control,
+  rules,
+  ...rest
+}: TextInputProps) => (
+  <>
+    <Controller
+      name={name}
+      control={control}
+      rules={rules}
+      render={({ field, fieldState }: RenderProps) => (
+        <input
+          {...rest}
+          id={field.name}
+          {...field}
+          style={fieldState.error ? { border: '1px solid red' } : {}}
+          className={cx(TextInputStyles.textInput, rest.className)}
+        />
+      )}
+    />
+    {error && <p className="error">{error.message}</p>}
+  </>
+);
+export default TextInput;
