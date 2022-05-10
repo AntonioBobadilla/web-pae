@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm, useFormState } from 'react-hook-form';
 import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
 import TextInput from './text-input';
@@ -8,116 +9,144 @@ interface RegisterFormProps {
   student: boolean;
 }
 
+export type StudentRegisterData = {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+};
+
+export const studentRegisterDefaultValue: StudentRegisterData = {
+  email: '',
+  password: '',
+  name: '',
+  passwordConfirmation: ''
+};
+
 const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = React.useState('');
-  const [nameError, setNameError] = React.useState('');
-  const [emailError, setEmailError] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState('');
-  const [passwordConfirmationError, setPasswordConfirmationError] =
-    React.useState('');
   const [isValid, setIsValid] = React.useState(false);
 
-  const handleName = (e: { target: { value: string } }) => {
-    setName(e.target.value);
-    if (e.target.value.length > 0) {
-      setNameError('');
-    }
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    formState: { errors }
+  } = useForm<StudentRegisterData>({
+    defaultValues: studentRegisterDefaultValue
+  });
 
-  const handleEmail = (e: { target: { value: string } }) => {
-    setEmail(e.target.value);
-    if (e.target.value.length > 0) {
-      setEmailError('');
-    }
-  };
+  const { isDirty } = useFormState({ control });
 
-  const handlePassword = (e: { target: { value: string } }) => {
-    setPassword(e.target.value);
-    if (e.target.value.length > 0) {
-      setPasswordError('');
-    }
-  };
-
-  const handlePasswordConfirmation = (e: { target: { value: string } }) => {
-    setPasswordConfirmation(e.target.value);
-    if (e.target.value.length > 0) {
-      setPasswordConfirmationError('');
-    }
-  };
-
-  const handleSubmit = () => {
-    if (name.length === 0) {
-      setNameError('El nombre es requerido');
-    }
-    if (email.length === 0) {
-      setEmailError('El email es requerido');
-    }
-    if (password.length === 0) {
-      setPasswordError('La contraseña es requerida');
-    }
-    if (passwordConfirmation.length === 0) {
-      setPasswordConfirmationError(
-        'La confirmación de contraseña es requerida'
-      );
-    }
-    if (
-      name.length > 0 &&
-      email.length > 0 &&
-      password.length > 0 &&
-      passwordConfirmation.length > 0
-    ) {
-      // TODO:
-      // POST .then
-      setIsValid(true);
+  const onSubmit = handleSubmit((data) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
       nextStep();
-    }
-  };
+    }, 2000);
+  });
+
+  // const handleSubmit = () => {
+  //   if (name.length === 0) {
+  //     setNameError('El nombre es requerido');
+  //   }
+  //   if (email.length === 0) {
+  //     setEmailError('El email es requerido');
+  //   }
+  //   if (password.length === 0) {
+  //     setPasswordError('La contraseña es requerida');
+  //   }
+  //   if (passwordConfirmation.length === 0) {
+  //     setPasswordConfirmationError(
+  //       'La confirmación de contraseña es requerida'
+  //     );
+  //   }
+  //   if (
+  //     name.length > 0 &&
+  //     email.length > 0 &&
+  //     password.length > 0 &&
+  //     passwordConfirmation.length > 0
+  //   ) {
+  //     // TODO:
+  //     // POST .then
+  //     setIsValid(true);
+  //     nextStep();
+  //   }
+  // };
 
   return (
-    <form className={styles.registerForm}>
+    <form className={styles.registerForm} onSubmit={onSubmit}>
       <div className={styles.input}>
         <TextInput
-          type="input"
+          name="name"
           placeholder="NOMBRE COMPLETO*"
-          handleChange={(e) => handleName(e)}
+          control={control}
+          error={errors.name}
+          rules={{
+            required: 'Nombre completo requerido',
+            minLength: {
+              value: 3,
+              message: 'El nombre debe tener al menos 3 caracteres'
+            }
+          }}
         />
-        {nameError.length > 0 && <p className="error">{nameError}</p>}
       </div>
       <div className={styles.input}>
         <TextInput
-          type="input"
+          name="email"
           placeholder="CORREO INSTITUCIONAL*"
-          handleChange={(e) => handleEmail(e)}
+          control={control}
+          error={errors.email}
+          rules={{
+            required: 'Correo eléctrónico requerido',
+            pattern: {
+              value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
+              message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+            }
+          }}
         />
-        {emailError.length > 0 && <p className="error">{emailError}</p>}
       </div>
       <div className={styles.input}>
         <TextInput
+          name="password"
           type="password"
           placeholder="CONTRASEÑA*"
-          handleChange={(e) => handlePassword(e)}
+          control={control}
+          error={errors.password}
+          rules={{
+            required: 'Contraseña requerida',
+            minLength: { value: 8, message: 'Contraseña muy corta' },
+            pattern: {
+              value:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
+              message:
+                'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
+            }
+          }}
         />
-        {passwordError.length > 0 && <p className="error">{passwordError}</p>}
       </div>
       <div className={styles.input}>
         <TextInput
+          name="passwordConfirmation"
           type="password"
           placeholder="CONFIRMAR CONTRASEÑA*"
-          handleChange={(e) => handlePasswordConfirmation(e)}
+          control={control}
+          error={errors.passwordConfirmation}
+          rules={{
+            required: 'Confirmación de contraseña requerida',
+            validate: (value) => value === getValues().password
+          }}
         />
-        {passwordConfirmationError.length > 0 && (
-          <p className="error">{passwordConfirmationError}</p>
-        )}
       </div>
       <div className={styles.button}>
         <ButtonTemplate
-          text={student ? 'CONCLUIR REGISTRO' : 'CONTINUAR CON REGISTRO'}
-          onClickFunction={() => handleSubmit()}
-          color="039BE5"
-        />
+          variant="primary"
+          disabled={!isDirty || isLoading}
+          loading={isLoading}
+          type="submit"
+        >
+          {student ? 'CONCLUIR REGISTRO' : 'CONTINUAR CON REGISTRO'}
+        </ButtonTemplate>
       </div>
     </form>
   );

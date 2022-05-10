@@ -1,13 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import React from 'react';
-import ToggleButton from '../components/toggle-button';
-import ButtonTemplate from '../components/button-template';
-import StepsRegister from '../components/steps-register';
-import TextInput from '../components/text-input';
-import ConfirmPopup from '../components/confirm-popup';
-import ProgressBar from '../components/progress-bar';
+import React, { useState } from 'react';
 import Calendar from '../components/frontend-calendar';
 import SearchBar from '../components/frontend-searchBar';
 import ImageCard from '../components/image-card';
@@ -22,6 +16,7 @@ const Home: NextPage = () => (
     <main></main>
   </div>
 );
+
 
 export default Home;
 // <ConfirmPopup url="http://www.google.com" />
