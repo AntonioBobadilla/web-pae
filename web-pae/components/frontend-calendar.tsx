@@ -4,6 +4,7 @@ import styles from '../css/components/calendar.module.css';
 import AddEvent from './front-calendar-addEvent';
 import Cell from './frontend-calendar-cellComponent';
 
+
 interface MyCalendarProps {
   eventObj: never[];
   setEventObj: React.Dispatch<React.SetStateAction<never[]>>;
@@ -46,7 +47,6 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
   const findStartAndEndCells = () => {
     let startCell = null;
     let finishCell = null;
-
     const cells = document.querySelectorAll('.data');
     eventObj.forEach((obj) => {
       cells.forEach((cell) => {
