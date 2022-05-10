@@ -9,6 +9,7 @@ import TextInput from '../components/text-input';
 import ConfirmPopup from '../components/confirm-popup';
 import ProgressBar from '../components/progress-bar';
 import Calendar from '../components/frontend-calendar';
+import SideBar from '../components/sidebar';
 
 const Home: NextPage = () => (
   <div>
@@ -18,7 +19,7 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main>
-      <Calendar />
+      <SideBar />
     </main>
   </div>
 );

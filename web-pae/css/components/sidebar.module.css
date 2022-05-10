@@ -1,0 +1,86 @@
+.main {
+  width: 7vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0277bd;
+  align-items: center;
+}
+
+.pae {
+  width: 5.5vw;
+  height: 5.5vw;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-top: 4vh;
+  margin-bottom: 10vh;
+}
+
+.logoPae {
+  width: 3vw;
+}
+
+.textPae {
+  font-size: 1.5vw;
+}
+
+.dashboard {
+  width: 7vw;
+  height: 7vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-top: 2vh;
+}
+
+.dashboard:hover .dbImage {
+  filter: brightness(0) saturate(100%) invert(34%) sepia(84%) saturate(2765%)
+    hue-rotate(181deg) brightness(84%) contrast(101%);
+}
+
+.dashboard:hover {
+  background-color: #fff;
+  color: #0277bd;
+}
+
+.dbImage {
+  width: 2.5vw;
+  height: 2.5vw;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%)
+    hue-rotate(315deg) brightness(101%) contrast(103%);
+}
+
+.dbText {
+  font-size: 1vw;
+  margin-top: 1vw;
+  font-weight: 500;
+  text-align: center;
+}
+
+.exit {
+  width: 7vw;
+  height: 2.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 4vh;
+}
+
+.exit:hover .exitImage {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(52%) saturate(5141%)
+    hue-rotate(339deg) brightness(80%) contrast(146%);
+}
+
+.exitImage {
+  width: 2.5vw;
+  height: 2.5vw;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%)
+    hue-rotate(315deg) brightness(101%) contrast(103%);
+}
