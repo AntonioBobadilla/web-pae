@@ -4,9 +4,7 @@ from django.conf import settings
 
 
 class UserManager(BaseUserManager):
-	def create_user(self, unique_identifier, password, confirm_password):
-		if confirm_password != password:
-			raise ValueError("Passwords do not match")
+	def create_user(self, unique_identifier, password):
 
 		user = self.model(unique_identifier=unique_identifier)
 		user.set_password(password)
@@ -15,7 +13,7 @@ class UserManager(BaseUserManager):
 		return user 
 	
 	def create_superuser(self, unique_identifier, password):
-		user = self.create_user(unique_identifier , password, password)
+		user = self.create_user(unique_identifier, password)
 
 		user.is_superuser = True
 		user.is_staff = True

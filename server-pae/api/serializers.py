@@ -1,6 +1,9 @@
 from rest_framework import serializers
+from django.core import exceptions
 from .models import Schedule, User, Tutee, Tutor, Subject
-from django.contrib.auth import password_validation, authenticate
+import django.contrib.auth.password_validation as password_validators 
+
+import re
 
 class UserSerializer(serializers.ModelSerializer):
 	confirm_password = serializers.CharField(write_only=True,  style={'input_type': 'password'})
@@ -14,6 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 				'style': {'input_type': 'password'}
 			},
 		}
+
 
 class TuteeRegisterSerializer(serializers.ModelSerializer):
 	user = UserSerializer(required=True)
@@ -31,10 +35,34 @@ class TuteeRegisterSerializer(serializers.ModelSerializer):
 		registration_number = validated_data['email'][:9]
 		unique_identifier = 'tutee' + registration_number
 
-		user = User.objects.create_user(unique_identifier, validated_data['user']['password'], validated_data['user']['confirm_password'])
+		user = User.objects.create_user(unique_identifier, validated_data['user']['password'])
 		user.is_tutee = True
+		user.save()
 		tutee = Tutee.objects.create(user=user, registration_number = registration_number, email=validated_data['email'], name=validated_data['name'])
 		return tutee
+
+	def validate_name(self, value):
+		normalized_name = value.strip()
+		print(normalized_name)
+		if not re.search("^[a-zA-Zñá-úÁ-Úü]([.](?![.])|[ ](?![ .])|[a-zA-Zñá-úÁ-Úü])*$", normalized_name):
+			raise serializers.ValidationError("Name must be valid")
+		return normalized_name
+
+	def validate_email(self, value):
+		normalized_email = value.lower()
+		if not re.search("^a[0-9]{8}@tec.mx", normalized_email):
+			raise serializers.ValidationError("Must be a valid tec email")
+		return normalized_email
+		
+	def validate(self, data):
+		password = data.get('user').get('password')
+		if password != data.get('user').get('confirm_password'):
+			raise serializers.ValidationError({"password": "passwords do not match"})
+		try:
+			password_validators.validate_password(password=password)
+		except exceptions.ValidationError as e:
+			raise serializers.ValidationError({"password": list(e)})
+		return data 
 
 class ScheduleSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -54,8 +82,9 @@ class TutorRegisterSerializer(serializers.ModelSerializer):
 		unique_identifier = 'tutor' + validated_data['registration_number']
 		registration_number = validated_data['email'][:9]
 
-		user = User.objects.create_user(unique_identifier, validated_data['user']['name'], validated_data['user']['password'], validated_data['user']['confirm_password'])
+		user = User.objects.create_user(unique_identifier, validated_data['user']['name'], validated_data['user']['password'])
 		user.is_tutor = True
+		user.save()
 		tutor = Tutor.objects.create(user=user, registration_number = registration_number, email=validated_data['email'])
 
 		schedules_data = validated_data.pop('schedules')
