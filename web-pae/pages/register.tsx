@@ -40,18 +40,14 @@ const Register: NextPage = () => {
             </div>
             <div className={styles.registerOptions}>
               <div className={styles.Button}>
-                <ButtonTemplate
-                  text="QUIERO UNA ASESORÍA"
-                  onClickFunction={studentHandle}
-                  color={undefined}
-                />
+                <ButtonTemplate onClick={studentHandle} variant="primary">
+                  QUIERO UNA ASESORÍA
+                </ButtonTemplate>
               </div>
               <div className={styles.Button}>
-                <ButtonTemplate
-                  text="QUIERO DAR UNA ASESORÍA"
-                  onClickFunction={tutorHandle}
-                  color="#C4C4C4"
-                />
+                <ButtonTemplate onClick={tutorHandle} variant="secondary">
+                  QUIERO DAR UNA ASESORÍA
+                </ButtonTemplate>
               </div>
               <h2 className={styles.language}>Idioma / Language</h2>
               <div className={styles.languageOptions}>

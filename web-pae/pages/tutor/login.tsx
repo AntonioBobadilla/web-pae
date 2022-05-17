@@ -1,57 +1,35 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/function-component-definition */
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import validator from 'validator';
+import { useForm, useFormState } from 'react-hook-form';
 import ButtonTemplate from '../../components/button-template';
+import { LoginData, loginDefaultValues } from '../../components/login-input';
 import TextInput from '../../components/text-input';
-// import ToggleButton from '../components/toggle-button';
-// import ButtonTemplate from '../components/button-template';
-// import TextInput from '../components/text-input';
 import styles from '../../css/tutor/tutorLogin.module.css';
-import isTecEmail from '../../helpers/tec-email';
 
 const Login: NextPage = () => {
-  const [emailInput, setEmailInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const handleEmail = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setEmailInput(e.target.value);
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<LoginData>({ defaultValues: loginDefaultValues });
 
-  const handlePassword = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setPasswordInput(e.target.value);
-  };
+  const { isDirty } = useFormState({ control });
 
-  const handleSubmit = () => {
-    if (
-      !validator.isEmpty(passwordInput) &&
-      validator.isEmail(emailInput) &&
-      isTecEmail(emailInput)
-    ) {
-      const obj = { email: emailInput, password: passwordInput };
-      console.log(obj);
-      setEmailError('');
-      setPasswordError('');
-    } else if (!validator.isEmail(emailInput)) {
-      setEmailError('Email no válido');
-      if (!validator.isEmpty(passwordInput)) {
-        setPasswordError('');
-      }
-    }
-    if (validator.isEmpty(passwordInput)) {
-      setPasswordError('Por favor introduzca una contraseña');
-      if (validator.isEmail(emailInput)) {
-        setEmailError('');
-      }
-    }
-  };
+  const onSubmit = handleSubmit((data) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push('/tutor/home');
+    }, 2000);
+    // login(data.email, data.password);
+  });
 
   return (
     <div>
@@ -62,7 +40,7 @@ const Login: NextPage = () => {
       </Head>
 
       <main>
-        <form className={styles.mainContainer}>
+        <form className={styles.mainContainer} onSubmit={onSubmit}>
           <div className={styles.leftCont}>
             <img
               src="/images/tutor-login-image.jpg"
@@ -77,31 +55,45 @@ const Login: NextPage = () => {
             <div className={styles.loginFields}>
               <div className={styles.component}>
                 <TextInput
-                  type="email"
+                  name="email"
                   placeholder="CORREO INSTITUCIONAL"
-                  handleChange={handleEmail}
+                  control={control}
+                  error={errors.email}
+                  rules={{
+                    required: 'Correo eléctrónico requerido',
+                    pattern: {
+                      value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
+                      message:
+                        'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+                    }
+                  }}
                 />
               </div>
               <div className={styles.component}>
                 <TextInput
+                  name="password"
                   type="password"
                   placeholder="CONTRASEÑA"
-                  handleChange={handlePassword}
+                  control={control}
+                  error={errors.password}
+                  rules={{
+                    required: 'Contraseña requerida',
+                    minLength: { value: 8, message: 'Contraseña muy corta' }
+                  }}
                 />
               </div>
               <div className={styles.componentB}>
                 <ButtonTemplate
-                  text="INICIAR SESION"
-                  onClickFunction={handleSubmit}
-                  color={undefined}
-                />
+                  variant="primary"
+                  type="submit"
+                  disabled={!isDirty || isLoading}
+                  loading={isLoading}
+                >
+                  INICIAR SESION
+                </ButtonTemplate>
               </div>
             </div>
             <div className={styles.notUser}>
-              <p className={styles.emailError}>
-                {emailError}
-                <br /> {passwordError}
-              </p>
               <Link href="/student/forgot-password">
                 <a href="#" className={styles.forgotPassword}>
                   Olvidé mi contraseña

@@ -1,5 +1,4 @@
-.primaryButton {
-  background-color: #039be5;
+.button {
   color: #fff;
   width: 100%;
   height: 100%;
@@ -7,21 +6,99 @@
   border: none;
   font-weight: bold;
   font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.primaryButton:hover {
+.button:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
-.primaryButton:active {
+.button:active {
   width: 90%;
   height: 90%;
   font-size: 11px;
 }
 
+.button:disabled {
+  opacity: 0.5;
+  cursor: auto;
+}
+
+.button:disabled:active {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+}
+
+.primary {
+  background-color: #039be5;
+}
+
+.secondary {
+  background-color: #c4c4c4;
+}
+
+.confirm {
+  background-color: #2ed477;
+}
+
+.cancel {
+  background-color: #e00013;
+}
+
+.info {
+  background-color: #0277bd;
+}
+
+.pending {
+  background-color: #f49c16;
+}
+
+.spinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+.spinner:after {
+  content: ' ';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: spinner 1.2s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media screen and (max-width: 800px) {
-  .primaryButton {
+  .button {
     font-size: 2vw;
+  }
+
+  .button:disabled:active {
+    font-size: 2vw;
+  }
+
+  .spinner {
+    width: 10px;
+    height: 10px;
+  }
+
+  .spinner:after {
+    width: 8px;
+    height: 8px;
   }
 }
