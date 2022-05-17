@@ -6,6 +6,7 @@ import Calendar from '../components/frontend-calendar';
 import SideBar from '../components/sidebar';
 import SearchBar from '../components/frontend-searchBar';
 import ImageCard from '../components/image-card';
+import InputTextArea from '../components/input-text-area';
 
 const Home: NextPage = () => (
   <div>
@@ -15,15 +16,14 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main>
-      <SideBar
+      {/*<SideBar
         dashboardFunction="#"
         profileFunction="/../student/login"
-        tutoringFunction="/../student/login"
-      />
+        tutoringFunction="/../student/login"/>*/}
+      <InputTextArea />
     </main>
   </div>
 );
-
 
 export default Home;
 // <ConfirmPopup url="http://www.google.com" />
