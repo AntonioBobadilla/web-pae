@@ -19,7 +19,11 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main>
-      <SideBar />
+      <SideBar
+        dashboardFunction="#"
+        profileFunction="/../student/login"
+        tutoringFunction="/../student/login"
+      />
     </main>
   </div>
 );
