@@ -6,12 +6,30 @@ import React from 'react';
 import RegisterForm from '../../components/register-form';
 import styles2 from '../../css/components/popup.module.css';
 import styles from '../../css/tutor/registration.module.css';
+import register from '../../helpers/register';
 
 const Registration: NextPage = () => {
   const router = useRouter();
 
-  const handleNextStep = () => {
-    router.push('/tutor/register-confirmation');
+  const handleNextStep = async (data: any) => {
+    // console.log(data)
+    register(
+      {
+        user: {
+          password: data.password,
+          confirm_password: data.passwordConfirmation
+        },
+        email: data.email,
+        name: data.name
+      },
+      'http://server-pae.azurewebsites.net/tutee/'
+    ).then(({ auth, message }) => {
+      if (auth) {
+        router.push('/student/register-confirmation');
+      } else {
+        alert(message);
+      }
+    });
   };
 
   return (
@@ -19,7 +37,7 @@ const Registration: NextPage = () => {
       <h1 className={styles.title}>REGISTRO</h1>
       <h2 className={styles.subtitle}>Datos personales</h2>
 
-      <RegisterForm nextStep={handleNextStep} student />
+      <RegisterForm nextStep={(data) => handleNextStep(data)} student />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import ButtonTemplate from './button-template';
 import TextInput from './text-input';
 
 interface RegisterFormProps {
-  nextStep: () => void;
+  nextStep: (data: StudentRegisterData) => void;
   student: boolean;
 }
 
@@ -42,8 +42,9 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      nextStep();
-    }, 2000);
+      nextStep(data);
+    }, 1000);
+
   });
 
   // const handleSubmit = () => {
