@@ -1,16 +1,20 @@
 import Image from 'next/image'
 import cardTutorsStyles from '../css/components/cardTutors.module.css';
-
+import Carousel from "react-elastic-carousel";
 
 const CardTutors = () => {
+
+const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 550, itemsToShow: 1 },
+    { width: 768, itemsToShow: 2 },
+    { width: 1200, itemsToShow: 3 },
+];
+    
     return (
         <div className={cardTutorsStyles.cardTutorsSection}>
-            <div className={cardTutorsStyles.cardTutorsWrap}>
-               <div className={cardTutorsStyles.leftButton}>
-                    <i className="bi bi-arrow-left"></i>
-                </div> 
-
-                    <div className={cardTutorsStyles.cardTutors}>
+             <Carousel breakPoints={breakPoints}>
+             <div className={cardTutorsStyles.cardTutors}>
                         <div className={cardTutorsStyles.studentInfo}>
                             <div className={cardTutorsStyles.profileIcon}><i className="bi bi-person-circle"></i></div>
                             <b className={cardTutorsStyles.firstName}>José Antonio</b>
@@ -200,15 +204,7 @@ const CardTutors = () => {
                             <button className={cardTutorsStyles.button}>Consultar duda</button>
                         </div>
                     </div>
-
-
-
-                     <div className={cardTutorsStyles.rightButton}>
-                        <i className="bi bi-arrow-right"></i>
-                    </div> 
-
-                </div>
-
+             </Carousel>
         </div>
     )
 }

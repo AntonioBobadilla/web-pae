@@ -1,36 +1,17 @@
-/*   ARROWS styles */
 
-.leftButton {
-    font-size: 30px;
-}
-
-.rightButton {
-    font-size: 30px;
-}
-
-.leftButton:hover,.rightButton:hover  {
-    cursor: pointer;
-}
-
-/*   ARROWS styles */
 
 .cardTutorsSection {
     display: block;
-    width: 100%;
+    width: 90%;
+    margin:0 auto;
     height: 100vh;
-    overflow-x: hidden;
     box-sizing: border-box;
     display: flex;
     align-items: center;
 }
 
-.cardTutorsWrap {
-    display: block;
-    white-space: nowrap;
-}
-
 .cardTutors {
-    width: 382px;
+    width: 80%;
     height: auto;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -41,7 +22,8 @@
     justify-content: center;
     border-radius: 8px;
     margin-bottom: 20px;
-    margin-left: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
     transition:.4s ease;
     position: relative;
     overflow: hidden;
