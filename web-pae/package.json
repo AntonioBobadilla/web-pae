@@ -9,17 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
     "@types/react-big-calendar": "^0.38.0",
     "classnames": "^2.3.1",
     "moment": "^2.29.3",
     "moment-timezone": "^0.5.34",
     "next": "12.1.2",
+    "next-redux-wrapper": "^7.0.5",
     "react": "18.0.0",
     "react-big-calendar": "^0.40.1",
     "react-dom": "18.0.0",
     "react-hook-form": "^7.30.0",
     "react-moment": "^1.1.2",
+    "react-redux": "^8.0.1",
     "react-table": "^7.7.0",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "validator": "^13.7.0"
   },
   "devDependencies": {
