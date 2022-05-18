@@ -16,6 +16,7 @@ a {
   color: #0a8ccb;
   font-weight: 400;
   cursor: pointer;
+  font-size: 1vw;
 }
 
 .error {
@@ -35,9 +36,18 @@ a {
   border-bottom: 1px solid #575757;
 }
 
+@media screen and (max-width: 800px) {
+  a {
+    font-size: 2vw;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .title {
     font-size: 5vw;
     margin: 10vh auto 6vh auto;
+  }
+  a {
+    font-size: 4vw;
   }
 }

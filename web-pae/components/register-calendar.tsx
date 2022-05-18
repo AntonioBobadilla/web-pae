@@ -15,9 +15,9 @@ interface Title {
 }
 
 const titles: Title = {
-  0: 'Primer periodo',
-  1: 'Segundo periodo',
-  2: 'Tercer periodo'
+  0: 'primer periodo',
+  1: 'segundo periodo',
+  2: 'tercer periodo'
 };
 
 const RegisterCalendar = ({
@@ -66,7 +66,9 @@ const RegisterCalendar = ({
   return (
     <div className={styles.container}>
       <div className={styles.calendar}>
-        <h3 className={styles.title}>{title}</h3>
+        <h3 className={styles.title}>
+          Selecciona tu horario para el <strong> {title} </strong>
+        </h3>
         <MyCalendar eventObj={eventObj} setEventObj={setEventObj} />
       </div>
       <div className={styles.buttons}>
