@@ -40,12 +40,20 @@ const Register: NextPage = () => {
             </div>
             <div className={styles.registerOptions}>
               <div className={styles.Button}>
-                <ButtonTemplate onClick={studentHandle} variant="primary">
+                <ButtonTemplate
+                  onClick={studentHandle}
+                  variant="primary"
+                  className={styles.fontS}
+                >
                   QUIERO UNA ASESORÍA
                 </ButtonTemplate>
               </div>
               <div className={styles.Button}>
-                <ButtonTemplate onClick={tutorHandle} variant="secondary">
+                <ButtonTemplate
+                  onClick={tutorHandle}
+                  variant="secondary"
+                  className={styles.fontS}
+                >
                   QUIERO DAR UNA ASESORÍA
                 </ButtonTemplate>
               </div>
