@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.hamburger {
+.hamburgerMenu {
   display: none;
 }
 
@@ -105,17 +105,17 @@
     display: flex;
   }
   .pae {
-    width: 10vh;
-    height: 10vh;
+    width: 8vh;
+    height: 8vh;
     margin-bottom: 20px;
   }
 
   .logoPae {
-    width: 6vh;
+    width: 5vh;
   }
 
   .textPae {
-    font-size: 3vh;
+    font-size: 2.5vh;
   }
 
   .dashboard {
@@ -128,7 +128,7 @@
   }
 
   .dbText {
-    font-size: 1.8vh;
+    font-size: 1.5vh;
     margin-top: 1.8vh;
   }
   .exit {
@@ -157,7 +157,7 @@
   .hamburger {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -1vw;
     height: 60px;
     width: 60px;
     padding: 12px;
@@ -215,7 +215,7 @@
   }
   /* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
   .toggler:checked ~ .menu {
-    width: 30%;
+    width: 100%;
   }
   /* STYLING THE LIST :  */
   .menu > div > ul {
