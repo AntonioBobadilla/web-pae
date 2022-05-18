@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  height: 100%;
+  width: 20%;
+}
+
+.test {
+  width: 70vw;
+  height: 20vw;
+  /*margin-left: 30vw;*/
+}
+
+@media screen and (max-width: 800px) {
+  .test {
+    width: 45vw;
+    height: 45vw;
+  }
+  .sidebar {
+    width: 10%;
+  }
+}

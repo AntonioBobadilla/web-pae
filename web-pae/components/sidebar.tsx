@@ -6,6 +6,7 @@ const SideBar = (props: {
   dashboardFunction: string | UrlObject;
   profileFunction: string | UrlObject;
   tutoringFunction: string | UrlObject;
+  calendarText: string;
 }) => {
   return (
     <div className={sidebarStyles.main}>
@@ -17,7 +18,7 @@ const SideBar = (props: {
           </div>
         </Link>
         <Link href={props.dashboardFunction}>
-          <div className={sidebarStyles.dashboard}>
+          <div className={sidebarStyles.dashboard} id="target1">
             <img
               src="/icons/house-door.svg"
               className={sidebarStyles.dbImage}
@@ -40,7 +41,7 @@ const SideBar = (props: {
               src="/icons/calendar-week.svg"
               className={sidebarStyles.dbImage}
             ></img>
-            <p className={sidebarStyles.dbText}>Agendar Asesoria</p>
+            <p className={sidebarStyles.dbText}>{props.calendarText}</p>
           </div>
         </Link>
         <Link href="/../student/login">
@@ -100,7 +101,7 @@ const SideBar = (props: {
                       src="/icons/calendar-week.svg"
                       className={sidebarStyles.dbImage}
                     ></img>
-                    <p className={sidebarStyles.dbText}>Agendar Asesoria</p>
+                    <p className={sidebarStyles.dbText}>{props.calendarText}</p>
                   </div>
                 </Link>
               </li>
@@ -121,5 +122,8 @@ const SideBar = (props: {
     </div>
   );
 };
+/*
+  Ejemplo de pantalla 
 
+*/
 export default SideBar;

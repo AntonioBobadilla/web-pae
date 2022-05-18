@@ -1,6 +1,6 @@
 .main {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -97,4 +97,39 @@
   font-size: 12px;
   font-weight: 300;
   padding-top: 6px;
+}
+
+@media screen and (max-width: 800px) {
+  .count1 {
+    font-size: 1.5vw;
+  }
+  .count2 {
+    font-size: 1.5vw;
+  }
+  .title {
+    padding-left: 1vw;
+    padding-top: 1vw;
+    padding-right: 1vw;
+    font-size: 2.5vw;
+  }
+  .content {
+    padding-left: 1vw;
+    padding-top: 1vw;
+    padding-right: 1vw;
+    font-size: 2.5vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  .count1 {
+    font-size: 2vw;
+  }
+  .count2 {
+    font-size: 2vw;
+  }
+  .title {
+    font-size: 4vw;
+  }
+  .content {
+    font-size: 4vw;
+  }
 }
