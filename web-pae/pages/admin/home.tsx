@@ -20,7 +20,7 @@ const Home: NextPage = () => (
 
 // Add sidebar layout
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Inicio">{page}</SidebarLayout>;
+  return <SidebarLayout title="INICIO">{page}</SidebarLayout>;
 };
 
 export default Home;
