@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "path": "/tutor/home",
+      "icon": "house-door",
+      "title": "Dashboard"
+    },
+    {
+      "path": "/tutor/profile",
+      "icon": "person-circle",
+      "title": "Perfil"
+    },
+    {
+      "path": "/tutor/assigned-tutorings",
+      "icon": "calendar-week",
+      "title": "Asesorías asignadas"
+    }
+  ],
+  "exit": "/tutor/login/"
+}
