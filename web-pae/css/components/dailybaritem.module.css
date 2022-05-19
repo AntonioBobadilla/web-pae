@@ -1,0 +1,25 @@
+.item {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right:1px solid black;
+}
+
+.active {
+    color:#039BE5;
+}
+
+.disabled {
+    color:#B3B3B3;
+    cursor:not-allowed;
+}
+.disabled:hover {
+    cursor:not-allowed;
+}
+
+.item:hover {
+    cursor: pointer;
+}
