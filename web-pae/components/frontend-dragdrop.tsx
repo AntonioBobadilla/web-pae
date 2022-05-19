@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
-
+import styles from '../css/components/dragdrop.module.css';
 
 
 const DragAndDrop = () => {
@@ -12,7 +12,9 @@ const DragAndDrop = () => {
         console.log(file)
     }
     return (
-        <FileUploader handleChange={handleChange} name="file"  />
+        <div className={styles.wrapper}>
+            <FileUploader className={styles.input} handleChange={handleChange} name="file"  />
+        </div>
     )
 };
 
