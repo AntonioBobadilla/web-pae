@@ -93,8 +93,14 @@
 }
 
 .forgotPassword {
-  color: #5b5b5b;
+  color: #0a8ccb;
   font-size: 1vw;
+  margin-bottom: 10px;
+}
+
+.forgotPassword:hover {
+  color: #0277bd;
+  text-decoration: underline;
 }
 
 .register {
@@ -106,10 +112,18 @@
   font-weight: 700;
 }
 
+.regLink:hover {
+  text-decoration: underline;
+}
+
 .privacy {
   padding-top: 75px;
   color: #5b5b5b;
   font-size: 1vw;
+}
+
+.privacy:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 1500px) {
