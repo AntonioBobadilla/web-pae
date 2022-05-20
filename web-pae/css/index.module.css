@@ -12,3 +12,8 @@
   width: 100%;
   height: 100%;
 }
+
+.component {
+  width: 50vw;
+  height: 50vh;
+}
