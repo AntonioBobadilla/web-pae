@@ -3,7 +3,9 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import AvailableTutorings from '../../components/available-tutorings';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
+
 import StepsStudent from '../../components/steps-student';
+import TutoringQuestion from '../../components/tutoring-question';
 import {
   AVAILABLE_TUTORINGS,
   CONFIRMATION,
@@ -71,7 +73,7 @@ const ScheduleTutoring: NextPage = () => {
       case AVAILABLE_TUTORINGS:
         return <AvailableTutorings />;
       case TOPIC:
-        return <p>Enviar tema</p>;
+        return <TutoringQuestion />;
       case CONFIRMATION:
         return <p>Confirmación</p>;
       default:
@@ -86,6 +88,7 @@ const ScheduleTutoring: NextPage = () => {
     </div>
   );
 };
+
 
 // Add sidebar layout
 ScheduleTutoring.getLayout = function getLayout(page: ReactElement) {

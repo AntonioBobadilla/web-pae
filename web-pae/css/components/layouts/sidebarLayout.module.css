@@ -1,7 +1,6 @@
 .main {
-  width: 60vw;
-  height: 60vh;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .sidebar {
