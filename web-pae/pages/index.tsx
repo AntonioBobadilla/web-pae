@@ -22,5 +22,9 @@ const Home: NextPage = () => (
   </div>
 );
 
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <SidebarLayout title="Agendar asesoría">{page}</SidebarLayout>;
+};
+
 export default Home;
 // <ConfirmPopup url="http://www.google.com" />

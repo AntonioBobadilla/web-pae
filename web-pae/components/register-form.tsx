@@ -39,41 +39,13 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
   const { isDirty } = useFormState({ control });
 
   const onSubmit = handleSubmit((data) => {
+    // save data to local storage
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
       nextStep(data);
     }, 1000);
-
   });
-
-  // const handleSubmit = () => {
-  //   if (name.length === 0) {
-  //     setNameError('El nombre es requerido');
-  //   }
-  //   if (email.length === 0) {
-  //     setEmailError('El email es requerido');
-  //   }
-  //   if (password.length === 0) {
-  //     setPasswordError('La contraseña es requerida');
-  //   }
-  //   if (passwordConfirmation.length === 0) {
-  //     setPasswordConfirmationError(
-  //       'La confirmación de contraseña es requerida'
-  //     );
-  //   }
-  //   if (
-  //     name.length > 0 &&
-  //     email.length > 0 &&
-  //     password.length > 0 &&
-  //     passwordConfirmation.length > 0
-  //   ) {
-  //     // TODO:
-  //     // POST .then
-  //     setIsValid(true);
-  //     nextStep();
-  //   }
-  // };
 
   return (
     <form className={styles.registerForm} onSubmit={onSubmit}>
