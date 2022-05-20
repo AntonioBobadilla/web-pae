@@ -4,7 +4,7 @@ import React from 'react';
 import ADMIN_ROUTES from '../../constants/admin-routes.json';
 import STUDENT_ROUTES from '../../constants/student-routes.json';
 import TUTOR_ROUTES from '../../constants/tutor-routes.json';
-import styles from '../../css/index.module.css';
+import styles from '../../css/components/layouts/sidebarLayout.module.css';
 import SideBar from '../sidebar';
 
 type LayoutProps = {

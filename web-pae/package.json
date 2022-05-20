@@ -19,6 +19,7 @@
     "react": "18.0.0",
     "react-big-calendar": "^0.40.1",
     "react-dom": "18.0.0",
+    "react-drag-drop-files": "^2.3.5",
     "react-elastic-carousel": "^0.11.5",
     "react-hook-form": "^7.30.0",
     "react-moment": "^1.1.2",
