@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
+import AvailableTutorings from '../../components/available-tutorings';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import StepsStudent from '../../components/steps-student';
 import {
@@ -61,13 +62,14 @@ const ScheduleTutoring: NextPage = () => {
       setStep(SUBJECT);
     }
   };
+
   const handleComponent = () => {
     // CREATE A COMPONENT FOR EACH STEP HERE, AND RETURN IT
     switch (step) {
       case SUBJECT:
         return <p>Escoger materia</p>;
       case AVAILABLE_TUTORINGS:
-        return <p>Escoger asesoría</p>;
+        return <AvailableTutorings />;
       case TOPIC:
         return <p>Enviar tema</p>;
       case CONFIRMATION:
@@ -76,6 +78,7 @@ const ScheduleTutoring: NextPage = () => {
         return null;
     }
   };
+
   return (
     <div>
       <StepsStudent currentRoute={query.step} />
