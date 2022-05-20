@@ -20,10 +20,10 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
   React.useEffect(() => {
     if (pathname.includes('admin')) {
       setRoutes(ADMIN_ROUTES);
-    } else if (pathname.includes('tutor')) {
-      setRoutes(TUTOR_ROUTES);
     } else if (pathname.includes('student')) {
       setRoutes(STUDENT_ROUTES);
+    } else if (pathname.includes('tutor')) {
+      setRoutes(TUTOR_ROUTES);
     }
   }, [pathname]);
 
