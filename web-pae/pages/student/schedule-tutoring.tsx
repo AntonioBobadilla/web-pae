@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import AvailableTutorings from '../../components/available-tutorings';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
-
 import StepsStudent from '../../components/steps-student';
 import TutoringQuestion from '../../components/tutoring-question';
+import styles from '../../css/student/schedule-tutoring.module.css';
 import {
   AVAILABLE_TUTORINGS,
   CONFIRMATION,
@@ -82,13 +82,12 @@ const ScheduleTutoring: NextPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <StepsStudent currentRoute={query.step} />
       {handleComponent()}
     </div>
   );
 };
-
 
 // Add sidebar layout
 ScheduleTutoring.getLayout = function getLayout(page: ReactElement) {
