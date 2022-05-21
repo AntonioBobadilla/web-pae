@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import React, { ReactElement, ReactNode } from 'react';
 import { wrapper } from '../store/store';
 import '../styles/globals.css';
+import { appWithTranslation } from 'next-i18next';
 
 type NextPageWithLayout = NextPage & {
   // define the getLayout method for every page
@@ -21,4 +22,4 @@ function PAE({ Component, pageProps }: AppPropsWithLayout) {
   return getLayout(<Component {...pageProps} />);
 }
 
-export default wrapper.withRedux(PAE);
+export default appWithTranslation(wrapper.withRedux(PAE));

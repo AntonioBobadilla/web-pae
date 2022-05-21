@@ -17,6 +17,7 @@
     "moment": "^2.29.3",
     "moment-timezone": "^0.5.34",
     "next": "12.1.2",
+    "next-i18next": "^11.0.0",
     "next-redux-wrapper": "^7.0.5",
     "react": "18.0.0",
     "react-big-calendar": "^0.40.1",
