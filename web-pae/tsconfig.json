@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "baseUrl": ".",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,8 +14,24 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/css-components/*": ["css/components/*"],
+      "@/css-admin/*": ["css/admin/*"],
+      "@/css-student/*": ["css/student/*"],
+      "@/css-tutor/*": ["css/tutor/*"],
+      "@/helpers/*": ["helpers/*"],
+      "@/redux/*": ["store/reducers/*"],
+      "@/public/*": ["public/*"],
+      "@/pages/*": ["pages/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/frontend-cardTutors"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/frontend-cardTutors"
+  ],
   "exclude": ["node_modules"]
 }

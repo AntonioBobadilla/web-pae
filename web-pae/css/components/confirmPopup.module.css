@@ -1,0 +1,30 @@
+.paragraph {
+  font-size: 26px;
+  font-weight: 300;
+  margin: 40px 70px;
+  color: #3f3b3b;
+  text-align: center;
+}
+
+.icon {
+  font-size: 50px;
+}
+
+.linkStyle {
+  margin-top: 10px;
+  margin: 30px 30px;
+}
+
+@media screen and (max-width: 425px) {
+  .paragraph {
+    font-size: 5vw;
+  }
+
+  .icon {
+    font-size: 5vh;
+  }
+
+  .linkStyle {
+    font-size: 4vw;
+  }
+}

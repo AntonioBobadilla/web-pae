@@ -1,0 +1,22 @@
+.container {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+}
+
+.container .buttons {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  margin-left: 3vw;
+}
+
+.container .calendar {
+  width: 80vw;
+}
+
+.container .calendar .title {
+  margin-left: 10%;
+  margin-top: 10px;
+  font-weight: 200;
+}

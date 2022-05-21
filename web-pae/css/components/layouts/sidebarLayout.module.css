@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  height: 100%;
+  width: 10%;
+}
+
+.test {
+  width: 100%;
+  height: 100%;
+}
