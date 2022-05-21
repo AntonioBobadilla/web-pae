@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import React from 'react';
 import ButtonTemplate from '../components/button-template';
 import ToggleButton from '../components/toggle-button';
@@ -60,10 +61,24 @@ const Register: NextPage = () => {
               <h2 className={styles.language}>Idioma / Language</h2>
               <div className={styles.languageOptions}>
                 <div className={styles.toggle}>
-                  <ToggleButton flagType="/images/mxflag.png" desc="Español" />
+                  <Link href="/register" locale={'es'}>
+                    <a>
+                      <ToggleButton
+                        flagType="/images/mxflag.png"
+                        desc="Español"
+                      />
+                    </a>
+                  </Link>
                 </div>
                 <div className={styles.toggle}>
-                  <ToggleButton flagType="/images/usaflag.png" desc="English" />
+                  <Link href="/register" locale={'en'}>
+                    <a>
+                      <ToggleButton
+                        flagType="/images/usaflag.png"
+                        desc="English"
+                      />
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
