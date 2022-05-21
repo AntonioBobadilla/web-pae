@@ -76,7 +76,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.fontS {
+  font-size: 1.2vw;
+}
 .language {
   margin-top: 30px;
   color: #3f3b3b;
@@ -112,5 +114,14 @@
   }
   .toggle {
     width: 25%;
+  }
+  .fontS {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .fontS {
+    font-size: 3.5vw;
   }
 }
