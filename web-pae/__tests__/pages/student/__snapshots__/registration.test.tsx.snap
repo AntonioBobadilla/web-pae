@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Student registration renders admin profile page unchanged 1`] = `
+<div>
+  <h1>
+    PROFILE
+  </h1>
+</div>
+`;
+
+exports[`Student registration renders student registration page unchanged 1`] = `
+<div>
+  <h1>
+    PROFILE
+  </h1>
+</div>
+`;
+
+exports[`Student registration renders student-registration page unchanged 1`] = `
+<div>
+  <div
+    class="container containerPopup"
+  >
+    <h1
+      class="title"
+    >
+      REGISTRO
+    </h1>
+    <h2
+      class="subtitle"
+    >
+      Datos personales
+    </h2>
+    <form
+      class="registerForm"
+    >
+      <div
+        class="input"
+      >
+        <input
+          class="textInput"
+          id="name"
+          name="name"
+          placeholder="NOMBRE COMPLETO*"
+          value=""
+        />
+      </div>
+      <div
+        class="input"
+      >
+        <input
+          class="textInput"
+          id="email"
+          name="email"
+          placeholder="CORREO INSTITUCIONAL*"
+          value=""
+        />
+      </div>
+      <div
+        class="input"
+      >
+        <input
+          class="textInput"
+          id="password"
+          name="password"
+          placeholder="CONTRASEÑA*"
+          type="password"
+          value=""
+        />
+      </div>
+      <div
+        class="input"
+      >
+        <input
+          class="textInput"
+          id="passwordConfirmation"
+          name="passwordConfirmation"
+          placeholder="CONFIRMAR CONTRASEÑA*"
+          type="password"
+          value=""
+        />
+      </div>
+      <div
+        class="button"
+      >
+        <button
+          class="button primary"
+          disabled=""
+          type="submit"
+        >
+          CONCLUIR REGISTRO
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

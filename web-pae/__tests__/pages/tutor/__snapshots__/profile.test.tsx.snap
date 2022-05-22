@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
+<div>
+  <h1>
+    PROFILE
+  </h1>
+</div>
+`;
