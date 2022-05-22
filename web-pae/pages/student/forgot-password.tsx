@@ -26,7 +26,7 @@ const ForgotPassword: NextPage = () => {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['student']))
+      ...(await serverSideTranslations(locale, ['student-forgot-password']))
     }
   };
 }

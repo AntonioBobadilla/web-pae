@@ -18,7 +18,7 @@ interface ForgotPasswordData {
 
 const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation('student');
+  const { t } = useTranslation('student-forgot-password');
 
   const {
     control,
