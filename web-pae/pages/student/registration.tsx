@@ -9,7 +9,7 @@ import styles from '../../css/tutor/registration.module.css';
 import register from '../../helpers/register';
 
 const Registration: NextPage = () => {
-  const router = useRouter();
+  const { push } = useRouter();
 
   const handleNextStep = async (data: any) => {
     // console.log(data)
@@ -25,7 +25,7 @@ const Registration: NextPage = () => {
       'http://server-pae.azurewebsites.net/tutee/'
     ).then(({ auth, message }) => {
       if (auth) {
-        router.push('/student/register-confirmation');
+        push('/student/register-confirmation');
       } else {
         alert(message);
       }

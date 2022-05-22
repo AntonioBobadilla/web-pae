@@ -46,3 +46,55 @@ exports[`Home renders homepage unchanged 1`] = `
   </div>
 </div>
 `;
+
+exports[`Index renders index page unchanged 1`] = `
+<div>
+  <div>
+    <main
+      class="component"
+    >
+      <div
+        class="main"
+      >
+        <p
+          class="question"
+        >
+          Tu tutor es un pendejo? o si estaba preparado para resolver tus dudas aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa
+        </p>
+        <div
+          class="form"
+        >
+          <input
+            class="rButton"
+            id="1"
+            name="answer"
+            type="radio"
+            value="Tagree"
+          />
+          <input
+            class="rButton"
+            id="2"
+            name="answer"
+            type="radio"
+            value="agree"
+          />
+          <input
+            class="rButton"
+            id="3"
+            name="answer"
+            type="radio"
+            value="disagree"
+          />
+          <input
+            class="rButton"
+            id="4"
+            name="answer"
+            type="radio"
+            value="Tdisagree"
+          />
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+`;

@@ -15,8 +15,7 @@ import {
 
 const ScheduleTutoring: NextPage = () => {
   const [step, setStep] = React.useState<string>(SUBJECT);
-  const router = useRouter();
-  const { query } = router;
+  const { query, push } = useRouter();
   const handleSteps = (clickedStep: string | undefined | string[]) => {
     if (clickedStep === step) {
       setStep(clickedStep);
@@ -42,25 +41,25 @@ const ScheduleTutoring: NextPage = () => {
     if (step === SUBJECT) {
       // router
       setStep(AVAILABLE_TUTORINGS);
-      router.push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
+      push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
     } else if (step === AVAILABLE_TUTORINGS) {
       setStep(TOPIC);
-      router.push(`/student/schedule-tutoring/?step=${TOPIC}`);
+      push(`/student/schedule-tutoring/?step=${TOPIC}`);
     } else if (step === TOPIC) {
       setStep(CONFIRMATION);
-      router.push(`/student/schedule-tutoring/?step=${CONFIRMATION}`);
+      push(`/student/schedule-tutoring/?step=${CONFIRMATION}`);
     }
   };
 
   const handlePreviousStep = () => {
     if (step === CONFIRMATION) {
-      router.push(`/student/schedule-tutoring/?step=${TOPIC}`);
+      push(`/student/schedule-tutoring/?step=${TOPIC}`);
       setStep(TOPIC);
     } else if (step === TOPIC) {
-      router.push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
+      push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
       setStep(AVAILABLE_TUTORINGS);
     } else if (step === AVAILABLE_TUTORINGS) {
-      router.push(`/student/schedule-tutoring/?step=${SUBJECT}`);
+      push(`/student/schedule-tutoring/?step=${SUBJECT}`);
       setStep(SUBJECT);
     }
   };
