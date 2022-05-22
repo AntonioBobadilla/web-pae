@@ -1,6 +1,6 @@
 
 .wrapper {
-    width: 50%;
+    width: 100%;
     margin:100px auto;
     height: 100%;
     display: flex;
@@ -25,7 +25,7 @@
 
 .inputSearch {
     width: 80%;
-    height: 100%;
+    height: auto;
     border:none;
     outline: none;
 }
@@ -56,4 +56,30 @@
 }
 .autocomplete li:not(:last-of-type) {
   border-bottom: 1px solid white;
+}
+
+
+@media screen and (max-width: 840px){
+  .icon {
+    margin: 0px 0px 0px 4px;
+  }
+}
+
+@media screen and (max-width: 800px){
+
+  .inputSearch,
+  .inputSearch::placeholder,
+  .inputSearch::-moz-placeholder,
+  .inputSearch:-moz-placeholder {
+    font-size: 1.7vw;
+  }
+
+    
+  .icon {
+    font-size: 3vw;
+    width: auto;
+  }
+  .searchBarInputWrapper {
+    height: 30px;
+  }
 }
