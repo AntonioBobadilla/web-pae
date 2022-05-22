@@ -1,48 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home renders homepage unchanged 1`] = `
+exports[`Index renders index page unchanged 1`] = `
 <div>
-  <div
-    class="cards"
-  >
-    <div
-      class="card"
+  <div>
+    <main
+      class="component"
     >
       <div
-        class="box"
+        class="main"
       >
-        <img
-          class="image"
-          src="/images/student-login-image.jpg"
-        />
         <p
-          class="description"
+          class="question"
         >
-           
-          Perfil
-           
+          Tu tutor es un pendejo? o si estaba preparado para resolver tus dudas aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa
         </p>
-      </div>
-    </div>
-    <div
-      class="card"
-    >
-      <div
-        class="box"
-      >
-        <img
-          class="image"
-          src="/images/tutor-login-image.jpg"
-        />
-        <p
-          class="description"
+        <div
+          class="form"
         >
-           
-          Asesorías asignadas
-           
-        </p>
+          <input
+            class="rButton"
+            id="1"
+            name="answer"
+            type="radio"
+            value="Tagree"
+          />
+          <input
+            class="rButton"
+            id="2"
+            name="answer"
+            type="radio"
+            value="agree"
+          />
+          <input
+            class="rButton"
+            id="3"
+            name="answer"
+            type="radio"
+            value="disagree"
+          />
+          <input
+            class="rButton"
+            id="4"
+            name="answer"
+            type="radio"
+            value="Tdisagree"
+          />
+        </div>
       </div>
-    </div>
+    </main>
   </div>
 </div>
 `;

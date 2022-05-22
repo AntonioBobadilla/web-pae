@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin Login renders admin login page unchanged 1`] = `
+<div>
+  <div>
+    <main>
+      <form
+        class="mainContainer"
+      >
+        <div
+          class="leftCont"
+        >
+          <img
+            class="loginImage"
+            src="/images/student-login-image.jpg"
+          />
+        </div>
+        <div
+          class="signIn"
+        >
+          <div
+            class="paeLogin"
+          >
+            <img
+              class="paeLogo"
+              src="/images/pae-logo.png"
+            />
+            <h1
+              class="paeText"
+            >
+               PAE | LOGIN
+            </h1>
+          </div>
+          <div
+            class="loginFields"
+          >
+            <div
+              class="component"
+            >
+              <input
+                class="textInput"
+                id="email"
+                name="email"
+                placeholder="CORREO INSTITUCIONAL"
+                value=""
+              />
+            </div>
+            <div
+              class="component"
+            >
+              <input
+                class="textInput"
+                id="password"
+                name="password"
+                placeholder="CONTRASEÑA"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              class="componentB"
+            >
+              <button
+                class="button primary"
+                disabled=""
+                type="submit"
+              >
+                INICIAR SESION
+              </button>
+            </div>
+          </div>
+          <div
+            class="notUser"
+          >
+            <a
+              class="forgotPassword"
+              href="/student/forgot-password"
+            >
+              Olvidé mi contraseña
+            </a>
+            <h2
+              class="register"
+            >
+              ¿No tienes cuenta?
+               
+              <a
+                class="regLink"
+                href="/register"
+              >
+                Regístrate
+              </a>
+            </h2>
+            <a
+              class="privacy"
+              href="#"
+            >
+              Aviso de privacidad
+            </a>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>
+`;
