@@ -1,8 +1,9 @@
 /* eslint-disable react/function-component-definition */
+import SidebarLayout from '@/components/layouts/sidebar-layout';
+import StudentPoll from '@/components/student-poll';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import React from 'react';
-import Poll from '../components/poll';
+import React, { ReactElement } from 'react';
 import styles from '../css/index.module.css';
 
 const Home: NextPage = () => (
@@ -13,11 +14,7 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={styles.component}>
-      <Poll
-        question={
-          'Tu tutor es un pendejo? o si estaba preparado para resolver tus dudas aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa'
-        }
-      ></Poll>
+      <StudentPoll></StudentPoll>
     </main>
   </div>
 );
