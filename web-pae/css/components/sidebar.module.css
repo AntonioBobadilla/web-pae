@@ -219,4 +219,46 @@
     transition-delay: 0.1s;
     visibility: visible;
   }
+
+  @media screen and (max-width: 500px) {
+    .hamburgerMenu {
+      width: 15vw;
+    }
+    .hamburger {
+      width: 45px;
+      height: 45px;
+      padding: 8px;
+    }
+    .pae {
+      width: 7vh;
+      height: 7vh;
+      margin-bottom: 20px;
+    }
+
+    .logoPae {
+      width: 2.5vh;
+    }
+
+    .textPae {
+      font-size: 2vh;
+    }
+
+    .dashboard {
+      width: 9vh;
+      height: 9vh;
+    }
+    .dbImage {
+      font-size: 2.5vh;
+    }
+
+    .dbText {
+      font-size: 1.6vh;
+      margin-top: 1.8vh;
+    }
+    .exit {
+      font-size: 4vh;
+      position: relative;
+      margin-top: 10vh;
+    }
+  }
 }
