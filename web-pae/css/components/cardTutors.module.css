@@ -2,9 +2,9 @@
 
 .cardTutorsSection {
     display: block;
+    height: 100%;
     width: 90%;
     margin:0 auto;
-    height: 100vh;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -133,33 +133,37 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 645px) {
+
    .cardTutors{
-        width: 80%;
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
    } 
 
    .firstName {
-       font-size: 6vw;
+       font-size: 3vw;
    }
    .lastName {
-    font-size: 5vw;
+    font-size: 4vw;
     }
     .lastName {
-        font-size: 5vw;
+        font-size: 4vw;
     }
     .degree {
-        font-size: 7vw;
+        font-size: 5vw;
     }
     .matricula {
-        font-size: 5vw;
+        margin-left: 10px;
+        font-size: 4vw;
     }
     .degreeSection {
         width: 50%;
     }
     .itemText {
-        font-size: 4vw;
+        font-size: 3vw;
     }
     .button {
-        font-size: 4vw;
+        font-size: 2vw;
     }
 }

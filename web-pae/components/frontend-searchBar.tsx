@@ -26,6 +26,7 @@ const onClick = e => {
     setFiltered([]);
     setIsShow(false);
     setInput(e.currentTarget.innerText)
+    props.function(e.currentTarget.innerText);
   };
 const onKeyDown = e => {
     if (e.keyCode === 13) { // enter key
