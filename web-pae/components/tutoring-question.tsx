@@ -2,7 +2,6 @@ import qStyles from '../css/components/scheduleTutoringQuestion.module.css';
 import ButtonTemplate from './button-template';
 import DragAndDrop from './frontend-dragdrop';
 import InputTextArea from './input-text-area';
-import StepsStudent from './steps-student';
 
 const TutoringQuestion = () => (
   <div className={qStyles.main}>
