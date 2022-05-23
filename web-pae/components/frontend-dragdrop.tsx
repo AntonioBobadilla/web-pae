@@ -13,7 +13,9 @@ const DragAndDrop = () => {
     }
     return (
         <div className={styles.wrapper}>
-            <FileUploader className={styles.input} handleChange={handleChange} name="file"  />
+            <div className={styles.innerWrapper}>
+                <FileUploader children={<p className={styles.text}><b>Drag</b> a file here or <b>click</b> to select from your computer</p>} className={styles.input} handleChange={handleChange} name="file"  />
+            </div>
         </div>
     )
 };
