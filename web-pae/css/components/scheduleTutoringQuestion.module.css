@@ -3,6 +3,7 @@
   height: 70vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0 auto;
 }
 
@@ -13,6 +14,7 @@
   padding-left: 1vw;
   font-weight: 600;
   margin-bottom: 1vh;
+  width: 100%;
 }
 
 .doubt {
@@ -22,12 +24,16 @@
 }
 
 .dragDrop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 25%;
 }
 
 .button {
-  width: 20%;
+  width: 40%;
   height: 10%;
   display: flex;
   justify-content: center;
@@ -41,10 +47,11 @@
   }
   .dragDrop {
     height: 10%;
+    width: 50%;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
   .main {
     width: 70vw;
   }
