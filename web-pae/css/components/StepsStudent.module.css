@@ -14,10 +14,11 @@
 }
 
 .itemText {
+  font-size: 17px;
   margin-left: 5px;
   color: #a9a9a9;
   font-weight: 500;
-  font-size: 17px;
+
 }
 
 .dots {
