@@ -1,9 +1,10 @@
 /* eslint-disable react/function-component-definition */
 import SidebarLayout from '@/components/layouts/sidebar-layout';
-import StudentPoll from '@/components/student-poll';
+import TutoringQuestion from '@/components/tutoring-question';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React, { ReactElement } from 'react';
+import Poll from '../components/poll';
 import styles from '../css/index.module.css';
 
 const Home: NextPage = () => (
@@ -14,7 +15,7 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={styles.component}>
-      <StudentPoll></StudentPoll>
+      <TutoringQuestion></TutoringQuestion>
     </main>
   </div>
 );
