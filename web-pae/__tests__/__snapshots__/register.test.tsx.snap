@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register renders register page unchanged 1`] = `
+<div>
+  <div>
+    <main>
+      <div
+        class="mainContainer"
+      >
+        <div
+          class="leftCont"
+        >
+          <img
+            class="registerImage"
+            src="/images/register-image.jpg"
+          />
+        </div>
+        <div
+          class="register"
+        >
+          <div
+            class="paeRegister"
+          >
+            <img
+              class="paeLogo"
+              src="/images/pae-logo.png"
+            />
+            <h1
+              class="paeText"
+            >
+               PAE | REGISTRO
+            </h1>
+          </div>
+          <div
+            class="registerOptions"
+          >
+            <div
+              class="Button"
+            >
+              <button
+                class="button primary fontS"
+              >
+                QUIERO UNA ASESORÍA
+              </button>
+            </div>
+            <div
+              class="Button"
+            >
+              <button
+                class="button secondary fontS"
+              >
+                QUIERO DAR UNA ASESORÍA
+              </button>
+            </div>
+            <h2
+              class="language"
+            >
+              Idioma / Language
+            </h2>
+            <div
+              class="languageOptions"
+            >
+              <div
+                class="toggle"
+              >
+                <div
+                  class="toggle"
+                >
+                  <img
+                    class="flag"
+                    src="/images/mxflag.png"
+                  />
+                  <p
+                    class="description"
+                  >
+                     
+                    Español
+                     
+                  </p>
+                </div>
+              </div>
+              <div
+                class="toggle"
+              >
+                <div
+                  class="toggle"
+                >
+                  <img
+                    class="flag"
+                    src="/images/usaflag.png"
+                  />
+                  <p
+                    class="description"
+                  >
+                     
+                    English
+                     
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+`;

@@ -11,8 +11,7 @@
 }
 
 .dataTable .header .row .cell {
-  padding-left: 15%;
-  padding-right: 15%;
+  margin: 0 auto;
   padding-top: 2%;
   padding-bottom: 2%;
   width: 30%;

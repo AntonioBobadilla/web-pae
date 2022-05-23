@@ -13,7 +13,7 @@ const breakPoints = [
     
     return (
         <div className={cardTutorsStyles.cardTutorsSection}>
-             <Carousel breakPoints={breakPoints}>
+             <Carousel breakPoints={breakPoints} pagination={false}>
              <div className={cardTutorsStyles.cardTutors}>
                         <div className={cardTutorsStyles.studentInfo}>
                             <div className={cardTutorsStyles.profileIcon}><i className="bi bi-person-circle"></i></div>
