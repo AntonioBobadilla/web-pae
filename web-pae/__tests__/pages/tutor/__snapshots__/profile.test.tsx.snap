@@ -130,11 +130,7 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           class="statusSize"
         >
           <button
-<<<<<<< HEAD
-            class="container button info"
-=======
-            class="container pending"
->>>>>>> e24b5f5d501a13500f2a441b4089121e95b2a5cd
+            class="container info"
           >
              
             Completada
