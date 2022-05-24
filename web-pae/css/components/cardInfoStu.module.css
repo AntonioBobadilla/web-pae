@@ -1,0 +1,118 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #dadada;
+  justify-items: space-between;
+  align-items: center;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.icon {
+  color: dimgrey;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.dateSize {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-items: space-between;
+  align-items: center;
+}
+
+.subjectSize {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-items: space-between;
+  align-items: center;
+}
+
+.studentSize {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-items: space-between;
+  align-items: center;
+}
+
+.locationSize {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5vh;
+  font-weight: 300;
+}
+
+.statusSize {
+  width: 15%;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  justify-items: space-between;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.caption {
+  font-size: 2.5vh;
+  font-weight: 300;
+  color: #3f3b3b;
+}
+
+.caption2 {
+  font-size: 1.3vw;
+  font-weight: 300;
+  color: #0a8ccb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.caption2:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 920px) {
+  .box {
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .dateSize {
+    width: 100%;
+  }
+
+  .subjectSize {
+    width: 100%;
+  }
+
+  .studentSize {
+    width: 100%;
+  }
+
+  .statusSize {
+    padding-top: 10px;
+    width: 30vw;
+    height: 5vh;
+  }
+  .locationSize {
+    width: 100%;
+    padding-left: 52px;
+    justify-content: left;
+    padding-top: 3px;
+    overflow-wrap: auto;
+  }
+  .caption {
+    font-size: 2vh;
+  }
+  .caption2 {
+    font-size: 2vh;
+    text-align: left;
+  }
+}

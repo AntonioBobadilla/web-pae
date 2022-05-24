@@ -130,9 +130,9 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           class="statusSize"
         >
           <button
-            class="container pending"
+            class="container info"
           >
-            pending
+            info
           </button>
         </div>
       </div>
