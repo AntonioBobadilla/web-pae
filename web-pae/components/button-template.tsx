@@ -7,6 +7,7 @@ interface ButtonTemplateProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: string;
   loading?: boolean;
+  clickable?: boolean;
 }
 
 interface Variant {
@@ -27,12 +28,14 @@ const ButtonTemplate = ({
   variant,
   loading,
   children,
+  clickable,
   ...rest
 }: ButtonTemplateProps) => (
   <button
     {...rest}
     className={cx(
-      ButtonTemplateStyles.button,
+      ButtonTemplateStyles.container,
+      clickable && ButtonTemplateStyles.button,
       variants[variant],
       rest.className
     )}
@@ -43,7 +46,8 @@ const ButtonTemplate = ({
 );
 
 ButtonTemplate.defaultProps = {
-  loading: false
+  loading: false,
+  clickable: true
 };
 
 export default ButtonTemplate;

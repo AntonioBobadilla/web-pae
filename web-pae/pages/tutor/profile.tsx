@@ -1,8 +1,9 @@
+import ModifyPassword from '@/components/dialogs/modify-password';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 
-const Profile: NextPage = () => <h1>PROFILE</h1>;
+const Profile: NextPage = () => <ModifyPassword />;
 
 // Add sidebar layout
 Profile.getLayout = function getLayout(page: ReactElement) {
