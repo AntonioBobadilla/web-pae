@@ -2,8 +2,55 @@
 
 exports[`Student Profile renders admin profile page unchanged 1`] = `
 <div>
-  <h1>
-    PROFILE
-  </h1>
+  <div>
+    <div
+      class="main"
+    >
+      <input
+        class="toggler"
+        type="checkbox"
+      />
+      <div
+        class="buttonContainer"
+        id="toggle"
+      >
+        <img
+          class="icon"
+          src="/icons/gear.svg"
+        />
+      </div>
+      <div
+        class="overlay"
+        id="overlay"
+      >
+        <nav
+          class="overlayMenu"
+        >
+          <ul
+            class="ul"
+          >
+            <li
+              class="li"
+            >
+              <a
+                class="a"
+              >
+                Modificar contraseña
+              </a>
+            </li>
+            <li
+              class="li"
+            >
+              <a
+                class="a"
+              >
+                Modificar idioma
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
 </div>
 `;
