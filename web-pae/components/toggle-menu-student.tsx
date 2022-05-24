@@ -1,6 +1,6 @@
-import tStyles from '../css/components/toggleMenu.module.css';
+import tStyles from '../css/components/toggleMenuStudent.module.css';
 
-const ToggleMenu = (props: {}) => {
+const ToggleMenuStudent = (props: {}) => {
   return (
     <div className={tStyles.main}>
       <input type="checkbox" className={tStyles.toggler} />
@@ -10,12 +10,6 @@ const ToggleMenu = (props: {}) => {
       <div className={tStyles.overlay} id="overlay">
         <nav className={tStyles.overlayMenu}>
           <ul className={tStyles.ul}>
-            <li className={tStyles.li}>
-              <a className={tStyles.a}>Modificar horario</a>
-            </li>
-            <li className={tStyles.li}>
-              <a className={tStyles.a}>Modificar materias</a>
-            </li>
             <li className={tStyles.li}>
               <a className={tStyles.a}>Modificar contraseña</a>
             </li>
@@ -29,4 +23,4 @@ const ToggleMenu = (props: {}) => {
   );
 };
 
-export default ToggleMenu;
+export default ToggleMenuStudent;
