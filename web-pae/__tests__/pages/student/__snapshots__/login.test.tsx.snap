@@ -61,7 +61,7 @@ exports[`Student Login renders page unchanged 1`] = `
               class="componentB"
             >
               <button
-                class="button primary"
+                class="container button primary"
                 disabled=""
                 type="submit"
               >
