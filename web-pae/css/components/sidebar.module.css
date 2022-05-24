@@ -91,6 +91,8 @@
   }
   .hamburgerMenu {
     display: flex;
+    z-index: 999;
+    position: absolute;
   }
   .pae {
     width: 8vh;
@@ -109,6 +111,7 @@
   .dashboard {
     width: 11vh;
     height: 11vh;
+    z-index: 5;
   }
   .dbImage {
     font-size: 4vh;

@@ -122,7 +122,16 @@
   font-size: 1vw;
 }
 
+.privacy2 {
+  padding-top: 10px;
+  color: #5b5b5b;
+  font-size: 1vw;
+}
+
 .privacy:hover {
+  text-decoration: underline;
+}
+.privacy2:hover {
   text-decoration: underline;
 }
 

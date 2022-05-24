@@ -6,12 +6,17 @@ import styles from '../../css/tutor/home.module.css';
 const Home = () => (
   <div className={styles.cards}>
     <div className={styles.card}>
-      <ImageCard image="/images/student-login-image.jpg" description="Perfil" />
+      <ImageCard
+        image="/images/student-login-image.jpg"
+        description="Asesores"
+        path="/admin/tutors"
+      />
     </div>
     <div className={styles.card}>
       <ImageCard
         image="/images/tutor-login-image.jpg"
-        description="Asesorías asignadas"
+        description="Asesorías pendientes"
+        path="/admin/tutorings"
       />
     </div>
   </div>
