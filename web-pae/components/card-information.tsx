@@ -7,11 +7,11 @@ const CardInformation = () => {
   const [history, setHistory] = React.useState<History[]>(HistoryMockService());
   return history.map((history) => (
     <CardInfo
-      key={history.date}
       date={history.date}
       subject={history.subject}
       student={history.student}
       status={history.status}
+      key={history.date}
     />
   ));
 };
