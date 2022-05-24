@@ -12,7 +12,7 @@ const interpretation = (status: string) => {
     case 'cancel':
       return 'Cancelado';
     case 'info': //cambiar por completada
-      return 'Completada ';
+      return 'Completada';
     default:
       return 'Pendiente';
   }

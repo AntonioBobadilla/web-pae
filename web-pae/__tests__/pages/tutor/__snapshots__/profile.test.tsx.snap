@@ -67,7 +67,7 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
             class="container button info"
           >
              
-            Completada 
+            Completada
           </button>
         </div>
       </div>
