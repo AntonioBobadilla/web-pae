@@ -3,6 +3,21 @@ import cardInfoStyles from '../css/components/cardInfo.module.css';
 import cx from 'classnames';
 import ButtonTemplate from './button-template';
 
+const interpretation = (status: string) => {
+  switch (status) {
+    case 'pending':
+      return 'Pendiente';
+    case 'confirm':
+      return 'Confirmado';
+    case 'cancel':
+      return 'Cancelado';
+    case 'info': //cambiar por completada
+      return 'Completada ';
+    default:
+      return 'Pendiente';
+  }
+};
+
 const CardInfo = (props: {
   date: string;
   subject: string;
@@ -32,7 +47,10 @@ const CardInfo = (props: {
       </div>
 
       <div className={cardInfoStyles.statusSize}>
-        <ButtonTemplate variant={status}>{props.status}</ButtonTemplate>
+        <ButtonTemplate variant={status}>
+          {' '}
+          {interpretation(status)}
+        </ButtonTemplate>
       </div>
     </div>
   );

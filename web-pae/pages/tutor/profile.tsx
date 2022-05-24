@@ -15,7 +15,6 @@ const Profile: NextPage = () => (
   </div>
 );
 
-
 // Add sidebar layout
 Profile.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title="Mi perfil">{page}</SidebarLayout>;
