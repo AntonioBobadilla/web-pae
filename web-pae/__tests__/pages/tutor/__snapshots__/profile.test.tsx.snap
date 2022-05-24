@@ -3,43 +3,69 @@
 exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
 <div>
   <div
-    class="portal"
+    class="main"
   >
+    <input
+      class="toggler"
+      type="checkbox"
+    />
     <div
-      class="mask maskVisible"
+      class="buttonContainer"
+      id="toggle"
     >
-      <div
-        class="dialog container"
-        role="dialog"
+      <img
+        class="icon"
+        src="/icons/gear.svg"
+      />
+    </div>
+    <div
+      class="overlay"
+      id="overlay"
+    >
+      <nav
+        class="overlayMenu"
       >
-        <div
-          class="header"
+        <ul
+          class="ul"
         >
-          <div
-            class="headerIcons"
+          <li
+            class="li"
           >
-            <div
-              class="logo"
+            <a
+              class="a"
             >
-              <span
-                style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 100px; height: 33px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
-              >
-                <img
-                  alt="logo"
-                  data-nimg="fixed"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Flogo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Flogo.png&w=256&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-              </span>
-            </div>
-            <i
-              class="bi bi-x-lg"
-            />
-          </div>
-        </div>
-      </div>
+              Modificar horario
+            </a>
+          </li>
+          <li
+            class="li"
+          >
+            <a
+              class="a"
+            >
+              Modificar materias
+            </a>
+          </li>
+          <li
+            class="li"
+          >
+            <a
+              class="a"
+            >
+              Modificar contraseña
+            </a>
+          </li>
+          <li
+            class="li"
+          >
+            <a
+              class="a"
+            >
+              Modificar idioma
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

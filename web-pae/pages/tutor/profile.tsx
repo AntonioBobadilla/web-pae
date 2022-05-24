@@ -1,9 +1,10 @@
-import ModifyPassword from '@/components/dialogs/modify-password';
+import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 
-const Profile: NextPage = () => <ModifyPassword />;
+const Profile: NextPage = () => <ToggleMenu></ToggleMenu>;
+
 
 // Add sidebar layout
 Profile.getLayout = function getLayout(page: ReactElement) {
