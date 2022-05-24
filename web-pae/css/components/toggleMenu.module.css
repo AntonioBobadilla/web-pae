@@ -123,3 +123,9 @@
     box-shadow: 0.5vh 0.7vh #888888;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .li {
+    margin-bottom: 2.5vh;
+  }
+}
