@@ -11,6 +11,8 @@ const Profile: NextPage = () => (
     <h1>Profile</h1>
     <div className={Styles.cardInfo}>
       <CardInformationStu />
+      <CardInformationStu />
+      <CardInformationStu />
     </div>
   </div>
 );
