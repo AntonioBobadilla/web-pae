@@ -61,7 +61,7 @@ exports[`Admin Login renders admin login page unchanged 1`] = `
               class="componentB"
             >
               <button
-                class="button primary"
+                class="container button primary"
                 disabled=""
                 type="submit"
               >
