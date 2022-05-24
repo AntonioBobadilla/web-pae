@@ -2,70 +2,74 @@
 
 exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
 <div>
-  <div
-    class="main"
-  >
-    <input
-      class="toggler"
-      type="checkbox"
-    />
+  <div>
+    <h1>
+      PROFILE
+    </h1>
     <div
-      class="buttonContainer"
-      id="toggle"
+      class="cardInfo"
     >
-      <img
-        class="icon"
-        src="/icons/gear.svg"
-      />
-    </div>
-    <div
-      class="overlay"
-      id="overlay"
-    >
-      <nav
-        class="overlayMenu"
+      <div
+        class="box"
       >
-        <ul
-          class="ul"
+        <div
+          class="dateSize"
         >
-          <li
-            class="li"
+          <h1
+            class="bi bi-alarm icon"
           >
-            <a
-              class="a"
-            >
-              Modificar horario
-            </a>
-          </li>
-          <li
-            class="li"
+             
+          </h1>
+          <span
+            class="caption"
           >
-            <a
-              class="a"
-            >
-              Modificar materias
-            </a>
-          </li>
-          <li
-            class="li"
+             
+            Lunes 21 de Marzo - 3:00 PM - 4:00 PM
+             
+          </span>
+        </div>
+        <div
+          class="subjectSize"
+        >
+          <h1
+            class="bi bi-stack icon"
           >
-            <a
-              class="a"
-            >
-              Modificar contraseña
-            </a>
-          </li>
-          <li
-            class="li"
+             
+          </h1>
+          <span
+            class="caption"
           >
-            <a
-              class="a"
-            >
-              Modificar idioma
-            </a>
-          </li>
-        </ul>
-      </nav>
+             
+            Programación orientada a objetos
+             
+          </span>
+        </div>
+        <div
+          class="studentSize"
+        >
+          <h1
+            class="bi bi-person-circle icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="statusSize"
+        >
+          <button
+            class="button pending"
+          >
+            pending
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
