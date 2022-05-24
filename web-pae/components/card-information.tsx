@@ -5,15 +5,19 @@ import { History } from './card-info/types';
 
 const CardInformation = () => {
   const [history, setHistory] = React.useState<History[]>(HistoryMockService());
-  return history.map((history) => (
-    <CardInfo
-      date={history.date}
-      subject={history.subject}
-      student={history.student}
-      status={history.status}
-      key={history.date}
-    />
-  ));
+  return (
+    <>
+      {history.map((historyItem) => (
+        <CardInfo
+          date={historyItem.date}
+          subject={historyItem.subject}
+          student={historyItem.student}
+          status={historyItem.status}
+          key={historyItem.date}
+        />
+      ))}
+    </>
+  );
 };
 
 export default CardInformation;

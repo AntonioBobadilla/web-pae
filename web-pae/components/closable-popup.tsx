@@ -42,7 +42,7 @@ const ClosablePopup = ({
               height={33}
             />
           </div>
-          <i className="bi bi-x-lg" />
+          <i className="bi bi-x-lg" style={{ color: 'red', fontSize: '2vw' }} />
         </div>
       </div>
       //   <div className={headerClassName}>
