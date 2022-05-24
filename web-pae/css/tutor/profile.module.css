@@ -1,0 +1,11 @@
+.cardInfo {
+  height: 15vh;
+  width: 95%;
+}
+
+@media screen and (max-width: 920px) {
+  .cardInfo {
+    height: auto;
+    width: 95%;
+  }
+}
