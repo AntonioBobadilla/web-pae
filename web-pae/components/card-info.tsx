@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import cardInfoStyles from '../css/components/cardInfo.module.css';
 import cx from 'classnames';
+import React from 'react';
+import cardInfoStyles from '../css/components/cardInfo.module.css';
 import ButtonTemplate from './button-template';
 
 const interpretation = (status: string) => {
@@ -24,7 +24,7 @@ const CardInfo = (props: {
   student: string;
   status: string;
 }) => {
-  const { date } = props; //descomposición del objeto props
+  const { date } = props; // descomposición del objeto props
   const { subject } = props;
   const { student } = props;
   const { status } = props;
@@ -47,7 +47,7 @@ const CardInfo = (props: {
       </div>
 
       <div className={cardInfoStyles.statusSize}>
-        <ButtonTemplate variant={status}>
+        <ButtonTemplate variant={status} clickable={false}>
           {' '}
           {interpretation(status)}
         </ButtonTemplate>

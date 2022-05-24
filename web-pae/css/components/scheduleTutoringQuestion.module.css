@@ -53,6 +53,7 @@
 
 @media screen and (max-width: 500px) {
   .main {
-    width: 70vw;
+    width: 100%;
+    margin: 0 auto;
   }
 }

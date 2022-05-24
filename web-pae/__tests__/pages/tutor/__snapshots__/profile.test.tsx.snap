@@ -3,6 +3,72 @@
 exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
 <div>
   <div>
+    <div
+      class="main"
+    >
+      <input
+        class="toggler"
+        type="checkbox"
+      />
+      <div
+        class="buttonContainer"
+        id="toggle"
+      >
+        <img
+          class="icon"
+          src="/icons/gear.svg"
+        />
+      </div>
+      <div
+        class="overlay"
+        id="overlay"
+      >
+        <nav
+          class="overlayMenu"
+        >
+          <ul
+            class="ul"
+          >
+            <li
+              class="li"
+            >
+              <a
+                class="a"
+              >
+                Modificar horario
+              </a>
+            </li>
+            <li
+              class="li"
+            >
+              <a
+                class="a"
+              >
+                Modificar materias
+              </a>
+            </li>
+            <li
+              class="li"
+            >
+              <a
+                class="a"
+              >
+                Modificar contraseña
+              </a>
+            </li>
+            <li
+              class="li"
+            >
+              <a
+                class="a"
+              >
+                Modificar idioma
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
     <h1>
       PROFILE
     </h1>
@@ -64,7 +130,11 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           class="statusSize"
         >
           <button
+<<<<<<< HEAD
             class="container button info"
+=======
+            class="container pending"
+>>>>>>> e24b5f5d501a13500f2a441b4089121e95b2a5cd
           >
              
             Completada

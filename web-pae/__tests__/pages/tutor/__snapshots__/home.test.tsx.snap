@@ -10,6 +10,8 @@ exports[`Tutor Home Profile renders tutor home  page unchanged 1`] = `
     >
       <div
         class="box"
+        href="/tutor/profile"
+        role="button"
       >
         <img
           class="image"
@@ -29,6 +31,8 @@ exports[`Tutor Home Profile renders tutor home  page unchanged 1`] = `
     >
       <div
         class="box"
+        href="/tutor/assigned-tutorings"
+        role="button"
       >
         <img
           class="image"
