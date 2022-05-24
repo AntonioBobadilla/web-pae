@@ -10,6 +10,8 @@ exports[`Student Home renders Student home page unchanged 1`] = `
     >
       <div
         class="box"
+        href="/student/profile"
+        role="button"
       >
         <img
           class="image"
@@ -29,6 +31,8 @@ exports[`Student Home renders Student home page unchanged 1`] = `
     >
       <div
         class="box"
+        href="/student/schedule-tutoring"
+        role="button"
       >
         <img
           class="image"
@@ -38,7 +42,7 @@ exports[`Student Home renders Student home page unchanged 1`] = `
           class="description"
         >
            
-          Asesorías asignadas
+          Agendar asesoría
            
         </p>
       </div>
