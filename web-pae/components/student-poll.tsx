@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import pStyles from '../css/components/studentPoll.module.css';
 import ButtonTemplate from './button-template';
-import InputTextArea from './input-text-area';
 import Poll from './poll';
 import Popup from './popup';
 import TextInput from './text-input';
