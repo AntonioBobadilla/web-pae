@@ -115,7 +115,7 @@ exports[`Index renders index page unchanged 1`] = `
           class="button"
         >
           <button
-            class="button primary"
+            class="container button primary"
           >
             Agendar Asesoría
           </button>
