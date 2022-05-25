@@ -1,12 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable react/default-props-match-prop-types */
-import DomHandler from '@/helpers/dom-handler';
-import {
-  useMountEffect,
-  useUnmountEffect,
-  useUpdateEffect
-} from '@/hooks/hooks';
+import DomHandler from 'helpers/dom-handler';
+import { useMountEffect, useUnmountEffect, useUpdateEffect } from 'hooks/hooks';
 import React, { ReactFragment } from 'react';
 import ReactDOM from 'react-dom';
 

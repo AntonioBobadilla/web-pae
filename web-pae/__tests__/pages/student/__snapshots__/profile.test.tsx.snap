@@ -34,20 +34,24 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             <li
               class="li"
             >
-              <a
+              <span
                 class="a"
+                role="button"
+                tabindex="-1"
               >
                 Modificar contraseña
-              </a>
+              </span>
             </li>
             <li
               class="li"
             >
-              <a
+              <span
                 class="a"
+                role="button"
+                tabindex="-1"
               >
                 Modificar idioma
-              </a>
+              </span>
             </li>
           </ul>
         </nav>
