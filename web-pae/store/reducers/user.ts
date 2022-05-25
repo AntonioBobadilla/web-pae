@@ -12,7 +12,7 @@ interface UserState {
 // Define the initial state using that type
 const initialState: UserState = {
   id: null,
-  name: null,
+  name: 'Daniela Sánchez Hernández',
   email: null,
   token: null
 };
@@ -54,5 +54,6 @@ export const { setID, setName, setEmail, setToken, login, logout } =
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectID = (state: RootState) => state.user.id;
+export const selectName = (state: RootState) => state.user.name;
 
 export default userSlice.reducer;

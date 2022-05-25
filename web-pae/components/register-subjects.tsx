@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import ButtonTemplate from './button-template';
-import SearchBar from './frontend-searchBar';
+import SearchBar from './search-bar';
 
 interface RegisterSubjectsProps {
   previousStep: () => void;

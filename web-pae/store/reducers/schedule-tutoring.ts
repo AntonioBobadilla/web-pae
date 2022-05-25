@@ -19,13 +19,13 @@ interface ScheduleTutoringState {
 
 // Define the initial state using that type
 const initialState: ScheduleTutoringState = {
-  subject: null,
+  subject: 'TC1003B - Implementación de métodos computacionales',
   tutor: {
     id: null,
     name: null
   },
-  date: null,
-  time: null,
+  date: '18 de Marzo',
+  time: '12:00 PM - 1:00 PM',
   title: null,
   description: null,
   file: null
@@ -85,5 +85,7 @@ export const {
 // Other code such as selectors can use the imported `RootState` type
 export const selectSubject = (state: RootState) =>
   state.scheduleTutoring.subject;
+export const selectDate = (state: RootState) => state.scheduleTutoring.date;
+export const selectTime = (state: RootState) => state.scheduleTutoring.time;
 
 export default scheduleTutoringSlice.reducer;

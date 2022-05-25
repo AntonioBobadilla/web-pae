@@ -8,22 +8,22 @@ const history: History[] = [
     status: 'pending'
   },
   {
-    date: 'Lunes 21 de Marzo - 3:00 PM - 4:00 PM',
+    date: 'Martes 22 de Marzo - 3:00 PM - 4:00 PM',
     subject: 'Programación orientada a objetos',
     student: 'Karen Rugerio Armenta',
-    status: 'pending'
+    status: 'info'
   },
   {
-    date: 'Lunes 21 de Marzo - 3:00 PM - 4:00 PM',
+    date: 'Miercoles 23 de Marzo - 3:00 PM - 4:00 PM',
     subject: 'Programación orientada a objetos',
     student: 'Karen Rugerio Armenta',
-    status: 'pending'
+    status: 'cancel'
   },
   {
-    date: 'Lunes 21 de Marzo - 3:00 PM - 4:00 PM',
+    date: 'Viernes 24 de Marzo - 3:00 PM - 4:00 PM',
     subject: 'Programación orientada a objetos',
     student: 'Karen Rugerio Armenta',
-    status: 'pending'
+    status: 'confirm'
   }
 ];
 // eslint-disable-next-line import/prefer-default-export

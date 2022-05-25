@@ -178,7 +178,7 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
             class="caption"
           >
              
-            Lunes 21 de Marzo - 3:00 PM - 4:00 PM
+            Martes 22 de Marzo - 3:00 PM - 4:00 PM
              
           </span>
         </div>
@@ -218,7 +218,7 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           class="statusSize"
         >
           <button
-            class="container pending"
+            class="container info"
           >
              
             Pendiente
@@ -346,6 +346,192 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           >
              
             Pendiente
+          </button>
+        </div>
+      </div>
+      <div
+        class="box"
+      >
+        <div
+          class="dateSize"
+        >
+          <h1
+            class="bi bi-alarm icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Lunes 21 de Marzo - 3:00 PM - 4:00 PM
+             
+          </span>
+        </div>
+        <div
+          class="subjectSize"
+        >
+          <h1
+            class="bi bi-stack icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Programación orientada a objetos
+             
+          </span>
+        </div>
+        <div
+          class="studentSize"
+        >
+          <h1
+            class="bi bi-person-circle icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="statusSize"
+        >
+          <button
+            class="container pending"
+          >
+             
+            Pendiente
+          </button>
+        </div>
+      </div>
+      <div
+        class="box"
+      >
+        <div
+          class="dateSize"
+        >
+          <h1
+            class="bi bi-alarm icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Miercoles 23 de Marzo - 3:00 PM - 4:00 PM
+             
+          </span>
+        </div>
+        <div
+          class="subjectSize"
+        >
+          <h1
+            class="bi bi-stack icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Programación orientada a objetos
+             
+          </span>
+        </div>
+        <div
+          class="studentSize"
+        >
+          <h1
+            class="bi bi-person-circle icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="statusSize"
+        >
+          <button
+            class="container cancel"
+          >
+             
+            Cancelado
+          </button>
+        </div>
+      </div>
+      <div
+        class="box"
+      >
+        <div
+          class="dateSize"
+        >
+          <h1
+            class="bi bi-alarm icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Viernes 24 de Marzo - 3:00 PM - 4:00 PM
+             
+          </span>
+        </div>
+        <div
+          class="subjectSize"
+        >
+          <h1
+            class="bi bi-stack icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Programación orientada a objetos
+             
+          </span>
+        </div>
+        <div
+          class="studentSize"
+        >
+          <h1
+            class="bi bi-person-circle icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="statusSize"
+        >
+          <button
+            class="container confirm"
+          >
+             
+            Confirmado
           </button>
         </div>
       </div>
