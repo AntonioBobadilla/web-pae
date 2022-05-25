@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
 import SidebarLayout from '@/components/layouts/sidebar-layout';
-import TutoringQuestion from '@/components/tutoring/tutoring-question';
+import TutoringQuestion from '@/components/tutoring/question';
 import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import styles from '../css/index.module.css';
