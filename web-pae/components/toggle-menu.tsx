@@ -1,6 +1,14 @@
 import tStyles from '../css/components/toggleMenu.module.css';
 
-const ToggleMenu = (props: {}) => {
+type ToggleMenuProps = {
+  onClickModifyPassword: () => void;
+  onClickModifyLanguage: () => void;
+};
+
+const ToggleMenu = ({
+  onClickModifyPassword,
+  onClickModifyLanguage
+}: ToggleMenuProps) => {
   return (
     <div className={tStyles.main}>
       <input type="checkbox" className={tStyles.toggler} />
@@ -17,10 +25,24 @@ const ToggleMenu = (props: {}) => {
               <a className={tStyles.a}>Modificar materias</a>
             </li>
             <li className={tStyles.li}>
-              <a className={tStyles.a}>Modificar contraseña</a>
+              <span
+                role="button"
+                className={tStyles.a}
+                onClick={() => onClickModifyPassword()}
+                tabIndex={-1}
+              >
+                Modificar contraseña
+              </span>
             </li>
             <li className={tStyles.li}>
-              <a className={tStyles.a}>Modificar idioma</a>
+              <span
+                role="button"
+                className={tStyles.a}
+                onClick={() => onClickModifyLanguage()}
+                tabIndex={-1}
+              >
+                Modificar idioma
+              </span>
             </li>
           </ul>
         </nav>
