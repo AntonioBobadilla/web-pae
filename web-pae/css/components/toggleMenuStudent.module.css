@@ -23,7 +23,7 @@
 .toggler:checked ~ .overlay {
   visibility: visible;
   width: 12%;
-  height: 35%;
+  height: 20%;
   border: solid 1px #3f3b3b;
 }
 
@@ -107,17 +107,17 @@
   }
   .toggler:checked ~ .overlay {
     visibility: visible;
-    width: 20%;
-    height: 35%;
+    width: 40%;
+    height: 15%;
     border: solid 1px #3f3b3b;
   }
   .li {
-    margin-bottom: 2vh;
+    margin-bottom: 4vh;
   }
   .a {
     font-weight: 600;
     color: #3f3b3b;
-    font-size: 1.8vh;
+    font-size: 1.5vh;
   }
   .overlay {
     box-shadow: 0.5vh 0.7vh #888888;
@@ -126,6 +126,6 @@
 
 @media screen and (max-width: 500px) {
   .li {
-    margin-bottom: 2.5vh;
+    margin-bottom: 2vh;
   }
 }

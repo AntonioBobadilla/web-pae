@@ -2,7 +2,9 @@
 
 exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
 <div>
-  <div>
+  <div
+    class="main"
+  >
     <div
       class="main"
     >
@@ -69,9 +71,33 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
         </nav>
       </div>
     </div>
-    <h1>
-      PROFILE
-    </h1>
+    <div
+      class="user"
+    >
+      <div
+        class="icon"
+      >
+        <i
+          class="bi bi-person-fill"
+          style="color: rgb(241, 241, 241);"
+        />
+      </div>
+      <p
+        class="userName"
+      >
+        Jose Antonio Bobodilla Garcia
+      </p>
+      <p
+        class="id"
+      >
+        A01731065@tec.mx
+      </p>
+    </div>
+    <p
+      class="tutorship"
+    >
+      Asesorías
+    </p>
     <div
       class="cardInfo"
     >
@@ -132,7 +158,194 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           <button
             class="container pending"
           >
-            pending
+             
+            Pendiente
+          </button>
+        </div>
+      </div>
+      <div
+        class="box"
+      >
+        <div
+          class="dateSize"
+        >
+          <h1
+            class="bi bi-alarm icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Martes 22 de Marzo - 3:00 PM - 4:00 PM
+             
+          </span>
+        </div>
+        <div
+          class="subjectSize"
+        >
+          <h1
+            class="bi bi-stack icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Programación orientada a objetos
+             
+          </span>
+        </div>
+        <div
+          class="studentSize"
+        >
+          <h1
+            class="bi bi-person-circle icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="statusSize"
+        >
+          <button
+            class="container info"
+          >
+             
+            Completada
+          </button>
+        </div>
+      </div>
+      <div
+        class="box"
+      >
+        <div
+          class="dateSize"
+        >
+          <h1
+            class="bi bi-alarm icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Miercoles 23 de Marzo - 3:00 PM - 4:00 PM
+             
+          </span>
+        </div>
+        <div
+          class="subjectSize"
+        >
+          <h1
+            class="bi bi-stack icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Programación orientada a objetos
+             
+          </span>
+        </div>
+        <div
+          class="studentSize"
+        >
+          <h1
+            class="bi bi-person-circle icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="statusSize"
+        >
+          <button
+            class="container cancel"
+          >
+             
+            Cancelado
+          </button>
+        </div>
+      </div>
+      <div
+        class="box"
+      >
+        <div
+          class="dateSize"
+        >
+          <h1
+            class="bi bi-alarm icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Viernes 24 de Marzo - 3:00 PM - 4:00 PM
+             
+          </span>
+        </div>
+        <div
+          class="subjectSize"
+        >
+          <h1
+            class="bi bi-stack icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Programación orientada a objetos
+             
+          </span>
+        </div>
+        <div
+          class="studentSize"
+        >
+          <h1
+            class="bi bi-person-circle icon"
+          >
+             
+          </h1>
+          <span
+            class="caption"
+          >
+             
+            Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="statusSize"
+        >
+          <button
+            class="container confirm"
+          >
+             
+            Confirmado
           </button>
         </div>
       </div>

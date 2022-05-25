@@ -1,20 +1,23 @@
 import ButtonTemplate from '@/components/button-template';
 import ModifyPassword from '@/components/dialogs/modify-password';
+import ToggleMenuStudent from '@/components/toggle-menu-student';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
+import CardInformationStu from '../../components/card-information-student';
+import Styles from '../../css/student/profile.module.css';
 
-const Profile: NextPage = () => {
-  const [visible, setVisible] = React.useState(false);
-  return (
-    <>
-      <ButtonTemplate variant="primary" onClick={() => setVisible(true)}>
-        Activar Toggle
-      </ButtonTemplate>{' '}
-      <ModifyPassword visible={visible} setVisible={setVisible} />
-    </>
-  );
-};
+const Profile: NextPage = () => (
+  <div className={Styles.content}>
+    <ToggleMenuStudent />
+    <h1>Profile</h1>
+    <div className={Styles.cardInfo}>
+      <CardInformationStu />
+      <CardInformationStu />
+      <CardInformationStu />
+    </div>
+  </div>
+);
 
 // Add sidebar layout
 Profile.getLayout = function getLayout(page: ReactElement) {
