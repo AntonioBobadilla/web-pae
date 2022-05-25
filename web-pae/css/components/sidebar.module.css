@@ -5,6 +5,9 @@
   flex-direction: column;
   background-color: #0277bd;
   align-items: center;
+  position: fixed;
+  z-index: 999;
+  overflow: hidden;
 }
 
 .hamburgerMenu {
@@ -93,6 +96,7 @@
     display: flex;
     z-index: 999;
     position: absolute;
+    overflow: hidden;
   }
   .pae {
     width: 8vh;
@@ -109,8 +113,8 @@
   }
 
   .dashboard {
-    width: 11vh;
-    height: 11vh;
+    width: 12vh;
+    height: 12vh;
     z-index: 5;
   }
   .dbImage {
@@ -197,6 +201,7 @@
     height: 100vh;
     /* APPLYING TRANSITION TO THE MENU :  */
     transition: all 0.4s ease;
+    overflow: hidden;
   }
   /* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
   .toggler:checked ~ .menu {

@@ -5,8 +5,8 @@ const history: History[] = [
     date: 'Lunes 21 de Marzo - 3:00 PM - 4:00 PM',
     subject: 'Programación orientada a objetos',
     student: 'Karen Rugerio Armenta',
-    status: 'info'
-  }
+    status: 'pending'
+  },
 ];
 // eslint-disable-next-line import/prefer-default-export
 export function HistoryMockService() {
