@@ -4,11 +4,11 @@ import React from 'react';
 
 const Login: NextPage = () => (
   <LoginForm
-    url="http://server-pae.azurewebsites.net/logintutee/"
+    url="http://server-pae.azurewebsites.net/loginadmin/"
     image="/images/student-login-image.jpg"
-    homeRoute="/student/home"
+    homeRoute="/admin/home"
     user="admin"
-    forgotPasswordRoute="/student/forgot-password"
+    forgotPasswordRoute="/admin/forgot-password"
   />
 );
 
