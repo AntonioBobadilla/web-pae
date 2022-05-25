@@ -83,6 +83,7 @@
   font-weight: 600;
   color: #3f3b3b;
   font-size: 1vw;
+  cursor: pointer;
 }
 .li:hover {
   transform: translateY(-0.5vh);
