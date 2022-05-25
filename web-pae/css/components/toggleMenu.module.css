@@ -107,17 +107,17 @@
   }
   .toggler:checked ~ .overlay {
     visibility: visible;
-    width: 40%;
-    height: 30%;
+    width: 20%;
+    height: 35%;
     border: solid 1px #3f3b3b;
   }
   .li {
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
   }
   .a {
     font-weight: 600;
     color: #3f3b3b;
-    font-size: 1.5vh;
+    font-size: 1.8vh;
   }
   .overlay {
     box-shadow: 0.5vh 0.7vh #888888;
