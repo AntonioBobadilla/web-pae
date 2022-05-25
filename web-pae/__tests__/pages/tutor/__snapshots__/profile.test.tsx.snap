@@ -156,10 +156,10 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           class="statusSize"
         >
           <button
-            class="container info"
+            class="container pending"
           >
              
-            Completada
+            Pendiente
           </button>
         </div>
       </div>
@@ -220,7 +220,8 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           <button
             class="container pending"
           >
-            pending
+             
+            Pendiente
           </button>
         </div>
       </div>
@@ -281,7 +282,8 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           <button
             class="container pending"
           >
-            pending
+             
+            Pendiente
           </button>
         </div>
       </div>
@@ -342,7 +344,8 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
           <button
             class="container pending"
           >
-            pending
+             
+            Pendiente
           </button>
         </div>
       </div>
