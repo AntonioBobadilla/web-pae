@@ -24,7 +24,8 @@
       "@/helpers/*": ["helpers/*"],
       "@/redux/*": ["store/reducers/*"],
       "@/public/*": ["public/*"],
-      "@/pages/*": ["pages/*"]
+      "@/pages/*": ["pages/*"],
+      "@/hooks/*": ["hooks/*"]
     }
   },
   "include": [

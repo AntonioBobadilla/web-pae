@@ -1,0 +1,56 @@
+.container {
+  width: 90%;
+  margin: 7vh auto;
+}
+
+.container .title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.container .box {
+  margin-top: 8px;
+  border-radius: 10px;
+  padding: 18px 10px;
+  margin-bottom: 20px;
+  border: 1px solid #545454;
+  font-size: 20px;
+  color: #3f3b3b;
+}
+
+.container .message {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.container .button {
+  width: 25%;
+  height: 35px;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    margin: 3vh auto;
+  }
+
+  .container .title {
+    font-size: 4vw;
+  }
+
+  .container .box {
+    font-size: 4vw;
+  }
+
+  .container .message {
+    font-size: 4vw;
+    text-align: center;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+  }
+  .container .button {
+    width: 70%;
+  }
+}

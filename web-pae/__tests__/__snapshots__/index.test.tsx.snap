@@ -10,41 +10,115 @@ exports[`Index renders index page unchanged 1`] = `
         class="main"
       >
         <p
-          class="question"
+          class="qText"
         >
-          Tu tutor es un pendejo? o si estaba preparado para resolver tus dudas aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa
+          Ingresa tus dudas de manera específica a tratar en asesoría*
         </p>
         <div
-          class="form"
+          class="doubt"
         >
-          <input
-            class="rButton"
-            id="1"
-            name="answer"
-            type="radio"
-            value="Tagree"
-          />
-          <input
-            class="rButton"
-            id="2"
-            name="answer"
-            type="radio"
-            value="agree"
-          />
-          <input
-            class="rButton"
-            id="3"
-            name="answer"
-            type="radio"
-            value="disagree"
-          />
-          <input
-            class="rButton"
-            id="4"
-            name="answer"
-            type="radio"
-            value="Tdisagree"
-          />
+          <div
+            class="main"
+          >
+            <div
+              class="top"
+            >
+              <textarea
+                class="title"
+                id="title"
+                maxlength="50"
+                name="title"
+                placeholder="Tema a tratar*"
+              />
+              <div
+                class="count1"
+              >
+                <span
+                  id="current"
+                >
+                  0
+                </span>
+                <span
+                  id="maximum"
+                >
+                  / 50
+                </span>
+              </div>
+            </div>
+            <div
+              class="bottom"
+            >
+              <textarea
+                class="content"
+                id="content"
+                maxlength="200"
+                name="content"
+                placeholder="Duda especifica a tratar en asesoria"
+              />
+              <div
+                class="count2"
+              >
+                <span
+                  id="current"
+                >
+                  0
+                </span>
+                <span
+                  id="maximum"
+                >
+                  / 200
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p
+          class="qText"
+        >
+          Adjuntar archivo
+        </p>
+        <div
+          class="dragDrop"
+        >
+          <div
+            class="wrapper"
+          >
+            <div
+              class="innerWrapper"
+            >
+              <label
+                class="sc-bczRLJ bMBuBa  "
+                for="file"
+              >
+                <input
+                  accept=""
+                  name="file"
+                  type="file"
+                />
+                <p
+                  class="text"
+                >
+                  <b>
+                    Drag
+                  </b>
+                   a file here or 
+                  <b>
+                    click
+                  </b>
+                   to select from your computer
+                </p>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          class="button"
+        >
+          <button
+            class="container button primary"
+          >
+            Agendar Asesoría
+          </button>
         </div>
       </div>
     </main>
