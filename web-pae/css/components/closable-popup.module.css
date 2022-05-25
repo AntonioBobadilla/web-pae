@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(196, 196, 196, 0.5);
   transition-property: background-color;
 }
 
@@ -34,6 +34,8 @@
   transform: scale(1);
   position: relative;
   background-color: white;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .dialog .content {
@@ -88,13 +90,11 @@
   .title {
     font-size: 5vw;
   }
-  .logo {
-    height: 25px;
-  }
 
   .horizontalLine {
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
+    width: 70%;
   }
   .dialog .header .headerIcons {
     font-size: 6vw;
@@ -119,25 +119,4 @@
     opacity: 1;
     z-index: 2;
   }
-}
-
-.dialogEnter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-.dialogEnterActive {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.dialogEnterDone {
-  opacity: 1;
-}
-
-.dialogExitActive {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
 }
