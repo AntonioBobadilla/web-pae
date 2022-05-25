@@ -52,8 +52,14 @@
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 750px){
   .stepsRegisterWrap {
     padding:10px 5px;
+  }
+  .itemText {
+    font-size: 2.1vw;
+  }
+  .icon {
+    font-size: 2.1vw;
   }
 }
