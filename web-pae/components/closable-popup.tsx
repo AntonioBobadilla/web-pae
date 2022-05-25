@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-no-useless-fragment */
 import Transition from '@/components/dialogs/transition';
-import { useKeyPress } from '@/hooks/useKeyPress';
-import { useMountEffect } from '@/hooks/useMountEffect';
-import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import classNames from 'classnames';
+import { useKeyPress } from 'hooks/useKeyPress';
+import { useMountEffect } from 'hooks/useMountEffect';
+import { useUpdateEffect } from 'hooks/useUpdateEffect';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 import styles from '../css/components/closable-popup.module.css';
