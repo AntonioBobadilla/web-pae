@@ -1,3 +1,5 @@
+import ButtonTemplate from '@/components/button-template';
+import ModifyPassword from '@/components/dialogs/modify-password';
 import ToggleMenuStudent from '@/components/toggle-menu-student';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
