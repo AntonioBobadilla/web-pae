@@ -1,10 +1,12 @@
+import TutoringConfirmation from '@/components/tutoring/confirmation';
+import TutoringSubject from '@/components/tutoring/subject';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
-import AvailableTutorings from '../../components/available-tutorings';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import StepsStudent from '../../components/steps-student';
-import TutoringQuestion from '../../components/tutoring-question';
+import AvailableTutorings from '../../components/tutoring/available-tutorings';
+import TutoringQuestion from '../../components/tutoring/question';
 import styles from '../../css/student/schedule-tutoring.module.css';
 import {
   AVAILABLE_TUTORINGS,
@@ -68,13 +70,13 @@ const ScheduleTutoring: NextPage = () => {
     // CREATE A COMPONENT FOR EACH STEP HERE, AND RETURN IT
     switch (step) {
       case SUBJECT:
-        return <p>Escoger materia</p>;
+        return <TutoringSubject />;
       case AVAILABLE_TUTORINGS:
         return <AvailableTutorings />;
       case TOPIC:
         return <TutoringQuestion />;
       case CONFIRMATION:
-        return <p>Confirmación</p>;
+        return <TutoringConfirmation />;
       default:
         return null;
     }

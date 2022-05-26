@@ -21,14 +21,27 @@ exports[`Tutor Login renders tutor login page unchanged 1`] = `
           <div
             class="paeLogin"
           >
-            <img
-              class="paeLogo"
-              src="/images/pae-logo.png"
-            />
+            <span
+              style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 100px; height: 33px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+            >
+              <img
+                alt="logo"
+                data-nimg="fixed"
+                decoding="async"
+                src="/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
+                srcset="/_next/image?url=%2Fimages%2Flogo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Flogo.png&w=256&q=75 2x"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+            </span>
             <h1
               class="paeText"
             >
-               PAE | LOGIN
+               | INICIO
+            </h1>
+            <h1
+              class="title"
+            >
+              Inicio de sesión
             </h1>
           </div>
           <div
@@ -61,7 +74,7 @@ exports[`Tutor Login renders tutor login page unchanged 1`] = `
               class="componentB"
             >
               <button
-                class="button primary"
+                class="container button primary"
                 disabled=""
                 type="submit"
               >

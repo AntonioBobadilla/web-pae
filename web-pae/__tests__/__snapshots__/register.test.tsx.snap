@@ -38,7 +38,7 @@ exports[`Register renders register page unchanged 1`] = `
               class="Button"
             >
               <button
-                class="button primary fontS"
+                class="container button primary fontS"
               >
                 QUIERO UNA ASESORÍA
               </button>
@@ -47,7 +47,7 @@ exports[`Register renders register page unchanged 1`] = `
               class="Button"
             >
               <button
-                class="button secondary fontS"
+                class="container button secondary fontS"
               >
                 QUIERO DAR UNA ASESORÍA
               </button>

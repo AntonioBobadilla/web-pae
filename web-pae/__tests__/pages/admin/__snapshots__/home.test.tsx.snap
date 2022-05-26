@@ -10,6 +10,8 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
     >
       <div
         class="box"
+        href="/admin/tutors"
+        role="button"
       >
         <img
           class="image"
@@ -19,7 +21,7 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
           class="description"
         >
            
-          Perfil
+          Asesores
            
         </p>
       </div>
@@ -29,6 +31,8 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
     >
       <div
         class="box"
+        href="/admin/tutorings"
+        role="button"
       >
         <img
           class="image"
@@ -38,7 +42,7 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
           class="description"
         >
            
-          Asesorías asignadas
+          Asesorías pendientes
            
         </p>
       </div>

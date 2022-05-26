@@ -1,12 +1,10 @@
-import CardTutors from '@/components/frontend-cardTutors';
+import CardTutors from '@/components/card-tutors';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 
-const AssignedTutorings: NextPage = () =>{
-  return (
-    <CardTutors />
-  )
+const AssignedTutorings: NextPage = () => {
+  return <CardTutors />;
 };
 
 // Add sidebar layout

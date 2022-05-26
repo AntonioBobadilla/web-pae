@@ -1,0 +1,11 @@
+.pb {
+  width: 30vw;
+  height: 2vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.content {
+  margin-left: 10vw;
+  display: flex;
+  flex-direction: column;
+}

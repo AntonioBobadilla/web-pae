@@ -1,4 +1,4 @@
-.button {
+.container {
   color: #fff;
   width: 100%;
   height: 100%;
@@ -84,12 +84,12 @@
 }
 
 @media screen and (max-width: 800px) {
-  .button {
-    font-size: 2vw;
+  .container {
+    font-size: 3.8vw;
   }
 
   .button:disabled:active {
-    font-size: 2vw;
+    font-size: 3.8vw;
   }
 
   .spinner {
