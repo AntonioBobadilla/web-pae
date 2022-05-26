@@ -10,9 +10,7 @@ import Styles from '../../css/student/profile.module.css';
 const Profile: NextPage = () => {
   let myUser = {
     name: 'Jose Antonio Bobodilla Garcia',
-    email: 'A01731065@tec.mx',
-    weekHours: '2',
-    totalHours: '15'
+    email: 'A01731065@tec.mx'
   };
   let progress = {
     weekHours: 2,
