@@ -15,16 +15,16 @@
 }
 
 .pae {
-  width: 5.5vw;
-  height: 5.5vw;
+  width: 4vw;
+  height: 4vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  margin-top: 4vh;
-  margin-bottom: 10vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .pae:hover {
@@ -32,16 +32,16 @@
 }
 
 .logoPae {
-  width: 3vw;
+  width: 2vw;
 }
 
 .textPae {
-  font-size: 1.5vw;
+  font-size: 1vw;
 }
 
 .dashboard {
   width: 7vw;
-  height: 7vw;
+  height: 5.5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,7 +62,7 @@
 }
 
 .dbImage {
-  font-size: 2.5vw;
+  font-size: 1.5vw;
 }
 
 .dbText {
@@ -73,7 +73,7 @@
 }
 
 .exit {
-  font-size: 3vw;
+  font-size: 1.5vw;
   color: white;
   display: flex;
   flex-direction: column;
@@ -99,22 +99,22 @@
     overflow: hidden;
   }
   .pae {
-    width: 8vh;
-    height: 8vh;
+    width: 4.5vh;
+    height: 4.5vh;
     margin-bottom: 20px;
   }
 
   .logoPae {
-    width: 5vh;
+    width: 2.5vh;
   }
 
   .textPae {
-    font-size: 2.5vh;
+    font-size: 1.7vh;
   }
 
   .dashboard {
-    width: 12vh;
-    height: 12vh;
+    width: 8vh;
+    height: 8vh;
     z-index: 5;
   }
   .dbImage {
@@ -122,8 +122,8 @@
   }
 
   .dbText {
-    font-size: 1.5vh;
-    margin-top: 1.8vh;
+    font-size: 1.1vh;
+    margin-top: 1vh;
   }
   .exit {
     font-size: 4vh;
@@ -165,7 +165,7 @@
     transition: all 0.4s ease;
   }
   /* CREATING THE TOP AND BOTTOM LINES : 
-  TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
+    TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
   .hamburger > div::before,
   .hamburger > div::after {
     content: '';
@@ -228,7 +228,7 @@
     visibility: visible;
   }
 
-  @media screen and (max-width: 500px) {
+  /*@media screen and (max-width: 500px) {
     .hamburgerMenu {
       width: 15vw;
     }
@@ -268,5 +268,5 @@
       position: relative;
       margin-top: 10vh;
     }
-  }
+  }*/
 }

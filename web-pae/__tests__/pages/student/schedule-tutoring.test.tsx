@@ -1,4 +1,4 @@
-import AvailableTutorings from '@/components/available-tutorings';
+import AvailableTutorings from '@/components/tutoring/available-tutorings';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import React from 'react';

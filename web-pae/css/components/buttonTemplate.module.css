@@ -85,11 +85,11 @@
 
 @media screen and (max-width: 800px) {
   .container {
-    font-size: 2vw;
+    font-size: 3.8vw;
   }
 
   .button:disabled:active {
-    font-size: 2vw;
+    font-size: 3.8vw;
   }
 
   .spinner {
