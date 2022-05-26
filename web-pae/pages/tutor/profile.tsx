@@ -1,5 +1,6 @@
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
+import ProgressBarHours from '@/components/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
@@ -13,6 +14,10 @@ const Profile: NextPage = () => {
     email: 'A01731065@tec.mx',
     weekHours: '2',
     totalHours: '15'
+  };
+  let progress = {
+    weekHours: 2,
+    totalHours: 50
   };
   const [modifyPasswordVisible, setModifyPasswordVisible] =
     React.useState(false);
@@ -39,6 +44,36 @@ const Profile: NextPage = () => {
         </div>
         <p className={Styles.userName}>{myUser.name}</p>
         <p className={Styles.id}>{myUser.email}</p>
+      </div>
+      <div className={Styles.progress}>
+        <div className={Styles.weekHours}>
+          <span className={Styles.progressText}>
+            Progreso de horas semanales
+          </span>
+          <div className={Styles.hoursContainer}>
+            <div className={Styles.bar}>
+              <ProgressBarHours
+                progress={progress.weekHours}
+                total={5}
+              ></ProgressBarHours>
+            </div>
+            <span className={Styles.progressValue}>{progress.weekHours}/5</span>
+          </div>
+        </div>
+        <div className={Styles.totalHours}>
+          <span className={Styles.progressText}>Progreso de horas totales</span>
+          <div className={Styles.hoursContainer}>
+            <div className={Styles.bar}>
+              <ProgressBarHours
+                progress={progress.totalHours}
+                total={180}
+              ></ProgressBarHours>
+            </div>
+            <span className={Styles.progressValue}>
+              {progress.totalHours}/180
+            </span>
+          </div>
+        </div>
       </div>
       <p className={Styles.tutorship}>Asesorías</p>
       <div className={Styles.cardInfo}>

@@ -3,7 +3,7 @@ import progressBarStyles from '../css/components/progressBarHours.module.css';
 import { useState } from 'react';
 import React, { useEffect } from 'react';
 
-const ProgressBar = (props: { progress: number; total: number }) => {
+const ProgressBarHours = (props: { progress: number; total: number }) => {
   const { progress } = props; //descomposición del objeto props
   const { total } = props;
   const [value, setValue] = React.useState(0);
@@ -27,5 +27,5 @@ const ProgressBar = (props: { progress: number; total: number }) => {
   );
 };
 
-export default ProgressBar; // exporto la función
+export default ProgressBarHours; // exporto la función
 //<p className={progressBarStyles.barText}> {progress}/3 </p>
