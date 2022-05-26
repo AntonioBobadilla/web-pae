@@ -1,0 +1,99 @@
+.progressContainer {
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-color: black;
+  margin-top: 10px;
+}
+
+.progress_bar_container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 10px;
+  position: inherit;
+  background-color: #f1f1f1;
+  transition: all 0.5s;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.progress_bar0 {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+}
+
+.progress_bar1 {
+  height: 100%;
+  width: 10%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar2 {
+  height: 100%;
+  width: 20%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar3 {
+  height: 100%;
+  width: 30%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar4 {
+  height: 100%;
+  width: 40%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar5 {
+  height: 100%;
+  width: 50%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar60 {
+  height: 100%;
+  width: 60%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar7 {
+  height: 100%;
+  width: 70%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar8 {
+  height: 100%;
+  width: 80%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar9 {
+  height: 100%;
+  width: 90%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}
+
+.progress_bar10 {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  background-color: #2ed477;
+}

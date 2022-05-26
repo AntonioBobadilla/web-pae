@@ -5,20 +5,17 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
   <div
     class="content"
   >
+    <h1>
+      Profile
+    </h1>
     <div
-      class="main"
+      class="pb"
     >
-      <input
-        class="toggler"
-        type="checkbox"
-      />
       <div
-        class="buttonContainer"
-        id="toggle"
+        class="progress_bar_container"
       >
-        <img
-          class="icon"
-          src="/icons/gear.svg"
+        <div
+          style="width: 35.714285714285715%; background-color: rgb(46, 212, 119); height: 100%; border-radius: 10px; transition: 1s ease-in-out; transition-delay: 0.6s;"
         />
       </div>
       <div
@@ -57,160 +54,9 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
         </nav>
       </div>
     </div>
-    <h1>
-      Profile
-    </h1>
     <div
       class="cardInfo"
     >
-      <div
-        class="box"
-      >
-        <div
-          class="dateSize"
-        >
-          <h1
-            class="bi bi-alarm icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Lunes 27 de Marzo - 3:00 PM - 4:00 PM
-             
-          </span>
-        </div>
-        <div
-          class="subjectSize"
-        >
-          <h1
-            class="bi bi-stack icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Estructuras simbólicas en la imagen, la literatura y la música
-             
-          </span>
-        </div>
-        <div
-          class="studentSize"
-        >
-          <h1
-            class="bi bi-person-circle icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Karen Rugerio Armenta
-             
-          </span>
-        </div>
-        <div
-          class="locationSize"
-        >
-          <a
-            class="caption2"
-            href="https://itesm.zoom.us/j/5519309007"
-          >
-             
-            https://itesm.zoom.us/j/5519309007
-             
-          </a>
-        </div>
-        <div
-          class="statusSize"
-        >
-          <button
-            class="container pending"
-          >
-             
-            Pendiente
-          </button>
-        </div>
-      </div>
-      <div
-        class="box"
-      >
-        <div
-          class="dateSize"
-        >
-          <h1
-            class="bi bi-alarm icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Lunes 27 de Marzo - 3:00 PM - 4:00 PM
-             
-          </span>
-        </div>
-        <div
-          class="subjectSize"
-        >
-          <h1
-            class="bi bi-stack icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Estructuras simbólicas en la imagen, la literatura y la música
-             
-          </span>
-        </div>
-        <div
-          class="studentSize"
-        >
-          <h1
-            class="bi bi-person-circle icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Karen Rugerio Armenta
-             
-          </span>
-        </div>
-        <div
-          class="locationSize"
-        >
-          <a
-            class="caption2"
-            href="https://itesm.zoom.us/j/5519309007"
-          >
-             
-            https://itesm.zoom.us/j/5519309007
-             
-          </a>
-        </div>
-        <div
-          class="statusSize"
-        >
-          <button
-            class="container pending"
-          >
-             
-            Pendiente
-          </button>
-        </div>
-      </div>
       <div
         class="box"
       >
