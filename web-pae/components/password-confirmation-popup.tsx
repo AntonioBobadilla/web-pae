@@ -5,7 +5,7 @@ import styles from '../css/components/password-confirmation-popup.module.css';
 import Popup from './popup';
 
 const PasswordConfirmationPopup = () => (
-  <Popup title="" line={false}>
+  <Popup title="" line={false} style={styles.modal}>
     <span className={styles.text}>
       Recibirás un correo con las instrucciones para recuperar tu contraseña
     </span>
