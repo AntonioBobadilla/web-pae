@@ -22,10 +22,14 @@
   background:#f8f8f8;
   outline-style: dotted;
   outline-color:#cfcfcf;
+}
 
+.innerWrapper label {
+  width: 100%;
 }
 
 .text {
+  width: 100%;
   font-size: 12px;
   text-align: center;
 }
