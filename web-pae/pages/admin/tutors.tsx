@@ -64,7 +64,9 @@ const Tutorings: NextPage = () => {
       </div>
       <div className={styles.tables}>
         <table
-          className={currentTab == 'tutors' ? styles.table : styles.hidden}
+          className={
+            currentTab == 'tutors' ? styles.tableTutors : styles.hidden
+          }
         >
           <tr className={cx(styles.headRow, styles.tr)}>
             <th className={styles.head}>Matricula</th>
@@ -103,6 +105,11 @@ const Tutorings: NextPage = () => {
             );
           })}
         </table>
+        <table
+          className={
+            currentTab == 'request' ? styles.tableRequest : styles.hidden
+          }
+        ></table>
       </div>
     </div>
   );
