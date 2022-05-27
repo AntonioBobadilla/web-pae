@@ -1,5 +1,6 @@
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
+import ModifySubjects from '@/components/dialogs/modify-subjects';
 import ProgressBarHours from '@/components/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
@@ -23,6 +24,8 @@ const Profile: NextPage = () => {
     React.useState(false);
   const [modifyLanguageVisible, setModifyLanguageVisible] =
     React.useState(false);
+  const [modifySubjectsVisible, setModifySubjectsVisible] =
+    React.useState(false);
 
   const onClickModifyPassword = () => {
     setModifyPasswordVisible(true);
@@ -32,11 +35,16 @@ const Profile: NextPage = () => {
     setModifyLanguageVisible(true);
   };
 
+  const onClickModifySubjects = () => {
+    setModifySubjectsVisible(true);
+  };
+
   return (
     <div className={Styles.main}>
       <ToggleMenu
         onClickModifyPassword={onClickModifyPassword}
         onClickModifyLanguage={onClickModifyLanguage}
+        onClickModifySubjects={onClickModifySubjects}
       />
       <div className={Styles.user}>
         <div className={Styles.icon}>
@@ -89,6 +97,12 @@ const Profile: NextPage = () => {
         <ModifyLanguage
           visible={modifyLanguageVisible}
           setVisible={setModifyLanguageVisible}
+        />
+      )}
+      {modifySubjectsVisible && (
+        <ModifySubjects
+          visible={modifySubjectsVisible}
+          setVisible={setModifySubjectsVisible}
         />
       )}
     </div>
