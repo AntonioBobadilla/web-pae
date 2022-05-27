@@ -55,5 +55,6 @@ export const { setName, setEmail, setToken, setLoginData, setLogoutData } =
 export const selectName = (state: RootState) => state.user.name;
 export const selectRole = (state: RootState) => state.user.role;
 export const selectToken = (state: RootState) => state.user.token;
+export const selectEmail = (state: RootState) => state.user.email;
 
 export default userSlice.reducer;
