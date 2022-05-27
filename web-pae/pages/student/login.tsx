@@ -4,10 +4,9 @@ import LoginForm from '../../components/login-form';
 
 const Login: NextPage = () => (
   <LoginForm
-    url="http://server-pae.azurewebsites.net/login/"
     image="/images/student-login-image.jpg"
     homeRoute="/student/home"
-    user="tutee"
+    user="student"
     forgotPasswordRoute="/student/forgot-password"
   />
 );

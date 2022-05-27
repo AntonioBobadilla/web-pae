@@ -2,9 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import { Action } from 'redux';
 import thunk, { ThunkAction } from 'redux-thunk';
-import user from './reducers/user';
-import scheduleTutoring from './reducers/schedule-tutoring';
 import createTutor from './reducers/create-tutor';
+import scheduleTutoring from './reducers/schedule-tutoring';
+import user from './reducers/user';
 
 // middleware
 const middleware = [thunk];

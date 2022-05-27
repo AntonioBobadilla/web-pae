@@ -1,32 +1,24 @@
-const login = async (
-  obj: { username: string; password: string },
-  url: string
-) => {
-  let auth = true;
+async function login(username: string, password: string) {
   try {
-    const response = await fetch(url, {
+    const response = await fetch('http://server-pae.azurewebsites.net/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(obj)
+      body: JSON.stringify({ username, password }),
+      cache: 'no-cache',
+      credentials: 'same-origin'
+      // mode: 'cors'
     });
     const status = await response.status;
-    const json = await response.json();
-    const ok = await response.ok;
+    const responseData = await response.json();
 
-    const { message } = json;
-
-    if (!ok) {
-      auth = false;
-    }
-
-    return { auth, message };
+    return { status, responseData };
   } catch (err: any) {
-    auth = false;
     // console.log(err.message);
-    return { auth, message: err.message };
+    return { status: 500, message: err.message };
+    // sessionStorage.setItem('token', JSON.stringify(userToken));
   }
-};
+}
 
 export default login;
