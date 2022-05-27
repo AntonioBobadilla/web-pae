@@ -3,7 +3,7 @@ import ModifyPassword from '@/components/dialogs/modify-password';
 import ToggleMenuStudent from '@/components/toggle-menu-student';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
-import CardInformation from '../../components/card-information';
+import CardInformation from '../../components/card-information-student';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/student/profile.module.css';
 
