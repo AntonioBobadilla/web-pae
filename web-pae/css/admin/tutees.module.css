@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.searchBar {
+  width: 60%;
+}
+
 .tables {
   width: 80%;
   height: 60%;
@@ -65,7 +69,7 @@
 }
 
 .td {
-  padding: 30px 15px;
+  padding: 5px 15px;
   text-align: center;
   font-weight: 500;
 }
@@ -106,9 +110,34 @@
 
 .tableRequest {
   /*Styles only for testing, modify when request table completed*/
-  width: 90vh;
-  height: 30vw;
-  background-color: black;
+  width: 100%;
+  height: auto;
   transition: all 1s ease;
   transition-delay: 0.2s;
+}
+
+
+.denied {
+  width: 100px;
+  background:#FE4151;
+  color:white;
+  border-radius: 4px;
+  border:none;
+  padding:3px;
+  margin-top: 10px;
+}
+.denied:hover {
+  cursor: pointer;
+}
+
+.accept {
+  width: 100px;
+  background:#2ED477;
+  color:white;
+  border-radius: 4px;
+  border:none;
+  padding:3px
+}
+.accept:hover {
+  cursor: pointer;
 }
