@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
@@ -7,6 +7,7 @@ import TextInput from './text-input';
 interface RegisterFormProps {
   nextStep: (data: StudentRegisterData) => void;
   student: boolean;
+  isLoading: boolean;
 }
 
 export type StudentRegisterData = {
@@ -23,10 +24,7 @@ export const studentRegisterDefaultValue: StudentRegisterData = {
   passwordConfirmation: ''
 };
 
-const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
-  const [isValid, setIsValid] = React.useState(false);
-
-  const [isLoading, setIsLoading] = useState(false);
+const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
   const {
     control,
     handleSubmit,
@@ -38,14 +36,7 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
 
   const { isDirty } = useFormState({ control });
 
-  const onSubmit = handleSubmit((data) => {
-    // save data to local storage
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      nextStep(data);
-    }, 1000);
-  });
+  const onSubmit = handleSubmit((data) => nextStep(data));
 
   return (
     <form className={styles.registerForm} onSubmit={onSubmit}>

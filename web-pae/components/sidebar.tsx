@@ -92,17 +92,15 @@ const SideBar = ({ routing, currentRoute, logOut }: SideBarProps) => (
         </Link>
       ))}
 
-      <Link href={routing.exit} passHref>
-        <div
-          className={
-            currentRoute.includes('admin')
-              ? adminStyles.exit
-              : sidebarStyles.exit
-          }
-        >
-          <i className="bi bi-arrow-bar-right" />
-        </div>
-      </Link>
+      <div
+        className={
+          currentRoute.includes('admin') ? adminStyles.exit : sidebarStyles.exit
+        }
+        onClick={() => logOut()}
+        role="button"
+      >
+        <i className="bi bi-arrow-bar-right" />
+      </div>
     </div>
     <div
       className={

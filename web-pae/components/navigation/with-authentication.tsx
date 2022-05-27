@@ -27,7 +27,8 @@ const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
         '/forgot-password',
         '/registration',
         '/reset-password',
-        '/register'
+        '/register',
+        '/register-confirmation'
       ],
       []
     );
