@@ -1,5 +1,6 @@
 /* eslint-disable react/function-component-definition */
 import ButtonTemplate from '@/components/button-template';
+import Exit from '@/components/dialogs/exit';
 import StudentPoll from '@/components/dialogs/student-poll';
 import SidebarLayout from '@/components/layouts/sidebar-layout';
 import LoadingScreen from '@/components/transitions/loading-screen';
@@ -8,6 +9,7 @@ import React, { ReactElement } from 'react';
 import styles from '../css/index.module.css';
 
 const Home = () => {
+  const [ExitVisible, setExitVisible] = React.useState(false);
   return (
     <div>
       <Head>
@@ -16,7 +18,12 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.component}>
-        <LoadingScreen></LoadingScreen>
+        <Exit
+          visible={true}
+          setVisible={setExitVisible}
+          handleExit={undefined}
+          handleCancel={undefined}
+        ></Exit>
       </main>
     </div>
   );
