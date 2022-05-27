@@ -17,11 +17,13 @@ const AvailableTutorings = () => {
         <span className={AvailableStyles.title}>
           Elige el día que quieres tu asesoría
         </span>
+        <div className={AvailableStyles.dailybar}>
+          <DailyBar />
+        </div>
       </div>
 
       <div className={AvailableStyles.bottom}>
         <div className={AvailableStyles.left}>
-          <div className={AvailableStyles.leftTop}>AAA</div>
           <span className={AvailableStyles.date}> Viernes 18 de Marzo </span>
           <div className={AvailableStyles.leftBottom}>
             <DataTable meetings={meetings} />
@@ -47,4 +49,10 @@ export default AvailableTutorings;
 /*<div className={AvailableStyles.dailybar}>
 <DailyBar />
 </div>
+
+<div className={AvailableStyles.leftTop}>
+            <div className={AvailableStyles.dailybar}>
+              <DailyBar />
+            </div>
+          </div>
 */
