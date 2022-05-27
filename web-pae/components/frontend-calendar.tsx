@@ -11,6 +11,11 @@ interface MyCalendarProps {
 }
 
 const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
+
+  useEffect(() => {
+    renderCellsDynamically();
+  }, [])
+
   useEffect(() => {
     const { startCell, finishCell } = findStartAndEndCells();
     if (startCell != null) {
@@ -19,6 +24,9 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     }
   }, [eventObj]);
 
+
+
+  // función que obtiene las celdas entre 2 horarios. Ej. celdas entre 7am y 10am.
   const getCellsBetween = (startCell, finishCell) => {
     const start = startCell.getAttribute('id').split(' ');
     const dia = start[0];
@@ -44,6 +52,7 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     }
   };
 
+  // función que dados 2 horarios en string encuentra dichas celdas pertenecientes a inicio y fin.
   const findStartAndEndCells = () => {
     let startCell = null;
     let finishCell = null;
@@ -64,13 +73,70 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     return { startCell, finishCell };
   };
 
+  // funcion que cambia el color de la celda.
   const changeColorOfCell = (cell) => {
-    cell.style.background = 'tomato';
+    cell.style.background = '#039BE5';
+    cell.style.border = 'none';
   };
 
+  // función que recibe los valores del formulario inicial.
   const getValues = (dia, inicio, fin) => {
     console.log(dia, inicio, fin);
     setEventObj((eventObj) => [...eventObj, { dia, inicio, fin }]);
+  };
+
+  // función que obtiene la celda siguiente dado un string perteneciente al valor de una celda.
+  const getNextCell = (data) => {
+
+    let hora = parseInt(data.match(/\d+/g));
+    hora = hora + 1;
+    hora = hora.toString();
+    let amOpm =  data.match(/[a-zA-Z]+/g);
+    
+    let newDate = hora+amOpm;
+
+    return newDate;
+  }
+  
+  // función que al dar click en una celda la encuentra dado un string perteneciente al dia y hora.
+  const findSelectedCell = (data) => {
+
+    const splittedData = data.split(' ');
+    const diaSelected = splittedData[0];
+    const horaSelected = splittedData[1]; 
+    
+    let Cell = null;
+    let NextCell = null;
+    const cells = document.querySelectorAll('.data');
+      cells.forEach((cell) => {
+        const attr = cell.getAttribute('id').split(' ');
+        const dia = attr[0];
+        const hora = attr[1];
+
+        if (diaSelected == dia && horaSelected == hora) {
+          Cell = cell;
+          NextCell = getNextCell(horaSelected);
+          return cell;
+        }
+      });
+    return {dia:diaSelected, inicio:horaSelected, fin:NextCell,cell:Cell };
+  };
+
+
+  // función que maneja el click en las celdas.
+  const getClick = (data) => {
+    const {dia, inicio, fin, cell} = findSelectedCell(data);
+    setEventObj((eventObj) => [...eventObj, { dia, inicio, fin }]);
+    changeColorOfCell(cell);
+    console.log(eventObj)
+  };
+
+  // función que renderiza la cantidad de celdas dependiendo de la configuración de horas dada.
+  const renderCellsDynamically = () => {
+    for(let i=0;i <= 1; i++ ){
+      console.log(10+i)
+    }
+    return true;
   };
 
   return (
@@ -88,46 +154,6 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="titleHour">7:00 AM</td>
-            <Cell value="lunes 7am" />
-            <Cell value="martes 7am" />
-            <Cell value="miercoles 7am" />
-            <Cell value="jueves 7am" />
-            <Cell value="viernes 7am" />
-          </tr>
-          <tr>
-            <td className="titleHour">8:00 AM</td>
-            <Cell value="lunes 8am" />
-            <Cell value="martes 8am" />
-            <Cell value="miercoles 8am" />
-            <Cell value="jueves 8am" />
-            <Cell value="viernes 8am" />
-          </tr>
-          <tr className={styles.border}>
-            <td className="titleHour">9:00 AM</td>
-            <Cell value="lunes 9am" />
-            <Cell value="martes 9am" />
-            <Cell value="miercoles 9am" />
-            <Cell value="jueves 9am" />
-            <Cell value="viernes 9am" />
-          </tr>
-          <tr className={styles.border}>
-            <td className="titleHour">10:00 AM</td>
-            <Cell value="lunes 10am" />
-            <Cell value="martes 10am" />
-            <Cell value="miercoles 10am" />
-            <Cell value="jueves 10am" />
-            <Cell value="viernes 10am" />
-          </tr>
-          <tr className={styles.border}>
-            <td className="titleHour">11:00 AM</td>
-            <Cell value="lunes 11am" />
-            <Cell value="martes 11am" />
-            <Cell value="miercoles 11am" />
-            <Cell value="jueves 11am" />
-            <Cell value="viernes 11am" />
-          </tr>
         </tbody>
       </table>
     </div>
