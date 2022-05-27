@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import useRole from '@/hooks/useRole';
-import useToken from '@/hooks/useToken';
+import { selectRole, selectToken } from '@/redux/user';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import LoadingScreen from '../transitions/loading-screen';
 
 type withAuthenticationProps = {
@@ -12,9 +12,11 @@ type withAuthenticationProps = {
 const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
   const RequiresAuthentication = (props: any) => {
     // get user role from redux state
-    const { push, asPath, events } = useRouter();
-    const { role, setRole } = useRole();
-    const { token, setToken } = useToken();
+    const { push, asPath } = useRouter();
+    const token = useAppSelector(selectToken);
+    const role = useAppSelector(selectRole);
+    // const { role, setRole } = useRole();
+    // const { token, setToken } = useToken();
     // const role = useAppSelector(selectRole);
     const [authorized, setAuthorized] = useState(false);
     // const { token, setToken } = getToken();
@@ -36,18 +38,21 @@ const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
       // format url
 
       const pathWithoutQuery = url.split('?')[0];
-      const path = pathWithoutQuery.replace(`/${role}`, '');
+      const checkRole = role || pathWithoutQuery.split('/')[1];
+      const path = pathWithoutQuery.replace(`/${checkRole}`, '');
 
       // check if path is public
       const isPublic = publicPaths.includes(path);
       // check if user is logged in
-      const isUserPath = pathWithoutQuery.includes(`/${role}`);
-      const isLoggedIn = token !== null;
-      //   console.log(token, role, isUserPath, isLoggedIn, path, isPublic);
+      const isUserPath = pathWithoutQuery.includes(`/${checkRole}`);
+      const isLoggedIn = token !== null && token !== undefined && token !== '';
+      // console.log(token, role, isUserPath, isLoggedIn, path, isPublic);
       // if user is logged in and accessing a public page, redirect to home
       const isAuthorized = isLoggedIn && !isPublic && isUserPath;
 
-      if (isAuthorized) {
+      if (isPublic && !isLoggedIn) {
+        setAuthorized(true);
+      } else if (isAuthorized) {
         setAuthorized(true);
       } else {
         setAuthorized(false);
@@ -55,7 +60,7 @@ const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
           push(`/${role}/home`);
         } else {
           push({
-            pathname: `/`
+            pathname: `/${checkRole}/login`
           });
         }
       }
@@ -64,7 +69,7 @@ const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
     useEffect(() => {
       // on initial load - run auth check
       authCheck(asPath);
-    }, [asPath, token, role]);
+    }, [asPath]);
 
     // if there's a loggedInUser, show the wrapped page, otherwise show a loading indicator
     return authorized ? <WrappedComponent {...props} /> : <LoadingScreen />;

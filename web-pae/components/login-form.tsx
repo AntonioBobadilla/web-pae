@@ -2,8 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/function-component-definition */
-import useRole from '@/hooks/useRole';
-import useToken from '@/hooks/useToken';
 import { setLoginData } from '@/redux/user';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -32,8 +30,6 @@ const LoginForm = ({
   user,
   forgotPasswordRoute
 }: LoginFormProps) => {
-  const { token, setToken } = useToken();
-  const { role, setRole } = useRole();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -62,10 +58,6 @@ const LoginForm = ({
             role: user
           })
         );
-
-        // set token
-        setToken(responseData.token);
-        setRole(user);
 
         // redirect to home
         setTimeout(() => router.push(homeRoute), 500);

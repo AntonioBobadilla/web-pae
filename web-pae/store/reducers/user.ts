@@ -15,7 +15,7 @@ const initialState: UserState = {
   name: 'Daniela Sánchez Hernández',
   email: 'dani@tec.mx',
   token: null,
-  role: 'guest'
+  role: null
 };
 
 export const userSlice = createSlice({
@@ -42,6 +42,7 @@ export const userSlice = createSlice({
       state.name = null;
       state.email = null;
       state.token = null;
+      state.role = null;
     }
   }
 });

@@ -1,6 +1,8 @@
+import { selectRole, setLogoutData } from '@/redux/user';
 import Head from 'next/head';
 import { Router, withRouter } from 'next/router';
 import React from 'react';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import ADMIN_ROUTES from '../../constants/admin-routes.json';
 import STUDENT_ROUTES from '../../constants/student-routes.json';
 import TUTOR_ROUTES from '../../constants/tutor-routes.json';
@@ -15,18 +17,34 @@ type LayoutProps = {
 };
 
 const SidebarLayout = ({ router, children, title }: LayoutProps) => {
-  const { pathname } = router;
+  const { pathname, push } = router;
   const [routes, setRoutes] = React.useState(TUTOR_ROUTES);
+  const dispatch = useAppDispatch();
+  // const token = useAppSelector(selectToken);
+  const role = useAppSelector(selectRole);
 
   React.useEffect(() => {
-    if (pathname.includes('admin')) {
-      setRoutes(ADMIN_ROUTES);
-    } else if (pathname.includes('student')) {
-      setRoutes(STUDENT_ROUTES);
-    } else if (pathname.includes('tutor')) {
-      setRoutes(TUTOR_ROUTES);
+    switch (role) {
+      case 'admin':
+        setRoutes(ADMIN_ROUTES);
+        break;
+      case 'student':
+        setRoutes(STUDENT_ROUTES);
+        break;
+      case 'tutor':
+        setRoutes(TUTOR_ROUTES);
+        break;
+      default:
+        setRoutes(TUTOR_ROUTES);
+        break;
     }
-  }, [pathname]);
+  }, [role]);
+
+  const logOut = () => {
+    // console.log(role);
+    dispatch(setLogoutData());
+    push(routes.exit);
+  };
 
   return (
     <>
@@ -37,7 +55,7 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
       </Head>
       <main className={styles.main}>
         <div className={styles.sidebar}>
-          <SideBar routing={routes} currentRoute={pathname} />
+          <SideBar routing={routes} currentRoute={pathname} logOut={logOut} />
         </div>
         <div className={styles.test}>
           <div className={styles.top}>
