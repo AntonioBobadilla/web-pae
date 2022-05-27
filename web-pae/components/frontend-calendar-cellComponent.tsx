@@ -4,7 +4,7 @@ const Cell = (props: any) => {
   // creo un Stateless Functional Component
 
   const handleClick = () => {
-    console.log("diste click en: ", cellValue);  
+    props.function(cellValue);
   }
 
   const [cellValue, setCellValue] = useState('');
