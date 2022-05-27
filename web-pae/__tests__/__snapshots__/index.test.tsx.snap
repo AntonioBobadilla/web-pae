@@ -5,7 +5,16 @@ exports[`Index renders index page unchanged 1`] = `
   <div>
     <main
       class="component"
-    />
+    >
+      <div>
+        BIENVENIDO AL SISTEMA DE ADMINISTRACIÓN DE ASESORÍAS
+      </div>
+      <a
+        href="/student/login"
+      >
+        Soy estudiante
+      </a>
+    </main>
   </div>
 </div>
 `;

@@ -5,7 +5,6 @@ import React from 'react';
 
 const Login: NextPage = () => (
   <LoginFormAdmin
-    url="http://server-pae.azurewebsites.net/login/"
     image="/images/admin-login-image.jpg"
     homeRoute="/admin/home"
     user="admin"
