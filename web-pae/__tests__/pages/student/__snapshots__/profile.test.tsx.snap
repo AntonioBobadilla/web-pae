@@ -102,7 +102,7 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Lunes 21 de Marzo - 3:00 PM - 4:00 PM
+            Viernes 27 de Mayo - 9:00 AM - 10:00 AM
              
           </span>
         </div>
@@ -118,7 +118,7 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Programación orientada a objetos
+            Programación Orientada a Objetos
              
           </span>
         </div>
@@ -134,9 +134,21 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Karen Rugerio Armenta
+            Bryan González Arellano
              
           </span>
+        </div>
+        <div
+          class="locationSize"
+        >
+          <a
+            class="caption2"
+            href="https://itesm.zoom.us/j/5519309007"
+          >
+             
+            https://itesm.zoom.us/j/5519309007
+             
+          </a>
         </div>
         <div
           class="statusSize"
@@ -164,7 +176,7 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Martes 22 de Marzo - 3:00 PM - 4:00 PM
+            Lunes 27 de Marzo - 3:00 PM - 4:00 PM
              
           </span>
         </div>
@@ -180,7 +192,7 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Programación orientada a objetos
+            Estructuras simbólicas en la imagen, la literatura y la música
              
           </span>
         </div>
@@ -197,6 +209,17 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
           >
              
             Karen Rugerio Armenta
+             
+          </span>
+        </div>
+        <div
+          class="locationSize"
+        >
+          <span
+            class="caption"
+          >
+             
+            A1332
              
           </span>
         </div>
@@ -208,130 +231,6 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
           >
              
             Completada
-          </button>
-        </div>
-      </div>
-      <div
-        class="box"
-      >
-        <div
-          class="dateSize"
-        >
-          <h1
-            class="bi bi-alarm icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Miercoles 23 de Marzo - 3:00 PM - 4:00 PM
-             
-          </span>
-        </div>
-        <div
-          class="subjectSize"
-        >
-          <h1
-            class="bi bi-stack icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Programación orientada a objetos
-             
-          </span>
-        </div>
-        <div
-          class="studentSize"
-        >
-          <h1
-            class="bi bi-person-circle icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Karen Rugerio Armenta
-             
-          </span>
-        </div>
-        <div
-          class="statusSize"
-        >
-          <button
-            class="container cancel"
-          >
-             
-            Cancelado
-          </button>
-        </div>
-      </div>
-      <div
-        class="box"
-      >
-        <div
-          class="dateSize"
-        >
-          <h1
-            class="bi bi-alarm icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Viernes 24 de Marzo - 3:00 PM - 4:00 PM
-             
-          </span>
-        </div>
-        <div
-          class="subjectSize"
-        >
-          <h1
-            class="bi bi-stack icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Programación orientada a objetos
-             
-          </span>
-        </div>
-        <div
-          class="studentSize"
-        >
-          <h1
-            class="bi bi-person-circle icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Karen Rugerio Armenta
-             
-          </span>
-        </div>
-        <div
-          class="statusSize"
-        >
-          <button
-            class="container confirm"
-          >
-             
-            Confirmado
           </button>
         </div>
       </div>
