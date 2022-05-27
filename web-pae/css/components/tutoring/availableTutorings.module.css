@@ -43,6 +43,7 @@
   font-weight: 500;
   color: #3f3b3b;
   margin-bottom: 3vh;
+  text-transform: capitalize;
 }
 
 .left {
@@ -88,7 +89,7 @@
   }
   .container {
     height: 30vh;
-    width: 80%;
+    width: 85%;
   }
 
   .left {

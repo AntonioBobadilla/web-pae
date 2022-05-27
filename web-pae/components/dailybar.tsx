@@ -4,6 +4,7 @@ import React from 'react';
 import Carousel, { consts } from 'react-elastic-carousel';
 import styles from '../css/components/dailybar.module.css';
 import ItemDailyBar from './dailybar-item';
+import { Meeting } from './data-table/types';
 
 function myArrow({ type, onClick, isEdge }) {
   const pointer = type === consts.PREV ? 'left' : 'right';
@@ -21,7 +22,17 @@ function myArrow({ type, onClick, isEdge }) {
   );
 }
 
-const DailyBar = () => (
+interface DailyBarProps {
+  meetings: Meeting[];
+  setSelectedDate: (date: string) => void;
+  selectedDate: string;
+}
+
+const DailyBar = ({
+  meetings,
+  setSelectedDate,
+  selectedDate
+}: DailyBarProps) => (
   // const breakPoints = [
   //   { width: 500, itemsToShow:  },
   //   { width: 1200, itemsToShow: 5 }
@@ -38,16 +49,17 @@ const DailyBar = () => (
       itemsToScroll={5}
       // style={{wid}}
     >
-      <ItemDailyBar day="Lunes" number="23" active />
-      <ItemDailyBar day="Martes" number="24" />
-      <ItemDailyBar day="Miercoles" number="25" disabled />
-      <ItemDailyBar day="Jueves" number="26" />
-      <ItemDailyBar day="Viernes" number="27" />
-      <ItemDailyBar day="Sábado" number="28" disabled />
-      <ItemDailyBar day="Domingo" number="29" />
-      <ItemDailyBar day="Lunes" number="30" />
-      <ItemDailyBar day="Martes" number="28" disabled />
-      <ItemDailyBar day="Viernes" number="29" />
+      {meetings.map((meeting) => (
+        <ItemDailyBar
+          key={meeting.date}
+          day={new Date(meeting.date).toLocaleDateString('es-MX', {
+            weekday: 'long'
+          })}
+          number={meeting.date.split('-')[2]}
+          active={selectedDate === meeting.date}
+          onClick={() => setSelectedDate(meeting.date)}
+        />
+      ))}
     </Carousel>
   </div>
 );
