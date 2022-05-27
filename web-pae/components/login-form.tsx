@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/function-component-definition */
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -67,8 +68,16 @@ const LoginForm = ({
           </div>
           <div className={styles.signIn}>
             <div className={styles.paeLogin}>
-              <img src="/images/pae-logo.png" className={styles.paeLogo} />
-              <h1 className={styles.paeText}> PAE | LOGIN</h1>
+              <Image
+                src="/images/logo.png"
+                alt="logo"
+                priority
+                layout="fixed"
+                width={100}
+                height={33}
+              />
+              <h1 className={styles.paeText}> | INICIO</h1>
+              <h1 className={styles.title}>Inicio de sesión</h1>
             </div>
             <div className={styles.loginFields}>
               <div className={styles.component}>

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin Home renders admin home page unchanged 1`] = `
+<div>
+  <div
+    class="cards"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutors"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/student-login-image.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Asesores
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutorings"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/tutor-login-image.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Asesorías pendientes
+           
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

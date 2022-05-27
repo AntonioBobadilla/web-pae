@@ -1,11 +1,14 @@
+import TutoringConfirmation from '@/components/tutoring/confirmation';
+import TutoringSubject from '@/components/tutoring/subject';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
-import AvailableTutorings from '../../components/available-tutorings';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import StepsStudent from '../../components/steps-student';
-import TutoringQuestion from '../../components/tutoring-question';
+import AvailableTutorings from '../../components/tutoring/available-tutorings';
+import TutoringQuestion from '../../components/tutoring/question';
 import styles from '../../css/student/schedule-tutoring.module.css';
+
 import {
   AVAILABLE_TUTORINGS,
   CONFIRMATION,
@@ -15,8 +18,7 @@ import {
 
 const ScheduleTutoring: NextPage = () => {
   const [step, setStep] = React.useState<string>(SUBJECT);
-  const router = useRouter();
-  const { query } = router;
+  const { query, push } = useRouter();
   const handleSteps = (clickedStep: string | undefined | string[]) => {
     if (clickedStep === step) {
       setStep(clickedStep);
@@ -42,25 +44,25 @@ const ScheduleTutoring: NextPage = () => {
     if (step === SUBJECT) {
       // router
       setStep(AVAILABLE_TUTORINGS);
-      router.push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
+      push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
     } else if (step === AVAILABLE_TUTORINGS) {
       setStep(TOPIC);
-      router.push(`/student/schedule-tutoring/?step=${TOPIC}`);
+      push(`/student/schedule-tutoring/?step=${TOPIC}`);
     } else if (step === TOPIC) {
       setStep(CONFIRMATION);
-      router.push(`/student/schedule-tutoring/?step=${CONFIRMATION}`);
+      push(`/student/schedule-tutoring/?step=${CONFIRMATION}`);
     }
   };
 
   const handlePreviousStep = () => {
     if (step === CONFIRMATION) {
-      router.push(`/student/schedule-tutoring/?step=${TOPIC}`);
+      push(`/student/schedule-tutoring/?step=${TOPIC}`);
       setStep(TOPIC);
     } else if (step === TOPIC) {
-      router.push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
+      push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
       setStep(AVAILABLE_TUTORINGS);
     } else if (step === AVAILABLE_TUTORINGS) {
-      router.push(`/student/schedule-tutoring/?step=${SUBJECT}`);
+      push(`/student/schedule-tutoring/?step=${SUBJECT}`);
       setStep(SUBJECT);
     }
   };
@@ -69,13 +71,13 @@ const ScheduleTutoring: NextPage = () => {
     // CREATE A COMPONENT FOR EACH STEP HERE, AND RETURN IT
     switch (step) {
       case SUBJECT:
-        return <p>Escoger materia</p>;
+        return <TutoringSubject />;
       case AVAILABLE_TUTORINGS:
         return <AvailableTutorings />;
       case TOPIC:
         return <TutoringQuestion />;
       case CONFIRMATION:
-        return <p>Confirmación</p>;
+        return <TutoringConfirmation />;
       default:
         return null;
     }

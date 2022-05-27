@@ -35,13 +35,13 @@ const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
   });
 
   return (
-    <Popup title="Recuperación de contraseña" line>
+    <Popup title="Recuperación de contraseña" line style={styles.modal}>
       <form className={styles.form} onSubmit={onSubmit}>
         <div className={styles.input}>
           <span className={styles.text}>Ingresa tu correo institucional</span>
           <TextInput
             name="email"
-            placeholder="CORREO INSTITUCIONAL"
+            placeholder="A0XXXXXXX@tec.mx"
             control={control}
             error={errors.email}
             rules={{

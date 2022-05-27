@@ -1,0 +1,155 @@
+.main {
+  width: 100%;
+  height: 81.5vh;
+  position: fixed;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f1f1f1;
+  margin-bottom: 1vh;
+}
+
+.icon {
+  background-color: #333333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 4vw;
+  height: 4vw;
+  font-size: 2.5vw;
+  border-radius: 50%;
+  margin-left: 10vw;
+}
+
+.userName {
+  font-size: 3vw;
+  font-weight: 600;
+  margin-left: 4vw;
+  width: 60vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.id {
+  font-size: 1.2vw;
+  padding-bottom: 5vh;
+  font-weight: 300;
+}
+
+.tutorship {
+  width: 80%;
+  font-size: 2vw;
+  font-weight: 500;
+  margin-bottom: 1vh;
+}
+
+.progress {
+  width: 80%;
+  height: 5%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5vh;
+}
+
+.weekHours {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hoursContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 1vh;
+}
+
+.totalHours {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.progressText {
+  color: #000;
+  font-weight: 600;
+  font-size: 1.5vw;
+}
+
+.bar {
+  width: 50%;
+  height: 100%;
+}
+
+.progressValue {
+  font-weight: 300;
+  color: #636363;
+  font-size: 1vw;
+  margin-left: 1vw;
+}
+
+.cardInfo {
+  height: 46%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+@media screen and (max-width: 500px) {
+  .cardInfo {
+    height: auto;
+    width: 95%;
+  }
+  .user {
+    height: 15%;
+  }
+  .icon {
+    font-size: 4vh;
+    width: 5vh;
+    height: 5vh;
+    margin-left: 3vw;
+  }
+  .userName {
+    font-size: 1.8vh;
+  }
+  .id {
+    font-size: 1vh;
+  }
+  .tutorship {
+    width: 95%;
+    font-size: 2vh;
+  }
+  .progress {
+    width: 90%;
+    height: 8%;
+  }
+
+  .bar {
+    width: 85%;
+  }
+  .progressValue {
+    font-size: 1vh;
+  }
+  .progressText {
+    font-size: 1.2vh;
+  }
+}
