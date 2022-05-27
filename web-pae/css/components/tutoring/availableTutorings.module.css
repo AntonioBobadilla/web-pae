@@ -1,10 +1,11 @@
 .page {
-  width: 100%;
+  width: 90%;
   height: 100%;
+  margin: auto;
 }
 
 .dailybar {
-  width: 80%;
+  width: 65%;
   height: 50px;
   display: flex;
   flex-direction: column;
@@ -75,6 +76,9 @@
 }
 
 @media screen and (max-width: 920px) {
+  .page {
+    width: 100%;
+  }
   .bottom {
     flex-direction: column;
   }
@@ -93,6 +97,10 @@
 
   .right {
     justify-content: left;
+    width: 100%;
+  }
+
+  .dailybar {
     width: 100%;
   }
 }

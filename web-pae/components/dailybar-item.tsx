@@ -1,33 +1,30 @@
 import cx from 'classnames';
+import React from 'react';
 import styles from '../css/components/dailybaritem.module.css';
 
-const ItemDailyBar = (props) => {
-  const handleClasses = () => {
-    if (props.hasOwnProperty('active') === true) {
-      return (
-        <div className={cx(styles.item, styles.active)}>
-          <p>{props.day}</p>
-          <p>{props.number}</p>
-        </div>
-      );
-    }
-    if (props.hasOwnProperty('disabled') === true) {
-      return (
-        <div className={cx(styles.item, styles.disabled)}>
-          <p>{props.day}</p>
-          <p>{props.number}</p>
-        </div>
-      );
-    }
-    return (
-      <div className={styles.item}>
-        <p>{props.day}</p>
-        <p>{props.number}</p>
-      </div>
-    );
-  };
+interface ItemDailyBarProps {
+  disabled?: boolean;
+  active?: boolean;
+  day: string;
+  number: string;
+}
 
-  return <>{handleClasses()}</>;
+const ItemDailyBar = ({ disabled, active, day, number }: ItemDailyBarProps) => (
+  <div
+    className={cx(
+      disabled ? styles.disabled : styles.item,
+      active && styles.active,
+      day === 'Viernes' && styles.borderless
+    )}
+  >
+    <p>{day}</p>
+    <p>{number}</p>
+  </div>
+);
+
+ItemDailyBar.defaultProps = {
+  disabled: false,
+  active: false
 };
 
 export default ItemDailyBar;
