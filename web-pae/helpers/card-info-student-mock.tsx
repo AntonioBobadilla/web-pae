@@ -2,7 +2,7 @@ import { HistoryStu } from '../components/card-info-student/types';
 
 const historystu: HistoryStu[] = [
   {
-    date: 'Viernes 27 de Mayo - 8:00 AM - 9:00 AM',
+    date: 'Viernes 27 de Mayo - 9:00 AM - 10:00 AM',
     subject: 'Programación Orientada a Objetos',
     student: 'Bryan González Arellano',
     location: 'https://itesm.zoom.us/j/5519309007',
