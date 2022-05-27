@@ -1,4 +1,5 @@
 import LoginFormAdmin from '@/components/login-form-admin';
+import withAuthentication from '@/components/navigation/with-authentication';
 import { NextPage } from 'next';
 import React from 'react';
 
@@ -12,4 +13,4 @@ const Login: NextPage = () => (
   />
 );
 
-export default Login;
+export default withAuthentication(Login);

@@ -1,10 +1,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/function-component-definition */
+import useRole from '@/hooks/useRole';
+import useToken from '@/hooks/useToken';
+import { setLoginData } from '@/redux/user';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useAppDispatch } from 'store/hook';
 import styles from '../css/student/studentLogin.module.css';
 import login from '../helpers/login';
 import ButtonTemplate from './button-template';
@@ -26,30 +31,72 @@ const LoginFormAdmin = ({
   user,
   forgotPasswordRoute
 }: LoginFormProps) => {
+  const { token, setToken } = useToken();
+  const { role, setRole } = useRole();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { errors }
   } = useForm<LoginData>({ defaultValues: loginDefaultValues });
-
+  const dispatch = useAppDispatch();
   const { isDirty } = useFormState({ control });
 
-  const onSubmit = handleSubmit((data) => {
-    const formattedUser = `${user}${data.email.substring(0, 9)}`.toLowerCase();
-    setIsLoading(true);
-    console.log(formattedUser, data.password);
-    login({ username: formattedUser, password: data.password }, url).then(
-      ({ auth, message }) => {
+  const handleStatus = (status: number, responseData: any) => {
+    try {
+      if (status === 200 || status === 201 || status === 204) {
+        // toast success
+        toast.success(responseData.message);
+
+        // set user data
+        dispatch(
+          setLoginData({
+            token: responseData.token,
+            name: responseData.user, // name: responseData.name,
+            email: getValues('email'),
+            role: user
+          })
+        );
+
+        // set token
+        setToken(responseData.token);
+        setRole(user);
+
+        // redirect to home
+        setTimeout(() => router.push(homeRoute), 500);
+      } else {
+        // focus on the first input
+
+        const button = document.getElementById('email');
+        button?.focus();
+
+        // toast error
+        toast.error(responseData.message);
+
+        // set error state
         setIsLoading(false);
-        if (auth) {
-          router.push(homeRoute);
-        } else {
-          alert(message);
-        }
       }
-    );
+    } catch (err) {
+      toast.error('Something went wrong');
+    }
+  };
+
+  const onSubmit = handleSubmit((data) => {
+    // Update state
+    setIsLoading(true);
+
+    // Call login function
+    const formattedUser = `${user}${data.email.substring(0, 9)}`.toLowerCase();
+
+    login(formattedUser, data.password)
+      .then(({ status, responseData }) => {
+        handleStatus(status, responseData);
+      })
+      .catch((err) => {
+        handleStatus(500, err);
+      });
   });
 
   return (

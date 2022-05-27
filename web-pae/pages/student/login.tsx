@@ -1,3 +1,4 @@
+import withAuthentication from '@/components/navigation/with-authentication';
 import type { NextPage } from 'next';
 import React from 'react';
 import LoginForm from '../../components/login-form';
@@ -11,4 +12,4 @@ const Login: NextPage = () => (
   />
 );
 
-export default Login;
+export default withAuthentication(Login);
