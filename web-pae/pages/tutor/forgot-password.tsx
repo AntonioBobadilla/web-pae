@@ -9,17 +9,18 @@ import styles from '../../css/student/forgot-password.module.css';
 const ForgotPassword: NextPage = () => {
   const [emailSent, setEmailSent] = useState(false);
 
-  const sendEmail = () => console.log('ij');
-
   return (
     <div className={styles.container}>
-      <div className={styles.background}>
-        {!emailSent ? (
-          <ForgotPasswordPopup setEmailSent={setEmailSent} />
-        ) : (
-          <PasswordConfirmationPopup />
-        )}
-      </div>
+      {!emailSent ? (
+        <ForgotPasswordPopup
+          setEmailSent={setEmailSent}
+          loginUrl="/tutor/login"
+          registerUrl="/tutor/registration"
+          user={1}
+        />
+      ) : (
+        <PasswordConfirmationPopup login="/tutor/login" />
+      )}
     </div>
   );
 };

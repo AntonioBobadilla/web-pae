@@ -62,7 +62,7 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
         setIsLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      toast.error('Something went wrong');
       setIsLoading(false);
     }
   };

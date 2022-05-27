@@ -14,12 +14,12 @@ const ForgotPassword: NextPage = () => {
       {!emailSent ? (
         <ForgotPasswordPopup
           setEmailSent={setEmailSent}
-          loginUrl="/student/login"
-          registerUrl="/student/registration"
-          user={0}
+          loginUrl="/admin/login"
+          registerUrl="/admin/login"
+          user={2}
         />
       ) : (
-        <PasswordConfirmationPopup login="/student/login" />
+        <PasswordConfirmationPopup login="/admin/login" />
       )}
     </div>
   );
