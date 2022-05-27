@@ -1,0 +1,39 @@
+.wrapperSearchBar{
+    width: 60%;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.subjectsWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    color:#E00013;
+    border:none;
+    background:white;
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+.materia {
+    list-style: none;
+    color:#5E5E5E;
+    text-transform: uppercase;
+    padding:10px;
+    border:1px solid #E0E0E0;
+    font-size: 15px;
+    font-weight: 500;
+    width: 95%;
+    margin-right: 5px;
+    justify-content: space-between;
+    display: flex;
+}

@@ -3,11 +3,19 @@ import ModifyPassword from '@/components/dialogs/modify-password';
 import ToggleMenuStudent from '@/components/toggle-menu-student';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
-import CardInformationStu from '../../components/card-information-student';
+import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/student/profile.module.css';
 
 const Profile: NextPage = () => {
+  let myUser = {
+    name: 'Jose Antonio Bobodilla Garcia',
+    email: 'A01731065@tec.mx'
+  };
+  let progress = {
+    weekHours: 2,
+    totalHours: 50
+  };
   const [modifyPasswordVisible, setModifyPasswordVisible] =
     React.useState(false);
   const [modifyLanguageVisible, setModifyLanguageVisible] =
@@ -22,16 +30,21 @@ const Profile: NextPage = () => {
   };
 
   return (
-    <div className={Styles.content}>
+    <div className={Styles.main}>
       <ToggleMenuStudent
         onClickModifyPassword={onClickModifyPassword}
         onClickModifyLanguage={onClickModifyLanguage}
       />
-      <h1>Profile</h1>
+      <div className={Styles.user}>
+        <div className={Styles.icon}>
+          <i className="bi bi-person-fill" style={{ color: '#f1f1f1' }}></i>
+        </div>
+        <p className={Styles.userName}>{myUser.name}</p>
+        <p className={Styles.id}>{myUser.email}</p>
+      </div>
+      <p className={Styles.tutorship}>Asesorías</p>
       <div className={Styles.cardInfo}>
-        <CardInformationStu />
-        <CardInformationStu />
-        <CardInformationStu />
+        <CardInformation />
       </div>
       {modifyPasswordVisible && (
         <ModifyPassword
@@ -53,5 +66,4 @@ const Profile: NextPage = () => {
 Profile.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title="Mi perfil">{page}</SidebarLayout>;
 };
-
 export default Profile;
