@@ -5,7 +5,51 @@ exports[`Index renders index page unchanged 1`] = `
   <div>
     <main
       class="component"
-    />
+    >
+      <div
+        class="fullScreen"
+      >
+        <div
+          class="animationContainer"
+        >
+          <div
+            class="paeContainer"
+          >
+            <img
+              class="logo"
+              src="/images/pae-logo.png"
+            />
+            <span
+              class="paeText"
+            >
+              |PAE
+            </span>
+          </div>
+          <div
+            class="loader"
+          >
+            <div
+              class="loader__bar"
+            />
+            <div
+              class="loader__bar"
+            />
+            <div
+              class="loader__bar"
+            />
+            <div
+              class="loader__bar"
+            />
+            <div
+              class="loader__bar"
+            />
+            <div
+              class="loader__ball"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 </div>
 `;
