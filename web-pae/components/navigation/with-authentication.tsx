@@ -3,6 +3,7 @@ import useRole from '@/hooks/useRole';
 import useToken from '@/hooks/useToken';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
+import LoadingScreen from '../transitions/loading-screen';
 
 type withAuthenticationProps = {
   WrappedComponent: React.ComponentType<any>;
@@ -66,7 +67,7 @@ const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
     }, [asPath, token, role]);
 
     // if there's a loggedInUser, show the wrapped page, otherwise show a loading indicator
-    return authorized ? <WrappedComponent {...props} /> : <div>Loading...</div>;
+    return authorized ? <WrappedComponent {...props} /> : <LoadingScreen />;
   };
 
   return RequiresAuthentication;
