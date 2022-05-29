@@ -37,6 +37,7 @@
 .card {
   width: 50vh;
   height: 45vh;
+  animation: 1s ease 0s 1 appear;
 }
 
 @media screen and (max-width: 920px) {
@@ -68,5 +69,17 @@
   }
   .cards {
     flex-direction: column;
+  }
+}
+
+@keyframes appear {
+  0% {
+    scale: 0.5;
+    opacity: 0.5;
+  }
+
+  100% {
+    scale: 1;
+    opacity: 1;
   }
 }
