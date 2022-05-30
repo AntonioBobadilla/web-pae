@@ -11,8 +11,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  border: #3f3b3b solid 1px;
+  border-radius: 10px;
 }
 .container {
   height: 45vh;
@@ -59,8 +59,6 @@
 .leftTop {
   height: 18%;
   width: 100%;
-  border: #3f3b3b solid 1px;
-  border-radius: 10px;
   margin-bottom: 5vh;
 }
 
@@ -85,7 +83,7 @@
   }
 
   .leftTop {
-    width: 80%;
+    width: 10vh;
   }
   .container {
     height: 30vh;
@@ -100,7 +98,6 @@
     justify-content: left;
     width: 100%;
   }
-
   .dailybar {
     width: 100%;
   }
