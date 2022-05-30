@@ -1,11 +1,12 @@
 .page {
-  width: 100%;
+  width: 90%;
   height: 100%;
+  margin: auto;
 }
 
 .dailybar {
-  width: 100%;
-  height: 100%;
+  width: 65%;
+  height: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,6 +43,7 @@
   font-weight: 500;
   color: #3f3b3b;
   margin-bottom: 3vh;
+  text-transform: capitalize;
 }
 
 .left {
@@ -73,16 +75,19 @@
 }
 
 @media screen and (max-width: 920px) {
+  .page {
+    width: 100%;
+  }
   .bottom {
     flex-direction: column;
   }
 
   .leftTop {
-    width: 80%;
+    width: 10vh;
   }
   .container {
     height: 30vh;
-    width: 80%;
+    width: 85%;
   }
 
   .left {
@@ -93,8 +98,7 @@
     justify-content: left;
     width: 100%;
   }
-
-  .leftTop {
-    height: 10vh;
+  .dailybar {
+    width: 100%;
   }
 }

@@ -8,7 +8,6 @@ import StepsStudent from '../../components/steps-student';
 import AvailableTutorings from '../../components/tutoring/available-tutorings';
 import TutoringQuestion from '../../components/tutoring/question';
 import styles from '../../css/student/schedule-tutoring.module.css';
-
 import {
   AVAILABLE_TUTORINGS,
   CONFIRMATION,
@@ -73,7 +72,7 @@ const ScheduleTutoring: NextPage = () => {
       case SUBJECT:
         return <TutoringSubject />;
       case AVAILABLE_TUTORINGS:
-        return <AvailableTutorings />;
+        return <AvailableTutorings handleNextStep={handleNextStep} />;
       case TOPIC:
         return <TutoringQuestion />;
       case CONFIRMATION:
