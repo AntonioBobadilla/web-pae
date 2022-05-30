@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTable } from 'react-table';
 import styles from '../../css/components/dataTable.module.css';
 import FormatTime from '../../helpers/format-time';
 import { DataTableProps } from './types';
 
-function DataTable({ meetings }: DataTableProps): JSX.Element {
-  const [selectedItem, setSelectedItem] = useState({});
+function DataTable({
+  meetings,
+  selectedItem,
+  setSelectedItem
+}: DataTableProps): JSX.Element {
   const columns = React.useMemo(
     () => [
       {
@@ -65,7 +68,9 @@ function DataTable({ meetings }: DataTableProps): JSX.Element {
               }
               onClick={() =>
                 setSelectedItem(
-                  selectedItem === row.original ? {} : row.original
+                  selectedItem === row.original
+                    ? { col1: '', col2: '' }
+                    : row.original
                 )
               }
             >

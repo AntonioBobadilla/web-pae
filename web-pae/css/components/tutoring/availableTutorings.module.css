@@ -1,17 +1,18 @@
 .page {
-  width: 100%;
+  width: 90%;
   height: 100%;
+  margin: auto;
 }
 
 .dailybar {
-  width: 80%;
+  width: 65%;
   height: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  border: #3f3b3b solid 1px;
+  border-radius: 10px;
 }
 .container {
   height: 45vh;
@@ -42,6 +43,7 @@
   font-weight: 500;
   color: #3f3b3b;
   margin-bottom: 3vh;
+  text-transform: capitalize;
 }
 
 .left {
@@ -57,8 +59,6 @@
 .leftTop {
   height: 18%;
   width: 100%;
-  border: #3f3b3b solid 1px;
-  border-radius: 10px;
   margin-bottom: 5vh;
 }
 
@@ -75,16 +75,19 @@
 }
 
 @media screen and (max-width: 920px) {
+  .page {
+    width: 100%;
+  }
   .bottom {
     flex-direction: column;
   }
 
   .leftTop {
-    width: 80%;
+    width: 10vh;
   }
   .container {
     height: 30vh;
-    width: 80%;
+    width: 85%;
   }
 
   .left {
@@ -93,6 +96,9 @@
 
   .right {
     justify-content: left;
+    width: 100%;
+  }
+  .dailybar {
     width: 100%;
   }
 }
