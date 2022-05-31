@@ -3,13 +3,13 @@ import ButtonTemplate from '@/components/button-template';
 import Exit from '@/components/dialogs/exit';
 import StudentPoll from '@/components/dialogs/student-poll';
 import SidebarLayout from '@/components/layouts/sidebar-layout';
+import SubjectForm from '@/components/subject-form';
 import LoadingScreen from '@/components/transitions/loading-screen';
 import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import styles from '../css/index.module.css';
 
 const Home = () => {
-  const [ExitVisible, setExitVisible] = React.useState(false);
   return (
     <div>
       <Head>
@@ -18,12 +18,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.component}>
-        <Exit
-          visible={true}
-          setVisible={setExitVisible}
-          handleExit={undefined}
-          handleCancel={undefined}
-        ></Exit>
+        <SubjectForm></SubjectForm>
       </main>
     </div>
   );
