@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import cx from 'classnames';
 import React from 'react';
@@ -26,6 +27,7 @@ const TextInput = ({
   error,
   control,
   rules,
+  style,
   ...rest
 }: TextInputProps) => (
   <>
@@ -38,7 +40,11 @@ const TextInput = ({
           {...rest}
           id={field.name}
           {...field}
-          style={fieldState.error ? { border: '1px solid red' } : {}}
+          style={
+            fieldState.error
+              ? { border: '1px solid red', ...style }
+              : { ...style }
+          }
           className={cx(TextInputStyles.textInput, rest.className)}
         />
       )}
