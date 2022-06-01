@@ -79,10 +79,23 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     cell.style.border = 'none';
   };
 
+    // funcion que cambia el color de la celda.
+    const resetColorOfCell = (cell) => {
+      cell.style.background = 'none';
+      cell.style.border = '1px solid #f1f1f1';
+    };
+
+    // función que regresa solo números enteros de un string
+    const getOnlyNumbers = (string) => {
+      return parseInt(string.replace(/\D/g, ""));
+    }
+
   // función que recibe los valores del formulario inicial.
   const getValues = (dia, inicio, fin) => {
     console.log(dia, inicio, fin);
-    setEventObj((eventObj) => [...eventObj, { dia, inicio, fin }]);
+    inicio = getOnlyNumbers(inicio);
+    fin = getOnlyNumbers(fin);
+    setEventObj((eventObj) => [...eventObj, { dia, inicio , fin, id: dia+inicio+fin  }]);
   };
 
   // función que obtiene la celda siguiente dado un string perteneciente al valor de una celda.
@@ -122,12 +135,34 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     return {dia:diaSelected, inicio:horaSelected, fin:NextCell,cell:Cell };
   };
 
+  const checkDuplicates = (id) =>  {
+    let isFound = eventObj.some(element => {
+      if (element.id === id)
+        return true;
+    })
+    return isFound;
+  }
+
+  const deleteEventFromObj = (id) => {
+    const indexOfObject = eventObj.findIndex(object => {
+      return object.id === id;
+    });
+    eventObj.splice(indexOfObject, 1);
+  }
 
   // función que maneja el click en las celdas.
   const getClick = (data) => {
     const {dia, inicio, fin, cell} = findSelectedCell(data);
-    setEventObj((eventObj) => [...eventObj, { dia, inicio, fin }]);
-    changeColorOfCell(cell);
+    let idData = dia+inicio+fin;
+    let inicioNumber = getOnlyNumbers(inicio);
+    let finNumber = getOnlyNumbers(fin);
+    if( !checkDuplicates(idData) ){
+      setEventObj((eventObj) => [...eventObj, { dia, inicio:inicioNumber, fin:finNumber, id: idData }]);
+      changeColorOfCell(cell);
+    } else {
+      deleteEventFromObj(idData);
+      resetColorOfCell(cell);
+    }
     console.log(eventObj)
   };
 
@@ -156,43 +191,43 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
         <tbody>
         <tr>
             <td className="titleHour">7:00 AM</td>
-            <Cell value="lunes 7am" />
-            <Cell value="martes 7am" />
-            <Cell value="miercoles 7am" />
-            <Cell value="jueves 7am" />
-            <Cell value="viernes 7am" />
+            <Cell function={getClick} value="lunes 7am" />
+            <Cell function={getClick} value="martes 7am" />
+            <Cell function={getClick} value="miercoles 7am" />
+            <Cell function={getClick} value="jueves 7am" />
+            <Cell function={getClick} value="viernes 7am" />
           </tr>
           <tr>
             <td className="titleHour">8:00 AM</td>
-            <Cell value="lunes 8am" />
-            <Cell value="martes 8am" />
-            <Cell value="miercoles 8am" />
-            <Cell value="jueves 8am" />
-            <Cell value="viernes 8am" />
+            <Cell function={getClick} value="lunes 8am" />
+            <Cell function={getClick} value="martes 8am" />
+            <Cell function={getClick} value="miercoles 8am" />
+            <Cell function={getClick} value="jueves 8am" />
+            <Cell function={getClick} value="viernes 8am" />
           </tr>
           <tr className={styles.border}>
             <td className="titleHour">9:00 AM</td>
-            <Cell value="lunes 9am" />
-            <Cell value="martes 9am" />
-            <Cell value="miercoles 9am" />
-            <Cell value="jueves 9am" />
-            <Cell value="viernes 9am" />
+            <Cell function={getClick} value="lunes 9am" />
+            <Cell function={getClick} value="martes 9am" />
+            <Cell function={getClick} value="miercoles 9am" />
+            <Cell function={getClick} value="jueves 9am" />
+            <Cell function={getClick} value="viernes 9am" />
           </tr>
           <tr className={styles.border}>
             <td className="titleHour">10:00 AM</td>
-            <Cell value="lunes 10am" />
-            <Cell value="martes 10am" />
-            <Cell value="miercoles 10am" />
-            <Cell value="jueves 10am" />
-            <Cell value="viernes 10am" />
+            <Cell function={getClick} value="lunes 10am" />
+            <Cell function={getClick} value="martes 10am" />
+            <Cell function={getClick} value="miercoles 10am" />
+            <Cell function={getClick} value="jueves 10am" />
+            <Cell function={getClick} value="viernes 10am" />
           </tr>
           <tr className={styles.border}>
             <td className="titleHour">11:00 AM</td>
-            <Cell value="lunes 11am" />
-            <Cell value="martes 11am" />
-            <Cell value="miercoles 11am" />
-            <Cell value="jueves 11am" />
-            <Cell value="viernes 11am" />
+            <Cell function={getClick}  value="lunes 11am" />
+            <Cell function={getClick} value="martes 11am" />
+            <Cell function={getClick} value="miercoles 11am" />
+            <Cell function={getClick} value="jueves 11am" />
+            <Cell function={getClick} value="viernes 11am" />
           </tr>
         </tbody>
       </table>
