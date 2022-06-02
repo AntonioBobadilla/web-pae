@@ -19,7 +19,7 @@ exports[`Home renders homepage unchanged 1`] = `
           class="description"
         >
            
-          Perfil
+          Password recovery
            
         </p>
       </div>
@@ -38,7 +38,7 @@ exports[`Home renders homepage unchanged 1`] = `
           class="description"
         >
            
-          Asesorías asignadas
+          Password recovery
            
         </p>
       </div>
