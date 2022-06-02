@@ -8,7 +8,7 @@ const ImageCard = (props: { image: string; description: string }) => {
   const { description } = props;
   // creo un Stateless Functional Component
   const [isToggled, setIsToggled] = useState(false); //used to store the state of the toggle button
-  const { t } = useTranslation('student-forgot-password'); //////////translate
+  const { t } = useTranslation('student-home'); //////////translate
   const clicked = () => {
     setIsToggled(!isToggled);
   };
@@ -18,7 +18,7 @@ const ImageCard = (props: { image: string; description: string }) => {
         className={isToggled ? imageCardStyles.selected : imageCardStyles.image} //terneario
         src={props.image}
       />
-      <p className={imageCardStyles.description}> {t('Password recovery')} </p>
+      <p className={imageCardStyles.description}> {t(props.description)} </p>
     </div>
   );
 };
