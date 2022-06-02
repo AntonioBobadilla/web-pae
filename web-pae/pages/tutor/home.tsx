@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/tutor/home.module.css';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; //translate the text
 
 const Home: NextPage = () => (
   <div className={styles.cards}>
@@ -22,5 +23,14 @@ const Home: NextPage = () => (
 Home.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title="Inicio">{page}</SidebarLayout>;
 };
+
+export async function getStaticProps({ locale }) {
+  //translate
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['student-forgot-password']))
+    }
+  };
+}
 
 export default Home;
