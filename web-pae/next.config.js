@@ -21,11 +21,6 @@ module.exports = {
         destination: '/admin/home',
         permanent: true
       },
-      {
-        source: '/',
-        destination: '/register',
-        permanent: true
-      }
     ];
   }
 };
