@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { setRegisterForm } from '@/redux/create-tutor';
+import { setDefaultValues, setRegisterForm } from '@/redux/create-tutor';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -85,6 +85,15 @@ const Registration: NextPage = () => {
     []
   );
 
+  const concludeRegistration = () => {
+    // set Default Values
+    // register
+    // dispatch();
+
+    dispatch(setDefaultValues());
+    router.push('/tutor/register-confirmation');
+  };
+
   const handleComponent = () => {
     switch (step) {
       case REGISTER:
@@ -99,7 +108,12 @@ const Registration: NextPage = () => {
           />
         );
       case SUBJECTS:
-        return <RegisterSubjects previousStep={handlePreviousStep} />;
+        return (
+          <RegisterSubjects
+            previousStep={handlePreviousStep}
+            nextStep={concludeRegistration}
+          />
+        );
       default:
         return null;
     }

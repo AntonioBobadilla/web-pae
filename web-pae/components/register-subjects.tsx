@@ -8,9 +8,13 @@ import SearchBar from './search-bar';
 
 interface RegisterSubjectsProps {
   previousStep: () => void;
+  nextStep: () => void;
 }
 
-const RegisterSubjects = ({ previousStep }: RegisterSubjectsProps) => {
+const RegisterSubjects = ({
+  previousStep,
+  nextStep
+}: RegisterSubjectsProps) => {
   const [subjectsFiltered, setSubjectsFiltered] = useState([]);
   const [subjectsSelected, setSubjectsSelected] = useState([]);
   const [query, setQuery] = useState('');
@@ -90,7 +94,7 @@ const RegisterSubjects = ({ previousStep }: RegisterSubjectsProps) => {
       <div className={styles.button}>
         <ButtonTemplate
           variant="primary"
-          onClick={() => router.push('/tutor/register-confirmation')}
+          onClick={() => nextStep()}
           disabled={valuesSelected.length === 0}
         >
           CONCLUIR REGISTRO

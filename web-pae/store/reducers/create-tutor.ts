@@ -21,6 +21,8 @@ import type { RootState } from '../store';
 //     );
 // };
 
+// export const register = createAsyncThunk();
+
 // const fetchSubjects = createAsyncThunk(
 //   'subjects',
 //   async (query: string, thunkAPI) =>
@@ -51,7 +53,6 @@ interface CreateTutorState {
     firstPeriod: Period[];
     secondPeriod: Period[];
     thirdPeriod: Period[];
-    fourthPeriod: Period[];
   };
   subjects: string[];
 }
@@ -66,8 +67,7 @@ const initialState: CreateTutorState = {
   schedule: {
     firstPeriod: [],
     secondPeriod: [],
-    thirdPeriod: [],
-    fourthPeriod: []
+    thirdPeriod: []
   },
   subjects: []
 };
@@ -117,6 +117,19 @@ export const createTutorSlice = createSlice({
     },
     setSubjects: (state, action: PayloadAction<string[]>) => {
       state.subjects = action.payload;
+    },
+    setDefaultValues: (state) => {
+      state.name = '';
+      state.email = '';
+      state.major = '';
+      state.password = '';
+      state.passwordConfirmation = '';
+      state.schedule = {
+        firstPeriod: [],
+        secondPeriod: [],
+        thirdPeriod: []
+      };
+      state.subjects = [];
     }
   }
 });
@@ -128,7 +141,8 @@ export const {
   setPasswordConfirmation,
   setRegisterForm,
   setPeriod,
-  setSubjects
+  setSubjects,
+  setDefaultValues
 } = createTutorSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
