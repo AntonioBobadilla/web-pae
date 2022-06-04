@@ -1,7 +1,7 @@
-import { selectRegisterData } from '@/redux/create-tutor';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import { useAppSelector } from 'store/hook';
+import { selectRegisterData } from 'store/reducers/create-tutor';
 import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
 import TextInput from './text-input';
