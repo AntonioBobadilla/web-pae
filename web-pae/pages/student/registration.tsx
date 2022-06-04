@@ -21,6 +21,7 @@ const Registration: NextPage = () => {
         },
         email: data.email,
         name: data.name
+        // major: data.major
       },
       'http://server-pae.azurewebsites.net/tutee/'
     ).then(({ auth, message }) => {

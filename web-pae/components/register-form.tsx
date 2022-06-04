@@ -12,6 +12,7 @@ interface RegisterFormProps {
 export type StudentRegisterData = {
   name: string;
   email: string;
+  major: string;
   password: string;
   passwordConfirmation: string;
 };
@@ -19,13 +20,12 @@ export type StudentRegisterData = {
 export const studentRegisterDefaultValue: StudentRegisterData = {
   email: '',
   password: '',
+  major: '',
   name: '',
   passwordConfirmation: ''
 };
 
 const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
-  const [isValid, setIsValid] = React.useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
   const {
     control,
@@ -41,9 +41,9 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
   const onSubmit = handleSubmit((data) => {
     // save data to local storage
     setIsLoading(true);
+    nextStep(data);
     setTimeout(() => {
       setIsLoading(false);
-      nextStep(data);
     }, 1000);
   });
 
@@ -75,6 +75,22 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
             pattern: {
               value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+            }
+          }}
+        />
+      </div>
+      <div className={styles.input}>
+        <TextInput
+          name="major"
+          placeholder="CARRERA*"
+          control={control}
+          error={errors.major}
+          style={{ textTransform: 'uppercase' }}
+          rules={{
+            required: 'Carrera requerida',
+            pattern: {
+              value: /^[A-Za-z]{2,4}$/,
+              message: 'Carrera inválida. E.g. ARQ, LAD, MEC'
             }
           }}
         />
