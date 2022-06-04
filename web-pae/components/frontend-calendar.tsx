@@ -6,9 +6,16 @@ import Cell from './frontend-calendar-cellComponent';
 interface MyCalendarProps {
   eventObj: never[];
   setEventObj: React.Dispatch<React.SetStateAction<never[]>>;
+  changeColorOfCell: (cell: any) => void;
+  resetColorOfCell: (cell: any) => void;
 }
 
-const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
+const MyCalendar = ({
+  eventObj,
+  setEventObj,
+  changeColorOfCell,
+  resetColorOfCell
+}: MyCalendarProps) => {
   useEffect(() => {
     renderCellsDynamically();
   }, []);
@@ -65,18 +72,6 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
       });
     });
     return { startCell, finishCell };
-  };
-
-  // funcion que cambia el color de la celda.
-  const changeColorOfCell = (cell) => {
-    cell.style.background = '#039BE5';
-    cell.style.border = 'none';
-  };
-
-  // funcion que cambia el color de la celda.
-  const resetColorOfCell = (cell) => {
-    cell.style.background = 'none';
-    cell.style.border = '1px solid #f1f1f1';
   };
 
   // función que regresa solo números enteros de un string
@@ -139,7 +134,9 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
 
   const deleteEventFromObj = (id) => {
     const indexOfObject = eventObj.findIndex((object) => object.id === id);
-    eventObj.splice(indexOfObject, 1);
+    const copyOfEventObj = [...eventObj];
+    copyOfEventObj.splice(indexOfObject, 1);
+    setEventObj(copyOfEventObj);
   };
 
   // función que maneja el click en las celdas.
@@ -151,20 +148,20 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     if (!checkDuplicates(idData)) {
       setEventObj((eventObj) => [
         ...eventObj,
-        { dia, inicio: inicioNumber, fin: finNumber, id: idData }
+        { dia, inicio: inicioNumber, fin: finNumber, id: idData, cell }
       ]);
       changeColorOfCell(cell);
     } else {
       deleteEventFromObj(idData);
       resetColorOfCell(cell);
     }
-    console.log(eventObj);
+    // console.log(eventObj);
   };
 
   // función que renderiza la cantidad de celdas dependiendo de la configuración de horas dada.
   const renderCellsDynamically = () => {
     for (let i = 0; i <= 1; i++) {
-      console.log(10 + i);
+      // console.log(10 + i);
     }
     return true;
   };

@@ -1,5 +1,7 @@
+import { selectRegisterData } from '@/redux/create-tutor';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
+import { useAppSelector } from 'store/hook';
 import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
 import TextInput from './text-input';
@@ -27,15 +29,18 @@ export const studentRegisterDefaultValue: StudentRegisterData = {
 
 const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const tutorDefaultValues = useAppSelector(selectRegisterData);
   const {
     control,
     handleSubmit,
     getValues,
     formState: { errors }
   } = useForm<StudentRegisterData>({
-    defaultValues: studentRegisterDefaultValue
+    defaultValues: student ? studentRegisterDefaultValue : tutorDefaultValues
   });
 
+  // TODO: DELETE DATA ON NAVIGATE CHANGED
   const { isDirty } = useFormState({ control });
 
   const onSubmit = handleSubmit((data) => {

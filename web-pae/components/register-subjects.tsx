@@ -1,6 +1,8 @@
 import styles from '@/css-components/scheduleTutoring.module.css';
+import { selectSubjects, setSubjects } from '@/redux/create-tutor';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import ButtonTemplate from './button-template';
 import SearchBar from './search-bar';
 
@@ -9,16 +11,17 @@ interface RegisterSubjectsProps {
 }
 
 const RegisterSubjects = ({ previousStep }: RegisterSubjectsProps) => {
-  const [subjects, setSubjects] = useState([]);
   const [subjectsFiltered, setSubjectsFiltered] = useState([]);
   const [subjectsSelected, setSubjectsSelected] = useState([]);
   const [query, setQuery] = useState('');
+  const selectedSubjects = useAppSelector(selectSubjects);
   const router = useRouter();
   const [subjectsFromApi, setSubjectsFromApi] = useState([]);
-  const [valuesSelected, changeValues] = useState([]);
+  const [valuesSelected, changeValues] = useState(selectedSubjects);
+  const dispatch = useAppDispatch();
 
   const handleSuggestions = (suggestion: any) => {
-    changeValues((valuesSelected) => [...valuesSelected, suggestion]);
+    changeValues((values) => [...values, suggestion]);
     // showValues();
   };
 
@@ -29,6 +32,10 @@ const RegisterSubjects = ({ previousStep }: RegisterSubjectsProps) => {
         setSubjectsFromApi(data);
       });
   }, []);
+
+  React.useEffect(() => {
+    dispatch(setSubjects(valuesSelected));
+  }, [valuesSelected]);
 
   const cleanHTML = () => {
     const div = document.querySelector('.values');
