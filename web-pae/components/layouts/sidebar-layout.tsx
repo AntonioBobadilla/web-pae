@@ -10,7 +10,6 @@ import STUDENT_ROUTES from '../../constants/student-routes.json';
 import TUTOR_ROUTES from '../../constants/tutor-routes.json';
 import styles from '../../css/components/layouts/sidebarLayout.module.css';
 import Exit from '../dialogs/exit';
-import withAuthentication from '../navigation/with-authentication';
 import SideBar from '../sidebar';
 
 type LayoutProps = {
@@ -119,4 +118,6 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
   );
 };
 
-export default withAuthentication(withRouter(SidebarLayout));
+// ACTIVATE THIS CODE FOR AUTHENTICATION
+// export default withAuthentication(withRouter(SidebarLayout));
+export default withRouter(SidebarLayout);

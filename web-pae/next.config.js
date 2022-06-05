@@ -20,7 +20,7 @@ module.exports = {
         source: '/admin',
         destination: '/admin/home',
         permanent: true
-      },
+      }
     ];
   }
 };
