@@ -3,10 +3,61 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #f1f1f1;
 }
 
 .input {
   border: none;
   width: 100%;
   height: 15%;
+  border-radius: 5px;
+  color: #7c7c7c;
+  font-weight: 500;
+  padding-left: 2vw;
+  margin-bottom: 3vh;
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid #545454;
+}
+
+.input::placeholder {
+  opacity: 1;
+}
+
+.select {
+  background-color: #fff;
+  border: none;
+  width: 100%;
+  height: 15%;
+  padding-left: 2vw;
+  color: #7c7c7c;
+  margin-bottom: 3vh;
+  font-size: 14px;
+}
+
+.button {
+  width: 50%;
+  height: 15%;
+  background-color: #0277bd;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.button:active {
+  scale: 0.9;
+}
+
+@media screen and(max-width:800px) {
 }
