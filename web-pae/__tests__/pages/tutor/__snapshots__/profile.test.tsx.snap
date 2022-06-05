@@ -43,29 +43,35 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
             <li
               class="li"
             >
-              <a
+              <span
                 class="a"
+                role="button"
+                tabindex="-1"
               >
                 Modificar materias
-              </a>
+              </span>
             </li>
             <li
               class="li"
             >
-              <a
+              <span
                 class="a"
+                role="button"
+                tabindex="-1"
               >
                 Modificar contraseña
-              </a>
+              </span>
             </li>
             <li
               class="li"
             >
-              <a
+              <span
                 class="a"
+                role="button"
+                tabindex="-1"
               >
                 Modificar idioma
-              </a>
+              </span>
             </li>
           </ul>
         </nav>
@@ -85,13 +91,77 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
       <p
         class="userName"
       >
-        Jose Antonio Bobodilla Garcia
+        Daniela Sánchez Hernández
       </p>
       <p
         class="id"
       >
-        A01731065@tec.mx
+        dani@tec.mx
       </p>
+    </div>
+    <div
+      class="progress"
+    >
+      <div
+        class="weekHours"
+      >
+        <span
+          class="progressText"
+        >
+          Progreso de horas semanales
+        </span>
+        <div
+          class="hoursContainer"
+        >
+          <div
+            class="bar"
+          >
+            <div
+              class="progress_bar_container"
+            >
+              <div
+                style="width: 40%; background-color: rgb(46, 212, 119); height: 100%; border-radius: 10px; transition: 1s ease-in-out; transition-delay: 0.6s;"
+              />
+            </div>
+          </div>
+          <span
+            class="progressValue"
+          >
+            2
+            /5
+          </span>
+        </div>
+      </div>
+      <div
+        class="totalHours"
+      >
+        <span
+          class="progressText"
+        >
+          Progreso de horas totales
+        </span>
+        <div
+          class="hoursContainer"
+        >
+          <div
+            class="bar"
+          >
+            <div
+              class="progress_bar_container"
+            >
+              <div
+                style="width: 27.77777777777778%; background-color: rgb(46, 212, 119); height: 100%; border-radius: 10px; transition: 1s ease-in-out; transition-delay: 0.6s;"
+              />
+            </div>
+          </div>
+          <span
+            class="progressValue"
+          >
+            50
+            /180
+          </span>
+        </div>
+      </div>
     </div>
     <p
       class="tutorship"

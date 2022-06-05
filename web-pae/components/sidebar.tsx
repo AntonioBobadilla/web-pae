@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/alt-text */
 import Link from 'next/link';
 import React from 'react';
 import sidebarStyles from '../css/components/sidebar.module.css';
+import adminStyles from '../css/components/sidebarAdmin.module.css';
 
 interface SideBarProps {
   routing: {
@@ -13,57 +15,150 @@ interface SideBarProps {
     exit: string;
   };
   currentRoute: string;
+  logOut: () => void;
 }
 
-const SideBar = ({ routing, currentRoute }: SideBarProps) => (
-  <div className={sidebarStyles.main}>
-    <div className={sidebarStyles.normal}>
+const SideBar = ({ routing, currentRoute, logOut }: SideBarProps) => (
+  <div
+    className={
+      currentRoute.includes('admin') ? adminStyles.main : sidebarStyles.main
+    }
+  >
+    <div
+      className={
+        currentRoute.includes('admin')
+          ? adminStyles.normal
+          : sidebarStyles.normal
+      }
+    >
       <Link href="#" passHref>
-        <div className={sidebarStyles.pae}>
-          <img src="/images/pae-logo.png" className={sidebarStyles.logoPae} />
-          <p className={sidebarStyles.textPae}>PAE</p>
+        <div
+          className={
+            currentRoute.includes('admin') ? adminStyles.pae : sidebarStyles.pae
+          }
+        >
+          <img
+            src="/images/pae-logo.png"
+            className={
+              currentRoute.includes('admin')
+                ? adminStyles.logoPae
+                : sidebarStyles.logoPae
+            }
+          />
+          <p
+            className={
+              currentRoute.includes('admin')
+                ? adminStyles.textPae
+                : sidebarStyles.textPae
+            }
+          >
+            PAE
+          </p>
         </div>
       </Link>
       {routing.routes.map((route) => (
         <Link href={route.path} passHref key={`${route.title}`}>
           <div
-            className={sidebarStyles.dashboard}
+            className={
+              currentRoute.includes('admin')
+                ? adminStyles.dashboard
+                : sidebarStyles.dashboard
+            }
             style={
               currentRoute === route.path
                 ? { backgroundColor: 'white', color: '#0277BD' }
                 : {}
             }
           >
-            <div className={sidebarStyles.dbImage}>
+            <div
+              className={
+                currentRoute.includes('admin')
+                  ? adminStyles.dbImage
+                  : sidebarStyles.dbImage
+              }
+            >
               <i className={`bi bi-${route.icon}`} />
             </div>
-            <p className={sidebarStyles.dbText}>{route.title}</p>
+            <p
+              className={
+                currentRoute.includes('admin')
+                  ? adminStyles.dbText
+                  : sidebarStyles.dbText
+              }
+            >
+              {route.title}
+            </p>
           </div>
         </Link>
       ))}
 
-      <Link href={routing.exit} passHref>
-        <div className={sidebarStyles.exit}>
-          <i className="bi bi-arrow-bar-right" />
-        </div>
-      </Link>
+      <div
+        className={
+          currentRoute.includes('admin') ? adminStyles.exit : sidebarStyles.exit
+        }
+        onClick={() => logOut()}
+        role="button"
+      >
+        <i className="bi bi-arrow-bar-right" />
+      </div>
     </div>
-    <div className={sidebarStyles.hamburgerMenu}>
-      <input type="checkbox" className={sidebarStyles.toggler} />
-      <div className={sidebarStyles.hamburger}>
+    <div
+      className={
+        currentRoute.includes('admin')
+          ? adminStyles.hamburgerMenu
+          : sidebarStyles.hamburgerMenu
+      }
+    >
+      <input
+        type="checkbox"
+        className={
+          currentRoute.includes('admin')
+            ? adminStyles.toggler
+            : sidebarStyles.toggler
+        }
+      />
+      <div
+        className={
+          currentRoute.includes('admin')
+            ? adminStyles.hamburger
+            : sidebarStyles.hamburger
+        }
+      >
         <div />
       </div>
-      <div className={sidebarStyles.menu}>
+      <div
+        className={
+          currentRoute.includes('admin') ? adminStyles.menu : sidebarStyles.menu
+        }
+      >
         <div>
           <ul>
             <li>
               <Link href="#" passHref>
-                <div className={sidebarStyles.pae}>
+                <div
+                  className={
+                    currentRoute.includes('admin')
+                      ? adminStyles.pae
+                      : sidebarStyles.pae
+                  }
+                >
                   <img
                     src="/images/pae-logo.png"
-                    className={sidebarStyles.logoPae}
+                    className={
+                      currentRoute.includes('admin')
+                        ? adminStyles.logoPae
+                        : sidebarStyles.logoPae
+                    }
                   />
-                  <p className={sidebarStyles.textPae}>PAE</p>
+                  <p
+                    className={
+                      currentRoute.includes('admin')
+                        ? adminStyles.textPae
+                        : sidebarStyles.textPae
+                    }
+                  >
+                    PAE
+                  </p>
                 </div>
               </Link>
             </li>
@@ -71,28 +166,52 @@ const SideBar = ({ routing, currentRoute }: SideBarProps) => (
               <li key={`${route.title}`}>
                 <Link href={route.path} passHref>
                   <div
-                    className={sidebarStyles.dashboard}
+                    className={
+                      currentRoute.includes('admin')
+                        ? adminStyles.dashboard
+                        : sidebarStyles.dashboard
+                    }
                     style={
                       currentRoute === route.path
                         ? { backgroundColor: 'white', color: '#0277BD' }
                         : {}
                     }
                   >
-                    <div className={sidebarStyles.dbImage}>
+                    <div
+                      className={
+                        currentRoute.includes('admin')
+                          ? adminStyles.dbImage
+                          : sidebarStyles.dbImage
+                      }
+                    >
                       <i className={`bi bi-${route.icon}`} />
                     </div>
-                    <p className={sidebarStyles.dbText}>{route.title}</p>
+                    <p
+                      className={
+                        currentRoute.includes('admin')
+                          ? adminStyles.dbText
+                          : sidebarStyles.dbText
+                      }
+                    >
+                      {route.title}
+                    </p>
                   </div>
                 </Link>
               </li>
             ))}
 
             <li>
-              <Link href={routing.exit} passHref>
-                <div className={sidebarStyles.exit}>
-                  <i className="bi bi-arrow-bar-right" />
-                </div>
-              </Link>
+              <div
+                className={
+                  currentRoute.includes('admin')
+                    ? adminStyles.exit
+                    : sidebarStyles.exit
+                }
+                onClick={() => logOut()}
+                role="button"
+              >
+                <i className="bi bi-arrow-bar-right" />
+              </div>
             </li>
           </ul>
         </div>

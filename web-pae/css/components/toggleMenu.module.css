@@ -87,6 +87,7 @@
 .li:hover {
   transform: translateY(-0.5vh);
   /*border-bottom: solid 1px #3f3b3b;*/
+  cursor: pointer;
 }
 .li:hover .a {
   color: #0277bd;
@@ -94,7 +95,7 @@
 
 @media screen and (max-width: 800px) {
   .main {
-    width: 45%;
+    width: 60%;
     height: 50%;
   }
   .toggler {
@@ -107,8 +108,8 @@
   }
   .toggler:checked ~ .overlay {
     visibility: visible;
-    width: 20%;
-    height: 35%;
+    width: 55%;
+    height: 30%;
     border: solid 1px #3f3b3b;
   }
   .li {

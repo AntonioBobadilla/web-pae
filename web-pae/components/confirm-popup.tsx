@@ -12,7 +12,11 @@ const ConfirmationPopup = (props: ConfirmationPopupProps) => {
   const { url } = props;
 
   return (
-    <Popup title=" ¡Registro completado! " line={false}>
+    <Popup
+      title=" ¡Registro completado! "
+      line={false}
+      style={confirmPopupStyles.modal}
+    >
       <p className={confirmPopupStyles.paragraph}>
         Recibirás un correo cuando sea aprobado tu perfil
       </p>

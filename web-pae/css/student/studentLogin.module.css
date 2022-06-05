@@ -8,6 +8,7 @@
 .leftCont {
   width: 50%;
   height: 100%;
+  animation: 1.5s ease-out 0s 1 slideInFromLeft;
 }
 
 .loginImage {
@@ -23,6 +24,7 @@
   align-items: center;
   padding-top: 20vh;
   align-items: center;
+  animation: 1s ease-out 0s 1 slideInFromTop;
 }
 
 .paeLogin {
@@ -50,6 +52,7 @@
 }
 
 .loginFields {
+  margin-top: 10px;
   margin-bottom: 35px;
   display: flex;
   flex-direction: column;
@@ -61,7 +64,7 @@
 .component {
   width: 100%;
   height: 60px;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 .componentB {
@@ -194,5 +197,32 @@
 
   .privacy {
     font-size: 2.5vw;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-35%);
+    opacity: 0;
+  }
+  65% {
+    transform: translateY(0.5%);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

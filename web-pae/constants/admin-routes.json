@@ -11,7 +11,7 @@
       "title": "Asesores PAE"
     },
     {
-      "path": "/admin/tutorings-requests",
+      "path": "/admin/tutorings",
       "icon": "clipboard-check",
       "title": "Solicitudes de asesorías"
     },

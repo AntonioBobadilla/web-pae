@@ -15,6 +15,7 @@ interface ScheduleTutoringState {
   title: string | null;
   description: string | null;
   file: string | null;
+  modalidad: string | null;
 }
 
 // Define the initial state using that type
@@ -26,6 +27,7 @@ const initialState: ScheduleTutoringState = {
   },
   date: '18 de Marzo',
   time: '12:00 PM - 1:00 PM',
+  modalidad: 'Presencial',
   title: null,
   description: null,
   file: null
@@ -57,6 +59,9 @@ export const scheduleTutoringSlice = createSlice({
     setFile: (state, action: PayloadAction<string>) => {
       state.file = action.payload;
     },
+    setModalidad: (state, action: PayloadAction<string>) => {
+      state.modalidad = action.payload;
+    },
     reset: (state) => {
       state.subject = null;
       state.tutor = {
@@ -79,7 +84,8 @@ export const {
   setTime,
   setDescription,
   setTitle,
-  setFile
+  setFile,
+  setModalidad
 } = scheduleTutoringSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
