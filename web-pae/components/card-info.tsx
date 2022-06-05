@@ -11,7 +11,7 @@ const interpretation = (status: string) => {
       return 'Confirmado';
     case 'cancel':
       return 'Cancelado';
-    case 'info': //cambiar por completada
+    case 'info': // cambiar por completada
       return 'Completada';
     default:
       return 'Pendiente';

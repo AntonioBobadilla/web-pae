@@ -2,7 +2,8 @@
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import React, { ReactElement, ReactNode } from 'react';
-import { wrapper } from '../store/store';
+import { Provider } from 'react-redux';
+import { store, wrapper } from '../store/store';
 import '../styles/globals.css';
 
 type NextPageWithLayout = NextPage & {
@@ -18,7 +19,11 @@ type AppPropsWithLayout = AppProps & {
 function PAE({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page);
-  return getLayout(<Component {...pageProps} />);
+  return getLayout(
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
 
 export default wrapper.withRedux(PAE);

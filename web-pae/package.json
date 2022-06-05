@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "yarn run test:ci -u && jest --watch",
     "test:ci": "jest --ci"
   },
   "resolutions": {
@@ -28,6 +28,7 @@
     "react-drag-drop-files": "^2.3.5",
     "react-elastic-carousel": "^0.11.5",
     "react-hook-form": "^7.30.0",
+    "react-hot-toast": "^2.2.0",
     "react-moment": "^1.1.2",
     "react-redux": "^8.0.1",
     "react-table": "^7.7.0",

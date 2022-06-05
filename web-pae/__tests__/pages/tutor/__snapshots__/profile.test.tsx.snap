@@ -43,11 +43,13 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
             <li
               class="li"
             >
-              <a
+              <span
                 class="a"
+                role="button"
+                tabindex="-1"
               >
                 Modificar materias
-              </a>
+              </span>
             </li>
             <li
               class="li"
@@ -89,12 +91,12 @@ exports[`Tutor Profile renders tutor profile page unchanged 1`] = `
       <p
         class="userName"
       >
-        Jose Antonio Bobodilla Garcia
+        Daniela Sánchez Hernández
       </p>
       <p
         class="id"
       >
-        A01731065@tec.mx
+        dani@tec.mx
       </p>
     </div>
     <div
