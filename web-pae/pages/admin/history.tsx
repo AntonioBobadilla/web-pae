@@ -5,12 +5,15 @@ import styles from '@/css-admin/tutees.module.css';
 import history from '@/css-admin/history.module.css';
 import cx from 'classnames';
 import useFetch from '@/hooks/useFetch';
+import CsvDownload from 'react-json-to-csv'
+import ButtonTemplate from '@/components/button-template';
 
 const History: NextPage = () => {
 
   const [currentTab, setCurrentTab] = useState('');
 
   const [data, setData] = useState([]);
+  const [csvObj, setCsvObj] = useState([]);
 
   let dummyData = [
     {
@@ -119,10 +122,32 @@ const History: NextPage = () => {
       console.log(error);
     });
   } 
+
+  const createObjToCSV = () => {
+      let arrObj = [];
+
+      data.map(function (item,index) {
+
+        let tutorName =  item.tutor != null ? item.tutor.name : "no hay tutor";
+        let studentName =  item.student != null ? item.student.name : "no hay estudiante";
+        let subjectName =  item.subject != null ? item.subject.name : "no hay materia";
+        let date =  item.date != null ? item.date : "no hay fecha";
+        let hour =  item.hour != null ? item.hour : "no hay hora";
+
+        let obj = {tutorName, studentName, subjectName, date, hour};
+
+        arrObj.push(obj)
+      })
+      setCsvObj(arrObj);
+  }
   
   useEffect(() => {
     getData()
   }, []);
+
+  useEffect(() => {
+    createObjToCSV();
+  }, [data])
 
   return (
     <div className={history.main}>
@@ -141,7 +166,7 @@ const History: NextPage = () => {
         </thead>
         <tbody>
         { data.map(function (item,index) {
-          
+
             let tutorName =  item.tutor != null ? item.tutor.name : "no hay tutor";
             let studentName =  item.student != null ? item.student.name : "no hay estudiante";
             let subjectName =  item.subject != null ? item.subject.name : "no hay materia";
@@ -171,6 +196,13 @@ const History: NextPage = () => {
             })}
         </tbody>
         </table>
+        <div className={history.buttonWrapper}>
+          <ButtonTemplate variant="primary">
+            <CsvDownload className={history.csvButton} filename={"historial-asesorias.csv"} data={csvObj} />
+          </ButtonTemplate>
+        </div>
+
+        
     </div>
   )
 };
