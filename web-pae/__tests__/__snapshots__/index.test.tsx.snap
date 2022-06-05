@@ -5,7 +5,42 @@ exports[`Index renders index page unchanged 1`] = `
   <div>
     <main
       class="component"
-    />
+    >
+      <div
+        class="main"
+      >
+        <input
+          class="input"
+          placeholder="CLAVE*"
+          type="text"
+        />
+        <input
+          class="input"
+          placeholder="NOMBRE*"
+          type="text"
+        />
+        <select
+          class="select"
+        >
+          <option
+            disabled=""
+            value=""
+          >
+            CARRERA (AAA)*
+          </option>
+          <option
+            value="ITC"
+          >
+            ITC
+          </option>
+        </select>
+        <button
+          class="button"
+        >
+          Agregar
+        </button>
+      </div>
+    </main>
   </div>
 </div>
 `;
