@@ -9,7 +9,11 @@ describe('Student registration', () => {
   beforeEach(() => {
     render(
       <Provider store={store}>
-        <RegisterForm nextStep={() => console.log('ok')} student />
+        <RegisterForm
+          nextStep={() => console.log('ok')}
+          student
+          isLoading={false}
+        />
       </Provider>
     );
   });

@@ -1,5 +1,9 @@
 import styles from '@/css-components/scheduleTutoring.module.css';
-import { selectSubjects, setSubjects } from '@/redux/create-tutor';
+import {
+  selectLoading,
+  selectSubjects,
+  setSubjects
+} from '@/redux/create-tutor';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
@@ -18,6 +22,7 @@ const RegisterSubjects = ({
   const [subjectsFiltered, setSubjectsFiltered] = useState([]);
   const [subjectsSelected, setSubjectsSelected] = useState([]);
   const [query, setQuery] = useState('');
+  const isLoading = useAppSelector(selectLoading);
   const selectedSubjects = useAppSelector(selectSubjects);
   const router = useRouter();
   const [subjectsFromApi, setSubjectsFromApi] = useState([]);
@@ -95,7 +100,8 @@ const RegisterSubjects = ({
         <ButtonTemplate
           variant="primary"
           onClick={() => nextStep()}
-          disabled={valuesSelected.length === 0}
+          disabled={valuesSelected.length === 0 || isLoading}
+          loading={isLoading}
         >
           CONCLUIR REGISTRO
         </ButtonTemplate>
