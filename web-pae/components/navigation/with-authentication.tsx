@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { selectRole, selectToken } from '@/redux/user';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useAppSelector } from 'store/hook';
+import { selectRole, selectToken } from 'store/reducers/user';
 import LoadingScreen from '../transitions/loading-screen';
 
 type withAuthenticationProps = {

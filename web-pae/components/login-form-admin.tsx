@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/function-component-definition */
-import { setLoginData } from '@/redux/user';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,6 +7,7 @@ import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch } from 'store/hook';
+import { setLoginData } from 'store/reducers/user';
 import styles from '../css/student/studentLogin.module.css';
 import login from '../helpers/login';
 import ButtonTemplate from './button-template';

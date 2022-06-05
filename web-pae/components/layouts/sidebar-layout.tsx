@@ -1,10 +1,10 @@
-import post from '@/helpers/post';
-import { selectRole, selectToken, setLogoutData } from '@/redux/user';
+import post from 'helpers/post';
 import Head from 'next/head';
 import { Router, withRouter } from 'next/router';
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
+import { selectRole, selectToken, setLogoutData } from 'store/reducers/user';
 import ADMIN_ROUTES from '../../constants/admin-routes.json';
 import STUDENT_ROUTES from '../../constants/student-routes.json';
 import TUTOR_ROUTES from '../../constants/tutor-routes.json';

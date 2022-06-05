@@ -1,10 +1,10 @@
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ToggleMenuStudent from '@/components/toggle-menu-student';
-import { selectEmail, selectName } from '@/redux/user';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
+import { selectEmail, selectName } from 'store/reducers/user';
 import CardInformation from '../../components/card-information-student';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/student/profile.module.css';

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import post from '@/helpers/post';
+import post from 'helpers/post';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
