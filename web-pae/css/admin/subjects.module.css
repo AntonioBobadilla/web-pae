@@ -50,3 +50,21 @@
 .hidden {
   visibility: hidden;
 }
+
+.headRow {
+  background: #039be5;
+  color: white;
+  height: 50px;
+  border-radius: 4px;
+  color: white;
+}
+
+.head {
+  width: 10%;
+}
+
+.td {
+  padding: 5px 15px;
+  text-align: center;
+  font-weight: 500;
+}
