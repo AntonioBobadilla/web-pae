@@ -45,8 +45,15 @@
   justify-content: center;
   align-items: center;
   margin-top: 10vh;
+  transition: all 1s ease;
+  transition-delay: 0.2s;
 }
 
 .hidden {
   visibility: hidden;
+  transition: all 1s ease;
+  opacity: 0;
+  z-index: 5;
+  position: absolute;
+  display: none;
 }
