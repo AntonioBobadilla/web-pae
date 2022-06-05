@@ -15,7 +15,7 @@ const Home = () => (
 
     <div className={styles.card}>
       <ImageCard
-        image="/images/tutor-login-image.jpg"
+        image="/images/request.jpg"
         description="Solicitudes de asesoría"
         path="/admin/tutorings"
       />
