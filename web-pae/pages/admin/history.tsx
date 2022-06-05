@@ -109,7 +109,7 @@ const History: NextPage = () => {
 ];
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/tutor/')
+    fetch('http://server-pae.azurewebsites.net/tutoring/')
     .then((resp) => resp.json())
     .then(function(data) {
       //console.log(data)
@@ -140,23 +140,31 @@ const History: NextPage = () => {
           </tr>
         </thead>
         <tbody>
-        { dummyData.map(function (item,index) {
+        { data.map(function (item,index) {
+          
+            let tutorName =  item.tutor != null ? item.tutor.name : "no hay tutor";
+            let studentName =  item.student != null ? item.student.name : "no hay estudiante";
+            let subjectName =  item.subject != null ? item.subject.name : "no hay materia";
+            let date =  item.date != null ? item.date : "no hay fecha";
+            let hour =  item.hour != null ? item.hour : "no hay hora";
+
+
               return (
                 <tr  className={styles.tr}>
                   <td className={styles.td}>
-                    <p>{item.tutor.name} </p>
+                    <p>{tutorName}</p>
                   </td>
                   <td className={styles.td}>
-                    <p>{item.student.name}</p>
+                    <p>{studentName}</p>
                   </td>
                   <td className={styles.td}>
-                    <p>{item.subject.name}</p>
+                    <p>{subjectName}</p>
                   </td>
                   <td className={styles.td}>
-                    <p>{item.date}</p>
+                    <p>{date}</p>
                   </td>
                   <td className={styles.td}>
-                    <p>{item.hour}</p>
+                    <p>{hour}</p>
                   </td>
                 </tr>
               );
