@@ -1,7 +1,6 @@
 .wrapper {
   width: 80%;
-  height: 50vh;
-  margin: 25px auto;
+  margin: 0 auto;
 }
 
 .table {
@@ -15,7 +14,7 @@
 .table .heading {
   padding: 20px;
   background: #f7fbfe;
-  color:#5B6166;
+  color: #5b6166;
   font-weight: 600;
 }
 
@@ -31,6 +30,7 @@
 
 .table tbody tr .titleHour {
   background: white;
+  color: #5b6166;
 }
 
 .tableHead {
@@ -38,5 +38,21 @@
 }
 
 .border {
-  /*border: 1px solid #f1f1f1;*/
+  border: 1px solid #f1f1f1;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .table .heading {
+    font-size: 3vw;
+    padding: 2vh 1vw 2vh 1vw;
+  }
+
+  .table tbody tr td {
+    font-size: 3vw;
+    padding: 1.5vh 1vw 1.5vh 1vw;
+  }
 }

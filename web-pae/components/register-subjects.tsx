@@ -1,86 +1,105 @@
+import styles from '@/css-components/scheduleTutoring.module.css';
+import { selectSubjects, setSubjects } from '@/redux/create-tutor';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import ButtonTemplate from './button-template';
 import SearchBar from './search-bar';
-import styles from '@/css-components/scheduleTutoring.module.css';
 
 interface RegisterSubjectsProps {
   previousStep: () => void;
+  nextStep: () => void;
 }
 
-const RegisterSubjects = ({ previousStep }: RegisterSubjectsProps) => {
-  const [subjects, setSubjects] = useState([]);
+const RegisterSubjects = ({
+  previousStep,
+  nextStep
+}: RegisterSubjectsProps) => {
   const [subjectsFiltered, setSubjectsFiltered] = useState([]);
   const [subjectsSelected, setSubjectsSelected] = useState([]);
   const [query, setQuery] = useState('');
+  const selectedSubjects = useAppSelector(selectSubjects);
   const router = useRouter();
   const [subjectsFromApi, setSubjectsFromApi] = useState([]);
-  const [valuesSelected, changeValues] = useState([]);
+  const [valuesSelected, changeValues] = useState(selectedSubjects);
+  const dispatch = useAppDispatch();
 
-  const handleSuggestions = (suggestion) => {
-    changeValues((valuesSelected) => [...valuesSelected, suggestion]);
+  const handleSuggestions = (suggestion: any) => {
+    changeValues((values) => [...values, suggestion]);
     // showValues();
   };
 
   React.useEffect(() => {
     fetch('http://localhost:3000/api/subjects')
-    .then((resp) => resp.json())
-    .then(function(data) {
-      setSubjectsFromApi(data)
-      })
-}, [])
+      .then((resp) => resp.json())
+      .then((data) => {
+        setSubjectsFromApi(data);
+      });
+  }, []);
 
-const showValues = () => {
-  const div = document.querySelector('.values');
-  cleanHTML();
-  valuesSelected.forEach((item) => {
-    const value = document.createElement('p');
-    value.innerHTML = item;
-    div.appendChild(value);
-  });
-};
+  React.useEffect(() => {
+    dispatch(setSubjects(valuesSelected));
+  }, [valuesSelected]);
 
-const cleanHTML = () => {
-  const div = document.querySelector('.values');
-  while (div.firstChild) {
-    div?.removeChild(div.firstChild);
-  }
-};
+  const cleanHTML = () => {
+    const div = document.querySelector('.values');
+    while (div?.firstChild) {
+      div?.removeChild(div.firstChild);
+    }
+  };
 
-const deleteItem = (e) => {
-  const itemToDelete = e.target.parentElement.parentElement.id;
-  console.log(itemToDelete);
-  changeValues(valuesSelected.filter((item) => item != itemToDelete));
-};
+  const showValues = () => {
+    const div = document.querySelector('.values');
+    cleanHTML();
+    valuesSelected.forEach((item) => {
+      const value = document.createElement('p');
+      value.innerHTML = item;
+      div?.appendChild(value);
+    });
+  };
+
+  const deleteItem = (e: any) => {
+    const itemToDelete = e.target.parentElement.parentElement.id;
+    console.log(itemToDelete);
+    changeValues(valuesSelected.filter((item) => item !== itemToDelete));
+  };
 
   return (
-    <div style={{'width':'50%'}}>
-      <div className={styles.wrapper} >
-      <SearchBar
-        function={handleSuggestions}
-        suggestions={subjectsFromApi}
-      />
+    <div className={styles.wrapper}>
+      <SearchBar function={handleSuggestions} suggestions={subjectsFromApi} />
       <div className={styles.selectedSubjects}>
-        <h2 className={styles.title}>Materia escogida</h2>
+        {valuesSelected.length !== 0 && (
+          <h2 className={styles.title}>MATERIAS SELECCIONADAS</h2>
+        )}
         <div className={styles.values}>
           {valuesSelected.map((value, index) => (
-            <p key={index} id={value} className={styles.element}>
+            <p
+              key={`${value}${index.toString()}`}
+              id={value}
+              className={styles.element}
+            >
               {value}{' '}
-              <button id={value} onClick={deleteItem} className={styles.delete}>
+              <button
+                id={value}
+                onClick={deleteItem}
+                className={styles.delete}
+                type="button"
+              >
                 <i className="bi bi-trash3" />
               </button>
             </p>
           ))}
         </div>
       </div>
+      <div className={styles.button}>
+        <ButtonTemplate
+          variant="primary"
+          onClick={() => nextStep()}
+          disabled={valuesSelected.length === 0}
+        >
+          CONCLUIR REGISTRO
+        </ButtonTemplate>
       </div>
-      <ButtonTemplate
-        variant="primary"
-        onClick={() => router.push('/tutor/register-confirmation')}
-        style={{'width':'50%', 'margin':'0 auto', 'height':'40px'}}
-      >
-        CONCLUIR REGISTRO
-      </ButtonTemplate>
     </div>
   );
 };

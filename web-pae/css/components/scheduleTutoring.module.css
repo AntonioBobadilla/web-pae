@@ -1,60 +1,81 @@
 .wrapper {
-    width: 50%;
-    margin:100px auto;
+  width: 50%;
+  margin: auto;
+}
+
+.wrapper .button {
+  width: 50%;
+  height: 40px;
+  margin: auto;
 }
 
 .wrapper .selectedSubjects {
-    width: 100%;
-    margin:70px auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  width: 100%;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .wrapper .selectedSubjects .values {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .wrapper .values .element {
-    padding:7px 20px;
-    width: 100%;
-    border:1px solid #E0E0E0;
-    color:#5E5E5E;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    font-weight: 500;
+  padding: 7px 20px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  color: #5e5e5e;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
 }
 
 .delete {
-    color:red;
-    background:white;
-    border:none;
+  color: red;
+  background: white;
+  border: none;
 }
 
 .delete:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .continueButton {
-    width: 310px;
+  width: 310px;
+  height: 30px;
+  display: flex;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 766px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .wrapper .button {
+    width: 60%;
+    height: 6vh;
+    margin-top: 15vh;
+  }
+  .continueButton {
+    width: 100%;
     height: 30px;
-    display: flex;
-    margin: 0 auto;
+  }
+
+  .wrapper .selectedSubjects .values {
+    margin-top: 4vh;
+  }
 }
 
-@media screen and (max-width: 766px){
-    .continueButton {
-        width: 100%;
-        height: 30px;
-    }
-}
+@media screen and (max-width: 646px) {
+  .title {
+    font-size: 4vw;
 
-@media screen and (max-width: 646px){
-    .title {
-        font-size: 4vw;
-    }
-    .wrapper .values .element {
-        font-size: 3vw;
-    }
+    text-align: center;
+  }
+  .wrapper .values .element {
+    font-size: 3vw;
+  }
 }

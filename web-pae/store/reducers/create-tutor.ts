@@ -21,6 +21,8 @@ import type { RootState } from '../store';
 //     );
 // };
 
+// export const register = createAsyncThunk();
+
 // const fetchSubjects = createAsyncThunk(
 //   'subjects',
 //   async (query: string, thunkAPI) =>
@@ -29,8 +31,11 @@ import type { RootState } from '../store';
 // );
 
 interface Period {
-  start: string | null;
-  end: string | null;
+  dia: string;
+  inicio: number;
+  fin: number;
+  id: string;
+  cell: any;
 }
 
 // interface SetPeriod {
@@ -39,24 +44,26 @@ interface Period {
 // }
 // Define a type for the slice state
 interface CreateTutorState {
-  name: string | null;
-  email: string | null;
-  password: string | null;
-  passwordConfirmation: string | null;
+  name: string;
+  email: string;
+  major: string;
+  password: string;
+  passwordConfirmation: string;
   schedule: {
     firstPeriod: Period[];
     secondPeriod: Period[];
     thirdPeriod: Period[];
   };
-  subjects: string[] | null;
+  subjects: string[];
 }
 
 // Define the initial state using that type
 const initialState: CreateTutorState = {
-  name: null,
-  email: null,
-  password: null,
-  passwordConfirmation: null,
+  name: '',
+  email: '',
+  major: '',
+  password: '',
+  passwordConfirmation: '',
   schedule: {
     firstPeriod: [],
     secondPeriod: [],
@@ -81,17 +88,79 @@ export const createTutorSlice = createSlice({
     },
     setPasswordConfirmation: (state, action: PayloadAction<string>) => {
       state.passwordConfirmation = action.payload;
+    },
+    setRegisterForm: (
+      state,
+      action: PayloadAction<{
+        name: string | null;
+        email: string | null;
+        major: string | null;
+        password: string | null;
+        passwordConfirmation: string | null;
+      }>
+    ) => {
+      state.name = action.payload.name?.trim() ?? '';
+      state.email = action.payload.email?.trim() ?? '';
+      state.major = action.payload.major?.trim() ?? '';
+      state.password = action.payload.password?.trim() ?? '';
+      state.passwordConfirmation =
+        action.payload.passwordConfirmation?.trim() ?? '';
+    },
+    setPeriod: (
+      state,
+      action: PayloadAction<{
+        period: Period;
+        name: string;
+      }>
+    ) => {
+      state.schedule[`${action.payload.name}Period`] = action.payload.period;
+    },
+    setSubjects: (state, action: PayloadAction<string[]>) => {
+      state.subjects = action.payload;
+    },
+    setDefaultValues: (state) => {
+      state.name = '';
+      state.email = '';
+      state.major = '';
+      state.password = '';
+      state.passwordConfirmation = '';
+      state.schedule = {
+        firstPeriod: [],
+        secondPeriod: [],
+        thirdPeriod: []
+      };
+      state.subjects = [];
     }
-    // setPeriod: (state, action: PayloadAction<SetPeriod>) => {
-    //   state.schedule[`${action.payload.name}Period`] = action.payload.period;
-    // }
   }
 });
 
-export const { setName, setEmail, setPassword, setPasswordConfirmation } =
-  createTutorSlice.actions;
+export const {
+  setName,
+  setEmail,
+  setPassword,
+  setPasswordConfirmation,
+  setRegisterForm,
+  setPeriod,
+  setSubjects,
+  setDefaultValues
+} = createTutorSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectName = (state: RootState) => state.createTutor.name;
+export const selectRegisterData = (state: RootState) => ({
+  name: state.createTutor.name,
+  email: state.createTutor.email,
+  major: state.createTutor.major,
+  password: state.createTutor.password,
+  passwordConfirmation: state.createTutor.passwordConfirmation
+});
+
+export const selectFirstPeriod = (state: RootState) =>
+  state.createTutor.schedule.firstPeriod;
+export const selectSecondPeriod = (state: RootState) =>
+  state.createTutor.schedule.secondPeriod;
+export const selectThirdPeriod = (state: RootState) =>
+  state.createTutor.schedule.thirdPeriod;
+
+export const selectSubjects = (state: RootState) => state.createTutor.subjects;
 
 export default createTutorSlice.reducer;
