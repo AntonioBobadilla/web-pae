@@ -1,0 +1,52 @@
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabs {
+  width: 80%;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15vh;
+}
+
+.ufContainer {
+  width: 80%;
+  height: 60vh;
+  margin: 0 auto;
+  background: #f1f1f1;
+  overflow-y: scroll;
+  padding: 10px;
+  margin-bottom: 30px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UfTab {
+  width: 25%;
+  height: 100%;
+}
+.addTab {
+  width: 30%;
+  height: 100%;
+}
+.addSubject {
+  width: 60%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+}
+
+.hidden {
+  visibility: hidden;
+}
