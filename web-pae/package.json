@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "yarn run test:ci -u && jest --watch",
     "test:ci": "jest --ci"
   },
   "resolutions": {
