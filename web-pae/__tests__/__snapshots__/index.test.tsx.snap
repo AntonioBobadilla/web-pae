@@ -6,14 +6,20 @@ exports[`Index renders index page unchanged 1`] = `
     <main
       class="component"
     >
-      <div>
-        BIENVENIDO AL SISTEMA DE ADMINISTRACIÓN DE ASESORÍAS
-      </div>
-      <a
-        href="/student/login"
+      <div
+        class="main"
       >
-        Soy estudiante
-      </a>
+        <input
+          class="input"
+          placeholder="CLAVE*"
+          type="text"
+        />
+        <input
+          class="input"
+          placeholder="NOMBRE*"
+          type="text"
+        />
+      </div>
     </main>
   </div>
 </div>

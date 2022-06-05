@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm, useFormState } from 'react-hook-form';
+import { useAppSelector } from 'store/hook';
+import { selectRegisterData } from 'store/reducers/create-tutor';
 import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
 import TextInput from './text-input';
@@ -13,6 +15,7 @@ interface RegisterFormProps {
 export type StudentRegisterData = {
   name: string;
   email: string;
+  major: string;
   password: string;
   passwordConfirmation: string;
 };
@@ -20,20 +23,24 @@ export type StudentRegisterData = {
 export const studentRegisterDefaultValue: StudentRegisterData = {
   email: '',
   password: '',
+  major: '',
   name: '',
   passwordConfirmation: ''
 };
 
 const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
+  const tutorDefaultValues = useAppSelector(selectRegisterData);
+
   const {
     control,
     handleSubmit,
     getValues,
     formState: { errors }
   } = useForm<StudentRegisterData>({
-    defaultValues: studentRegisterDefaultValue
+    defaultValues: student ? studentRegisterDefaultValue : tutorDefaultValues
   });
 
+  // TODO: DELETE DATA ON NAVIGATE CHANGED
   const { isDirty } = useFormState({ control });
 
   const onSubmit = handleSubmit((data) => nextStep(data));
@@ -66,6 +73,22 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
             pattern: {
               value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+            }
+          }}
+        />
+      </div>
+      <div className={styles.input}>
+        <TextInput
+          name="major"
+          placeholder="CARRERA*"
+          control={control}
+          error={errors.major}
+          style={{ textTransform: 'uppercase' }}
+          rules={{
+            required: 'Carrera requerida',
+            pattern: {
+              value: /^[A-Za-z]{2,4}$/,
+              message: 'Carrera inválida. E.g. ARQ, LAD, MEC'
             }
           }}
         />

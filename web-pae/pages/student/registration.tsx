@@ -45,6 +45,7 @@ const Registration: NextPage = () => {
       },
       email: data.email,
       name: data.name
+      // major: data.major
     })
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);

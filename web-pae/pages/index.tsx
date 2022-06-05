@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
+import SubjectForm from '@/components/subject-form';
 import Head from 'next/head';
-import Link from 'next/link';
 import React from 'react';
 import styles from '../css/index.module.css';
 
@@ -12,11 +12,7 @@ const Home = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={styles.component}>
-      <div>BIENVENIDO AL SISTEMA DE ADMINISTRACIÓN DE ASESORÍAS</div>
-
-      <Link href="/student/login" passHref>
-        Soy estudiante
-      </Link>
+      <SubjectForm />
     </main>
   </div>
 );
