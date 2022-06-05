@@ -3,24 +3,258 @@
 exports[`Index renders index page unchanged 1`] = `
 <div>
   <div>
-    <main
-      class="component"
+    <div
+      class="page"
     >
       <div
-        class="main"
+        class="header"
       >
-        <input
-          class="input"
-          placeholder="CLAVE*"
-          type="text"
-        />
-        <input
-          class="input"
-          placeholder="NOMBRE*"
-          type="text"
-        />
+        <div
+          class="logoContainer"
+        >
+          <img
+            class="logo"
+            src="/images/logo.png"
+          />
+        </div>
+        <div
+          class="sections"
+        >
+          <a
+            class="section"
+            href="#qs"
+          >
+             
+            Quiénes somos
+             
+          </a>
+          <a
+            class="section"
+            href="#cf"
+          >
+             
+            Cómo funciona
+             
+          </a>
+          <a
+            class="section"
+            href="#ubi"
+          >
+             
+            Ubicación
+             
+          </a>
+        </div>
+        <div
+          class="buttons"
+        >
+          <button
+            class="container button info signup"
+          >
+             
+            Ingresa
+             
+          </button>
+          <button
+            class="container button info login"
+          >
+             
+            Regístrate
+             
+          </button>
+        </div>
       </div>
-    </main>
+      <div
+        class="imageSection"
+      >
+        <img
+          class="mainImage"
+          src="/images/landing.jpeg"
+        />
+        <span
+          class="mainText"
+        >
+          <br />
+          PROGRAMA 
+          <br />
+          ASESOR 
+          <br />
+          ESTUDIANTE
+          <br />
+        </span>
+      </div>
+      <div
+        class="body"
+      >
+        <span
+          class="title"
+          id="qs"
+        >
+          ¿Quiénes somos?
+        </span>
+        <hr
+          class="hr"
+        />
+        <span
+          class="description"
+        >
+          En el Programa Asesor Estudiante (PAE) recibirás
+           
+          <strong
+            class="bold"
+          >
+             asesorías personalizadas 
+          </strong>
+           
+          con el apoyo de un alumno quien además de tener un horario similar al tuyo, también tiene la mejor intención de ayudarte a
+           
+          <strong
+            class="bold"
+          >
+            resolver todas tus dudas
+          </strong>
+          .
+        </span>
+        <span
+          class="title"
+          id="cf"
+        >
+          ¿Cómo funciona?
+        </span>
+        <hr
+          class="hr"
+        />
+        <span
+          class="description"
+        >
+          Tú seleccionas (con 24 horas de anticipación) el
+           
+          <strong
+            class="bold"
+          >
+            horario
+          </strong>
+           en el que te gustaría recibir la asesoría, la
+           
+          <strong
+            class="bold"
+          >
+            materia 
+          </strong>
+          y los
+           
+          <strong
+            class="bold"
+          >
+            temas o dudas específicas 
+          </strong>
+          en los que necesites apoyo; posteriormente, recibirás un correo de confirmación con información importante sobre la realización de tu asesoría.
+        </span>
+        <span
+          class="title"
+          id="ubi"
+        >
+          Ubicación
+        </span>
+        <hr
+          class="hr"
+        />
+        <div
+          class="location"
+        >
+          <div
+            class="locationL"
+          >
+            <div
+              class="locationT"
+            >
+              <span
+                class="locationPAE"
+              >
+                <br />
+                <strong
+                  class="bold"
+                >
+                   P
+                </strong>
+                ROGRAMA 
+                <br />
+                <strong
+                  class="bold"
+                >
+                   A
+                </strong>
+                SESOR 
+                <br />
+                <strong
+                  class="bold"
+                >
+                   E
+                </strong>
+                STUDIANTE
+                <br />
+              </span>
+              <img
+                class="bookImage"
+                src="/images/pae-logo.png"
+              />
+            </div>
+            <div
+              class="locationB"
+            >
+              <span
+                class="descriptionLocation"
+              >
+                Encuéntranos en Aulas1 
+                <br />
+                <strong
+                  class="bold"
+                >
+                  A1234
+                </strong>
+                <br />
+              </span>
+              <span
+                class="descriptionLocation"
+              >
+                Horario de atención: 
+                <br />
+                <strong
+                  class="bold"
+                >
+                  8:00am - 5:00pm
+                </strong>
+                <br />
+              </span>
+              <div
+                class="linkCont"
+              >
+                <a
+                  class="link"
+                  href="https://www.google.com"
+                >
+                  Solicita tu asesoría
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="locationR"
+          >
+            <img
+              class="imageLocation"
+              src="/images/office.jpg"
+            />
+          </div>
+        </div>
+        <span
+          class="greetings"
+        >
+          ¡En PAE estamos encantados de poder ayudarte!
+           
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 `;

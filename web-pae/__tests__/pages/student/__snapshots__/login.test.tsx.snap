@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Student Login renders page unchanged 1`] = `
+exports[`Student Login renders tutor login page unchanged 1`] = `
 <div>
   <div>
+    <div
+      style="position: fixed; z-index: 9999; top: 16px; left: 16px; right: 16px; bottom: 16px; pointer-events: none;"
+    />
     <main>
       <form
         class="mainContainer"

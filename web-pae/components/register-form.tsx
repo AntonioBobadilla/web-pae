@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import { useAppSelector } from 'store/hook';
 import { selectRegisterData } from 'store/reducers/create-tutor';
@@ -9,6 +9,7 @@ import TextInput from './text-input';
 interface RegisterFormProps {
   nextStep: (data: StudentRegisterData) => void;
   student: boolean;
+  isLoading: boolean;
 }
 
 export type StudentRegisterData = {
@@ -27,10 +28,9 @@ export const studentRegisterDefaultValue: StudentRegisterData = {
   passwordConfirmation: ''
 };
 
-const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
-  const [isLoading, setIsLoading] = useState(false);
-
+const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
   const tutorDefaultValues = useAppSelector(selectRegisterData);
+
   const {
     control,
     handleSubmit,
@@ -43,14 +43,7 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
   // TODO: DELETE DATA ON NAVIGATE CHANGED
   const { isDirty } = useFormState({ control });
 
-  const onSubmit = handleSubmit((data) => {
-    // save data to local storage
-    setIsLoading(true);
-    nextStep(data);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  });
+  const onSubmit = handleSubmit((data) => nextStep(data));
 
   return (
     <form className={styles.registerForm} onSubmit={onSubmit}>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/alt-text */
 import Link from 'next/link';
 import React from 'react';
@@ -14,9 +15,10 @@ interface SideBarProps {
     exit: string;
   };
   currentRoute: string;
+  logOut: () => void;
 }
 
-const SideBar = ({ routing, currentRoute }: SideBarProps) => (
+const SideBar = ({ routing, currentRoute, logOut }: SideBarProps) => (
   <div
     className={
       currentRoute.includes('admin') ? adminStyles.main : sidebarStyles.main
@@ -90,17 +92,15 @@ const SideBar = ({ routing, currentRoute }: SideBarProps) => (
         </Link>
       ))}
 
-      <Link href={routing.exit} passHref>
-        <div
-          className={
-            currentRoute.includes('admin')
-              ? adminStyles.exit
-              : sidebarStyles.exit
-          }
-        >
-          <i className="bi bi-arrow-bar-right" />
-        </div>
-      </Link>
+      <div
+        className={
+          currentRoute.includes('admin') ? adminStyles.exit : sidebarStyles.exit
+        }
+        onClick={() => logOut()}
+        role="button"
+      >
+        <i className="bi bi-arrow-bar-right" />
+      </div>
     </div>
     <div
       className={
@@ -201,17 +201,17 @@ const SideBar = ({ routing, currentRoute }: SideBarProps) => (
             ))}
 
             <li>
-              <Link href={routing.exit} passHref>
-                <div
-                  className={
-                    currentRoute.includes('admin')
-                      ? adminStyles.exit
-                      : sidebarStyles.exit
-                  }
-                >
-                  <i className="bi bi-arrow-bar-right" />
-                </div>
-              </Link>
+              <div
+                className={
+                  currentRoute.includes('admin')
+                    ? adminStyles.exit
+                    : sidebarStyles.exit
+                }
+                onClick={() => logOut()}
+                role="button"
+              >
+                <i className="bi bi-arrow-bar-right" />
+              </div>
             </li>
           </ul>
         </div>

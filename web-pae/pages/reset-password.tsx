@@ -3,10 +3,12 @@ import Popup from '@/components/popup';
 import TextInput from '@/components/text-input';
 import formStyles from '@/css-components/registerForm.module.css';
 import styles from '@/css-components/resetPassword.module.css';
+import post from '@/helpers/post';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
+import toast, { Toaster } from 'react-hot-toast';
 
 type ChangePasswordData = {
   newPassword: string;
@@ -21,7 +23,7 @@ const changePasswordDefaultValue: ChangePasswordData = {
 const ChangePassword: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { query } = useRouter();
+  const { query, push } = useRouter();
 
   const {
     control,
@@ -34,6 +36,26 @@ const ChangePassword: NextPage = () => {
 
   const { isDirty } = useFormState({ control });
 
+  const handleStatus = (status: number, responseData: any) => {
+    try {
+      if (status === 200 || status === 201 || status === 204) {
+        // toast success
+        toast.success(responseData.message);
+        // redirect to home
+        setTimeout(() => push('/'), 1000);
+      } else {
+        // toast error
+        toast.error(responseData.message);
+
+        // set error state
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setIsLoading(false);
+      toast.error('Something went wrong');
+    }
+  };
+
   const onSubmit = handleSubmit((data) => {
     // fetch
     setIsLoading(true);
@@ -41,9 +63,20 @@ const ChangePassword: NextPage = () => {
 
     // fetch()
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    post(
+      {
+        ui64: uid,
+        token,
+        new_password: data.newPassword
+      },
+      'http://server-pae.azurewebsites.net/changepasswordtoken/'
+    )
+      .then(({ status, responseData }) => {
+        handleStatus(status, responseData);
+      })
+      .catch((err) => {
+        handleStatus(500, err);
+      });
   });
 
   return (
@@ -92,6 +125,7 @@ const ChangePassword: NextPage = () => {
           </ButtonTemplate>
         </div>
       </form>
+      <Toaster position="top-right" reverseOrder={false} />
     </Popup>
   );
 };
