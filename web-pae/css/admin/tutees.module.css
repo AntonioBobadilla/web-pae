@@ -20,6 +20,7 @@
   margin-bottom: 30px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  
 }
 
 .hidden {
@@ -54,6 +55,7 @@
   border-collapse: collapse;
   transition: all 1s ease;
   transition-delay: 0.2s;
+  border-collapse:collapse
 }
 
 .headRow {
@@ -86,6 +88,7 @@
 
 .apellidos {
   font-size: 21px;
+  font-weight: 300;
 }
 
 .major {
@@ -114,6 +117,7 @@
   height: auto;
   transition: all 1s ease;
   transition-delay: 0.2s;
+  border-collapse:collapse
 }
 
 
@@ -123,7 +127,7 @@
   color:white;
   border-radius: 4px;
   border:none;
-  padding:3px;
+  padding:4px;
   margin-top: 10px;
 }
 .denied:hover {
@@ -136,8 +140,9 @@
   color:white;
   border-radius: 4px;
   border:none;
-  padding:3px
+  padding:4px
 }
 .accept:hover {
   cursor: pointer;
 }
+

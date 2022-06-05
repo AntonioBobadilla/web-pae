@@ -19,3 +19,54 @@
 .Mainbutton:hover {
     cursor: pointer;
 }
+
+.item {
+    margin-bottom: 5px;
+  }
+
+.button {
+    color:chocolate
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .name {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .apellidos {
+    font-size: 18px;
+    font-weight: 300;
+  }
+  
+  .major {
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #039be5;
+    font-weight: 600;
+  }
+
+  .subject {
+      font-weight: 600;
+  }
+
+  .subjectfull {
+      font-weight: 300;
+  }
+
+  .fullday {
+    font-weight: 600;
+  }
+
+  .hora {
+        font-weight: 300;
+  }
