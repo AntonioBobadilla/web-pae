@@ -52,3 +52,11 @@ a {
     font-size: 4vw;
   }
 }
+
+.match-suggestion {
+  font-weight: bolder;
+}
+
+.match-suggestion :active {
+  color: #0a8ccb;
+}

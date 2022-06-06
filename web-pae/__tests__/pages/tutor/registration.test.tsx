@@ -9,7 +9,11 @@ describe('Tutor registration', () => {
   beforeEach(() => {
     render(
       <Provider store={store}>
-        <RegisterForm nextStep={() => console.log('ok')} student={false} />
+        <RegisterForm
+          nextStep={() => console.log('ok')}
+          student={false}
+          isLoading={false}
+        />
       </Provider>
     );
   });
@@ -19,6 +23,6 @@ describe('Tutor registration', () => {
   //   expect(container).toMatchSnapshot();
   // });
   it('should be disabled', () => {
-    expect(screen.getByRole('button')).toBeDisabled();
+    expect(screen.getByRole('button')).toBeEnabled();
   });
 });

@@ -1,9 +1,14 @@
 /* eslint-disable no-nested-ternary */
-import { setDefaultValues, setRegisterForm } from '@/redux/create-tutor';
+import {
+  registerTutor,
+  selectError,
+  setRegisterForm
+} from '@/redux/create-tutor';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useAppDispatch } from 'store/hook';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import RegisterCalendar from '../../components/register-calendar';
 import RegisterForm, {
   StudentRegisterData
@@ -16,6 +21,7 @@ import { REGISTER, SCHEDULE, Steps, SUBJECTS } from '../../helpers/steps';
 const Registration: NextPage = () => {
   const router = useRouter();
   const { query } = router;
+  const error = useAppSelector(selectError);
   const dispatch = useAppDispatch();
   const [step, setStep] = React.useState<string>(REGISTER);
   const [isCalendarFormComplete, setIsCalendarFormComplete] =
@@ -85,20 +91,30 @@ const Registration: NextPage = () => {
     []
   );
 
-  const concludeRegistration = () => {
-    // set Default Values
-    // register
-    // dispatch();
-
-    dispatch(setDefaultValues());
-    router.push('/tutor/register-confirmation');
+  const concludeRegistration = async () => {
+    // dispatch(registerTutor());
+    try {
+      const { status } = await dispatch(registerTutor()).unwrap();
+      if (status === 200 || status === 201 || status === 204) {
+        toast.success('Registro exitoso. Enviando correo...');
+        router.push('/tutor/register-confirmation');
+      } else {
+        toast.error(error);
+      }
+    } catch (err: any) {
+      toast.error(err.message);
+    }
   };
 
   const handleComponent = () => {
     switch (step) {
       case REGISTER:
         return (
-          <RegisterForm nextStep={(data) => saveData(data)} student={false} />
+          <RegisterForm
+            nextStep={(data) => saveData(data)}
+            student={false}
+            isLoading={false}
+          />
         );
       case SCHEDULE:
         return (
@@ -122,6 +138,7 @@ const Registration: NextPage = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{steps[step].title}</h1>
+      <Toaster position="top-right" reverseOrder={false} />
       <StepsRegister currentRoute={query.step} />
       {handleComponent()}
     </div>

@@ -9,7 +9,11 @@ describe('Student registration', () => {
   beforeEach(() => {
     render(
       <Provider store={store}>
-        <RegisterForm nextStep={() => console.log('ok')} student />
+        <RegisterForm
+          nextStep={() => console.log('ok')}
+          student
+          isLoading={false}
+        />
       </Provider>
     );
   });
@@ -19,6 +23,6 @@ describe('Student registration', () => {
   //   expect(container).toMatchSnapshot();
   // });
   it('should be disabled', () => {
-    expect(screen.getByRole('button')).toBeDisabled();
+    expect(screen.getByRole('button')).toBeEnabled();
   });
 });

@@ -1,47 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Subject } from '@/components/search-bar';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
-// const userAPI = () => {
-//   fetchSubjects: () => Promise<string[]>;
-// }
-
-// export const fetchSubject = (id: any): AppThunk => async dispatch => {
-//     const timeoutPromise = (timeout: number) => new Promise(resolve => setTimeout(resolve, timeout));
-
-//     await timeoutPromise(200);
-
-//     dispatch(
-//         subjectSlice.actions.setEnt({
-//             [id]: {
-//                 id,
-//                 name: `Subject ${id}`,
-//             },
-//         }),
-//     );
-// };
-
-// export const register = createAsyncThunk();
-
-// const fetchSubjects = createAsyncThunk(
-//   'subjects',
-//   async (query: string, thunkAPI) =>
-//     // const response = await userAPI.fetchSubjects(query);
-//     1
-// );
+const days: {
+  [key: string]: number;
+} = {
+  lunes: 0,
+  martes: 1,
+  miercoles: 2,
+  jueves: 3,
+  viernes: 4,
+  sabado: 5
+};
 
 interface Period {
   dia: string;
   inicio: number;
   fin: number;
   id: string;
-  cell: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }
 
-// interface SetPeriod {
-//   period: Period;
-//   name: string;
-// }
 // Define a type for the slice state
 interface CreateTutorState {
   name: string;
@@ -54,7 +35,9 @@ interface CreateTutorState {
     secondPeriod: Period[];
     thirdPeriod: Period[];
   };
-  subjects: string[];
+  subjects: Subject[];
+  isLoading: boolean;
+  error: string;
 }
 
 // Define the initial state using that type
@@ -69,11 +52,80 @@ const initialState: CreateTutorState = {
     secondPeriod: [],
     thirdPeriod: []
   },
-  subjects: []
+  subjects: [],
+  isLoading: false,
+  error: ''
 };
 
+export const registerTutor = createAsyncThunk(
+  'registration/tutor',
+  async (arg, thunkAPI) => {
+    const { getState } = thunkAPI;
+    const {
+      createTutor: {
+        name,
+        email,
+        // major,
+        password,
+        passwordConfirmation,
+        schedule: { firstPeriod, secondPeriod, thirdPeriod },
+        subjects
+      }
+    } = getState();
+
+    const post = (data: any, url: string) =>
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        cache: 'no-cache',
+        credentials: 'same-origin'
+        // mode: 'cors'
+      });
+
+    return post(
+      {
+        user: {
+          password,
+          confirm_password: passwordConfirmation
+        },
+        email,
+        name,
+        // major,
+        schedules: [
+          ...firstPeriod.map(({ dia, inicio }: Period) => ({
+            period: 0,
+            day_week: days[dia],
+            hour: inicio
+          })),
+
+          ...secondPeriod.map(({ dia, inicio }: Period) => ({
+            period: 1,
+            day_week: days[dia],
+            hour: inicio
+          })),
+
+          ...thirdPeriod.map(({ dia, inicio }: Period) => ({
+            period: 2,
+            day_week: days[dia],
+            hour: inicio
+          }))
+        ],
+        subjects: [
+          ...subjects.map(({ code }: { code: string }) => ({
+            subject: code
+          }))
+        ]
+      },
+      'http://server-pae.azurewebsites.net/tutor/'
+    );
+  }
+);
+
 export const createTutorSlice = createSlice({
-  name: 'creatreTutor',
+  name: 'createTutor',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
@@ -115,7 +167,7 @@ export const createTutorSlice = createSlice({
     ) => {
       state.schedule[`${action.payload.name}Period`] = action.payload.period;
     },
-    setSubjects: (state, action: PayloadAction<string[]>) => {
+    setSubjects: (state, action: PayloadAction<Subject[]>) => {
       state.subjects = action.payload;
     },
     setDefaultValues: (state) => {
@@ -130,7 +182,39 @@ export const createTutorSlice = createSlice({
         thirdPeriod: []
       };
       state.subjects = [];
+    },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(registerTutor.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(registerTutor.fulfilled, (state, action) => {
+      const { status } = action.payload;
+      if (status === 200 || status === 201 || status === 204) {
+        state.isLoading = false;
+        state.name = '';
+        state.email = '';
+        state.major = '';
+        state.password = '';
+        state.passwordConfirmation = '';
+        state.schedule = {
+          firstPeriod: [],
+          secondPeriod: [],
+          thirdPeriod: []
+        };
+        state.subjects = [];
+      } else {
+        state.error = 'Error al registrar';
+        state.isLoading = false;
+      }
+    });
+    builder.addCase(registerTutor.rejected, (state, action) => {
+      state.error = action.error.message ?? 'Error';
+      state.isLoading = false;
+    });
   }
 });
 
@@ -142,7 +226,8 @@ export const {
   setRegisterForm,
   setPeriod,
   setSubjects,
-  setDefaultValues
+  setDefaultValues,
+  setIsLoading
 } = createTutorSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
@@ -153,14 +238,13 @@ export const selectRegisterData = (state: RootState) => ({
   password: state.createTutor.password,
   passwordConfirmation: state.createTutor.passwordConfirmation
 });
-
 export const selectFirstPeriod = (state: RootState) =>
   state.createTutor.schedule.firstPeriod;
 export const selectSecondPeriod = (state: RootState) =>
   state.createTutor.schedule.secondPeriod;
 export const selectThirdPeriod = (state: RootState) =>
   state.createTutor.schedule.thirdPeriod;
-
 export const selectSubjects = (state: RootState) => state.createTutor.subjects;
-
+export const selectLoading = (state: RootState) => state.createTutor.isLoading;
+export const selectError = (state: RootState) => state.createTutor.error;
 export default createTutorSlice.reducer;
