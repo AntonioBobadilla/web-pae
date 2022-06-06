@@ -6,6 +6,21 @@ import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
 import cx from 'classnames';
 import TutoringConfirmation from '@/components/tutoring/confirmation';
+import { useAppSelector } from 'store/hook';
+import { selectRegisterData } from '@/redux/create-tutor';
+import { useForm, useFormState } from 'react-hook-form';
+import TextInput from '@/components/text-input';
+import ButtonTemplate from '@/components/button-template';
+
+export type FindSubject = {
+  id: string;
+  name: string;
+};
+
+export const studentRegisterDefaultValue: FindSubject = {
+  id: '',
+  name: ''
+};
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
@@ -39,8 +54,51 @@ const Subject = () => {
     getData();
   }, []);
 
+  const searchDefaultValues = useAppSelector(selectRegisterData);
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    formState: { errors }
+  } = useForm<FindSubject>({
+    defaultValues: searchDefaultValues
+  });
+
+  // TODO: DELETE DATA ON NAVIGATE CHANGED
+  const { isDirty } = useFormState({ control });
+
   return (
     <div className={styles.main}>
+      <div className={styles.search}>
+        <div className={styles.inputClave}>
+          <TextInput
+            name="id"
+            placeholder="CLAVE"
+            control={control}
+            error={errors.id}
+            rules={{}}
+          />
+        </div>
+        <div className={styles.inputNombre}>
+          <TextInput
+            name="name"
+            placeholder="NOMBRE"
+            control={control}
+            error={errors.name}
+            rules={{}}
+          />
+        </div>
+        <div className={styles.button}>
+          <ButtonTemplate
+            variant="info"
+            loading={true}
+            clickable={true}
+            onClick={handleSubmit(getData)}
+          >
+            BUSCAR
+          </ButtonTemplate>
+        </div>
+      </div>
       <div className={styles.tabs}>
         <div className={styles.UfTab}>
           <Tabs
