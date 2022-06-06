@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { Subject } from '@/components/search-bar';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
@@ -8,19 +9,19 @@ interface Tutor {
 }
 
 interface ScheduleTutoringState {
-  subject: string | null;
+  subject: Subject | null;
   tutor: Tutor;
   date: string | null;
   time: string | null;
-  title: string | null;
-  description: string | null;
-  file: string | null;
+  title: string;
+  content: string;
+  file: File | null;
   modalidad: string | null;
 }
 
 // Define the initial state using that type
 const initialState: ScheduleTutoringState = {
-  subject: 'TC1003B - Implementación de métodos computacionales',
+  subject: null,
   tutor: {
     id: null,
     name: null
@@ -28,8 +29,8 @@ const initialState: ScheduleTutoringState = {
   date: '18 de Marzo',
   time: '12:00 PM - 1:00 PM',
   modalidad: 'Presencial',
-  title: null,
-  description: null,
+  title: '',
+  content: '',
   file: null
 };
 
@@ -38,7 +39,7 @@ export const scheduleTutoringSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setSubject: (state, action: PayloadAction<string>) => {
+    setSubject: (state, action: PayloadAction<Subject>) => {
       state.subject = action.payload;
     },
     setTutor: (state, action: PayloadAction<Tutor>) => {
@@ -53,10 +54,10 @@ export const scheduleTutoringSlice = createSlice({
     setTitle: (state, action: PayloadAction<string>) => {
       state.title = action.payload;
     },
-    setDescription: (state, action: PayloadAction<string>) => {
-      state.description = action.payload;
+    setContent: (state, action: PayloadAction<string>) => {
+      state.content = action.payload;
     },
-    setFile: (state, action: PayloadAction<string>) => {
+    setFile: (state, action: PayloadAction<File>) => {
       state.file = action.payload;
     },
     setModalidad: (state, action: PayloadAction<string>) => {
@@ -70,8 +71,8 @@ export const scheduleTutoringSlice = createSlice({
       };
       state.date = null;
       state.time = null;
-      state.title = null;
-      state.description = null;
+      state.title = '';
+      state.content = '';
       state.file = null;
     }
   }
@@ -82,7 +83,7 @@ export const {
   setTutor,
   setDate,
   setTime,
-  setDescription,
+  setContent,
   setTitle,
   setFile,
   setModalidad
@@ -93,5 +94,12 @@ export const selectSubject = (state: RootState) =>
   state.scheduleTutoring.subject;
 export const selectDate = (state: RootState) => state.scheduleTutoring.date;
 export const selectTime = (state: RootState) => state.scheduleTutoring.time;
+export const selectTutor = (state: RootState) => state.scheduleTutoring.tutor;
+export const selectTitle = (state: RootState) => state.scheduleTutoring.title;
+export const selectContent = (state: RootState) =>
+  state.scheduleTutoring.content;
+export const selectFile = (state: RootState) => state.scheduleTutoring.file;
+export const selectModalidad = (state: RootState) =>
+  state.scheduleTutoring.modalidad;
 
 export default scheduleTutoringSlice.reducer;

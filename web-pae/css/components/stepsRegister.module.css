@@ -9,25 +9,26 @@
 }
 .item {
   display: flex;
+  cursor: auto;
+}
+
+.pointer {
   cursor: pointer;
 }
 
 .itemText {
   margin-left: 5px;
   color: #a9a9a9;
-  font-weight: 500;
 }
 
 .itemText3 {
   margin-left: 5px;
   color: #a9a9a9;
-  font-weight: 500;
 }
 
 .itemText2 {
   margin-left: 5px;
   color: #a9a9a9;
-  font-weight: 500;
   display: none;
 }
 
@@ -45,10 +46,13 @@
 }
 
 .completed {
+  cursor: pointer;
+  font-weight: 600;
   color: #545454;
 }
 
 .active {
+  font-weight: 600;
   color: #039be5;
 }
 
