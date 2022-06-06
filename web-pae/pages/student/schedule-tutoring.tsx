@@ -72,7 +72,7 @@ const ScheduleTutoring: NextPage = () => {
       case SUBJECT:
         return <TutoringSubject />;
       case AVAILABLE_TUTORINGS:
-        return <AvailableTutorings />;
+        return <AvailableTutorings handleNextStep={handleNextStep} />;
       case TOPIC:
         return <TutoringQuestion />;
       case CONFIRMATION:

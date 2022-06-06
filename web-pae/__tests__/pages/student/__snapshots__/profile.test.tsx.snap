@@ -3,7 +3,7 @@
 exports[`Student Profile renders admin profile page unchanged 1`] = `
 <div>
   <div
-    class="content"
+    class="main"
   >
     <div
       class="main"
@@ -57,9 +57,33 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
         </nav>
       </div>
     </div>
-    <h1>
-      Profile
-    </h1>
+    <div
+      class="user"
+    >
+      <div
+        class="icon"
+      >
+        <i
+          class="bi bi-person-fill"
+          style="color: rgb(241, 241, 241);"
+        />
+      </div>
+      <p
+        class="userName"
+      >
+        Daniela Sánchez Hernández
+      </p>
+      <p
+        class="id"
+      >
+        dani@tec.mx
+      </p>
+    </div>
+    <p
+      class="tutorship"
+    >
+      Asesorías
+    </p>
     <div
       class="cardInfo"
     >
@@ -78,7 +102,7 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Lunes 27 de Marzo - 3:00 PM - 4:00 PM
+            Viernes 27 de Mayo - 9:00 AM - 10:00 AM
              
           </span>
         </div>
@@ -94,7 +118,7 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Estructuras simbólicas en la imagen, la literatura y la música
+            Programación Orientada a Objetos
              
           </span>
         </div>
@@ -110,7 +134,7 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
             class="caption"
           >
              
-            Karen Rugerio Armenta
+            Bryan González Arellano
              
           </span>
         </div>
@@ -191,97 +215,22 @@ exports[`Student Profile renders admin profile page unchanged 1`] = `
         <div
           class="locationSize"
         >
-          <a
-            class="caption2"
-            href="https://itesm.zoom.us/j/5519309007"
+          <span
+            class="caption"
           >
              
-            https://itesm.zoom.us/j/5519309007
+            A1332
              
-          </a>
+          </span>
         </div>
         <div
           class="statusSize"
         >
           <button
-            class="container pending"
+            class="container info"
           >
              
-            Pendiente
-          </button>
-        </div>
-      </div>
-      <div
-        class="box"
-      >
-        <div
-          class="dateSize"
-        >
-          <h1
-            class="bi bi-alarm icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Lunes 27 de Marzo - 3:00 PM - 4:00 PM
-             
-          </span>
-        </div>
-        <div
-          class="subjectSize"
-        >
-          <h1
-            class="bi bi-stack icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Estructuras simbólicas en la imagen, la literatura y la música
-             
-          </span>
-        </div>
-        <div
-          class="studentSize"
-        >
-          <h1
-            class="bi bi-person-circle icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Karen Rugerio Armenta
-             
-          </span>
-        </div>
-        <div
-          class="locationSize"
-        >
-          <a
-            class="caption2"
-            href="https://itesm.zoom.us/j/5519309007"
-          >
-             
-            https://itesm.zoom.us/j/5519309007
-             
-          </a>
-        </div>
-        <div
-          class="statusSize"
-        >
-          <button
-            class="container pending"
-          >
-             
-            Pendiente
+            Completada
           </button>
         </div>
       </div>

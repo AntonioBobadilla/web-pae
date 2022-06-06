@@ -1,24 +1,33 @@
 import cx from 'classnames';
 import React, { useEffect } from 'react';
 import styles from '../css/components/calendar.module.css';
-import AddEvent from './front-calendar-addEvent';
 import Cell from './frontend-calendar-cellComponent';
-
 
 interface MyCalendarProps {
   eventObj: never[];
   setEventObj: React.Dispatch<React.SetStateAction<never[]>>;
+  changeColorOfCell: (cell: any) => void;
+  resetColorOfCell: (cell: any) => void;
 }
 
-const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
+const MyCalendar = ({
+  eventObj,
+  setEventObj,
+  changeColorOfCell,
+  resetColorOfCell
+}: MyCalendarProps) => {
+  useEffect(() => {
+    renderCellsDynamically();
+  }, []);
+
   useEffect(() => {
     const { startCell, finishCell } = findStartAndEndCells();
     if (startCell != null) {
       getCellsBetween(startCell, finishCell);
-      console.log(eventObj);
     }
   }, [eventObj]);
 
+  // función que obtiene las celdas entre 2 horarios. Ej. celdas entre 7am y 10am.
   const getCellsBetween = (startCell, finishCell) => {
     const start = startCell.getAttribute('id').split(' ');
     const dia = start[0];
@@ -44,6 +53,7 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     }
   };
 
+  // función que dados 2 horarios en string encuentra dichas celdas pertenecientes a inicio y fin.
   const findStartAndEndCells = () => {
     let startCell = null;
     let finishCell = null;
@@ -53,10 +63,10 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
         const attr = cell.getAttribute('id').split(' ');
         const dia = attr[0];
         const hora = attr[1];
-        if (obj.dia == dia && obj.inicio == hora) {
+        if (obj.dia === dia && obj.inicio === hora) {
           startCell = cell;
         }
-        if (obj.dia == dia && obj.fin == hora) {
+        if (obj.dia === dia && obj.fin === hora) {
           finishCell = cell;
         }
       });
@@ -64,18 +74,101 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
     return { startCell, finishCell };
   };
 
-  const changeColorOfCell = (cell) => {
-    cell.style.background = 'tomato';
+  // función que regresa solo números enteros de un string
+  const getOnlyNumbers = (string) => parseInt(string.replace(/\D/g, ''));
+
+  // // función que recibe los valores del formulario inicial.
+  // const getValues = (dia, inicio, fin) => {
+  //   console.log(dia, inicio, fin);
+  //   inicio = getOnlyNumbers(inicio);
+  //   fin = getOnlyNumbers(fin);
+  //   setEventObj((eventObj) => [...eventObj, { dia, inicio , fin, id: dia+inicio+fin  }]);
+  // };
+
+  // función que obtiene la celda siguiente dado un string perteneciente al valor de una celda.
+  const getNextCell = (data) => {
+    let hora = parseInt(data.match(/\d+/g));
+    hora += 1;
+    hora = hora.toString();
+    const amOpm = data.match(/[a-zA-Z]+/g);
+
+    const newDate = hora + amOpm;
+
+    return newDate;
   };
 
-  const getValues = (dia, inicio, fin) => {
-    console.log(dia, inicio, fin);
-    setEventObj((eventObj) => [...eventObj, { dia, inicio, fin }]);
+  // función que al dar click en una celda la encuentra dado un string perteneciente al dia y hora.
+  const findSelectedCell = (data) => {
+    const splittedData = data.split(' ');
+    const diaSelected = splittedData[0];
+    const horaSelected = splittedData[1];
+
+    let Cell = null;
+    let NextCell = null;
+    const cells = document.querySelectorAll('.data');
+    cells.forEach((cell) => {
+      const attr = cell.getAttribute('id').split(' ');
+      const dia = attr[0];
+      const hora = attr[1];
+
+      if (diaSelected == dia && horaSelected == hora) {
+        Cell = cell;
+        NextCell = getNextCell(horaSelected);
+        return cell;
+      }
+    });
+    return {
+      dia: diaSelected,
+      inicio: horaSelected,
+      fin: NextCell,
+      cell: Cell
+    };
+  };
+
+  const checkDuplicates = (id) => {
+    const isFound = eventObj.some((element) => {
+      if (element.id === id) return true;
+    });
+    return isFound;
+  };
+
+  const deleteEventFromObj = (id) => {
+    const indexOfObject = eventObj.findIndex((object) => object.id === id);
+    const copyOfEventObj = [...eventObj];
+    copyOfEventObj.splice(indexOfObject, 1);
+    setEventObj(copyOfEventObj);
+  };
+
+  // función que maneja el click en las celdas.
+  const getClick = (data) => {
+    const { dia, inicio, fin, cell } = findSelectedCell(data);
+    const idData = `${dia} ${inicio}`;
+    const inicioNumber = getOnlyNumbers(inicio);
+    const finNumber = getOnlyNumbers(fin);
+    if (!checkDuplicates(idData)) {
+      setEventObj((eventObj) => [
+        ...eventObj,
+        { dia, inicio: inicioNumber, fin: finNumber, id: idData }
+      ]);
+      changeColorOfCell(cell);
+    } else {
+      deleteEventFromObj(idData);
+      resetColorOfCell(cell);
+    }
+    // console.log(eventObj);
+  };
+
+  // función que renderiza la cantidad de celdas dependiendo de la configuración de horas dada.
+  const renderCellsDynamically = () => {
+    for (let i = 0; i <= 1; i++) {
+      // console.log(10 + i);
+    }
+    return true;
   };
 
   return (
     <div className={styles.wrapper}>
-      <AddEvent function={getValues} />
+      {/* <AddEvent function={getValues} /> */}
       <table className={cx(styles.table, styles.border)}>
         <thead className={styles.tableHead}>
           <tr className={styles.border}>
@@ -89,44 +182,108 @@ const MyCalendar = ({ eventObj, setEventObj }: MyCalendarProps) => {
         </thead>
         <tbody>
           <tr>
-            <td className="titleHour">7:00 AM</td>
-            <Cell value="lunes 7am" />
-            <Cell value="martes 7am" />
-            <Cell value="miercoles 7am" />
-            <Cell value="jueves 7am" />
-            <Cell value="viernes 7am" />
+            <td className={styles.titleHour}>7:00 AM</td>
+            <Cell function={getClick} value="lunes 7am" />
+            <Cell function={getClick} value="martes 7am" />
+            <Cell function={getClick} value="miercoles 7am" />
+            <Cell function={getClick} value="jueves 7am" />
+            <Cell function={getClick} value="viernes 7am" />
           </tr>
           <tr>
-            <td className="titleHour">8:00 AM</td>
-            <Cell value="lunes 8am" />
-            <Cell value="martes 8am" />
-            <Cell value="miercoles 8am" />
-            <Cell value="jueves 8am" />
-            <Cell value="viernes 8am" />
+            <td className={styles.titleHour}>8:00 AM</td>
+            <Cell function={getClick} value="lunes 8am" />
+            <Cell function={getClick} value="martes 8am" />
+            <Cell function={getClick} value="miercoles 8am" />
+            <Cell function={getClick} value="jueves 8am" />
+            <Cell function={getClick} value="viernes 8am" />
           </tr>
           <tr className={styles.border}>
-            <td className="titleHour">9:00 AM</td>
-            <Cell value="lunes 9am" />
-            <Cell value="martes 9am" />
-            <Cell value="miercoles 9am" />
-            <Cell value="jueves 9am" />
-            <Cell value="viernes 9am" />
+            <td className={styles.titleHour}>9:00 AM</td>
+            <Cell function={getClick} value="lunes 9am" />
+            <Cell function={getClick} value="martes 9am" />
+            <Cell function={getClick} value="miercoles 9am" />
+            <Cell function={getClick} value="jueves 9am" />
+            <Cell function={getClick} value="viernes 9am" />
           </tr>
           <tr className={styles.border}>
-            <td className="titleHour">10:00 AM</td>
-            <Cell value="lunes 10am" />
-            <Cell value="martes 10am" />
-            <Cell value="miercoles 10am" />
-            <Cell value="jueves 10am" />
-            <Cell value="viernes 10am" />
+            <td className={styles.titleHour}>10:00 AM</td>
+            <Cell function={getClick} value="lunes 10am" />
+            <Cell function={getClick} value="martes 10am" />
+            <Cell function={getClick} value="miercoles 10am" />
+            <Cell function={getClick} value="jueves 10am" />
+            <Cell function={getClick} value="viernes 10am" />
           </tr>
           <tr className={styles.border}>
-            <td className="titleHour">11:00 AM</td>
-            <Cell value="lunes 11am" />
-            <Cell value="martes 11am" />
-            <Cell value="miercoles 11am" />
-            <Cell value="jueves 11am" />
-            <Cell value="viernes 11am" />
+            <td className={styles.titleHour}>11:00 AM</td>
+            <Cell function={getClick} value="lunes 11am" />
+            <Cell function={getClick} value="martes 11am" />
+            <Cell function={getClick} value="miercoles 11am" />
+            <Cell function={getClick} value="jueves 11am" />
+            <Cell function={getClick} value="viernes 11am" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>12:00 AM</td>
+            <Cell function={getClick} value="lunes 12am" />
+            <Cell function={getClick} value="martes 12am" />
+            <Cell function={getClick} value="miercoles 12am" />
+            <Cell function={getClick} value="jueves 12am" />
+            <Cell function={getClick} value="viernes 12am" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>01:00 PM</td>
+            <Cell function={getClick} value="lunes 13hr" />
+            <Cell function={getClick} value="martes 13hr" />
+            <Cell function={getClick} value="miercoles 13hr" />
+            <Cell function={getClick} value="jueves 13hr" />
+            <Cell function={getClick} value="viernes 13hr" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>02:00 PM</td>
+            <Cell function={getClick} value="lunes 14hr" />
+            <Cell function={getClick} value="martes 14hr" />
+            <Cell function={getClick} value="miercoles 14hr" />
+            <Cell function={getClick} value="jueves 14hr" />
+            <Cell function={getClick} value="viernes 14hr" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>03:00 PM</td>
+            <Cell function={getClick} value="lunes 15hr" />
+            <Cell function={getClick} value="martes 15hr" />
+            <Cell function={getClick} value="miercoles 15hr" />
+            <Cell function={getClick} value="jueves 15hr" />
+            <Cell function={getClick} value="viernes 15hr" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>04:00 PM</td>
+            <Cell function={getClick} value="lunes 16hr" />
+            <Cell function={getClick} value="martes 16hr" />
+            <Cell function={getClick} value="miercoles 16hr" />
+            <Cell function={getClick} value="jueves 16hr" />
+            <Cell function={getClick} value="viernes 16hr" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>05:00 PM</td>
+            <Cell function={getClick} value="lunes 17hr" />
+            <Cell function={getClick} value="martes 17hr" />
+            <Cell function={getClick} value="miercoles 17hr" />
+            <Cell function={getClick} value="jueves 17hr" />
+            <Cell function={getClick} value="viernes 17hr" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>06:00 PM</td>
+            <Cell function={getClick} value="lunes 18hr" />
+            <Cell function={getClick} value="martes 18hr" />
+            <Cell function={getClick} value="miercoles 18hr" />
+            <Cell function={getClick} value="jueves 18hr" />
+            <Cell function={getClick} value="viernes 18hr" />
+          </tr>
+          <tr className={styles.border}>
+            <td className={styles.titleHour}>07:00 PM</td>
+            <Cell function={getClick} value="lunes 19hr" />
+            <Cell function={getClick} value="martes 19hr" />
+            <Cell function={getClick} value="miercoles 19hr" />
+            <Cell function={getClick} value="jueves 19hr" />
+            <Cell function={getClick} value="viernes 19hr" />
           </tr>
         </tbody>
       </table>

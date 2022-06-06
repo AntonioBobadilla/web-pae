@@ -1,15 +1,22 @@
-import Login from '@/pages/student/login';
+import LoginForm from '@/components/login-form';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'store/store';
 
 describe('Student Login', () => {
-  beforeEach(() => {
-    render(<Login />);
-  });
-
-  it('renders page unchanged', () => {
-    const { container } = render(<Login />);
+  it('renders tutor login page unchanged', () => {
+    const { container } = render(
+      <Provider store={store}>
+        <LoginForm
+          image="/images/student-login-image.jpg"
+          homeRoute="/student/home"
+          user="student"
+          forgotPasswordRoute="/student/forgot-password"
+        />
+      </Provider>
+    );
     expect(container).toMatchSnapshot();
   });
 

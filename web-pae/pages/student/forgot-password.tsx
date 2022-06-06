@@ -11,13 +11,16 @@ const ForgotPassword: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.background}>
-        {!emailSent ? (
-          <ForgotPasswordPopup setEmailSent={setEmailSent} />
-        ) : (
-          <PasswordConfirmationPopup />
-        )}
-      </div>
+      {!emailSent ? (
+        <ForgotPasswordPopup
+          setEmailSent={setEmailSent}
+          loginUrl="/student/login"
+          registerUrl="/student/registration"
+          user={0}
+        />
+      ) : (
+        <PasswordConfirmationPopup login="/student/login" />
+      )}
     </div>
   );
 };
