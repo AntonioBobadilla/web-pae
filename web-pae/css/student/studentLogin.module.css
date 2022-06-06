@@ -1,0 +1,228 @@
+.mainContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow-y: hidden;
+}
+
+.leftCont {
+  width: 50%;
+  height: 100%;
+  animation: 1.5s ease-out 0s 1 slideInFromLeft;
+}
+
+.loginImage {
+  height: 100%;
+  width: 100%;
+}
+
+.signIn {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20vh;
+  align-items: center;
+  animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+.paeLogin {
+  color: #3f3b3b;
+  display: flex;
+  width: 80%;
+  padding-bottom: 15px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.paeLogo {
+  width: 10%;
+  height: 50%;
+  margin-top: 15px;
+}
+
+.paeText {
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding-left: 10px;
+}
+
+.loginFields {
+  margin-top: 10px;
+  margin-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+  width: 45%;
+}
+
+.component {
+  width: 100%;
+  height: 60px;
+  margin-top: 25px;
+}
+
+.componentB {
+  width: 60%;
+  height: 25%;
+  display: flex;
+  margin-top: 35px;
+  align-items: center;
+  justify-content: center;
+}
+
+.emailError {
+  color: #ff0a1f;
+  font-weight: 600;
+  font-size: 1.5vw;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.notUser {
+  color: #5b5b5b;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+.forgotPassword {
+  color: #0a8ccb;
+  font-size: 1vw;
+  margin-bottom: 10px;
+}
+
+.forgotPassword:hover {
+  color: #0277bd;
+  text-decoration: underline;
+}
+
+.register {
+  font-size: 1vw;
+  font-weight: 500;
+}
+
+.regLink {
+  font-weight: 700;
+}
+
+.regLink:hover {
+  text-decoration: underline;
+}
+
+.privacy {
+  margin-top: 75px;
+  color: #5b5b5b;
+  font-size: 1vw;
+}
+
+.privacy2 {
+  padding-top: 10px;
+  color: #5b5b5b;
+  font-size: 1vw;
+}
+
+.privacy:hover {
+  text-decoration: underline;
+}
+.privacy2:hover {
+  text-decoration: underline;
+}
+
+.title {
+  display: none;
+}
+
+@media screen and (max-width: 1500px) {
+  .paeText {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .mainContainer {
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  .title {
+    display: flex;
+    font-size: 6.5vw;
+    margin-top: 8vh;
+    padding-bottom: 5vh;
+    border-bottom: 1px solid #575757;
+    width: 100%;
+    justify-content: center;
+  }
+  .leftCont {
+    width: 100%;
+    height: 50vh;
+    order: 2;
+  }
+  .signIn {
+    width: 100%;
+    order: 1;
+    padding-top: 10vh;
+  }
+  .paeText {
+    font-size: 4vw;
+    display: none;
+  }
+  .register {
+    font-size: 3.2vw;
+  }
+
+  .forgotPassword {
+    font-size: 3.2vw;
+  }
+
+  .loginFields {
+    width: 75%;
+  }
+  .paeLogin {
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+  }
+  .componentB {
+    width: 70%;
+  }
+
+  .privacy {
+    font-size: 2.5vw;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-35%);
+    opacity: 0;
+  }
+  65% {
+    transform: translateY(0.5%);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

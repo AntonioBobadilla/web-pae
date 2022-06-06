@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tutor Home Profile renders tutor home  page unchanged 1`] = `
+<div>
+  <div
+    class="cards"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/tutor/profile"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/student-login-image.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Perfil
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/tutor/assigned-tutorings"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/tutor-login-image.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Asesorías asignadas
+           
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border:1px solid #545454;
+  box-sizing: border-box;
+}
+
+.input {
+  width: 90%;
+  height: 90%;
+}
+
+.innerWrapper {
+  width: 95%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#f8f8f8;
+  outline-style: dotted;
+  outline-color:#cfcfcf;
+}
+
+
+.innerWrapper label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerWrapper label:hover {
+  cursor: pointer;
+}
+
+.text {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media screen and (max-width:600px) {
+  .text {
+      font-size: 2.1vw;
+  }
+}

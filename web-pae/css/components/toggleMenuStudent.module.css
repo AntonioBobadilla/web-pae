@@ -1,0 +1,133 @@
+.main {
+  width: 10%;
+  height: 25%;
+  position: fixed;
+}
+
+.toggler {
+  z-index: 3;
+  height: 2vw;
+  width: 2vw;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.toggler:hover + .buttonContainer {
+  transform: rotate(90deg);
+  opacity: 0.7;
+}
+
+.toggler:checked ~ .overlay {
+  visibility: visible;
+  width: 12%;
+  height: 20%;
+  border: solid 1px #3f3b3b;
+}
+
+.buttonContainer {
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+  transition: all 1s ease;
+  z-index: 2;
+}
+
+.buttonContainer:active .icon {
+  transform: rotate(180deg);
+}
+
+.icon {
+  width: 2vw;
+  height: 2vw;
+  filter: brightness(0) saturate(100%) invert(20%) sepia(18%) saturate(1426%)
+    hue-rotate(186deg) brightness(93%) contrast(88%);
+}
+
+.overlay {
+  position: fixed;
+  top: 4%;
+  right: 4%;
+  width: 0%;
+  height: 0%;
+  visibility: hidden;
+  border: solid 1px #3f3b3b;
+  border-radius: 5px;
+  transition: all 1s ease;
+  overflow: hidden;
+  box-shadow: 0.15vw 0.3vw #888888;
+  background-color: #fff;
+}
+
+.overlayMenu {
+  margin-top: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ul {
+  list-style: none;
+}
+
+.li {
+  height: 20%;
+  margin-bottom: 4vh;
+  transition: all 0.5s ease-in-out;
+}
+
+.a {
+  font-weight: 600;
+  color: #3f3b3b;
+  font-size: 1vw;
+  cursor: pointer;
+}
+.li:hover {
+  transform: translateY(-0.5vh);
+  /*border-bottom: solid 1px #3f3b3b;*/
+  cursor: pointer;
+}
+.li:hover .a {
+  color: #0277bd;
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    width: 45%;
+    height: 50%;
+  }
+  .toggler {
+    width: 3vh;
+    height: 3vh;
+  }
+  .icon {
+    width: 3vh;
+    height: 3vh;
+  }
+  .toggler:checked ~ .overlay {
+    visibility: visible;
+    width: 40%;
+    height: 15%;
+    border: solid 1px #3f3b3b;
+  }
+  .li {
+    margin-bottom: 4vh;
+  }
+  .a {
+    font-weight: 600;
+    color: #3f3b3b;
+    font-size: 1.5vh;
+  }
+  .overlay {
+    box-shadow: 0.5vh 0.7vh #888888;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .li {
+    margin-bottom: 2vh;
+  }
+}
