@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
+import { Subject } from '@/components/search-bar';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
@@ -35,7 +36,7 @@ interface CreateTutorState {
     secondPeriod: Period[];
     thirdPeriod: Period[];
   };
-  subjects: string[];
+  subjects: Subject[];
   isLoading: boolean;
   error: string;
 }
@@ -114,8 +115,8 @@ export const registerTutor = createAsyncThunk(
           }))
         ],
         subjects: [
-          ...subjects.map((subject: string) => ({
-            subject: subject.split(' ')[0]
+          ...subjects.map(({ code }: { code: string }) => ({
+            subject: code
           }))
         ]
       },
@@ -125,7 +126,7 @@ export const registerTutor = createAsyncThunk(
 );
 
 export const createTutorSlice = createSlice({
-  name: 'creatreTutor',
+  name: 'createTutor',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
@@ -167,7 +168,7 @@ export const createTutorSlice = createSlice({
     ) => {
       state.schedule[`${action.payload.name}Period`] = action.payload.period;
     },
-    setSubjects: (state, action: PayloadAction<string[]>) => {
+    setSubjects: (state, action: PayloadAction<Subject[]>) => {
       state.subjects = action.payload;
     },
     setDefaultValues: (state) => {
