@@ -1,6 +1,6 @@
 import formStyles from '@/css-components/registerForm.module.css';
-import changePassword, { ModifyPasswordData } from '@/helpers/change-password';
 import { selectToken } from '@/redux/user';
+import changePassword, { ModifyPasswordData } from 'helpers/change-password';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import toast from 'react-hot-toast';
