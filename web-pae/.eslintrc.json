@@ -1,6 +1,6 @@
 {
   "extends": [
-    "next/core-web-vitals",
+    "next/core-web-vitals",         
     "eslint:recommended",
     "plugin:react/recommended",
     "airbnb",
@@ -12,30 +12,28 @@
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
   "rules": {
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx", ".ts"] }],
+    "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx", ".ts"]} ],
     "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
+        "error",
+        "ignorePackages",
+        {
         "ts": "never",
         "tsx": "never"
-      }
-    ],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-props-no-spreading": "off",
-    "react/function-component-definition": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/anchor-is-valid": "off"
+        }
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
-    "import/resolver": {
-      "typescript": {},
-      "css": {}
-    }
+      "import/resolver": {
+          "typescript": {}
+      }
   }
 }
