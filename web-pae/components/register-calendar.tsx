@@ -5,6 +5,7 @@ import {
   setPeriod
 } from '@/redux/create-tutor';
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import styles from '../css/components/register-calendar.module.css';
 import RegisterStyle from '../css/tutor/register.module.css';
@@ -122,9 +123,22 @@ const RegisterCalendar = React.memo(
     return (
       <div className={styles.container}>
         <div className={styles.calendar}>
-          <h3 className={styles.title}>
-            Selecciona tu horario para el <strong> {title} </strong>
-          </h3>
+          <div className={styles.header}>
+            <h3 className={styles.title}>
+              Selecciona tu horario para el <strong> {title} </strong>
+            </h3>
+            <div
+              className={styles.icon}
+              onMouseEnter={() =>
+                toast('Da click y arrastra para seleccionar tu horario', {
+                  icon: '😣'
+                })
+              }
+            >
+              <i className="bi bi-info-circle" />
+            </div>
+          </div>
+
           <MyCalendar
             eventObj={eventObj}
             setEventObj={setEventObj}
@@ -163,6 +177,7 @@ const RegisterCalendar = React.memo(
             </div>
           </div>
         </div>
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
     );
   }

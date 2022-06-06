@@ -21,7 +21,6 @@ interface Period {
   fin: number;
   id: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  cell: any;
 }
 
 // Define a type for the slice state
