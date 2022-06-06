@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import {
   registerTutor,
   selectError,
   setRegisterForm
-} from '@/redux/create-tutor';
-import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import React from 'react';
-import toast, { Toaster } from 'react-hot-toast';
-import { useAppDispatch, useAppSelector } from 'store/hook';
+} from 'store/reducers/create-tutor';
 import RegisterCalendar from '../../components/register-calendar';
 import RegisterForm, {
   StudentRegisterData
@@ -20,43 +21,49 @@ import { REGISTER, SCHEDULE, Steps, SUBJECTS } from '../../helpers/steps';
 
 const Registration: NextPage = () => {
   const router = useRouter();
-  const { query } = router;
+  const { query, push } = router;
   const error = useAppSelector(selectError);
   const dispatch = useAppDispatch();
   const [step, setStep] = React.useState<string>(REGISTER);
-  const [isCalendarFormComplete, setIsCalendarFormComplete] =
-    React.useState<boolean>(false);
-  const [isSubjectFormComplete, setIsSubjectFormComplete] =
-    React.useState<boolean>(false);
+  const [isFormComplete, setIsFormCompleted] = useState(true);
+  const [isFormCompleteSubjects, setIsFormCompleteSubjects] = useState(false);
+  const [isCalendarComplete, setIsCalendarComplete] = useState(false);
 
   const handleSteps = (clickedStep: string | undefined | string[]) => {
+    let newStep = step;
     if (clickedStep === step) {
+      newStep = clickedStep;
       setStep(clickedStep);
     } else if (clickedStep === REGISTER) {
+      newStep = REGISTER;
       setStep(REGISTER);
-      // } else if (clickedStep === SCHEDULE && isCalendarFormComplete) {
-    } else if (clickedStep === SCHEDULE) {
+    } else if (clickedStep === SCHEDULE && isCalendarComplete) {
+      newStep = SCHEDULE;
       setStep(SCHEDULE);
-    } else if (clickedStep === SUBJECTS) {
-      // } else if (clickedStep === SUBJECTS && isSubjectFormComplete) {
-      setStep(clickedStep);
+    } else if (clickedStep === SUBJECTS && isFormCompleteSubjects) {
+      newStep = SUBJECTS;
+      setStep(SUBJECTS);
     }
+
+    const href = {
+      pathname: '/tutor/registration',
+      query: { step: newStep }
+    };
+    push(href);
   };
 
   React.useEffect(() => {
     // console.log(query.step);
     handleSteps(query.step);
-  }, [query]);
+  }, []);
 
   const handleNextStep = () => {
     if (step === REGISTER) {
-      // router
+      setIsCalendarComplete(true);
       setStep(SCHEDULE);
       router.push(`/tutor/registration/?step=${SCHEDULE}`);
     } else if (step === SCHEDULE) {
-      setIsCalendarFormComplete(true);
-
-      setIsSubjectFormComplete(true);
+      setIsFormCompleteSubjects(true);
       router.push(`/tutor/registration/?step=${SUBJECTS}`);
       setStep(SUBJECTS);
     }
@@ -68,10 +75,10 @@ const Registration: NextPage = () => {
 
   const handlePreviousStep = () => {
     if (step === SUBJECTS) {
-      // router.push(`/tutor/registration/?step=${SCHEDULE}`);
+      router.push(`/tutor/registration/?step=${SCHEDULE}`);
       setStep(SCHEDULE);
     } else if (step === SCHEDULE) {
-      // router.push(`/tutor/registration/?step=${REGISTER}`);
+      router.push(`/tutor/registration/?step=${REGISTER}`);
       setStep(REGISTER);
     }
   };
@@ -92,7 +99,6 @@ const Registration: NextPage = () => {
   );
 
   const concludeRegistration = async () => {
-    // dispatch(registerTutor());
     try {
       const { status } = await dispatch(registerTutor()).unwrap();
       if (status === 200 || status === 201 || status === 204) {
@@ -139,7 +145,13 @@ const Registration: NextPage = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>{steps[step].title}</h1>
       <Toaster position="top-right" reverseOrder={false} />
-      <StepsRegister currentRoute={query.step} />
+      <StepsRegister
+        currentRoute={query.step}
+        handleStep={handleSteps}
+        isFormComplete={isFormComplete}
+        isCalendarComplete={isCalendarComplete}
+        isSubjectComplete={isFormCompleteSubjects}
+      />
       {handleComponent()}
     </div>
   );
