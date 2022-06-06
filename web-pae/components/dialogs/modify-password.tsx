@@ -1,6 +1,10 @@
 import formStyles from '@/css-components/registerForm.module.css';
+import changePassword, { ModifyPasswordData } from '@/helpers/change-password';
+import { selectToken } from '@/redux/user';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useAppSelector } from 'store/hook';
 import styles from '../../css/components/dialogs/modify-password.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
@@ -11,12 +15,6 @@ type ModifyPasswordProps = {
   setVisible: (visible: boolean) => void;
 };
 
-type ModifyPasswordData = {
-  currentPassword: string;
-  newPassword: string;
-  passwordConfirmation: string;
-};
-
 const modifyPasswordDefaultValue = {
   currentPassword: '',
   newPassword: '',
@@ -25,6 +23,7 @@ const modifyPasswordDefaultValue = {
 
 const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const token = useAppSelector(selectToken);
   const {
     control,
     handleSubmit,
@@ -39,9 +38,40 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
   const onSubmit = handleSubmit((data) => {
     // fetch
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+
+    changePassword(data, token as string)
+      .then(({ status, responseData }) => {
+        if (status === 200 || status === 201 || status === 204) {
+          // toast success
+          toast.success(responseData.message);
+
+          // set user data
+          setIsLoading(false);
+          setTimeout(() => {
+            setVisible(false);
+          }, 500);
+        } else {
+          // focus on the first input
+
+          setIsLoading(false);
+
+          if (responseData.password) {
+            const button = document.getElementById('currentPassword');
+            button?.focus();
+            toast.error(responseData.password);
+          } else if (responseData.new_password) {
+            const button = document.getElementById('newPassword');
+            button?.focus();
+            toast.error(responseData.new_password);
+          } else {
+            toast.error(responseData.message);
+          }
+        }
+      })
+      .catch(({ message }) => {
+        setIsLoading(false);
+        toast.error(message);
+      });
   });
 
   return (
