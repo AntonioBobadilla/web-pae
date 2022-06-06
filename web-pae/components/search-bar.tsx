@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import Lexer from '@/helpers/lexer';
 import cx from 'classnames';
+import Lexer from 'helpers/lexer';
 import React, { useState } from 'react';
 import styles from '../css/components/searchBar.module.css';
 
