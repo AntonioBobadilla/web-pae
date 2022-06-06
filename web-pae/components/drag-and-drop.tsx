@@ -9,6 +9,8 @@ const DragAndDrop = ({ file }: { file: File }) => {
   const dispatch = useAppDispatch();
   const handleChange = (newFile: any) => {
     dispatch(setFile(newFile));
+    let text = document.querySelector('#text')
+    text.innerHTML = "<b>Archivo cargado: </b>"+file.name;
   };
   return (
     <div className={styles.wrapper}>
@@ -28,6 +30,7 @@ const DragAndDrop = ({ file }: { file: File }) => {
       </div>
     </div>
   );
+
 };
 
 export default DragAndDrop;
