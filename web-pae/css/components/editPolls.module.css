@@ -1,0 +1,167 @@
+.main {
+  width: 70vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5vh;
+  transition: all 1s ease;
+}
+
+.questionsContainer {
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 1s ease;
+}
+
+.questions {
+  width: 100%;
+  background-color: #b9b6b6;
+  height: 10vh;
+  margin-top: 2vh;
+  padding-left: 2vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttons {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.question {
+  font-size: 1.5vw;
+  font-weight: 700;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.editQuestion {
+  color: #cc9104;
+  margin: 0 1.5vw;
+}
+
+.editQuestion:hover {
+  cursor: pointer;
+}
+
+.delete {
+  color: #e00013;
+  margin: 0 1.5vw;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
+
+.addQuestionContainer {
+  width: 100%;
+}
+
+.questionInput {
+  width: 100%;
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.addQuestionButton {
+  width: 4vw;
+  height: 2vw;
+  font-size: 1.5vw;
+  font-weight: 700;
+  margin-top: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.addQuestionButton:hover {
+  cursor: pointer;
+}
+
+.inputText {
+  width: 85%;
+  height: 6vh;
+  padding-left: 1vw;
+  font-size: 1.5vw;
+  border-radius: 5px;
+}
+
+.inputText2 {
+  width: 85%;
+  height: 6vh;
+  padding-left: 1vw;
+  font-size: 1.5vw;
+  border-radius: 5px;
+  display: none;
+}
+
+.inputText:focus {
+  outline: none;
+  border: 2px solid #302e2e;
+}
+.buttons2 {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
+
+.questionCorrect {
+  color: #2ed477;
+  font-size: 2vw;
+  margin: 0 1.5vw;
+}
+
+.confirmQuestionChange {
+  color: #2ed477;
+  margin: 0 1.5vw;
+  font-size: 2vw;
+  display: none;
+}
+
+.confirmQuestionChange:hover {
+  cursor: pointer;
+}
+
+.questionCorrect:hover {
+  cursor: pointer;
+}
+
+.cancel {
+  color: #e00013;
+  margin: 0 1.5vw;
+  font-size: 1.5vw;
+}
+
+.cancel:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  visibility: hidden;
+  transition: all 1s ease;
+  opacity: 0;
+  z-index: 5;
+  position: absolute;
+  display: none;
+}
