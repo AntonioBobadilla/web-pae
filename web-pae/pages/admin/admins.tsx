@@ -1,8 +1,9 @@
-import SubjectForm from '@/components/subject-form';
+import AdminForm from '@/components/admin-form';
 import Tabs from '@/components/tabs';
 import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
+import cx from 'classnames';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
@@ -20,7 +21,7 @@ const Subject = () => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/tutor/')
+    fetch('http://server-pae.azurewebsites.net/administrator/')
       .then((resp) => resp.json())
       .then(function (data) {
         //console.log(data)
@@ -41,14 +42,14 @@ const Subject = () => {
         <div className={styles.UfTab}>
           <Tabs
             handleClick={AdminButton}
-            text="Unidades de Formación"
+            text="Administradores"
             active={currentTab == 'admins' ? true : false}
           ></Tabs>
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddAdminButton}
-            text="Agregar Unidad de Formación"
+            text="Agregar Administrador"
             active={currentTab == 'addAdmins' ? true : false}
           ></Tabs>
         </div>
@@ -60,7 +61,7 @@ const Subject = () => {
             currentTab == 'addAdmins' ? styles.addSubject : styles.hidden
           }
         >
-          <SubjectForm></SubjectForm>
+          <AdminForm></AdminForm>
         </div>
         <div
           className={currentTab == 'admins' ? styles.subjects : styles.hidden}
@@ -74,7 +75,6 @@ const Subject = () => {
                 </span>
                 <span className={styles.name}>Nombre</span>
                 <span className={styles.email}>Correo electrónico</span>
-                <span className={styles.type}>Tipo de Admin</span>
                 <span className={styles.edit}>Editar</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
@@ -90,28 +90,14 @@ const Subject = () => {
                   }
                   return item.email;
                 };
-                let adminUser = () => {
-                  if (item.user == null) {
-                    return 'no hay usuario';
-                  } else {
-                    if (item.user.is_staff == true) {
-                      return 'Staff';
-                    } else if (item.user.is_tutor == true) {
-                      return 'Tutor';
-                    } else if (item.user.is_admin == true) {
-                      return 'Admin';
-                    }
-                  }
-                };
 
                 return (
                   <div className={styles.body}>
                     <span className={styles.clave}>{adminId}</span>
                     <span className={styles.name}>{adminName}</span>
                     <span className={styles.email}>{adminEmail()}</span>
-                    <span className={styles.type}>{adminUser()}</span>
-                    <span className={styles.edit}>Hola</span>
-                    <span className={styles.delete}>Hola</span>
+                    <i className={cx('bi bi-pencil-fill', styles.ed)}> </i>
+                    <i className={cx('bi bi-trash', styles.de)}> </i>
                   </div>
                 );
               })}
