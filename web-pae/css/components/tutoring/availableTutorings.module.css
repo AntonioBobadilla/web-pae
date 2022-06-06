@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: #3f3b3b solid 1px;
+  border: rgba(84, 84, 84, 0.4) solid 1px;
   border-radius: 10px;
 }
 .container {
@@ -87,7 +87,7 @@
   }
   .container {
     height: 30vh;
-    width: 85%;
+    width: 100%;
   }
 
   .left {

@@ -1,78 +1,76 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from '@/css-components/scheduleTutoring.module.css';
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'store/hook';
+import { selectSubject, setSubject } from 'store/reducers/schedule-tutoring';
 import ButtonTemplate from '../button-template';
-import SearchBar from '../search-bar';
+import SearchBar, { Subject } from '../search-bar';
 
-const TutoringSubject = () => {
-  // AQUÍ SE GUARDAN LOS VALORES SELECCIONADOS EN FORMA DE ARREGLO
-  const [valuesSelected, changeValues] = useState([]);
+const TutoringSubject = ({
+  handleNextStep
+}: {
+  handleNextStep: () => void;
+}) => {
+  const subject = useAppSelector(selectSubject);
+  const dispatch = useAppDispatch();
+  // const [valuesSelected, changeValues] = useState<Subject[]>([]);
   const [subjectsFromApi, setSubjectsFromApi] = useState([]);
 
-  useEffect(() => {
-    // showValues();
-  }, [valuesSelected]);
-
-  const cleanHTML = () => {
-    const div = document.querySelector('.values');
-    while (div.firstChild) {
-      div?.removeChild(div.firstChild);
-    }
+  const usefetch = async () => {
+    const response = await fetch(
+      'http://server-pae.azurewebsites.net/subject/'
+    );
+    const data = await response.json();
+    // console.log(data);
+    setSubjectsFromApi(data);
   };
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/subjects')
-    .then((resp) => resp.json())
-    .then(function(data) {
-      setSubjectsFromApi(data)
-      })
-}, [])
+  React.useEffect(() => {
+    usefetch();
+  }, []);
 
-  const showValues = () => {
-    const div = document.querySelector('.values');
-    cleanHTML();
-    valuesSelected.forEach((item) => {
-      const value = document.createElement('p');
-      value.innerHTML = item;
-      div.appendChild(value);
-    });
-  };
-
-  const handleSuggestions = (suggestion) => {
-    changeValues((valuesSelected) => [...valuesSelected, suggestion]);
+  const handleSuggestions = (suggestion: Subject) => {
+    dispatch(setSubject(suggestion));
     // showValues();
   };
 
-  const deleteItem = (e) => {
-    const itemToDelete = e.target.parentElement.parentElement.id;
-    console.log(itemToDelete);
-    changeValues(valuesSelected.filter((item) => item != itemToDelete));
-  };
-
-  const test = () => {
-    console.log('agregar funcionalidad cuando hace click xd');
+  const deleteItem = (e: any) => {
+    // console.log(itemToDelete);
+    dispatch(setSubject(null));
   };
 
   return (
     <div className={styles.wrapper}>
       <SearchBar
-        function={handleSuggestions}
+        handleSuggestions={(subj) => handleSuggestions(subj)}
         suggestions={subjectsFromApi}
       />
       <div className={styles.selectedSubjects}>
         <h2 className={styles.title}>Materia escogida</h2>
         <div className={styles.values}>
-          {valuesSelected.map((value, index) => (
-            <p key={index} id={value} className={styles.element}>
-              {value}{' '}
-              <button id={value} onClick={deleteItem} className={styles.delete}>
+          {subject && (
+            <p key={subject.code} id={subject.code} className={styles.element}>
+              {subject.code} {subject.name}
+              <button
+                id={subject.code}
+                onClick={deleteItem}
+                type="button"
+                className={styles.delete}
+              >
                 <i className="bi bi-trash3" />
               </button>
             </p>
-          ))}
+          )}
         </div>
       </div>
       <div className={styles.continueButton}>
-        <ButtonTemplate variant="primary">BUSCAR ASESORÍAS</ButtonTemplate>
+        <ButtonTemplate
+          variant="primary"
+          disabled={!subject}
+          onClick={handleNextStep}
+        >
+          BUSCAR ASESORÍAS
+        </ButtonTemplate>
       </div>
     </div>
   );

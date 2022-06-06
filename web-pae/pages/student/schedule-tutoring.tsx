@@ -70,11 +70,11 @@ const ScheduleTutoring: NextPage = () => {
     // CREATE A COMPONENT FOR EACH STEP HERE, AND RETURN IT
     switch (step) {
       case SUBJECT:
-        return <TutoringSubject />;
+        return <TutoringSubject handleNextStep={handleNextStep} />;
       case AVAILABLE_TUTORINGS:
         return <AvailableTutorings handleNextStep={handleNextStep} />;
       case TOPIC:
-        return <TutoringQuestion />;
+        return <TutoringQuestion handleNextStep={handleNextStep} />;
       case CONFIRMATION:
         return <TutoringConfirmation />;
       default:

@@ -34,7 +34,7 @@ const TutoringConfirmation = () => {
       <span className={styles.title}>Resumen</span>
       <div className={styles.box}>
         <strong>Materia: </strong>
-        {state.subject}
+        {state.subject?.name}
         <br />
         <strong>Día: </strong>
         {state.date}
