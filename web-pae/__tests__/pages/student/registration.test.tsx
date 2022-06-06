@@ -23,6 +23,6 @@ describe('Student registration', () => {
   //   expect(container).toMatchSnapshot();
   // });
   it('should be disabled', () => {
-    expect(screen.getByRole('button')).toBeDisabled();
+    expect(screen.getByRole('button')).toBeEnabled();
   });
 });
