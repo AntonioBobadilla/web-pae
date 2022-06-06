@@ -1,6 +1,10 @@
 import qStyles from '@/css-components/scheduleTutoringQuestion.module.css';
-import { selectContent, selectTitle } from '@/redux/schedule-tutoring';
 import { useAppSelector } from 'store/hook';
+import {
+  selectContent,
+  selectFile,
+  selectTitle
+} from 'store/reducers/schedule-tutoring';
 import ButtonTemplate from '../button-template';
 import DragAndDrop from '../drag-and-drop';
 import InputTextArea from '../input-text-area';
@@ -12,6 +16,7 @@ const TutoringQuestion = ({
 }) => {
   const title = useAppSelector(selectTitle);
   const content = useAppSelector(selectContent);
+  const file = useAppSelector(selectFile);
 
   const schedule = () => {
     handleNextStep();
@@ -27,7 +32,7 @@ const TutoringQuestion = ({
       </div>
       <p className={qStyles.qText}>Adjuntar archivo</p>
       <div className={qStyles.dragDrop}>
-        <DragAndDrop />
+        <DragAndDrop file={file} />
       </div>
       <div className={qStyles.button}>
         <ButtonTemplate variant="primary" onClick={schedule}>

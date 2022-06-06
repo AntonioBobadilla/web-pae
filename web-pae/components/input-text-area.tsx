@@ -1,6 +1,6 @@
-import { setContent, setTitle } from '@/redux/schedule-tutoring';
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
+import { setContent, setTitle } from 'store/reducers/schedule-tutoring';
 import itaStyles from '../css/components/inputTextArea.module.css';
 
 type InputTextAreaProps = {

@@ -15,7 +15,7 @@ interface ScheduleTutoringState {
   time: string | null;
   title: string;
   content: string;
-  file: string | null;
+  file: File | null;
   modalidad: string | null;
 }
 
@@ -57,7 +57,7 @@ export const scheduleTutoringSlice = createSlice({
     setContent: (state, action: PayloadAction<string>) => {
       state.content = action.payload;
     },
-    setFile: (state, action: PayloadAction<string>) => {
+    setFile: (state, action: PayloadAction<File>) => {
       state.file = action.payload;
     },
     setModalidad: (state, action: PayloadAction<string>) => {
