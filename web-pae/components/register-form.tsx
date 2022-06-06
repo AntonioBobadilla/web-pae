@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useAppSelector } from 'store/hook';
 import { selectRegisterData } from 'store/reducers/create-tutor';
 import styles from '../css/components/registerForm.module.css';
@@ -41,7 +41,7 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
   });
 
   // TODO: DELETE DATA ON NAVIGATE CHANGED
-  const { isDirty } = useFormState({ control });
+  // const { isDirty } = useFormState({ control });
 
   const onSubmit = handleSubmit((data) => nextStep(data));
 
@@ -128,7 +128,7 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
       <div className={styles.button}>
         <ButtonTemplate
           variant="primary"
-          disabled={!isDirty || isLoading}
+          disabled={isLoading}
           loading={isLoading}
           type="submit"
         >

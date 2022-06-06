@@ -238,16 +238,13 @@ export const selectRegisterData = (state: RootState) => ({
   password: state.createTutor.password,
   passwordConfirmation: state.createTutor.passwordConfirmation
 });
-
 export const selectFirstPeriod = (state: RootState) =>
   state.createTutor.schedule.firstPeriod;
 export const selectSecondPeriod = (state: RootState) =>
   state.createTutor.schedule.secondPeriod;
 export const selectThirdPeriod = (state: RootState) =>
   state.createTutor.schedule.thirdPeriod;
-
 export const selectSubjects = (state: RootState) => state.createTutor.subjects;
 export const selectLoading = (state: RootState) => state.createTutor.isLoading;
 export const selectError = (state: RootState) => state.createTutor.error;
-
 export default createTutorSlice.reducer;

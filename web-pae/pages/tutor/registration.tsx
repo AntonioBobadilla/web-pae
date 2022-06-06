@@ -92,8 +92,6 @@ const Registration: NextPage = () => {
   );
 
   const concludeRegistration = async () => {
-    // set Default Values
-    // register
     // dispatch(registerTutor());
     try {
       const { status } = await dispatch(registerTutor()).unwrap();
