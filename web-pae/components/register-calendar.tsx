@@ -56,8 +56,10 @@ const RegisterCalendar = ({
 
   // funcion que cambia el color de la celda.
   const changeColorOfCell = (cell: any) => {
-    cell.style.background = '#039BE5';
-    cell.style.border = 'none';
+    if (cell && cell.style) {
+      cell.style.background = '#039BE5';
+      cell.style.border = 'none';
+    }
   };
 
   React.useEffect(() => {

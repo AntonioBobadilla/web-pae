@@ -15,13 +15,34 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
       >
         <img
           class="image"
-          src="/images/student-login-image.jpg"
+          src="/images/tutors.jpg"
         />
         <p
           class="description"
         >
            
-          Asesores
+          Asesores PAE
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutorings"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/request.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Solicitudes de asesoría
            
         </p>
       </div>
@@ -42,7 +63,49 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
           class="description"
         >
            
-          Asesorías pendientes
+          Administrar unidades de formación
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutorings"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/tutor-login-image.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Historial de asesorías
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutorings"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/tutor-login-image.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Encuestas
            
         </p>
       </div>
