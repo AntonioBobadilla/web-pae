@@ -44,8 +44,8 @@ const Registration: NextPage = () => {
         confirm_password: data.passwordConfirmation
       },
       email: data.email,
-      name: data.name
-      // major: data.major
+      name: data.name,
+      major: data.major
     })
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);

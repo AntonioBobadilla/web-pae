@@ -30,7 +30,7 @@ export const registerTutor = createAsyncThunk(
       createTutor: {
         name,
         email,
-        // major,
+        major,
         password,
         passwordConfirmation,
         schedule: { firstPeriod, secondPeriod, thirdPeriod },
@@ -58,7 +58,7 @@ export const registerTutor = createAsyncThunk(
         },
         email,
         name,
-        // major,
+        major,
         schedules: [
           ...firstPeriod.map(({ dia, inicio }: Period) => ({
             period: 0,

@@ -2,7 +2,7 @@ import TutoringConfirmation from '@/components/tutoring/confirmation';
 import TutoringSubject from '@/components/tutoring/subject';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import StepsStudent from '../../components/steps-student';
 import AvailableTutorings from '../../components/tutoring/available-tutorings';
@@ -18,6 +18,10 @@ import {
 const ScheduleTutoring: NextPage = () => {
   const [step, setStep] = React.useState<string>(SUBJECT);
   const { query, push } = useRouter();
+  const [isFormComplete, setIsFormCompleted] = useState(true);
+  const [isFormCompleteSubjects, setIsFormCompleteSubjects] = useState(false);
+  const [isCalendarComplete, setIsCalendarComplete] = useState(false);
+
   const handleSteps = (clickedStep: string | undefined | string[]) => {
     if (clickedStep === step) {
       setStep(clickedStep);
@@ -37,7 +41,7 @@ const ScheduleTutoring: NextPage = () => {
   React.useEffect(() => {
     // console.log(query.step);
     handleSteps(query.step);
-  }, [query]);
+  }, []);
 
   const handleNextStep = () => {
     if (step === SUBJECT) {
