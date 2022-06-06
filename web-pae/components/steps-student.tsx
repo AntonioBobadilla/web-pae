@@ -1,5 +1,4 @@
 import cx from 'classnames';
-import Link from 'next/link';
 import React from 'react';
 import styles from '../css/components/StepsStudent.module.css';
 import {
@@ -11,131 +10,132 @@ import {
 
 interface StepsStudentProps {
   currentRoute: string | string[] | undefined;
+  isSubjectCompleted: boolean;
+  isTopicCompleted: boolean;
+  isAvailableTutoringCompleted: boolean;
+  isConfirmationCompleted: boolean;
+  handleStep: (step: string) => void;
 }
 
-const StepsStudent = ({ currentRoute }: StepsStudentProps) => (
+const StepsStudent = ({
+  currentRoute,
+  isSubjectCompleted,
+  isAvailableTutoringCompleted,
+  isTopicCompleted,
+  isConfirmationCompleted,
+  handleStep
+}: StepsStudentProps) => (
   // creo un Stateless Functional Component
 
   <div className={styles.stepsRegisterWrap}>
-    <Link
-      href={{
-        pathname: '/student/schedule-tutoring/',
-        query: { step: SUBJECT }
-      }}
-      passHref
+    <div
+      className={cx(styles.item, isSubjectCompleted && styles.completed)}
+      role="button"
+      onClick={() => handleStep(SUBJECT)}
+      tabIndex={0}
     >
-      <div className={styles.item} role="button" tabIndex={0}>
-        <div
-          className={cx(
-            styles.icon,
-            (currentRoute === SUBJECT || currentRoute === undefined) &&
-              styles.active
-          )}
-        >
-          <i className="bi bi-stack" />
-        </div>
-        <p
-          className={cx(
-            styles.itemText,
-            (currentRoute === SUBJECT || currentRoute === undefined) &&
-              styles.active
-          )}
-        >
-          Unidad de formación
-        </p>
+      <div
+        className={cx(
+          styles.icon,
+          (currentRoute === SUBJECT || currentRoute === undefined) &&
+            styles.active
+        )}
+      >
+        <i className="bi bi-stack" />
       </div>
-    </Link>
+      <p
+        className={cx(
+          styles.itemText,
+          (currentRoute === SUBJECT || currentRoute === undefined) &&
+            styles.active
+        )}
+      >
+        Unidad de formación
+      </p>
+    </div>
 
     <div className={styles.dots}>
       <div className={cx(styles.icon)}>
         <i className="bi bi-three-dots" />
       </div>
     </div>
-    <Link
-      href={{
-        pathname: '/student/schedule-tutoring/',
-        query: { step: AVAILABLE_TUTORINGS }
-      }}
-      passHref
+
+    <div
+      className={cx(
+        styles.item,
+        isAvailableTutoringCompleted && styles.completed
+      )}
+      role="button"
+      tabIndex={0}
+      onClick={() => handleStep(AVAILABLE_TUTORINGS)}
     >
-      <div className={styles.item} role="button" tabIndex={0}>
-        <div
-          className={cx(
-            styles.icon,
-            currentRoute === AVAILABLE_TUTORINGS && styles.active
-          )}
-        >
-          <i className="bi bi-calendar-week" />
-        </div>
-        <p
-          className={cx(
-            styles.itemText,
-            currentRoute === AVAILABLE_TUTORINGS && styles.active
-          )}
-        >
-          Horario
-        </p>
+      <div
+        className={cx(
+          styles.icon,
+          currentRoute === AVAILABLE_TUTORINGS && styles.active
+        )}
+      >
+        <i className="bi bi-calendar-week" />
       </div>
-    </Link>
+      <p
+        className={cx(
+          styles.itemText,
+          currentRoute === AVAILABLE_TUTORINGS && styles.active
+        )}
+      >
+        Horario
+      </p>
+    </div>
     <div className={styles.dots}>
       <div className={cx(styles.icon)}>
         <i className="bi bi-three-dots" />
       </div>
     </div>
-    <Link
-      href={{
-        pathname: '/student/schedule-tutoring/',
-        query: { step: TOPIC }
-      }}
-      passHref
+
+    <div
+      className={cx(styles.item, isTopicCompleted && styles.completed)}
+      role="button"
+      tabIndex={0}
+      onClick={() => handleStep(TOPIC)}
     >
-      <div className={styles.item} role="button" tabIndex={0}>
-        <div
-          className={cx(styles.icon, currentRoute === TOPIC && styles.active)}
-        >
-          <i className="bi bi-folder" />
-        </div>
-        <p
-          className={cx(
-            styles.itemText,
-            currentRoute === TOPIC && styles.active
-          )}
-        >
-          Tema
-        </p>
+      <div className={cx(styles.icon, currentRoute === TOPIC && styles.active)}>
+        <i className="bi bi-folder" />
       </div>
-    </Link>
+      <p
+        className={cx(styles.itemText, currentRoute === TOPIC && styles.active)}
+      >
+        Tema
+      </p>
+    </div>
     <div className={styles.dots}>
       <div className={cx(styles.icon)}>
         <i className="bi bi-three-dots" />
       </div>
     </div>
-    <Link
-      href={{
-        pathname: '/student/schedule-tutoring/',
-        query: { step: CONFIRMATION }
-      }}
-      passHref
+
+    <div
+      className={cx(styles.item, isConfirmationCompleted && styles.completed)}
+      role="button"
+      tabIndex={0}
+      onClick={() => handleStep(CONFIRMATION)}
     >
-      <div className={styles.item} role="button" tabIndex={0}>
-        <div
-          className={cx(
-            styles.icon,
-            currentRoute === CONFIRMATION && styles.active
-          )}
-        >
-          <i className="bi bi-check-lg" />
-        </div>
-        <p
-          className={cx(
-            styles.itemText,
-            currentRoute === CONFIRMATION && styles.active
-          )}
-        >
-          Confirmación
-        </p>
+      <div
+        className={cx(
+          styles.icon,
+          currentRoute === CONFIRMATION && styles.active
+        )}
+      >
+        <i className="bi bi-check-lg" />
       </div>
-    </Link>
+      <p
+        className={cx(
+          styles.itemText,
+          currentRoute === CONFIRMATION && styles.active
+        )}
+      >
+        Confirmación
+      </p>
+    </div>
   </div>
 );
 export default StepsStudent; // exporto la función

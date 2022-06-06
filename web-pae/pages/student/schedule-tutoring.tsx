@@ -18,24 +18,39 @@ import {
 const ScheduleTutoring: NextPage = () => {
   const [step, setStep] = React.useState<string>(SUBJECT);
   const { query, push } = useRouter();
-  const [isFormComplete, setIsFormCompleted] = useState(true);
-  const [isFormCompleteSubjects, setIsFormCompleteSubjects] = useState(false);
-  const [isCalendarComplete, setIsCalendarComplete] = useState(false);
+  const [isSubjectComplete, setIsSubjectComplete] = useState(true);
+  const [isAvailableTutoringsComplete, setIsAvailableTutoringsComplete] =
+    useState(false);
+  const [isTopicComplete, setIsTopicComplete] = useState(false);
+  const [isConfirmationComplete, setIsConfirmationComplete] = useState(false);
 
   const handleSteps = (clickedStep: string | undefined | string[]) => {
+    let newStep = step;
     if (clickedStep === step) {
+      newStep = clickedStep;
       setStep(clickedStep);
     } else if (clickedStep === SUBJECT) {
+      newStep = SUBJECT;
       setStep(SUBJECT);
-      // } else if (clickedStep === SCHEDULE && isCalendarFormComplete) {
-    } else if (clickedStep === AVAILABLE_TUTORINGS) {
+    } else if (
+      clickedStep === AVAILABLE_TUTORINGS &&
+      isAvailableTutoringsComplete
+    ) {
+      newStep = AVAILABLE_TUTORINGS;
       setStep(AVAILABLE_TUTORINGS);
-    } else if (clickedStep === TOPIC) {
-      // } else if (clickedStep === SUBJECTS && isSubjectFormComplete) {
+    } else if (clickedStep === TOPIC && isTopicComplete) {
+      newStep = TOPIC;
       setStep(TOPIC);
-    } else if (clickedStep === CONFIRMATION) {
+    } else if (clickedStep === CONFIRMATION && isConfirmationComplete) {
+      newStep = CONFIRMATION;
       setStep(CONFIRMATION);
     }
+
+    const href = {
+      pathname: '/student/schedule-tutoring',
+      query: { step: newStep }
+    };
+    push(href);
   };
 
   React.useEffect(() => {
@@ -46,27 +61,17 @@ const ScheduleTutoring: NextPage = () => {
   const handleNextStep = () => {
     if (step === SUBJECT) {
       // router
+      setIsAvailableTutoringsComplete(true);
       setStep(AVAILABLE_TUTORINGS);
       push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
     } else if (step === AVAILABLE_TUTORINGS) {
+      setIsTopicComplete(true);
       setStep(TOPIC);
       push(`/student/schedule-tutoring/?step=${TOPIC}`);
     } else if (step === TOPIC) {
+      setIsConfirmationComplete(true);
       setStep(CONFIRMATION);
       push(`/student/schedule-tutoring/?step=${CONFIRMATION}`);
-    }
-  };
-
-  const handlePreviousStep = () => {
-    if (step === CONFIRMATION) {
-      push(`/student/schedule-tutoring/?step=${TOPIC}`);
-      setStep(TOPIC);
-    } else if (step === TOPIC) {
-      push(`/student/schedule-tutoring/?step=${AVAILABLE_TUTORINGS}`);
-      setStep(AVAILABLE_TUTORINGS);
-    } else if (step === AVAILABLE_TUTORINGS) {
-      push(`/student/schedule-tutoring/?step=${SUBJECT}`);
-      setStep(SUBJECT);
     }
   };
 
@@ -88,7 +93,14 @@ const ScheduleTutoring: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <StepsStudent currentRoute={query.step} />
+      <StepsStudent
+        isAvailableTutoringCompleted={isAvailableTutoringsComplete}
+        isConfirmationCompleted={isConfirmationComplete}
+        isSubjectCompleted={isSubjectComplete}
+        isTopicCompleted={isTopicComplete}
+        currentRoute={query.step}
+        handleStep={handleSteps}
+      />
       {handleComponent()}
     </div>
   );
