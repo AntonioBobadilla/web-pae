@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import Styles from '../css/components/subject-form.module.css';
+import SubjectAdded from './dialogs/subject-added';
 import SearchBar from './search-bar';
 
 const SubjectForm = () => {
   const [code, setCode] = useState([]);
   const [name, setName] = useState([]);
+  const [validUF, setValidUF] = useState(Boolean);
+
+  const isValid = () => {
+    setValidUF(true);
+  };
+
   const addSubject = () => {
     fetch('http://server-pae.azurewebsites.net/subject/', {
       method: 'POST',
@@ -20,6 +27,7 @@ const SubjectForm = () => {
           // error coming back from server
           throw Error('could not make PUT request for that endpoint');
         }
+        isValid();
         return res.json();
       })
       .then((data) => {
@@ -52,6 +60,7 @@ const SubjectForm = () => {
       <button className={Styles.button} onClick={addSubject}>
         Agregar
       </button>
+      <SubjectAdded visible={validUF} setVisible={setValidUF}></SubjectAdded>
     </div>
   );
 };
