@@ -14,8 +14,8 @@ interface UserState {
 const initialState: UserState = {
   name: 'Daniela Sánchez Hernández',
   email: 'dani@tec.mx',
-  token: null,
-  role: null
+  token: '',
+  role: ''
 };
 
 export const userSlice = createSlice({
