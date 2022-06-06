@@ -63,10 +63,10 @@ const MyCalendar = ({
         const attr = cell.getAttribute('id').split(' ');
         const dia = attr[0];
         const hora = attr[1];
-        if (obj.dia == dia && obj.inicio == hora) {
+        if (obj.dia === dia && obj.inicio === hora) {
           startCell = cell;
         }
-        if (obj.dia == dia && obj.fin == hora) {
+        if (obj.dia === dia && obj.fin === hora) {
           finishCell = cell;
         }
       });
@@ -142,13 +142,13 @@ const MyCalendar = ({
   // función que maneja el click en las celdas.
   const getClick = (data) => {
     const { dia, inicio, fin, cell } = findSelectedCell(data);
-    const idData = dia + inicio + fin;
+    const idData = `${dia} ${inicio}`;
     const inicioNumber = getOnlyNumbers(inicio);
     const finNumber = getOnlyNumbers(fin);
     if (!checkDuplicates(idData)) {
       setEventObj((eventObj) => [
         ...eventObj,
-        { dia, inicio: inicioNumber, fin: finNumber, id: idData, cell }
+        { dia, inicio: inicioNumber, fin: finNumber, id: idData }
       ]);
       changeColorOfCell(cell);
     } else {

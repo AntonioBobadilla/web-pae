@@ -17,11 +17,28 @@
   /* margin: 0 auto; */
 }
 
-.container .calendar .title {
+.container .calendar .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.container .calendar .header .title {
   margin-left: 10%;
   margin-top: 20px;
   margin-bottom: 20px;
   font-weight: 200;
+}
+
+.container .calendar .header .icon {
+  font-size: 25px;
+}
+
+.container .calendar .header .icon :hover {
+  color: #0a8ccb;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -36,7 +53,11 @@
     margin: auto;
   }
 
-  .container .calendar .title {
+  .container .calendar .header {
+    margin-right: 0;
+  }
+
+  .container .calendar .header .title {
     margin-left: 0;
     margin-bottom: 25px;
     text-align: center;

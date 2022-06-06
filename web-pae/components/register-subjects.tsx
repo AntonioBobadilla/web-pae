@@ -6,9 +6,10 @@ import {
 } from '@/redux/create-tutor';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import ButtonTemplate from './button-template';
-import SearchBar from './search-bar';
+import SearchBar, { Subject } from './search-bar';
 
 interface RegisterSubjectsProps {
   previousStep: () => void;
@@ -29,17 +30,28 @@ const RegisterSubjects = ({
   const [valuesSelected, changeValues] = useState(selectedSubjects);
   const dispatch = useAppDispatch();
 
-  const handleSuggestions = (suggestion: any) => {
+  const usefetch = async () => {
+    const response = await fetch(
+      'http://server-pae.azurewebsites.net/subject/'
+    );
+    const data = await response.json();
+    // console.log(data);
+    setSubjectsFromApi(data);
+  };
+
+  const handleSuggestions = (suggestion: Subject) => {
+    if (valuesSelected.includes(suggestion)) {
+      toast('Subject already selected', {
+        icon: '😿'
+      });
+      return;
+    }
     changeValues((values) => [...values, suggestion]);
     // showValues();
   };
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/api/subjects')
-      .then((resp) => resp.json())
-      .then((data) => {
-        setSubjectsFromApi(data);
-      });
+    usefetch();
   }, []);
 
   React.useEffect(() => {
@@ -53,25 +65,18 @@ const RegisterSubjects = ({
     }
   };
 
-  const showValues = () => {
-    const div = document.querySelector('.values');
-    cleanHTML();
-    valuesSelected.forEach((item) => {
-      const value = document.createElement('p');
-      value.innerHTML = item;
-      div?.appendChild(value);
-    });
-  };
-
   const deleteItem = (e: any) => {
     const itemToDelete = e.target.parentElement.parentElement.id;
-    console.log(itemToDelete);
-    changeValues(valuesSelected.filter((item) => item !== itemToDelete));
+    // console.log(itemToDelete);
+    changeValues(valuesSelected.filter(({ code }) => code !== itemToDelete));
   };
 
   return (
     <div className={styles.wrapper}>
-      <SearchBar function={handleSuggestions} suggestions={subjectsFromApi} />
+      <SearchBar
+        handleSuggestions={(subject) => handleSuggestions(subject)}
+        suggestions={subjectsFromApi}
+      />
       <div className={styles.selectedSubjects}>
         {valuesSelected.length !== 0 && (
           <h2 className={styles.title}>MATERIAS SELECCIONADAS</h2>
@@ -80,12 +85,12 @@ const RegisterSubjects = ({
           {valuesSelected.map((value, index) => (
             <p
               key={`${value}${index.toString()}`}
-              id={value}
+              id={value.code}
               className={styles.element}
             >
-              {value}{' '}
+              {value.code} {value.name}
               <button
-                id={value}
+                id={value.code}
                 onClick={deleteItem}
                 className={styles.delete}
                 type="button"
@@ -106,6 +111,7 @@ const RegisterSubjects = ({
           CONCLUIR REGISTRO
         </ButtonTemplate>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };

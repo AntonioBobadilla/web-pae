@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
+import { Subject } from '@/components/search-bar';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
@@ -20,7 +21,6 @@ interface Period {
   fin: number;
   id: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  cell: any;
 }
 
 // Define a type for the slice state
@@ -35,7 +35,7 @@ interface CreateTutorState {
     secondPeriod: Period[];
     thirdPeriod: Period[];
   };
-  subjects: string[];
+  subjects: Subject[];
   isLoading: boolean;
   error: string;
 }
@@ -114,8 +114,8 @@ export const registerTutor = createAsyncThunk(
           }))
         ],
         subjects: [
-          ...subjects.map((subject: string) => ({
-            subject: subject.split(' ')[0]
+          ...subjects.map(({ code }: { code: string }) => ({
+            subject: code
           }))
         ]
       },
@@ -125,7 +125,7 @@ export const registerTutor = createAsyncThunk(
 );
 
 export const createTutorSlice = createSlice({
-  name: 'creatreTutor',
+  name: 'createTutor',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
@@ -167,7 +167,7 @@ export const createTutorSlice = createSlice({
     ) => {
       state.schedule[`${action.payload.name}Period`] = action.payload.period;
     },
-    setSubjects: (state, action: PayloadAction<string[]>) => {
+    setSubjects: (state, action: PayloadAction<Subject[]>) => {
       state.subjects = action.payload;
     },
     setDefaultValues: (state) => {
@@ -238,16 +238,13 @@ export const selectRegisterData = (state: RootState) => ({
   password: state.createTutor.password,
   passwordConfirmation: state.createTutor.passwordConfirmation
 });
-
 export const selectFirstPeriod = (state: RootState) =>
   state.createTutor.schedule.firstPeriod;
 export const selectSecondPeriod = (state: RootState) =>
   state.createTutor.schedule.secondPeriod;
 export const selectThirdPeriod = (state: RootState) =>
   state.createTutor.schedule.thirdPeriod;
-
 export const selectSubjects = (state: RootState) => state.createTutor.subjects;
 export const selectLoading = (state: RootState) => state.createTutor.isLoading;
 export const selectError = (state: RootState) => state.createTutor.error;
-
 export default createTutorSlice.reducer;
