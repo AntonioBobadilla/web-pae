@@ -8,6 +8,7 @@ import SearchBar from '@/components/search-bar';
 import useFetch from '@/hooks/useFetch';
 import { stringify } from 'querystring';
 import SuccessAcceptTutee from '@/components/dialogs/accept-tutee';
+import Calendar from '@/components/dialogs/view-calendar-tutee';
 import DeniedTutee from '@/components/dialogs/denied-tutee';
 
 const Tutorings: NextPage = () => {
@@ -21,6 +22,10 @@ const Tutorings: NextPage = () => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [TuteeIdToDelete, setTuteeIdToDelete] = useState(0);
   const [pending, setPending] = useState(true);
+  const [ViewCalendar, setviewCalendar] = useState(false);
+  const [schedules, setSchedules] = useState([])
+  const [TutorName, setTutorName] = useState([])
+
   const removeDuplicates = (arr) => {
     return arr.filter((item,
       index) => arr.indexOf(item) === index);
@@ -35,8 +40,13 @@ const Tutorings: NextPage = () => {
     setsuccessAcceptTuteeVisible(true);
   };
 
+
   const onClickDeniedTutee = () => {
     setdeniedTuteeVisible(true);
+  };
+
+  const onClickViewCalendar = () => {
+    setviewCalendar(true);
   };
 
   const filterData = () => {
@@ -49,7 +59,6 @@ const Tutorings: NextPage = () => {
           setSolicitudesAsesores(solicitudesAsesores => [...solicitudesAsesores, item])
         }
       });
-      console.log(flag)
       setFlag(true)
     } 
   }
@@ -132,17 +141,23 @@ const Tutorings: NextPage = () => {
     .then(res => {
       if (!res.ok) { // error coming back from server
         throw Error('could not make POST request for that endpoint');
-      } 
+      } else if (res.status === 204) {
+        window.location.reload(false);
+      }
       return res.json();
-    })
-    .then(data => {
-      console.log('ok')
-      window.location.reload(false);
     })
     .catch(err => {
         console.log(err.message);
     })
     
+  }
+
+
+
+  const showCalendar = (schedules, name) => {
+    setSchedules(schedules)
+    setTutorName(name)
+    onClickViewCalendar()
   }
 
   const renderAsesores = () => {
@@ -162,7 +177,6 @@ const Tutorings: NextPage = () => {
               <th className={styles.head}>Materias de asesoría</th>
               <th className={styles.head}>Número de horas</th>
               <th className={styles.head}>Horarios</th>
-              <th className={styles.head}></th>
             </tr>
           </thead>
           <tbody>
@@ -189,10 +203,7 @@ const Tutorings: NextPage = () => {
             <p>{item.completed_hours}/80</p>
           </td>
           <td className={styles.td}>
-            <button className={styles.button}>Ver</button>
-          </td>
-          <td className={styles.td}>
-            <i className="bi bi-pencil"></i>
+            <button onClick={() => showCalendar(item.schedules,item.name)} className={styles.button}>Ver</button>
           </td>
         </tr>
           );
@@ -267,7 +278,7 @@ const Tutorings: NextPage = () => {
             }
               </td>
               <td className={styles.td}>
-                <button className={styles.button}>Ver</button>
+                <button onClick={() => showCalendar(item.schedules,item.name)}  className={styles.button}>Ver</button>
               </td>
               <td className={styles.td}>
                 <div className={styles.flex}>
@@ -350,6 +361,16 @@ const Tutorings: NextPage = () => {
               setConfirmDelete={setConfirmDelete}
             />
       )}
+
+      {ViewCalendar && (
+            <Calendar
+              visible={ViewCalendar}
+              setVisible={setviewCalendar}
+              schedules={schedules}
+              tutorName={TutorName}
+            />
+      )}
+
     </div>
 
   );
