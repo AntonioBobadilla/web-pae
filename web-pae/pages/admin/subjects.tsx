@@ -1,7 +1,6 @@
 import SubjectForm from '@/components/subject-form';
 import Tabs from '@/components/tabs';
 import React, { ReactElement, useEffect, useState } from 'react';
-import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
 
