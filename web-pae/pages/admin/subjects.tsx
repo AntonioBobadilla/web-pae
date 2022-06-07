@@ -68,7 +68,6 @@ const Subject = () => {
     console.log(subjectsCopy);
     let filteredArray = subjectsCopy.filter((subject) => {
       if (clave.toUpperCase === subject.code.includes(clave.toUpperCase)) {
-        subject.code.includes(clave.toUpperCase());
         console.log(subject.code);
       }
     });
