@@ -9,7 +9,7 @@ import styles from '../css/register.module.css';
 
 const Register: NextPage = () => {
   const router = useRouter();
-
+  console.log(router.asPath);
   const studentHandle = () => {
     router.push('/student/registration');
   };

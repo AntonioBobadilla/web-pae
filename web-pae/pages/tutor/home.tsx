@@ -27,7 +27,7 @@ Home.getLayout = function getLayout(page: ReactElement) {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['student-forgot-password']))
+      ...(await serverSideTranslations(locale, ['student-home']))
     }
   };
 }
