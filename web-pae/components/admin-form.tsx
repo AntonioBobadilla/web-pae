@@ -12,6 +12,14 @@ interface AdminFormData {
   passwordConfirmation: string;
 }
 
+const defaultValues = {
+  name: '',
+  email: '',
+  registrationNumber: '',
+  password: '',
+  passwordConfirmation: ''
+};
+
 const SubjectForm = () => {
   const [validUF, setValidUF] = useState(Boolean);
 
@@ -41,6 +49,8 @@ const SubjectForm = () => {
           throw Error('could not make PUT request for that endpoint');
         }
         isValid();
+        reset();
+
         return res.json();
       })
       .then((data) => {
@@ -54,10 +64,11 @@ const SubjectForm = () => {
 
   const {
     control,
+    reset,
     handleSubmit,
     getValues,
     formState: { errors }
-  } = useForm<AdminFormData>();
+  } = useForm<AdminFormData>({ defaultValues });
 
   const onSubmit = handleSubmit((data) => addAdmin(data));
 

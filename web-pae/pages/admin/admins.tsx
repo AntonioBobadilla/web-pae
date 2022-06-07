@@ -4,12 +4,17 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
 import cx from 'classnames';
+import DeleteQuestion from '@/components/dialogs/delete-admin';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
+  const [popUp, setPopUp] = useState(false);
+  const [data, setData] = useState([]);
+  const [pending, setPending] = useState(true);
 
   const AdminButton = () => {
     setCurrentTab('admins');
+    location.reload();
   };
 
   const AddAdminButton = () => {
@@ -18,7 +23,6 @@ const Subject = () => {
   useEffect(() => {
     setCurrentTab('admins');
   }, []);
-  const [data, setData] = useState([]);
 
   const getData = () => {
     fetch('http://server-pae.azurewebsites.net/administrator/')
@@ -26,6 +30,7 @@ const Subject = () => {
       .then(function (data) {
         //console.log(data)
         setData(data);
+        setPending(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -36,8 +41,38 @@ const Subject = () => {
     getData();
   }, []);
 
+  const modifyAdmin = () => {
+    setCurrentTab('modifyAdmin');
+    setData(admin);
+  };
+  const notVisiblePopUp = () => {
+    setPopUp(false);
+  };
+
+  const deleteQuestion = (id) => {
+    console.log(id);
+    fetch('http://server-pae.azurewebsites.net/administrator/' + id + '/', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make POST request for that endpoint');
+        } else if (res.status == 204) {
+          notVisiblePopUp();
+          getData();
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className={styles.main}>
+      {pending && <div>Cargando datos...</div>}
       <div className={styles.tabs}>
         <div className={styles.UfTab}>
           <Tabs
@@ -75,7 +110,6 @@ const Subject = () => {
                 </span>
                 <span className={styles.name}>Nombre</span>
                 <span className={styles.email}>Correo electrónico</span>
-                <span className={styles.edit}>Editar</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
               {data.map(function (item, index) {
@@ -96,8 +130,20 @@ const Subject = () => {
                     <span className={styles.clave}>{adminId}</span>
                     <span className={styles.name}>{adminName}</span>
                     <span className={styles.email}>{adminEmail()}</span>
-                    <i className={cx('bi bi-pencil-fill', styles.ed)}> </i>
-                    <i className={cx('bi bi-trash', styles.de)}> </i>
+                    <DeleteQuestion
+                      visible={popUp}
+                      setVisible={setPopUp}
+                      onClickFunction={() =>
+                        deleteQuestion(item.registration_number)
+                      }
+                      onClickCancel={notVisiblePopUp}
+                    ></DeleteQuestion>
+                    <i
+                      className={cx('bi bi-trash', styles.de)}
+                      onClick={() => deleteQuestion(item.registration_number)}
+                    >
+                      {' '}
+                    </i>
                   </div>
                 );
               })}
