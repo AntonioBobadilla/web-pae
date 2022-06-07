@@ -1,6 +1,9 @@
 import TutoringConfirmation from '@/components/tutoring/confirmation';
 import TutoringSubject from '@/components/tutoring/subject';
-import { getAvailableTutorings } from '@/redux/schedule-tutoring';
+import {
+  getAvailableTutorings,
+  reserveTutoring
+} from '@/redux/schedule-tutoring';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useState } from 'react';
@@ -92,6 +95,19 @@ const ScheduleTutoring: NextPage = () => {
     }
   };
 
+  const handleNextStepTutoringQuestion = async () => {
+    try {
+      const { status } = await dispatch(reserveTutoring()).unwrap();
+      if (status === 200 || status === 201 || status === 204) {
+        handleNextStep();
+      } else {
+        toast.error('No se pudo agendar la asesoría');
+      }
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
+
   const handleComponent = () => {
     // CREATE A COMPONENT FOR EACH STEP HERE, AND RETURN IT
     switch (step) {
@@ -100,7 +116,9 @@ const ScheduleTutoring: NextPage = () => {
       case AVAILABLE_TUTORINGS:
         return <AvailableTutorings handleNextStep={handleNextStep} />;
       case TOPIC:
-        return <TutoringQuestion handleNextStep={handleNextStep} />;
+        return (
+          <TutoringQuestion handleNextStep={handleNextStepTutoringQuestion} />
+        );
       case CONFIRMATION:
         return <TutoringConfirmation />;
       default:

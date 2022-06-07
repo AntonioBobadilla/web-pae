@@ -9,8 +9,9 @@ const DragAndDrop = ({ file }: { file: File }) => {
   const dispatch = useAppDispatch();
   const handleChange = (newFile: any) => {
     dispatch(setFile(newFile));
-    let text = document.querySelector('#text')
-    text.innerHTML = "<b>Archivo cargado: </b>"+file.name;
+    const text = document.querySelector('#text');
+    console.log(newFile.data);
+    text.innerHTML = `<b>Archivo cargado: </b>${newFile.name}`;
   };
   return (
     <div className={styles.wrapper}>
@@ -23,14 +24,13 @@ const DragAndDrop = ({ file }: { file: File }) => {
           maxSize={100000}
           value={file}
         >
-          <p className={styles.text}>
+          <p id="text" className={styles.text}>
             <b>Drag</b> a file here or <b>click</b> to select from your computer
           </p>
         </FileUploader>
       </div>
     </div>
   );
-
 };
 
 export default DragAndDrop;

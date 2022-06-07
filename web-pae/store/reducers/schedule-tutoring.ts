@@ -96,11 +96,11 @@ export const reserveTutoring = createAsyncThunk(
         date,
         hour,
         subject,
-        modalidad,
         title,
         content,
         file,
-        isOnline
+        isOnline,
+        selectedItem
       },
       user: { token, id }
     } = getState();
@@ -109,25 +109,28 @@ export const reserveTutoring = createAsyncThunk(
       fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+
+          Authorization: `Token ${token}`
         },
         body: JSON.stringify(data),
         cache: 'no-cache',
         credentials: 'same-origin'
         // mode: 'cors'
-      }).then((res) => res.json());
+      });
 
     return post(
       {
-        tutor,
+        tutor: `tutor${selectedItem.tutor}`,
         student: id,
         subject: subject.code,
         date,
-        hour,
-        is_online: isOnline,
+        hour: selectedItem.hour,
+        is_online: selectedItem.isOnline,
         topic: title,
         doubt: content,
-        file
+        // file, //TODO
+        place: 'Zoom'
       },
       'http://server-pae.azurewebsites.net/tutoring/'
     );
@@ -174,13 +177,7 @@ export const scheduleTutoringSlice = createSlice({
     },
 
     reset: (state) => {
-      state.subject = null;
-      state.tutor = null;
-      state.date = '';
-      state.time = null;
-      state.title = '';
-      state.content = '';
-      state.file = null;
+      state = initialState;
     }
   },
   extraReducers: (builder) => {
@@ -216,7 +213,13 @@ export const scheduleTutoringSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(reserveTutoring.fulfilled, (state, action) => {
-      state.isLoading = false;
+      const { status } = action.payload;
+
+      if (status === 200 || status === 201 || status === 204) {
+        state.isLoading = false;
+      } else {
+        state.isLoading = false;
+      }
     });
     builder.addCase(reserveTutoring.rejected, (state, action) => {
       state.isLoading = false;
@@ -256,5 +259,7 @@ export const selectFilteredMeetings = (state: RootState) =>
   state.scheduleTutoring.filteredMeetings;
 export const selectSelectedItem = (state: RootState) =>
   state.scheduleTutoring.selectedItem;
+export const selectIsLoading = (state: RootState) =>
+  state.scheduleTutoring.isLoading;
 
 export default scheduleTutoringSlice.reducer;
