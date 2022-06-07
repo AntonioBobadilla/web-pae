@@ -4,6 +4,7 @@ import type { RootState } from '../store';
 
 // Define a type for the slice state
 interface UserState {
+  id: string | null;
   name: string | null;
   email: string | null;
   token: string | null;
@@ -12,6 +13,7 @@ interface UserState {
 
 // Define the initial state using that type
 const initialState: UserState = {
+  id: null,
   name: 'Daniela Sánchez Hernández',
   email: 'dani@tec.mx',
   token: '',
@@ -23,6 +25,9 @@ export const userSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    setID: (state, action: PayloadAction<string>) => {
+      state.id = action.payload;
+    },
     setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },

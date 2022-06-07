@@ -55,7 +55,9 @@ const DailyBar = ({
           day={new Date(meeting.date).toLocaleDateString('es-MX', {
             weekday: 'long'
           })}
-          number={meeting.date.split('-')[2]}
+          number={new Date(meeting.date).toLocaleDateString('es-MX', {
+            day: 'numeric'
+          })}
           active={selectedDate === meeting.date}
           onClick={() => setSelectedDate(meeting.date)}
         />
