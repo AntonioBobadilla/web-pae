@@ -12,6 +12,8 @@ const Subject = () => {
   const [id, setId] = useState(null);
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  const [clave, setClave] = useState('');
+  const [nombre, setNombre] = useState('');
 
   const UFButton = () => {
     setCurrentTab('UF');
@@ -53,6 +55,33 @@ const Subject = () => {
     setPopUp(false);
   };
 
+  const handleChangeClave = (e) => {
+    setClave(e.target.value);
+    filterClave(e.target.value);
+  };
+  const handleChangeNombre = (e) => {
+    setNombre(e.target.value);
+    filterNombre(e.target.value);
+  };
+  const filterClave = (clave) => {
+    let subjectsCopy = [...data];
+    console.log(subjectsCopy);
+    let filteredArray = subjectsCopy.filter((subject) => {
+      if (clave.toUpperCase === subject.code.includes(clave.toUpperCase)) {
+        subject.code.includes(clave.toUpperCase());
+        console.log(subject.code);
+      }
+    });
+    console.log(filteredArray);
+  };
+  const filterNombre = (nombre) => {
+    let subjectsCopy = [...data];
+    console.log(subjectsCopy);
+    let filteredArray = subjectsCopy.filter((nombre) =>
+      nombre.code.includes(clave.toUpperCase())
+    );
+    console.log(filteredArray);
+  };
   const deleteSubject = () => {
     console.log(id);
     fetch('http://server-pae.azurewebsites.net/subject/' + id + '/', {
@@ -75,6 +104,8 @@ const Subject = () => {
   };
   return (
     <div className={styles.main}>
+      {nombre}
+      {clave}
       <div className={styles.search}>
         <div className={styles.searchtop}>
           <input
@@ -84,6 +115,7 @@ const Subject = () => {
             type="text"
             placeholder="CLAVE*"
             className={styles.inputclave}
+            onChange={handleChangeClave}
           ></input>
           <input
             style={{
@@ -92,10 +124,8 @@ const Subject = () => {
             type="text"
             placeholder="NOMBRE*"
             className={styles.inputnombre}
+            onChange={handleChangeNombre}
           ></input>
-        </div>
-        <div className={styles.searchbottom}>
-          <button className={styles.button}>Buscar</button>
         </div>
       </div>
       <div className={styles.tabs}>
