@@ -4,6 +4,11 @@
 	"email": "email",
 	"INSTITUTIONAL EMAIL": "CORREO INSTITUCIONAL",
 	"Recover password": "Recuperación de contraseña",
-	"Log": "Inicia sesión",
+	"Login": "Inicia sesión",
+    "LOG IN": "INICIAR SESIÓN",
+    "Forgot password": "Olvide mi contraseña",
+    "Dont have account": "¿No tienes cuenta?",
+    "Notice of privacy": "Aviso de privacidad",
+    "PASSWORD": "CONTRASEÑA",
 	"Sign up": "Registrarse"
 }

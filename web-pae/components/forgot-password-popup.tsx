@@ -6,7 +6,7 @@ import styles from '../css/components/forgot-password-popup.module.css';
 import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'; 
 
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
@@ -45,7 +45,7 @@ const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
           </span>
           <TextInput
             name="email"
-            placeholder="CORREO INSTITUCIONAL"
+            placeholder='INSTITUTIONAL EMAIL'
             control={control}
             error={errors.email}
             rules={{
@@ -64,20 +64,22 @@ const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
             disabled={!isDirty || isLoading}
             loading={isLoading}
           >
-            RECUPERAR CONTRASEÑA
+            {t('Recover password')}
           </ButtonTemplate>
         </div>
       </form>
       <div className={styles.links}>
         <Link href="/student/login" passHref>
-          <a>Login</a>
+          <a>{t('Login')}</a>
         </Link>
         <Link href="/student/register" passHref>
-          <a>Registro</a>
+          <a>{t('Sign up')}</a>
         </Link>
       </div>
     </Popup>
   );
 };
+
+
 
 export default ForgotPasswordPopup;
