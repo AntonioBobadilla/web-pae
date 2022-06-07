@@ -70,3 +70,14 @@
   .hora {
         font-weight: 300;
   }
+
+  .emptyMessage {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .button {
+    border:none;
+    background: transparent;
+  }
