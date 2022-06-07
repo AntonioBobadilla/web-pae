@@ -23,29 +23,6 @@ const Polls = () => {
   useEffect(() => {
     setCurrentTab('Results');
   }, []);
-
-  let questions = [
-    {
-      poll: 'Mi experiencia fue satisfactoria',
-      id: 'a1'
-    },
-    {
-      poll: 'Mi duda fue resuelta',
-      id: 'a2'
-    },
-    {
-      poll: 'El asesor estaba preparado para resolver mis dudas',
-      id: 'a3'
-    },
-    {
-      poll: 'Recomendaria el servicio de PAE',
-      id: 'a4'
-    },
-    {
-      poll: 'Recomendaria el servicio de PAE',
-      id: 'a5'
-    }
-  ];
   return (
     <div className={styles.main}>
       <div className={styles.tabs}>
