@@ -180,10 +180,12 @@ const SubjectForm = () => {
           }}
         />
       </div>
+      <div className={Styles.submitstyle}>
+        <button className={Styles.button} type="submit">
+          Agregar
+        </button>
+      </div>
 
-      <button className={Styles.button} type="submit">
-        Agregar
-      </button>
       <AdminAdded visible={validUF} setVisible={setValidUF}></AdminAdded>
     </form>
   );

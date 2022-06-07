@@ -23,8 +23,7 @@ const DeleteQuestion = ({
   >
     <div className={Styles.main}>
       <span className={Styles.text}>
-        ¿Esta seguro que quiere eliminar la pregunta? Una vez eliminada y/o
-        modificada el historial de encuestas se perderá
+        ¿Está seguro de que desea eliminar a este asesor?
       </span>
       <div className={Styles.buttons}>
         <button onClick={onClickCancel} className={Styles.cancel}>

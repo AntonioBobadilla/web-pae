@@ -16,7 +16,7 @@ const AdminAdded = ({ visible, setVisible }: props) => (
   >
     <div className={Styles.main}>
       <span className={Styles.text}>
-        El/La adminitrador fue añadido correctamente
+        El administrador fue añadido correctamente
       </span>
     </div>
   </ClosablePopup>

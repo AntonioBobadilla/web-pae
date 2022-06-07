@@ -4,17 +4,27 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
 import cx from 'classnames';
-import DeleteQuestion from '@/components/dialogs/delete-admin';
+import DeleteAdmin from '@/components/dialogs/delete-admin';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
   const [popUp, setPopUp] = useState(false);
+  const [id, setId] = useState(null);
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  let identifier = '';
 
   const AdminButton = () => {
     setCurrentTab('admins');
     location.reload();
+  };
+  const visiblePopUp = () => {
+    setPopUp(true);
+  };
+
+  const checkItemState = (idItem) => {
+    setId(idItem);
+    visiblePopUp();
   };
 
   const AddAdminButton = () => {
@@ -49,7 +59,7 @@ const Subject = () => {
     setPopUp(false);
   };
 
-  const deleteQuestion = (id) => {
+  const deleteQuestion = () => {
     console.log(id);
     fetch('http://server-pae.azurewebsites.net/administrator/' + id + '/', {
       method: 'DELETE',
@@ -72,7 +82,6 @@ const Subject = () => {
 
   return (
     <div className={styles.main}>
-      {pending && <div>Cargando datos...</div>}
       <div className={styles.tabs}>
         <div className={styles.UfTab}>
           <Tabs
@@ -91,12 +100,20 @@ const Subject = () => {
       </div>
 
       <div className={styles.ufContainer}>
+        {pending && <div className={styles.loading}>Cargando datos...</div>}
         <div
           className={
             currentTab == 'addAdmins' ? styles.addSubject : styles.hidden
           }
         >
-          <AdminForm></AdminForm>
+          <div className={styles.top}>
+            <span className={styles.description}>
+              Favor de llenar el formulario con los datos correspondientes
+            </span>
+          </div>
+          <div className={styles.bottom}>
+            <AdminForm></AdminForm>
+          </div>
         </div>
         <div
           className={currentTab == 'admins' ? styles.subjects : styles.hidden}
@@ -104,15 +121,16 @@ const Subject = () => {
           <div className={styles.down}>
             <div className={styles.tableRequest}>
               <div className={styles.headRow}>
-                <span className={styles.clave}>
-                  Matrícula/ <br />
-                  Nómina
-                </span>
+                <span className={styles.clave}>Matrícula/Nómina</span>
                 <span className={styles.name}>Nombre</span>
                 <span className={styles.email}>Correo electrónico</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
               {data.map(function (item, index) {
+                identifier =
+                  item.registration_number != null
+                    ? item.registration_number
+                    : 'no hay clave';
                 let adminId =
                   item.registration_number != null
                     ? item.registration_number
@@ -130,23 +148,19 @@ const Subject = () => {
                     <span className={styles.clave}>{adminId}</span>
                     <span className={styles.name}>{adminName}</span>
                     <span className={styles.email}>{adminEmail()}</span>
-                    <DeleteQuestion
-                      visible={popUp}
-                      setVisible={setPopUp}
-                      onClickFunction={() =>
-                        deleteQuestion(item.registration_number)
-                      }
-                      onClickCancel={notVisiblePopUp}
-                    ></DeleteQuestion>
                     <i
                       className={cx('bi bi-trash', styles.de)}
-                      onClick={() => deleteQuestion(item.registration_number)}
-                    >
-                      {' '}
-                    </i>
+                      onClick={() => checkItemState(item.registration_number)}
+                    ></i>
                   </div>
                 );
               })}
+              <DeleteAdmin
+                visible={popUp}
+                setVisible={setPopUp}
+                onClickFunction={() => deleteQuestion()}
+                onClickCancel={notVisiblePopUp}
+              ></DeleteAdmin>
             </div>
           </div>
         </div>
