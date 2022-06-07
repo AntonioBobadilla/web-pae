@@ -1,0 +1,46 @@
+.container {
+    width: 35vw;
+  }
+
+ .title {
+     margin-top: 30px;
+     margin-bottom: 50px;
+     font-weight: 400;
+ } 
+.wrapper {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+  
+  .button {
+    margin-top: 10px;
+    width: 45%;
+    height: 45px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 40px;
+  }
+  
+  @media screen and (max-width: 800px) {
+    .container {
+      width: 95vw;
+    }
+  
+    .button {
+      width: 60%;
+    }
+  }
