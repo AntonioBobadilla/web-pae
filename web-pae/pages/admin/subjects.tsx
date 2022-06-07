@@ -14,6 +14,8 @@ const Subject = () => {
   const [pending, setPending] = useState(true);
   const [clave, setClave] = useState('');
   const [nombre, setNombre] = useState('');
+  const [typing, setTyping] = useState(false);
+  const [filteredArray, setFilteredArray] = useState([]);
 
   const UFButton = () => {
     setCurrentTab('UF');
@@ -55,9 +57,61 @@ const Subject = () => {
     setPopUp(false);
   };
 
+  const conditionalRendering = () => {
+    if (!typing) {
+      return (
+        <>
+          {data.map(function (item, index) {
+            let subjectId = item.code != null ? item.code : 'no hay clave';
+            let subjectName = item.name != null ? item.name : 'no hay nombre';
+            console.log('entro2');
+            return (
+              <div key={index} className={styles.body}>
+                {console.log('entro3')}
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                ></i>
+              </div>
+            );
+          })}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {filteredArray.map(function (item, index) {
+            let subjectId = item.code != null ? item.code : 'no hay clave';
+            let subjectName = item.name != null ? item.name : 'no hay nombre';
+            console.log('entro2');
+            return (
+              <div key={index} className={styles.body}>
+                {console.log('entro3')}
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                ></i>
+              </div>
+            );
+          })}
+        </>
+      );
+    }
+  };
+
   const handleChangeClave = (e) => {
     setClave(e.target.value);
     filterClave(e.target.value);
+    if (e.target.value != null) {
+      setTyping(true);
+    } else {
+      setTyping(false);
+    }
+    conditionalRendering();
   };
   const handleChangeNombre = (e) => {
     setNombre(e.target.value);
@@ -66,18 +120,16 @@ const Subject = () => {
   const filterClave = (clave) => {
     let subjectsCopy = [...data];
     console.log(subjectsCopy);
-    let filteredArray = subjectsCopy.filter((subject) => {
-      if (clave.toUpperCase === subject.code.includes(clave.toUpperCase)) {
-        console.log(subject.code);
-      }
-    });
-    console.log(filteredArray);
+    let filteredArray = subjectsCopy.filter((subject) =>
+      subject.code.includes(clave.toUpperCase())
+    );
+    setFilteredArray(filteredArray);
   };
   const filterNombre = (nombre) => {
     let subjectsCopy = [...data];
     console.log(subjectsCopy);
     let filteredArray = subjectsCopy.filter((nombre) =>
-      nombre.code.includes(clave.toUpperCase())
+      subject.code.includes(clave.toUpperCase())
     );
     console.log(filteredArray);
   };
@@ -159,22 +211,7 @@ const Subject = () => {
                 <span className={styles.name}>Nombre</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
-              {data.map(function (item, index) {
-                let subjectId = item.code != null ? item.code : 'no hay clave';
-                let subjectName =
-                  item.name != null ? item.name : 'no hay nombre';
-
-                return (
-                  <div className={styles.body}>
-                    <span className={styles.clave}>{subjectId}</span>
-                    <span className={styles.name}>{subjectName}</span>
-                    <i
-                      className={cx('bi bi-trash', styles.de)}
-                      onClick={() => checkItemState(item.code)}
-                    ></i>
-                  </div>
-                );
-              })}
+              {conditionalRendering()}
               <DeleteAdmin
                 visible={popUp}
                 setVisible={setPopUp}
