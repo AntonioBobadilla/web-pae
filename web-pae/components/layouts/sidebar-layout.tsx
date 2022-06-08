@@ -119,5 +119,5 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
 };
 
 // ACTIVATE THIS CODE FOR AUTHENTICATION
-// export default withAuthentication(withRouter(SidebarLayout));
-export default withRouter(SidebarLayout);
+export default withAuthentication(withRouter(SidebarLayout));
+// export default withRouter(SidebarLayout);
