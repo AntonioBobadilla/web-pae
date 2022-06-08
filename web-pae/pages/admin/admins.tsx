@@ -12,7 +12,6 @@ const Subject = () => {
   const [id, setId] = useState(null);
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
-  let identifier = '';
 
   const AdminButton = () => {
     setCurrentTab('admins');
@@ -51,10 +50,6 @@ const Subject = () => {
     getData();
   }, []);
 
-  const modifyAdmin = () => {
-    setCurrentTab('modifyAdmin');
-    setData(admin);
-  };
   const notVisiblePopUp = () => {
     setPopUp(false);
   };
@@ -127,10 +122,6 @@ const Subject = () => {
                 <span className={styles.delete}>Eliminar</span>
               </div>
               {data.map(function (item, index) {
-                identifier =
-                  item.registration_number != null
-                    ? item.registration_number
-                    : 'no hay clave';
                 let adminId =
                   item.registration_number != null
                     ? item.registration_number
