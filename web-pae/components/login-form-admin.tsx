@@ -50,7 +50,7 @@ const LoginFormAdmin = ({
             token: responseData.token,
             name: responseData.user, // name: responseData.name,
             email: getValues('email'),
-            role: user
+            role: 'admin'
           })
         );
 
