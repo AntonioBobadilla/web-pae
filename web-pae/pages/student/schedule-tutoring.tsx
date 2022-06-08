@@ -1,8 +1,14 @@
 import TutoringConfirmation from '@/components/tutoring/confirmation';
 import TutoringSubject from '@/components/tutoring/subject';
+import {
+  getAvailableTutorings,
+  reserveTutoring
+} from '@/redux/schedule-tutoring';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAppDispatch } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import StepsStudent from '../../components/steps-student';
 import AvailableTutorings from '../../components/tutoring/available-tutorings';
@@ -23,6 +29,7 @@ const ScheduleTutoring: NextPage = () => {
     useState(false);
   const [isTopicComplete, setIsTopicComplete] = useState(false);
   const [isConfirmationComplete, setIsConfirmationComplete] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleSteps = (clickedStep: string | undefined | string[]) => {
     let newStep = step;
@@ -75,15 +82,43 @@ const ScheduleTutoring: NextPage = () => {
     }
   };
 
+  const handleNextStepSubject = async () => {
+    try {
+      const data = await dispatch(getAvailableTutorings()).unwrap();
+      if (data && data.length > 0) {
+        handleNextStep();
+      } else {
+        // toast.error(error);
+      }
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleNextStepTutoringQuestion = async () => {
+    try {
+      const { status } = await dispatch(reserveTutoring()).unwrap();
+      if (status === 200 || status === 201 || status === 204) {
+        handleNextStep();
+      } else {
+        toast.error('No se pudo agendar la asesoría');
+      }
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
+
   const handleComponent = () => {
     // CREATE A COMPONENT FOR EACH STEP HERE, AND RETURN IT
     switch (step) {
       case SUBJECT:
-        return <TutoringSubject handleNextStep={handleNextStep} />;
+        return <TutoringSubject handleNextStep={handleNextStepSubject} />;
       case AVAILABLE_TUTORINGS:
         return <AvailableTutorings handleNextStep={handleNextStep} />;
       case TOPIC:
-        return <TutoringQuestion handleNextStep={handleNextStep} />;
+        return (
+          <TutoringQuestion handleNextStep={handleNextStepTutoringQuestion} />
+        );
       case CONFIRMATION:
         return <TutoringConfirmation />;
       default:
@@ -93,6 +128,7 @@ const ScheduleTutoring: NextPage = () => {
 
   return (
     <div className={styles.container}>
+      <Toaster position="top-right" reverseOrder={false} />
       <StepsStudent
         isAvailableTutoringCompleted={isAvailableTutoringsComplete}
         isConfirmationCompleted={isConfirmationComplete}

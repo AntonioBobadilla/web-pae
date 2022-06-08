@@ -93,6 +93,7 @@ exports[`Schedule Tutoring renders tutor registration page unchanged 1`] = `
             />
             <p
               class="text"
+              id="text"
             >
               <b>
                 Drag

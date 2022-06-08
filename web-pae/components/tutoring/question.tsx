@@ -3,6 +3,7 @@ import { useAppSelector } from 'store/hook';
 import {
   selectContent,
   selectFile,
+  selectIsLoading,
   selectTitle
 } from 'store/reducers/schedule-tutoring';
 import ButtonTemplate from '../button-template';
@@ -17,6 +18,7 @@ const TutoringQuestion = ({
   const title = useAppSelector(selectTitle);
   const content = useAppSelector(selectContent);
   const file = useAppSelector(selectFile);
+  const isLoading = useAppSelector(selectIsLoading);
 
   const schedule = () => {
     handleNextStep();
@@ -35,7 +37,12 @@ const TutoringQuestion = ({
         <DragAndDrop file={file} />
       </div>
       <div className={qStyles.button}>
-        <ButtonTemplate variant="primary" onClick={schedule}>
+        <ButtonTemplate
+          variant="primary"
+          onClick={schedule}
+          loading={isLoading}
+          disabled={isLoading}
+        >
           Agendar Asesoría
         </ButtonTemplate>
       </div>

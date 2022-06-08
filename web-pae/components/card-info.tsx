@@ -13,6 +13,12 @@ const interpretation = (status: string) => {
       return 'Cancelado';
     case 'info': // cambiar por completada
       return 'Completada';
+    case 'PE':
+      return 'Pendiente';
+    case 'AP':
+      return 'Aprobada';
+    case 'CO':
+      return 'Completada';
     default:
       return 'Pendiente';
   }
@@ -33,17 +39,17 @@ const CardInfo = (props: {
     <div className={cardInfoStyles.box}>
       <div className={cardInfoStyles.dateSize}>
         <h1 className={cx('bi bi-alarm', cardInfoStyles.icon)}> </h1>
-        <span className={cardInfoStyles.caption}> {props.date} </span>
+        <span className={cardInfoStyles.caption}> {date} </span>
       </div>
 
       <div className={cardInfoStyles.subjectSize}>
         <h1 className={cx('bi bi-stack', cardInfoStyles.icon)}> </h1>
-        <span className={cardInfoStyles.caption}> {props.subject} </span>
+        <span className={cardInfoStyles.caption}> {subject} </span>
       </div>
 
       <div className={cardInfoStyles.studentSize}>
         <h1 className={cx('bi bi-person-circle', cardInfoStyles.icon)}> </h1>
-        <span className={cardInfoStyles.caption}> {props.student} </span>
+        <span className={cardInfoStyles.caption}> {student} </span>
       </div>
 
       <div className={cardInfoStyles.statusSize}>

@@ -2,6 +2,7 @@
   font-size: calc(0.75em + 1vmin);
   border-collapse: separate;
   border-spacing: 0px 5px;
+  width: 100%;
 }
 
 .dataTable .header {
@@ -60,7 +61,7 @@
   font-size: 0.9em;
   white-space: nowrap;
   border: 1.5px solid #dadada;
-  font-weight: bold;
+
   border-top-left-radius: 12px;
   border-right-color: #545454;
   border-right-width: 1.5px;
@@ -90,7 +91,6 @@
   font-size: 0.9em;
   white-space: nowrap;
   border: 1.5px solid #0277bd;
-  font-weight: bold;
   border-top-left-radius: 12px;
   border-left-color: #dadada;
   border-left-width: 1.5px;

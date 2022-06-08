@@ -1,38 +1,127 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
+import { AvailableTutoring, Meeting } from '@/components/data-table/types';
 import { Subject } from '@/components/search-bar';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
-
-interface Tutor {
-  id: string | null;
-  name: string | null;
-}
 
 interface ScheduleTutoringState {
   subject: Subject | null;
-  tutor: Tutor;
-  date: string | null;
+  tutor: string | null;
+  date: string;
   time: string | null;
+  hour: number | null;
+  isOnline: boolean;
   title: string;
   content: string;
   file: File | null;
   modalidad: string | null;
+  availableTutorings: Meeting[];
+  filteredMeetings: AvailableTutoring[];
+  isLoading: boolean;
+  selectedItem: AvailableTutoring;
 }
 
 // Define the initial state using that type
 const initialState: ScheduleTutoringState = {
   subject: null,
-  tutor: {
-    id: null,
-    name: null
-  },
-  date: '18 de Marzo',
-  time: '12:00 PM - 1:00 PM',
-  modalidad: 'Presencial',
+  tutor: '',
+  date: '',
+  time: '',
+  modalidad: '',
+  hour: null,
+  isOnline: false,
   title: '',
   content: '',
-  file: null
+  file: null,
+  availableTutorings: [],
+  filteredMeetings: [],
+  isLoading: false,
+  selectedItem: {
+    isOnline: false,
+    period: 0,
+    hour: 0,
+    tutor: ''
+  }
 };
+
+export const getAvailableTutorings = createAsyncThunk(
+  'schedule-tutoring/available-tutorings',
+  async (arg, thunkAPI) => {
+    const { getState } = thunkAPI;
+    const {
+      scheduleTutoring: { subject }
+    } = getState();
+
+    const date = new Date();
+
+    const post = (data: any, url: string) =>
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        cache: 'no-cache',
+        credentials: 'same-origin'
+        // mode: 'cors'
+      }).then((res) => res.json());
+
+    return post(
+      {
+        subject: subject.code,
+        initial_date_serializer: `${date.getFullYear()}-${
+          date.getMonth() + 1
+        }-${date.getDate() + 1}`,
+        final_date_serializer: `${date.getFullYear()}-${date.getMonth() + 1}-${
+          date.getDate() + 15
+        }`
+      },
+      'http://server-pae.azurewebsites.net/availabletutoring/'
+    );
+  }
+);
+
+export const reserveTutoring = createAsyncThunk(
+  'schedule-tutoring/reserve-tutoring',
+  async (arg, thunkAPI) => {
+    const { getState } = thunkAPI;
+    const {
+      scheduleTutoring: { date, subject, title, content, file, selectedItem },
+      user: { token, id }
+    } = getState();
+
+    const post = (data: any, url: string) =>
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+
+          Authorization: `Token ${token}`
+        },
+        body: JSON.stringify(data),
+        cache: 'no-cache',
+        credentials: 'same-origin'
+        // mode: 'cors'
+      });
+
+    return post(
+      {
+        tutor_id: selectedItem.tutor,
+        student: id,
+        subject_id: subject.code,
+        date,
+        hour: selectedItem.hour,
+        is_online: selectedItem.isOnline,
+        topic: title,
+        doubt: content,
+        // file, //TODO
+        place: 'Zoom'
+      },
+      'http://server-pae.azurewebsites.net/tutoring/'
+    );
+  }
+);
 
 export const scheduleTutoringSlice = createSlice({
   name: 'scheduleTutoring',
@@ -42,7 +131,7 @@ export const scheduleTutoringSlice = createSlice({
     setSubject: (state, action: PayloadAction<Subject>) => {
       state.subject = action.payload;
     },
-    setTutor: (state, action: PayloadAction<Tutor>) => {
+    setTutor: (state, action: PayloadAction<string>) => {
       state.tutor = action.payload;
     },
     setDate: (state, action: PayloadAction<string>) => {
@@ -63,18 +152,82 @@ export const scheduleTutoringSlice = createSlice({
     setModalidad: (state, action: PayloadAction<string>) => {
       state.modalidad = action.payload;
     },
+    setFilteredMeetings: (
+      state,
+      action: PayloadAction<AvailableTutoring[]>
+    ) => {
+      state.filteredMeetings = action.payload;
+    },
+    setSelectedItem: (state, action: PayloadAction<AvailableTutoring>) => {
+      state.selectedItem = action.payload;
+    },
+
     reset: (state) => {
       state.subject = null;
-      state.tutor = {
-        id: null,
-        name: null
-      };
-      state.date = null;
-      state.time = null;
+      state.tutor = '';
+      state.date = '';
+      state.time = '';
+      state.hour = null;
+      state.isOnline = false;
       state.title = '';
       state.content = '';
       state.file = null;
+      state.modalidad = '';
+      state.availableTutorings = [];
+      state.filteredMeetings = [];
+      state.isLoading = false;
+      state.selectedItem = {
+        isOnline: false,
+        period: 0,
+        hour: 0,
+        tutor: ''
+      };
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getAvailableTutorings.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getAvailableTutorings.fulfilled, (state, action) => {
+      // const { status } = action.payload;
+      state.isLoading = false;
+      if (action.payload && action.payload.length > 0) {
+        state.availableTutorings = action.payload;
+      } else {
+        state.availableTutorings = [];
+      }
+      // console.log(status, action.payload);
+      // const response = action.payload;
+      // if (status === 200 || status === 201 || status === 204) {
+      //   // response.json().then((data) => {
+      //   //   state.availableTutorings = data;
+      //   state.availableTutorings = response.json();
+      //   state.isLoading = false;
+      //   // });
+      // } else {
+      //   state.isLoading = false;
+      // }
+    });
+    builder.addCase(getAvailableTutorings.rejected, (state) => {
+      state.availableTutorings = [];
+      state.isLoading = false;
+    });
+
+    builder.addCase(reserveTutoring.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(reserveTutoring.fulfilled, (state, action) => {
+      const { status } = action.payload;
+
+      if (status === 200 || status === 201 || status === 204) {
+        state.isLoading = false;
+      } else {
+        state.isLoading = false;
+      }
+    });
+    builder.addCase(reserveTutoring.rejected, (state) => {
+      state.isLoading = false;
+    });
   }
 });
 
@@ -86,7 +239,10 @@ export const {
   setContent,
   setTitle,
   setFile,
-  setModalidad
+  setModalidad,
+  reset,
+  setFilteredMeetings,
+  setSelectedItem
 } = scheduleTutoringSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
@@ -101,5 +257,13 @@ export const selectContent = (state: RootState) =>
 export const selectFile = (state: RootState) => state.scheduleTutoring.file;
 export const selectModalidad = (state: RootState) =>
   state.scheduleTutoring.modalidad;
+export const selectAvailableTutorings = (state: RootState) =>
+  state.scheduleTutoring.availableTutorings;
+export const selectFilteredMeetings = (state: RootState) =>
+  state.scheduleTutoring.filteredMeetings;
+export const selectSelectedItem = (state: RootState) =>
+  state.scheduleTutoring.selectedItem;
+export const selectIsLoading = (state: RootState) =>
+  state.scheduleTutoring.isLoading;
 
 export default scheduleTutoringSlice.reducer;

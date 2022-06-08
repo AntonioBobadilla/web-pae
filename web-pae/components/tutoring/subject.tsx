@@ -13,6 +13,7 @@ const TutoringSubject = ({
 }) => {
   const subject = useAppSelector(selectSubject);
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector((state) => state.scheduleTutoring.isLoading);
   // const [valuesSelected, changeValues] = useState<Subject[]>([]);
   const [subjectsFromApi, setSubjectsFromApi] = useState([]);
 
@@ -49,7 +50,11 @@ const TutoringSubject = ({
         <h2 className={styles.title}>Materia escogida</h2>
         <div className={styles.values}>
           {subject && (
-            <p key={subject.code} id={subject.code} className={styles.element}>
+            <div
+              key={subject.code}
+              id={subject.code}
+              className={styles.element}
+            >
               {subject.code} {subject.name}
               <button
                 id={subject.code}
@@ -59,15 +64,16 @@ const TutoringSubject = ({
               >
                 <i className="bi bi-trash3" />
               </button>
-            </p>
+            </div>
           )}
         </div>
       </div>
       <div className={styles.continueButton}>
         <ButtonTemplate
           variant="primary"
-          disabled={!subject}
+          disabled={!subject || isLoading}
           onClick={handleNextStep}
+          loading={isLoading}
         >
           BUSCAR ASESORÍAS
         </ButtonTemplate>

@@ -48,10 +48,10 @@ const LoginForm = ({
       if (status === 200 || status === 201 || status === 204) {
         // toast success
         toast.success(responseData.message);
-
         // set user data
         dispatch(
           setLoginData({
+            id: `${getValues('email').split('@')[0]}`,
             token: responseData.token,
             name: responseData.user, // name: responseData.name,
             email: getValues('email'),
