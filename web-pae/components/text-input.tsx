@@ -10,7 +10,8 @@ import {
 } from 'react-hook-form';
 import TextInputStyles from '../css/components/textInput.module.css';
 
-interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface TextInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   error: FieldError | undefined;
   control: Control<any>;
