@@ -51,7 +51,7 @@ const LoginForm = ({
         // set user data
         dispatch(
           setLoginData({
-            id: `user${getValues('email').split('@')[0]}`,
+            id: `${getValues('email').split('@')[0]}`,
             token: responseData.token,
             name: responseData.user, // name: responseData.name,
             email: getValues('email'),

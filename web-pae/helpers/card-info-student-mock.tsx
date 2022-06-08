@@ -1,6 +1,6 @@
-import { HistoryStu } from '../components/card-info-student/types';
+import { Tutoring } from '../components/card-info-student/types';
 
-const historystu: HistoryStu[] = [
+const historystu: Tutoring[] = [
   {
     date: 'Viernes 27 de Mayo - 9:00 AM - 10:00 AM',
     subject: 'Programación Orientada a Objetos',

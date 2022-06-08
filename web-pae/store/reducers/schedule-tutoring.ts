@@ -1,13 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
 import { AvailableTutoring, Meeting } from '@/components/data-table/types';
 import { Subject } from '@/components/search-bar';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
-
-interface Tutor {
-  id: string | null;
-  name: string | null;
-}
 
 interface ScheduleTutoringState {
   subject: Subject | null;
@@ -91,17 +87,7 @@ export const reserveTutoring = createAsyncThunk(
   async (arg, thunkAPI) => {
     const { getState } = thunkAPI;
     const {
-      scheduleTutoring: {
-        tutor,
-        date,
-        hour,
-        subject,
-        title,
-        content,
-        file,
-        isOnline,
-        selectedItem
-      },
+      scheduleTutoring: { date, subject, title, content, file, selectedItem },
       user: { token, id }
     } = getState();
 
@@ -121,9 +107,9 @@ export const reserveTutoring = createAsyncThunk(
 
     return post(
       {
-        tutor: `tutor${selectedItem.tutor}`,
+        tutor_id: selectedItem.tutor,
         student: id,
-        subject: subject.code,
+        subject_id: subject.code,
         date,
         hour: selectedItem.hour,
         is_online: selectedItem.isOnline,
@@ -177,7 +163,25 @@ export const scheduleTutoringSlice = createSlice({
     },
 
     reset: (state) => {
-      state = initialState;
+      state.subject = null;
+      state.tutor = '';
+      state.date = '';
+      state.time = '';
+      state.hour = null;
+      state.isOnline = false;
+      state.title = '';
+      state.content = '';
+      state.file = null;
+      state.modalidad = '';
+      state.availableTutorings = [];
+      state.filteredMeetings = [];
+      state.isLoading = false;
+      state.selectedItem = {
+        isOnline: false,
+        period: 0,
+        hour: 0,
+        tutor: ''
+      };
     }
   },
   extraReducers: (builder) => {
@@ -204,7 +208,7 @@ export const scheduleTutoringSlice = createSlice({
       //   state.isLoading = false;
       // }
     });
-    builder.addCase(getAvailableTutorings.rejected, (state, action) => {
+    builder.addCase(getAvailableTutorings.rejected, (state) => {
       state.availableTutorings = [];
       state.isLoading = false;
     });
@@ -221,7 +225,7 @@ export const scheduleTutoringSlice = createSlice({
         state.isLoading = false;
       }
     });
-    builder.addCase(reserveTutoring.rejected, (state, action) => {
+    builder.addCase(reserveTutoring.rejected, (state) => {
       state.isLoading = false;
     });
   }
