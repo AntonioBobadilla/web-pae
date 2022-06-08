@@ -212,9 +212,9 @@
   width: 30%;
   height: 50%;
 }
-.inputclave {
+.inputID {
   border: none;
-  width: 35%;
+  width: 45%;
   height: 70%;
   border-radius: 5px;
   color: #7c7c7c;
@@ -223,7 +223,8 @@
   font-size: 14px;
   padding-left: 15px;
 }
-.inputnombre {
+
+.inputName {
   border: none;
   width: 65%;
   height: 70%;
