@@ -4,6 +4,7 @@ import { useAppSelector } from 'store/hook';
 import { selectRegisterData } from 'store/reducers/create-tutor';
 import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
+import Password from './password';
 import TextInput from './text-input';
 
 interface RegisterFormProps {
@@ -93,22 +94,15 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
           }}
         />
       </div>
+
       <div className={styles.input}>
-        <TextInput
+        <Password
           name="password"
-          type="password"
-          placeholder="CONTRASEÑA*"
           control={control}
           error={errors.password}
           rules={{
             required: 'Contraseña requerida',
-            minLength: { value: 8, message: 'Contraseña muy corta' },
-            pattern: {
-              value:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
-              message:
-                'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
-            }
+            minLength: { value: 8, message: 'Contraseña muy corta' }
           }}
         />
       </div>

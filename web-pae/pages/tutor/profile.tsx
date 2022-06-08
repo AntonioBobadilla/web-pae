@@ -1,7 +1,7 @@
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ModifySubjects from '@/components/dialogs/modify-subjects';
-import ProgressBarHours from '@/components/progress-bar-hours';
+import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
