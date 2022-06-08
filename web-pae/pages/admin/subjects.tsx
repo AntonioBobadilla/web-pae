@@ -5,19 +5,20 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
 import DeleteAdmin from '@/components/dialogs/delete-subject';
+import { Subject } from '@/components/search-bar';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
   const [popUp, setPopUp] = useState(false);
   const [id, setId] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Subject[]>([]);
   const [pending, setPending] = useState(true);
   const [clave, setClave] = useState('');
   const [nombre, setNombre] = useState('');
   const [typing, setTyping] = useState(false);
   const [typingName, setTypingName] = useState(false);
-  const [filteredArray, setFilteredArray] = useState([]);
-  const [filteredArrayName, setFilteredArrayName] = useState([]);
+  const [filteredArray, setFilteredArray] = useState<Subject[]>([]);
+  const [filteredArrayName, setFilteredArrayName] = useState<Subject[]>([]);
   const [editable, setEditable] = useState(true);
   const [editableName, setEditableName] = useState(true);
 
@@ -31,7 +32,7 @@ const Subject = () => {
   const visiblePopUp = () => {
     setPopUp(true);
   };
-  const checkItemState = (idItem) => {
+  const checkItemState = (idItem: React.SetStateAction<any>) => {
     setId(idItem);
     visiblePopUp();
   };
@@ -152,7 +153,9 @@ const Subject = () => {
     }
     conditionalRendering();
   };
-  const handleChangeNombre = (e) => {
+  const handleChangeNombre = (e: {
+    target: { value: React.SetStateAction<any> };
+  }) => {
     setNombre(e.target.value);
     filterNombre(e.target.value);
     if (e.target.value != '') {
@@ -164,7 +167,7 @@ const Subject = () => {
     }
     conditionalRendering();
   };
-  const filterClave = (clave) => {
+  const filterClave = (clave: string) => {
     let subjectsCopy = [...data];
     console.log(subjectsCopy);
     let filteredArray = subjectsCopy.filter((subject) =>
@@ -172,7 +175,7 @@ const Subject = () => {
     );
     setFilteredArray(filteredArray);
   };
-  const filterNombre = (nombre) => {
+  const filterNombre = (nombre: string) => {
     let subjectsCopy = [...data];
     console.log(subjectsCopy);
     let filteredArrayName = subjectsCopy.filter((subject) =>
