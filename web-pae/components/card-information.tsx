@@ -1,3 +1,4 @@
+import createDate from '@/helpers/create-date';
 import formatDate from 'helpers/format-date';
 import React from 'react';
 import { useAppSelector } from 'store/hook';
@@ -17,8 +18,16 @@ const CardInformation = () => {
       .then((res) => res.json())
       .then((data) => {
         const newData = [...data];
-        newData.sort(
-          (a, b) => createDate(b.date, b.hour) - createDate(a.date, a.hour)
+        newData.sort( 
+          (a, b) => {
+            if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+              return -1;
+            }
+            if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+              return 1;
+            }
+            return 0;
+          }
         );
         setHistory(newData);
       })
