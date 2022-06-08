@@ -36,7 +36,7 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
       >
         <img
           class="image"
-          src="/images/request.jpg"
+          src="/images/tutoring-request.jpg"
         />
         <p
           class="description"
@@ -57,28 +57,7 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
       >
         <img
           class="image"
-          src="/images/tutor-login-image.jpg"
-        />
-        <p
-          class="description"
-        >
-           
-          Administrar unidades de formación
-           
-        </p>
-      </div>
-    </div>
-    <div
-      class="card"
-    >
-      <div
-        class="box"
-        href="/admin/tutorings"
-        role="button"
-      >
-        <img
-          class="image"
-          src="/images/tutor-login-image.jpg"
+          src="/images/back.jpeg"
         />
         <p
           class="description"
@@ -99,7 +78,28 @@ exports[`Admin Home renders admin home page unchanged 1`] = `
       >
         <img
           class="image"
-          src="/images/tutor-login-image.jpg"
+          src="/images/adminUF.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Administrar unidades de formación
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutorings"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/survey.jpeg"
         />
         <p
           class="description"

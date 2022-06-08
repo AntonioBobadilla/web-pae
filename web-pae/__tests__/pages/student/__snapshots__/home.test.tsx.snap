@@ -15,7 +15,7 @@ exports[`Student Home renders Student home page unchanged 1`] = `
       >
         <img
           class="image"
-          src="/images/student-login-image.jpg"
+          src="/images/profile.jpg"
         />
         <p
           class="description"
@@ -36,7 +36,7 @@ exports[`Student Home renders Student home page unchanged 1`] = `
       >
         <img
           class="image"
-          src="/images/tutor-login-image.jpg"
+          src="/images/tutoring-request.jpg"
         />
         <p
           class="description"

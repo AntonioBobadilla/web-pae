@@ -15,15 +15,21 @@ const Home = () => (
 
     <div className={styles.card}>
       <ImageCard
-        image="/images/request.jpg"
+        image="/images/tutoring-request.jpg"
         description="Solicitudes de asesoría"
         path="/admin/tutorings"
       />
     </div>
-
     <div className={styles.card}>
       <ImageCard
-        image="/images/tutor-login-image.jpg"
+        image="/images/back.jpeg"
+        description="Historial de asesorías"
+        path="/admin/tutorings"
+      />
+    </div>
+    <div className={styles.card}>
+      <ImageCard
+        image="/images/adminUF.jpg"
         description="Administrar unidades de formación"
         path="/admin/tutorings"
       />
@@ -31,15 +37,7 @@ const Home = () => (
 
     <div className={styles.card}>
       <ImageCard
-        image="/images/tutor-login-image.jpg"
-        description="Historial de asesorías"
-        path="/admin/tutorings"
-      />
-    </div>
-
-    <div className={styles.card}>
-      <ImageCard
-        image="/images/tutor-login-image.jpg"
+        image="/images/survey.jpeg"
         description="Encuestas"
         path="/admin/tutorings"
       />
