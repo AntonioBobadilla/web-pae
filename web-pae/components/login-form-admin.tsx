@@ -44,9 +44,9 @@ const LoginFormAdmin = ({
         // toast success
         toast.success(responseData.message);
 
-        // set user data
         dispatch(
           setLoginData({
+            id: `${getValues('email').split('@')[0]}`,
             token: responseData.token,
             name: responseData.user, // name: responseData.name,
             email: getValues('email'),
