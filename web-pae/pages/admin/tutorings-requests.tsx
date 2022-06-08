@@ -55,10 +55,9 @@ const Tutorings: NextPage = () => {
   };
   // función que realizara el update del tutor basado en el indice guardado en objectToModify
   const updateAsesor = () => {
-    let online = NewModalidad == "En línea" ? true : false
-    if (objectToModify == 0)
-      return;
-    fetch('http://server-pae.azurewebsites.net/changetutoringlocation/'+objectToModify, {
+      if (newAsesor == '')
+        return; 
+    /*fetch('http://server-pae.azurewebsites.net/changetutoringlocation/'+newAsesor, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -78,13 +77,40 @@ const Tutorings: NextPage = () => {
     })
     .catch(err => {
         console.log(err.message);
-    })
-    console.log('actualizando tutor....' )
+    })*/
+    console.log('actualizando tutor.... desde func' )
   }
 
+    // función que realizara el update del tutor basado en el indice guardado en objectToModify
+    const updatemodalidad = () => {
+      let online = NewModalidad == "En línea" ? true : false
+      if (objectToModify == 0)
+        return;
+      fetch('http://server-pae.azurewebsites.net/changetutoringlocation/'+objectToModify, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "is_online": online,
+          "place": newPlace
+      }) // agregar json de update
+    })
+      .then(res => {
+        if (!res.ok) { // error coming back from server
+          throw Error('could not make PUT request for that endpoint');
+        } 
+        return res.json();
+      })
+      .then(data => {
+        console.log('ok')
+        window.location.reload(false);
+      })
+      .catch(err => {
+          console.log(err.message);
+      })
+    }
+
   const updateModalidad = () => {
-    updateAsesor();
-    
+    updatemodalidad();
   }
 
   useEffect(() => {
@@ -113,7 +139,6 @@ const Tutorings: NextPage = () => {
 // en esta funcion  vamos a recibir el indice del objeto del arreglo de objetos traidos por api
 // para así al actualizar ese objeto nos basemos en su indice para saber qué objeto actualizar
   const EditAsesor = (idOfObject) => {
-    console.log("id a borrar: ", idOfObject)
     setObjectToModify(idOfObject) // ese es el indice que guardaremos
     onClickEditAsesor();
   }
@@ -123,7 +148,7 @@ const Tutorings: NextPage = () => {
       method: 'DELETE',
       headers: {
          'Content-Type': 'application/json',
-         'Authorization':'Token 3f6644657308b2808a9b2870d21dbb47c88bef8e'
+         'Authorization':'Token 5a752191e75533eaee3cfa008463ada6f343aea8'
       }
   })
     .then(res => {
