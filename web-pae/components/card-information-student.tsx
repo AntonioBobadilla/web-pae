@@ -1,4 +1,5 @@
-import formatTime from '@/helpers/format-time';
+import createDate from '@/helpers/create-date';
+import formatDate from '@/helpers/format-date';
 import React from 'react';
 import { useAppSelector } from 'store/hook';
 import { selectID } from 'store/reducers/user';
@@ -16,7 +17,9 @@ const CardInformationStu = () => {
       .then((res) => res.json())
       .then((data) => {
         const newData = [...data];
-        newData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        newData.sort(
+          (a, b) => createDate(b.date, b.hour) - createDate(a.date, a.hour)
+        );
         setHistoryStu(newData);
       });
   }, []);
@@ -25,15 +28,7 @@ const CardInformationStu = () => {
     <>
       {historystu.map((history) => (
         <CardInfoStu
-          date={`${new Date(
-            `${history.date}T${history.hour < 10 ? 0 : ''}${history.hour}:00`
-          ).toLocaleDateString('es-MX', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            timeZone: 'UTC'
-          })} ${formatTime(history.hour)}`}
+          date={formatDate(history.date)}
           subject={history.subject === null ? '-' : history.subject.name}
           topic={history.topic}
           location={history.place}
