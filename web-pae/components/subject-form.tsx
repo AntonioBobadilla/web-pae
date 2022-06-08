@@ -23,15 +23,14 @@ const SubjectForm = () => {
       })
     })
       .then((res) => {
-        if (!res.ok) {
-          // error coming back from server
-          throw Error('could not make PUT request for that endpoint');
-        }
-        isValid();
         return res.json();
       })
       .then((data) => {
-        console.log('ok');
+        if (data.code.length < 1) {
+          isValid();
+        }
+        console.log(data.code[0]);
+        //TODO: add toast
       })
       .catch((err) => {
         console.log(err);
