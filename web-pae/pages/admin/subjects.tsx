@@ -74,7 +74,7 @@ const Subject = () => {
           })}
         </>
       );
-    } else if (typing) {
+    } else if (typing && !typingName) {
       return (
         <>
           {filteredArray.map(function (item, index) {
@@ -93,7 +93,7 @@ const Subject = () => {
           })}
         </>
       );
-    } else if (typingName) {
+    } else if (typingName && !typing) {
       return (
         <>
           {filteredArrayName.map(function (item, index) {
@@ -113,7 +113,12 @@ const Subject = () => {
         </>
       );
     } else {
-      return <p>Hola</p>;
+      return (
+        <span className={styles.error}>
+          *No es posible realizar esta búsqueda, por favor intenta buscar la
+          Unidad de Formación solamente por clave o solamente por nombre*
+        </span>
+      );
     }
   };
 
@@ -175,28 +180,32 @@ const Subject = () => {
   };
   return (
     <div className={styles.main}>
-      {clave}
-      {nombre}
-      <div className={styles.search}>
-        <div className={styles.searchtop}>
-          <input
-            style={{
-              backgroundColor: '#F1F1F1'
-            }}
-            type="text"
-            placeholder="CLAVE*"
-            className={styles.inputclave}
-            onChange={handleChangeClave}
-          ></input>
-          <input
-            style={{
-              backgroundColor: '#F1F1F1'
-            }}
-            type="text"
-            placeholder="NOMBRE*"
-            className={styles.inputnombre}
-            onChange={handleChangeNombre}
-          ></input>
+      <div className={currentTab == 'UF' ? styles.search : styles.hidden}>
+        <div className={styles.searchBar}>
+          <span className={styles.loading}>
+            {' '}
+            <strong>Buscar</strong>
+          </span>{' '}
+          <div className={styles.searchtop}>
+            <input
+              style={{
+                backgroundColor: '#F1F1F1'
+              }}
+              type="text"
+              placeholder="CLAVE*"
+              className={styles.inputclave}
+              onChange={handleChangeClave}
+            ></input>
+            <input
+              style={{
+                backgroundColor: '#F1F1F1'
+              }}
+              type="text"
+              placeholder="NOMBRE*"
+              className={styles.inputnombre}
+              onChange={handleChangeNombre}
+            ></input>
+          </div>
         </div>
       </div>
       <div className={styles.tabs}>

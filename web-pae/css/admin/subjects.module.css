@@ -33,6 +33,10 @@
   width: 30%;
   height: 100%;
 }
+.error {
+  color: red;
+  font-size: 500;
+}
 .addSubject {
   width: 60%;
   height: 80%;
@@ -174,6 +178,14 @@
   display: flex;
   flex-direction: row;
 }
+.searchBar {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  justify-content: left;
+}
 .search {
   width: 100%;
   height: 15vh;
@@ -183,7 +195,6 @@
   justify-content: left;
   padding-left: 9.5vw;
   padding-right: 9.5vw;
-  background-color: yellowgreen;
 }
 .searchtop {
   display: flex;
