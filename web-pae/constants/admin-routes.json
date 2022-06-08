@@ -1,0 +1,35 @@
+{
+  "routes": [
+    {
+      "path": "/admin/home",
+      "icon": "house-door",
+      "title": "Dashboard"
+    },
+    {
+      "path": "/admin/tutors",
+      "icon": "people",
+      "title": "Asesores PAE"
+    },
+    {
+      "path": "/admin/tutorings",
+      "icon": "clipboard-check",
+      "title": "Solicitudes de asesorías"
+    },
+    {
+      "path": "/admin/subjects",
+      "icon": "pencil-square",
+      "title": "Administrar materias"
+    },
+    {
+      "path": "/admin/tutorings-history",
+      "icon": "clock-history",
+      "title": "Historial de asesorías"
+    },
+    {
+      "path": "/admin/polls",
+      "icon": "clipboard-data",
+      "title": "Encuestas"
+    }
+  ],
+  "exit": "/admin/login/"
+}

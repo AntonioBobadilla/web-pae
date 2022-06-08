@@ -1,0 +1,59 @@
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2vh;
+  padding-bottom: 2vh;
+}
+
+.question {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-weight: 500;
+  font-size: 1.2vw;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  margin-left: 1vw;
+}
+
+.form {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 5%;
+  padding-left: 4%;
+}
+
+.rButton {
+  width: 1.5vw;
+  height: 1.5vw;
+  accent-color: #039be5;
+}
+
+@media screen and (max-width: 800px) {
+  .question {
+    font-size: 1.5vh;
+  }
+  .rButton {
+    width: 1.5vh;
+    height: 1.5vh;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .question {
+    font-size: 2.5vh;
+  }
+  .rButton {
+    width: 2.5vh;
+    height: 2.5vh;
+  }
+}

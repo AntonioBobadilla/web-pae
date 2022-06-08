@@ -1,0 +1,43 @@
+.dailyBar {
+  width: 100%;
+  height: 65px;
+  background-color: rgba(241, 241, 241, 0.5);
+  border-radius: 12px;
+}
+
+.arrowButton {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: #545454;
+  border: none;
+  margin-top: 5px;
+}
+
+.arrowButton:hover {
+  cursor: pointer;
+  color: #039be5;
+}
+
+.edge {
+  color: rgba(63, 59, 59, 0.4);
+}
+
+.edge:hover {
+  cursor: auto;
+  pointer-events: none;
+  color: rgba(63, 59, 59, 0.4);
+}
+
+.carrousel {
+  background-color: red;
+}
+
+@media screen and (max-width: 920px) {
+  .dailyBar {
+    height: 45px;
+  }
+  .arrowButton {
+    font-size: 5vw;
+  }
+}

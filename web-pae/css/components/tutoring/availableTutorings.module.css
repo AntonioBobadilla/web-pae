@@ -1,0 +1,104 @@
+.page {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+}
+
+.dailybar {
+  width: 65%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: rgba(84, 84, 84, 0.4) solid 1px;
+  border-radius: 10px;
+}
+.container {
+  height: 45vh;
+  width: 30vh;
+  display: flex;
+  left: 50%;
+}
+
+.bottom {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.top {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #3f3b3b;
+  margin-left: 1vw;
+}
+
+.date {
+  font-size: 15px;
+  font-weight: 500;
+  color: #3f3b3b;
+  margin-bottom: 3vh;
+  text-transform: capitalize;
+}
+
+.left {
+  height: 100%;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  margin-left: 1vw;
+}
+
+.leftTop {
+  height: 18%;
+  width: 100%;
+  margin-bottom: 5vh;
+}
+
+.leftBottom {
+  height: 82%;
+  width: 100%;
+}
+
+.right {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 920px) {
+  .page {
+    width: 100%;
+  }
+  .bottom {
+    flex-direction: column;
+  }
+
+  .leftTop {
+    width: 10vh;
+  }
+  .container {
+    height: 30vh;
+    width: 100%;
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .right {
+    justify-content: left;
+    width: 100%;
+  }
+  .dailybar {
+    width: 100%;
+  }
+}
