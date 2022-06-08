@@ -1,4 +1,4 @@
-import formatDate from '@/helpers/format-date';
+import formatDate from 'helpers/format-date';
 import React from 'react';
 import { useAppSelector } from 'store/hook';
 import { selectID } from 'store/reducers/user';
