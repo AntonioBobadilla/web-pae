@@ -1,3 +1,4 @@
+import formatDate from '@/helpers/format-date';
 import formatTime from '@/helpers/format-time';
 import {
   selectAvailableTutorings,
@@ -110,14 +111,7 @@ const AvailableTutorings = ({
       <div className={AvailableStyles.bottom}>
         {date !== '' && (
           <div className={AvailableStyles.left}>
-            <span className={AvailableStyles.date}>
-              {new Date(date).toLocaleDateString('es-MX', {
-                weekday: 'long',
-                day: 'numeric',
-                month: 'long',
-                timeZone: 'UTC'
-              })}
-            </span>
+            <span className={AvailableStyles.date}>{formatDate(date)}</span>
             <div className={AvailableStyles.leftBottom}>
               <DataTable
                 meetings={filteredMeetings}
@@ -132,12 +126,7 @@ const AvailableTutorings = ({
           <div className={AvailableStyles.container}>
             {selectedItem && selectedItem.period !== 0 && (
               <AvailableTutCard
-                date={new Date(date).toLocaleDateString('es-MX', {
-                  weekday: 'long',
-                  day: 'numeric',
-                  month: 'long',
-                  timeZone: 'UTC'
-                })}
+                date={formatDate(date)}
                 time={formatTime(selectedItem.hour)}
                 location={selectedItem.isOnline ? 'Virtual' : 'Presencial'}
                 nextStep={nextStep}
