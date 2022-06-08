@@ -135,7 +135,7 @@ const Subject = () => {
       return (
         <span className={styles.error}>
           *No es posible realizar esta búsqueda, por favor intenta buscar la
-          Unidad de Formación solamente por clave o solamente por nombre*
+          Unidad de Formación solo por clave o solo por nombre*
         </span>
       );
     }
