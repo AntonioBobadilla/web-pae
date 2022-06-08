@@ -26,7 +26,8 @@ const CardTutors = () => {
         );
         // TODO: SET DATA
         setAssignedTutorings(newData);
-      });
+      })
+      .catch((err) => console.log(err.message));
   }, []);
 
   const breakPoints = [

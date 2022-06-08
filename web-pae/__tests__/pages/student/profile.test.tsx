@@ -1,16 +1,26 @@
-import Profile from '@/pages/student/profile';
+import CardInfoStu from '@/components/card-info-student';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
+import { HistoryStuMockService } from 'helpers/card-info-student-mock';
+import 'isomorphic-fetch';
 import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from 'store/store';
 
 describe('Student Profile', () => {
   it('renders admin profile page unchanged', () => {
+    const mockService = HistoryStuMockService();
     const { container } = render(
-      <Provider store={store}>
-        <Profile />
-      </Provider>
+      <>
+        {mockService.map((historyItem) => (
+          <CardInfoStu
+            date={historyItem.date}
+            subject={historyItem.subject}
+            topic={historyItem.location}
+            location={historyItem.location}
+            status={historyItem.status}
+            key={historyItem.date}
+          />
+        ))}
+      </>
     );
     expect(container).toMatchSnapshot();
   });

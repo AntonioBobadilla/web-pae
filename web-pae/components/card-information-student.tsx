@@ -21,7 +21,8 @@ const CardInformationStu = () => {
           (a, b) => createDate(b.date, b.hour) - createDate(a.date, a.hour)
         );
         setHistoryStu(newData);
-      });
+      })
+      .catch((err) => console.log(err.message));
   }, []);
 
   return (

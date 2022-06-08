@@ -21,7 +21,8 @@ const CardInformation = () => {
           (a, b) => createDate(b.date, b.hour) - createDate(a.date, a.hour)
         );
         setHistory(newData);
-      });
+      })
+      .catch((err) => console.log(err.message));
   }, []);
 
   return (
