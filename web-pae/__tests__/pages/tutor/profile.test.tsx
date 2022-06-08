@@ -2,7 +2,6 @@ import CardInfo from '@/components/card-info';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { HistoryMockService } from 'helpers/card-info-mock';
-import 'isomorphic-fetch';
 import React from 'react';
 
 describe('Tutor Profile', () => {
