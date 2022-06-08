@@ -8,14 +8,14 @@ const Home: NextPage = () => (
   <div className={styles.cards}>
     <div className={styles.card}>
       <ImageCard
-        image="/images/profileTutor.jpg"
+        image="/images/student-login-image.jpg"
         description="Perfil"
         path="/tutor/profile"
       />
     </div>
     <div className={styles.card}>
       <ImageCard
-        image="/images/history.jpeg"
+        image="/images/tutor-login-image.jpg"
         description="Asesorías asignadas"
         path="/tutor/assigned-tutorings"
       />
