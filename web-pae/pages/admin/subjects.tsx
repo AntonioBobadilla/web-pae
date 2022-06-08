@@ -15,13 +15,14 @@ const Subject = () => {
   const [clave, setClave] = useState('');
   const [nombre, setNombre] = useState('');
   const [typing, setTyping] = useState(false);
+  const [typingName, setTypingName] = useState(false);
   const [filteredArray, setFilteredArray] = useState([]);
+  const [filteredArrayName, setFilteredArrayName] = useState([]);
 
   const UFButton = () => {
     setCurrentTab('UF');
     location.reload();
   };
-
   const AddUFButton = () => {
     setCurrentTab('addUF');
   };
@@ -35,7 +36,6 @@ const Subject = () => {
   useEffect(() => {
     setCurrentTab('UF');
   }, []);
-
   const getData = () => {
     fetch('http://server-pae.azurewebsites.net/subject/')
       .then((resp) => resp.json())
@@ -48,26 +48,59 @@ const Subject = () => {
         console.log(error);
       });
   };
-
   useEffect(() => {
     getData();
   }, []);
-
   const notVisiblePopUp = () => {
     setPopUp(false);
   };
-
   const conditionalRendering = () => {
-    if (!typing) {
+    if (!typing && !typingName) {
       return (
         <>
           {data.map(function (item, index) {
             let subjectId = item.code != null ? item.code : 'no hay clave';
             let subjectName = item.name != null ? item.name : 'no hay nombre';
-            console.log('entro2');
             return (
               <div key={index} className={styles.body}>
-                {console.log('entro3')}
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                ></i>
+              </div>
+            );
+          })}
+        </>
+      );
+    } else if (typing) {
+      return (
+        <>
+          {filteredArray.map(function (item, index) {
+            let subjectId = item.code != null ? item.code : 'no hay clave';
+            let subjectName = item.name != null ? item.name : 'no hay nombre';
+            return (
+              <div key={index} className={styles.body}>
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                ></i>
+              </div>
+            );
+          })}
+        </>
+      );
+    } else if (typingName) {
+      return (
+        <>
+          {filteredArrayName.map(function (item, index) {
+            let subjectId = item.code != null ? item.code : 'no hay clave';
+            let subjectName = item.name != null ? item.name : 'no hay nombre';
+            return (
+              <div key={index} className={styles.body}>
                 <span className={styles.clave}>{subjectId}</span>
                 <span className={styles.name}>{subjectName}</span>
                 <i
@@ -80,33 +113,14 @@ const Subject = () => {
         </>
       );
     } else {
-      return (
-        <>
-          {filteredArray.map(function (item, index) {
-            let subjectId = item.code != null ? item.code : 'no hay clave';
-            let subjectName = item.name != null ? item.name : 'no hay nombre';
-            console.log('entro2');
-            return (
-              <div key={index} className={styles.body}>
-                {console.log('entro3')}
-                <span className={styles.clave}>{subjectId}</span>
-                <span className={styles.name}>{subjectName}</span>
-                <i
-                  className={cx('bi bi-trash', styles.de)}
-                  onClick={() => checkItemState(item.code)}
-                ></i>
-              </div>
-            );
-          })}
-        </>
-      );
+      return <p>Hola</p>;
     }
   };
 
   const handleChangeClave = (e) => {
     setClave(e.target.value);
     filterClave(e.target.value);
-    if (e.target.value != null) {
+    if (e.target.value != '') {
       setTyping(true);
     } else {
       setTyping(false);
@@ -116,6 +130,12 @@ const Subject = () => {
   const handleChangeNombre = (e) => {
     setNombre(e.target.value);
     filterNombre(e.target.value);
+    if (e.target.value != '') {
+      setTypingName(true);
+    } else {
+      setTypingName(false);
+    }
+    conditionalRendering();
   };
   const filterClave = (clave) => {
     let subjectsCopy = [...data];
@@ -128,10 +148,10 @@ const Subject = () => {
   const filterNombre = (nombre) => {
     let subjectsCopy = [...data];
     console.log(subjectsCopy);
-    let filteredArray = subjectsCopy.filter((nombre) =>
-      subject.code.includes(clave.toUpperCase())
+    let filteredArrayName = subjectsCopy.filter((subject) =>
+      subject.name.includes(nombre.toUpperCase())
     );
-    console.log(filteredArray);
+    setFilteredArrayName(filteredArrayName);
   };
   const deleteSubject = () => {
     console.log(id);
@@ -155,8 +175,8 @@ const Subject = () => {
   };
   return (
     <div className={styles.main}>
-      {nombre}
       {clave}
+      {nombre}
       <div className={styles.search}>
         <div className={styles.searchtop}>
           <input
@@ -195,7 +215,6 @@ const Subject = () => {
           ></Tabs>
         </div>
       </div>
-
       <div className={styles.ufContainer}>
         {pending && <div className={styles.loading}>Cargando datos...</div>}
         <div
@@ -225,7 +244,6 @@ const Subject = () => {
     </div>
   );
 };
-
 // Add sidebar layout
 Subject.getLayout = function getLayout(page: ReactElement) {
   return (
@@ -234,5 +252,4 @@ Subject.getLayout = function getLayout(page: ReactElement) {
     </SidebarLayout>
   );
 };
-
 export default Subject;
