@@ -114,7 +114,8 @@ const AvailableTutorings = ({
               {new Date(date).toLocaleDateString('es-MX', {
                 weekday: 'long',
                 day: 'numeric',
-                month: 'long'
+                month: 'long',
+                timeZone: 'UTC'
               })}
             </span>
             <div className={AvailableStyles.leftBottom}>
@@ -134,7 +135,8 @@ const AvailableTutorings = ({
                 date={new Date(date).toLocaleDateString('es-MX', {
                   weekday: 'long',
                   day: 'numeric',
-                  month: 'long'
+                  month: 'long',
+                  timeZone: 'UTC'
                 })}
                 time={formatTime(selectedItem.hour)}
                 location={selectedItem.isOnline ? 'Virtual' : 'Presencial'}

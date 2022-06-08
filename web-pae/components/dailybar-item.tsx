@@ -19,8 +19,7 @@ const ItemDailyBar = ({
   <div
     className={cx(
       disabled ? styles.disabled : styles.item,
-      active && styles.active,
-      day === 'Viernes' && styles.borderless
+      active && styles.active
     )}
     onClick={disabled ? undefined : onClick}
   >

@@ -53,13 +53,16 @@ const DailyBar = ({
         <ItemDailyBar
           key={meeting.date}
           day={new Date(meeting.date).toLocaleDateString('es-MX', {
-            weekday: 'long'
+            weekday: 'long',
+            timeZone: 'UTC'
           })}
           number={new Date(meeting.date).toLocaleDateString('es-MX', {
-            day: 'numeric'
+            day: 'numeric',
+            timeZone: 'UTC'
           })}
           active={selectedDate === meeting.date}
           onClick={() => setSelectedDate(meeting.date)}
+          disabled={meeting.tutorings.length === 0}
         />
       ))}
     </Carousel>
