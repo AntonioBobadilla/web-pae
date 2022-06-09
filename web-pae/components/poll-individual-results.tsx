@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Carousel, { consts } from 'react-elastic-carousel';
 import { isContext } from 'vm';
 import styles from '../css/components/pollIndividualResults.module.css';
+import classNames from 'classnames';
 
 const PollIndividualResults = () => {
   const [data, setData] = useState([]);
@@ -24,9 +25,22 @@ const PollIndividualResults = () => {
     getPollsfromApi();
   }, []);
 
+  function myArrow({ type, onClick, isEdge }) {
+    const pointer = type === consts.PREV ? 'left' : 'right';
+    return (
+      <div
+        className={classNames(styles.arrowButton, isEdge ? styles.edge : null)}
+        onClick={onClick}
+        role="button"
+      >
+        <i className={`bi bi-chevron-${pointer}`} />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.main}>
-      <Carousel>
+      <Carousel pagination={false} renderArrow={myArrow}>
         {data.map(function (item, index) {
           let answers = item.question_polls;
           return (
@@ -41,39 +55,41 @@ const PollIndividualResults = () => {
                   <span className={styles.value}>Totalmente de acuerdo</span>
                 </div>
               </div>
-              {answers.map(function (item2, index2) {
-                return (
-                  <div key={index2} className={styles.answersContainer}>
-                    <div className={styles.answers}>
-                      <span className={styles.question}>
-                        {item2.question.body}
-                      </span>
+              <div className={styles.pollMap}>
+                {answers.map(function (item2, index2) {
+                  return (
+                    <div key={index2} className={styles.answersContainer}>
+                      <div className={styles.answers}>
+                        <span className={styles.question}>
+                          {item2.question.body}
+                        </span>
+                      </div>
+                      <div className={styles.choices}>
+                        <input
+                          type="radio"
+                          checked={item2.result == '1' ? true : false}
+                          className={styles.radio}
+                        ></input>
+                        <input
+                          type="radio"
+                          checked={item2.result == '2' ? true : false}
+                          className={styles.radio}
+                        ></input>
+                        <input
+                          type="radio"
+                          checked={item2.result == '3' ? true : false}
+                          className={styles.radio}
+                        ></input>
+                        <input
+                          type="radio"
+                          checked={item2.result == '4' ? true : false}
+                          className={styles.radio}
+                        ></input>
+                      </div>
                     </div>
-                    <div className={styles.choices}>
-                      <input
-                        type="radio"
-                        checked={item2.result == '1' ? true : false}
-                        className={styles.radio}
-                      ></input>
-                      <input
-                        type="radio"
-                        checked={item2.result == '2' ? true : false}
-                        className={styles.radio}
-                      ></input>
-                      <input
-                        type="radio"
-                        checked={item2.result == '3' ? true : false}
-                        className={styles.radio}
-                      ></input>
-                      <input
-                        type="radio"
-                        checked={item2.result == '4' ? true : false}
-                        className={styles.radio}
-                      ></input>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
               <div className={styles.comment}>{item.comment}</div>
             </div>
           );
