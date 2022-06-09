@@ -23,7 +23,7 @@
 .toggler:checked ~ .overlay {
   visibility: visible;
   width: 12%;
-  height: 20%;
+  height: 28%;
   border: solid 1px #3f3b3b;
 }
 
@@ -110,7 +110,7 @@
   .toggler:checked ~ .overlay {
     visibility: visible;
     width: 40%;
-    height: 15%;
+    height: 20%;
     border: solid 1px #3f3b3b;
   }
   .li {

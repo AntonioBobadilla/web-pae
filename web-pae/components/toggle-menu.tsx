@@ -1,4 +1,11 @@
+import post from '@/helpers/post';
+import { selectToken, setLogoutData } from 'store/reducers/user';
+import router from 'next/router';
+import React from 'react';
+import toast from 'react-hot-toast';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import tStyles from '../css/components/toggleMenu.module.css';
+import Exit from './dialogs/exit';
 
 type ToggleMenuProps = {
   onClickModifyPassword: () => void;
@@ -12,60 +19,120 @@ const ToggleMenu = ({
   onClickModifyLanguage,
   onClickModifySubjects,
   onClickModifySchedule
+}: ToggleMenuProps) => {
+  const [visible, setVisible] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(selectToken);
 
-}: ToggleMenuProps) => (
-  <div className={tStyles.main}>
-    <input type="checkbox" className={tStyles.toggler} />
-    <div className={tStyles.buttonContainer} id="toggle">
-      <img className={tStyles.icon} src="/icons/gear.svg" />
+  const logOut = () => {
+    // console.log(role);
+    setIsLoading(true);
+    post({ token }, 'http://server-pae.azurewebsites.net/logout/')
+      .then(({ status, responseData }) => {
+        handleStatus(status, responseData);
+      })
+      .catch((err) => {
+        handleStatus(500, err);
+      });
+  };
+  const handleStatus = (status: number, responseData: any) => {
+    try {
+      if (status === 200 || status === 201 || status === 204) {
+        // toast success
+        toast.success('Successful logoout');
+
+        // set user data
+
+        dispatch(setLogoutData());
+
+        // redirect to home
+        setTimeout(() => router.push('/tutor/login/'), 500);
+      } else {
+        toast.error(responseData.message);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+      setIsLoading(false);
+    }
+  };
+  const handleLogOut = () => {
+    setVisible(true);
+  };
+  return (
+    <div className={tStyles.main}>
+      <input type="checkbox" className={tStyles.toggler} />
+      <div className={tStyles.buttonContainer} id="toggle">
+        <img className={tStyles.icon} src="/icons/gear.svg" />
+      </div>
+      <div className={tStyles.overlay} id="overlay">
+        <nav className={tStyles.overlayMenu}>
+          <ul className={tStyles.ul}>
+            <li className={tStyles.li}>
+              <span
+                role="button"
+                className={tStyles.a}
+                onClick={() => onClickModifySchedule()}
+                tabIndex={-1}
+              >
+                Modificar horario
+              </span>
+            </li>
+            <li className={tStyles.li}>
+              <span
+                role="button"
+                className={tStyles.a}
+                onClick={() => onClickModifySubjects()}
+                tabIndex={-1}
+              >
+                Modificar materias
+              </span>
+            </li>
+            <li className={tStyles.li}>
+              <span
+                role="button"
+                className={tStyles.a}
+                onClick={() => onClickModifyPassword()}
+                tabIndex={-1}
+              >
+                Modificar contraseña
+              </span>
+            </li>
+            <li className={tStyles.li}>
+              <span
+                role="button"
+                className={tStyles.a}
+                onClick={() => onClickModifyLanguage()}
+                tabIndex={-1}
+              >
+                Modificar idioma
+              </span>
+            </li>
+            <li className={tStyles.li}>
+              <span
+                role="button"
+                className={tStyles.a}
+                onClick={() => handleLogOut()}
+                tabIndex={-1}
+              >
+                Cerrar sesión
+              </span>
+            </li>
+          </ul>
+          {visible && (
+            <Exit
+              visible={visible}
+              setVisible={setVisible}
+              handleExit={() => logOut()}
+              handleCancel={() => setVisible(false)}
+              isLoading={isLoading}
+            />
+          )}
+        </nav>
+      </div>
     </div>
-    <div className={tStyles.overlay} id="overlay">
-      <nav className={tStyles.overlayMenu}>
-        <ul className={tStyles.ul}>
-          <li className={tStyles.li}>
-            <span
-              role="button"
-              className={tStyles.a}
-              onClick={() => onClickModifySchedule()}
-              tabIndex={-1}
-            >
-              Modificar horario
-            </span>
-          </li>
-          <li className={tStyles.li}>
-            <span
-              role="button"
-              className={tStyles.a}
-              onClick={() => onClickModifySubjects()}
-              tabIndex={-1}
-            >
-              Modificar materias
-            </span>
-          </li>
-          <li className={tStyles.li}>
-            <span
-              role="button"
-              className={tStyles.a}
-              onClick={() => onClickModifyPassword()}
-              tabIndex={-1}
-            >
-              Modificar contraseña
-            </span>
-          </li>
-          <li className={tStyles.li}>
-            <span
-              role="button"
-              className={tStyles.a}
-              onClick={() => onClickModifyLanguage()}
-              tabIndex={-1}
-            >
-              Modificar idioma
-            </span>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-);
+  );
+};
 
 export default ToggleMenu;
