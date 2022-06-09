@@ -31,7 +31,7 @@ const SideBar = ({ routing, currentRoute, logOut }: SideBarProps) => (
           : sidebarStyles.normal
       }
     >
-      <Link href="#" passHref>
+      <Link href="/../../" passHref>
         <div
           className={
             currentRoute.includes('admin') ? adminStyles.pae : sidebarStyles.pae

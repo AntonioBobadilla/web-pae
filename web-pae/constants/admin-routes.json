@@ -29,6 +29,11 @@
       "path": "/admin/polls",
       "icon": "clipboard-data",
       "title": "Encuestas"
+    },
+    {
+      "path": "/admin/admins",
+      "icon": "person-video2",
+      "title": "Administradores"
     }
   ],
   "exit": "/admin/login/"
