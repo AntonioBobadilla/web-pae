@@ -15,13 +15,13 @@ const Subject = () => {
 
   const AdminButton = () => {
     setCurrentTab('admins');
-    location.reload();
+    getData();
   };
   const visiblePopUp = () => {
     setPopUp(true);
   };
 
-  const checkItemState = (idItem) => {
+  const checkItemState = (idItem: React.SetStateAction<null>) => {
     setId(idItem);
     visiblePopUp();
   };
@@ -121,7 +121,7 @@ const Subject = () => {
                 <span className={styles.email}>Correo electrónico</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
-              {data.map(function (item, index) {
+              {data.map(function (item: any, index) {
                 let adminId =
                   item.registration_number != null
                     ? item.registration_number

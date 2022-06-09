@@ -24,7 +24,7 @@ const Subject = () => {
 
   const UFButton = () => {
     setCurrentTab('UF');
-    location.reload();
+    getData();
   };
   const AddUFButton = () => {
     setCurrentTab('addUF');
@@ -141,7 +141,7 @@ const Subject = () => {
     }
   };
 
-  const handleChangeClave = (e) => {
+  const handleChangeClave = (e: any) => {
     setClave(e.target.value);
     filterClave(e.target.value);
     if (e.target.value != '') {
@@ -317,7 +317,10 @@ const Subject = () => {
                 <span className={styles.name}>Nombre</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
-              {conditionalRendering()}
+              <div className={styles.bodyContainer}>
+                {conditionalRendering()}
+              </div>
+
               <DeleteAdmin
                 visible={popUp}
                 setVisible={setPopUp}

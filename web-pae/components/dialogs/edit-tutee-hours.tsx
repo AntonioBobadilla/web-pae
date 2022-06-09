@@ -11,10 +11,10 @@ type ModifyLanguageProps = {
 };
 
 const EditTutorHours = ({ visible, setVisible }: ModifyLanguageProps) => {
-  const [input, setInput] = useState(0)
-  const handleInput = (e) => {
-    setInput(e.target.value)
-  }
+  const [input, setInput] = useState(0);
+  const handleInput = (e: { target: { value: React.SetStateAction<any> } }) => {
+    setInput(e.target.value);
+  };
   const onClickSave = () => {
     setVisible(false);
   };
@@ -29,9 +29,7 @@ const EditTutorHours = ({ visible, setVisible }: ModifyLanguageProps) => {
       <div className={registerStyles.languageOptions}>
         <input type="text" value={input} onChange={handleInput} /> /80
         <div className={styles.button}>
-                <ButtonTemplate variant="confirm" >
-                GUARDAR
-                </ButtonTemplate>
+          <ButtonTemplate variant="confirm">GUARDAR</ButtonTemplate>
         </div>
       </div>
     </ClosablePopup>

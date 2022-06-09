@@ -10,8 +10,8 @@ type PortalProps = {
   visible?: boolean;
   onMounted?: () => void;
   onUnmounted?: () => void;
-  element: ReactFragment;
-  appendTo?: string;
+  element: any;
+  appendTo?: any;
 };
 
 const Portal = React.memo(

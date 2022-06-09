@@ -161,4 +161,3 @@ const Home = () => {
 };
 
 export default Home;
-// <ConfirmPopup url="http://www.google.com" />
