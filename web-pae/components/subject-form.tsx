@@ -40,11 +40,17 @@ const SubjectForm = () => {
         console.log(err);
       });
   };
-  const codeChange = (e: any) => {
-    setCode(e.target.value);
+  const codeChange = (e) => {
+    let mycode = e.target.value;
+    mycode = mycode.toUpperCase();
+    e.target.value = mycode;
+    setCode(mycode);
   };
-  const nameChange = (e: any) => {
-    setName(e.target.value);
+  const nameChange = (e) => {
+    let myname = e.target.value;
+    myname = myname.toUpperCase();
+    e.target.value = myname;
+    setName(myname);
   };
   return (
     <div className={Styles.main}>
