@@ -91,35 +91,32 @@ export const reserveTutoring = createAsyncThunk(
       user: { token, id }
     } = getState();
 
+    const formData = new FormData();
+
+    formData.append('subject_id', subject.code);
+    formData.append('student', id);
+    formData.append('tutor_id', selectedItem.tutor);
+    formData.append('date', date);
+    formData.append('hour', selectedItem.hour);
+    formData.append('is_online', selectedItem.isOnline);
+    formData.append('topic', title);
+    formData.append('doubt', content);
+    formData.append('file', file);
+    formData.append('place', 'Zoom');
+
     const post = (data: any, url: string) =>
       fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-
           Authorization: `Token ${token}`
         },
-        body: JSON.stringify(data),
+        body: data,
         cache: 'no-cache',
         credentials: 'same-origin'
         // mode: 'cors'
       });
 
-    return post(
-      {
-        tutor_id: selectedItem.tutor,
-        student: id,
-        subject_id: subject.code,
-        date,
-        hour: selectedItem.hour,
-        is_online: selectedItem.isOnline,
-        topic: title,
-        doubt: content,
-        // file, //TODO
-        place: 'Zoom'
-      },
-      'http://server-pae.azurewebsites.net/tutoring/'
-    );
+    return post(formData, 'http://server-pae.azurewebsites.net/tutoring/');
   }
 );
 
