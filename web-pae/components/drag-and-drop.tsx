@@ -10,7 +10,6 @@ const DragAndDrop = ({ file }: { file: File }) => {
   const handleChange = (newFile: any) => {
     dispatch(setFile(newFile));
     const text = document.querySelector('#text');
-    console.log(newFile.data);
     text.innerHTML = `<b>Archivo cargado: </b>${newFile.name}`;
   };
   return (

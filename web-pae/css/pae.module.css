@@ -49,7 +49,7 @@
   justify-content: center;
   align-items: center;
 }
-.signup {
+.login {
   background-color: #dadada;
   color: #0277bd;
   height: 40px;
@@ -57,24 +57,37 @@
   border-radius: 5px;
   border: #c4c4c4 1px solid;
   margin-left: 20px;
-}
-.signup:hover {
-  background-color: #0277bd;
-  color: white;
-  opacity: 1;
-}
-.login {
-  background-color: #039be5;
-  height: 40px;
-  width: 80px;
-  border-radius: 5px;
-  margin-left: 10px;
+  font-weight: 500;
 }
 .login:hover {
   background-color: #0277bd;
   color: white;
+  opacity: 1;
+}
+.login:active {
+  color: white;
+  transform: scale(1.1);
+}
+
+.signup {
+  background-color: #039be5;
+  height: 40px;
+  color: white;
+  width: 80px;
+  border-radius: 5px;
+  border: #039be5 1px solid;
+  margin-left: 10px;
+  font-weight: 500;
+}
+.signup:hover {
+  background-color: #0277bd;
+  color: white;
   border: none;
   opacity: 1;
+}
+.signup:active {
+  color: white;
+  transform: scale(1.1);
 }
 
 .imageSection {
@@ -191,7 +204,6 @@
 .imageLocation {
   width: 100%;
   height: 100%;
-  filter: opacity(0.8);
 }
 .greetings {
   font-size: 40px;
@@ -199,6 +211,47 @@
   margin-bottom: 50px;
   font-weight: 400;
   color: #039be5;
+}
+
+.credits {
+  background-color: yellowgreen;
+  width: 100%;
+  height: 45vh;
+  display: flex;
+  flex-direction: row;
+}
+.legal {
+  background-color: red;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logoHacket {
+  background-color: violet;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hacketImg {
+  border-radius: 10px;
+  width: 70%;
+  height: 50%;
+  background-color: #0277bd;
+}
+.credit {
+  background-color: yellow;
+  width: 25%;
+}
+
+.copyrights {
+  height: 7vh;
+  width: 100%;
+  background-color: aquamarine;
 }
 
 @media screen and (max-width: 1225px) {

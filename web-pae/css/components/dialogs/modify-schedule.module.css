@@ -1,0 +1,16 @@
+.container {
+    width: 70vw;
+    height: 85vh;
+}
+
+.wrapper {
+    width: 90%;
+    height: 90%;
+    margin:0 auto;
+}
+
+.button {
+    width: 200px;
+    height: 40px;
+    margin: auto;
+}

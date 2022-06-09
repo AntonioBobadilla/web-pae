@@ -17,8 +17,16 @@ const CardInformationStu = () => {
       .then((res) => res.json())
       .then((data) => {
         const newData = [...data];
-        newData.sort(
-          (a, b) => createDate(b.date, b.hour) - createDate(a.date, a.hour)
+        newData.sort( 
+          (a, b) => {
+            if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+              return -1;
+            }
+            if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+              return 1;
+            }
+            return 0;
+          }
         );
         setHistoryStu(newData);
       })

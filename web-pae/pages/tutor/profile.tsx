@@ -1,6 +1,7 @@
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ModifySubjects from '@/components/dialogs/modify-subjects';
+import ModifySchedule from '@/components/dialogs/modify-schedule';
 import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
@@ -29,6 +30,8 @@ const Profile: NextPage = () => {
     React.useState(false);
   const [modifySubjectsVisible, setModifySubjectsVisible] =
     React.useState(false);
+  const [modifyScheduleVisible, setModifyScheduleVisible] =
+  React.useState(false);
 
   const onClickModifyPassword = () => {
     setModifyPasswordVisible(true);
@@ -42,9 +45,14 @@ const Profile: NextPage = () => {
     setModifySubjectsVisible(true);
   };
 
+  const onClickModifySchedule = () => {
+    setModifyScheduleVisible(true);
+  };
+
   return (
     <div className={Styles.main}>
       <ToggleMenu
+        onClickModifySchedule={onClickModifySchedule}
         onClickModifyPassword={onClickModifyPassword}
         onClickModifyLanguage={onClickModifyLanguage}
         onClickModifySubjects={onClickModifySubjects}
@@ -100,6 +108,13 @@ const Profile: NextPage = () => {
         <ModifySubjects
           visible={modifySubjectsVisible}
           setVisible={setModifySubjectsVisible}
+          id={myUser.id}
+        />
+      )}
+      {modifyScheduleVisible && (
+        <ModifySchedule
+          visible={modifyScheduleVisible}
+          setVisible={setModifyScheduleVisible}
           id={myUser.id}
         />
       )}
