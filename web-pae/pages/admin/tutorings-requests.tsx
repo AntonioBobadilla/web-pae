@@ -25,11 +25,16 @@ const Tutorings: NextPage = () => {
   const [TuteeIdToDelete, setTuteeIdToDelete] = useState(0);
   const [pending, setPending] = useState(true);
 
+  const [day, setDay] = useState('');
+  const [hour, setHour] = useState('');
+  const [subject, setSubject] = useState('');
+
   const getDataFromApi = () => {
     fetch('http://server-pae.azurewebsites.net/tutoring/?status=PE')
     .then((resp) => resp.json())
     .then(function(data) {
       setData(data);
+      console.log(data)
       setPending(false);
       })
     .catch(function(error) {
@@ -138,7 +143,10 @@ const Tutorings: NextPage = () => {
   }
 // en esta funcion  vamos a recibir el indice del objeto del arreglo de objetos traidos por api
 // para así al actualizar ese objeto nos basemos en su indice para saber qué objeto actualizar
-  const EditAsesor = (idOfObject) => {
+  const EditAsesor = (idOfObject, day, hour, subject) => {
+    setDay(day)
+    setHour(hour)
+    setSubject(subject)
     setObjectToModify(idOfObject) // ese es el indice que guardaremos
     onClickEditAsesor();
   }
@@ -212,7 +220,7 @@ const Tutorings: NextPage = () => {
         <tbody> 
           {
             data.map(function(item,index) {
-              let {student} = item
+              let {student, subject} = item
               let modalidad = item.is_online ? 'En línea' : 'Presencial';
               return ( 
               <tr key={index}  className={styles.tr}>
@@ -230,15 +238,15 @@ const Tutorings: NextPage = () => {
                   <div className={tutorintstyles.data}>
                     <p className={tutorintstyles.major}></p>
                     <p className={tutorintstyles.matricula}></p>
-                    <button className={tutorintstyles.button}  onClick={() => EditAsesor(item.id)}>
+                    <button className={tutorintstyles.button}  onClick={() => EditAsesor(item.id, item.date, item.hour, subject.code)}>
                       <i className= {cx( tutorintstyles.button,"bi bi-pencil")}></i>
                     </button>
                     
                   </div>
                 </td>
                 <td className={styles.td}>
-                  <p className={tutorintstyles.subject}> </p>
-                  <p className={tutorintstyles.subjectfull}></p>
+                  <p className={tutorintstyles.subject}> {subject.code } </p>
+                  <p className={tutorintstyles.subjectfull}>{subject.name }</p>
                 </td>
                 <td className={styles.td}>
                   <p className={tutorintstyles.fullday}>{item.date}</p>
@@ -323,6 +331,9 @@ const Tutorings: NextPage = () => {
               visible={Asesor}
               setVisible={setAsesor}
               setAsesor={setNewAsesor}
+              day={day}
+              hour={hour}
+              subject={subject}
             />
       )}
     </div>

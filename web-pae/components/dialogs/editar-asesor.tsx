@@ -9,12 +9,16 @@ import cx from 'classnames';
 type ModifyLanguageProps = {
   visible: boolean;
   setVisible: (visible: boolean) => void,
-  setAsesor: any;
+  setAsesor: any,
+  day: any,
+  hour: any,
+  subject: any
 };
 
-const EditAsesor = ({ visible, setVisible, setAsesor }: ModifyLanguageProps) => {
+const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: ModifyLanguageProps) => {
 
   const [asesorActual, setAsesorActual] = useState('');
+  const [asesoresDisponibles, setAsesoresDisponibles] = useState([]);
 
   const onClickSave = () => {
     setVisible(false);
@@ -50,7 +54,29 @@ const EditAsesor = ({ visible, setVisible, setAsesor }: ModifyLanguageProps) => 
     console.log("Asesor seleccionado: ", asesor)
   }
 
+  const getAsesores = () => {
+    fetch('http://server-pae.azurewebsites.net/alternatetutor/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "date": day,
+        "hour": hour,
+        "subject":subject
+      })  
+    })
+    .then((resp) => resp.json())
+    .then(function(data) {
+      setAsesoresDisponibles(data);
+      console.log("data: ",data)
+      //setPending(false);
+      })
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+
   useEffect(() => {
+    getAsesores()
     setTimeout(() => {
       let wrapper = document.querySelector('#wrapper');
       let asesores = wrapper.childNodes;
