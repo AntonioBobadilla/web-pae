@@ -8,6 +8,7 @@ import Modalidad from '@/components/dialogs/edit-modalidad';
 import SeleccionarAsesor from '@/components/dialogs/editar-asesor';
 import SuccessAcceptTutoring from '@/components/dialogs/accept-tutoring';
 import DeniedTutoring from '@/components/dialogs/denied-tutoring';
+import toast, { Toaster } from 'react-hot-toast';
 const Tutorings: NextPage = () => {
 
   const [data, setData] = useState([]);
@@ -25,6 +26,7 @@ const Tutorings: NextPage = () => {
   const [TuteeIdToDelete, setTuteeIdToDelete] = useState(0);
   const [pending, setPending] = useState(true);
 
+
   const [day, setDay] = useState('');
   const [hour, setHour] = useState('');
   const [subject, setSubject] = useState('');
@@ -34,7 +36,7 @@ const Tutorings: NextPage = () => {
     .then((resp) => resp.json())
     .then(function(data) {
       setData(data);
-      console.log(data)
+      console.log("aaaaa: ",data)
       setPending(false);
       })
     .catch(function(error) {
@@ -62,13 +64,10 @@ const Tutorings: NextPage = () => {
   const updateAsesor = () => {
       if (newAsesor == '')
         return; 
-    /*fetch('http://server-pae.azurewebsites.net/changetutoringlocation/'+newAsesor, {
+    fetch('http://server-pae.azurewebsites.net/changetutor/'+objectToModify, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "is_online": online,
-        "place": newPlace
-    }) // agregar json de update
+      body: JSON.stringify({"tutor": newAsesor.toLowerCase()}) // agregar json de update
   })
     .then(res => {
       if (!res.ok) { // error coming back from server
@@ -78,12 +77,15 @@ const Tutorings: NextPage = () => {
     })
     .then(data => {
       console.log('ok')
-      window.location.reload(false);
+      toast('Asesor actualizado', {
+        icon: '😣'
+      })
+      getDataFromApi();
     })
     .catch(err => {
         console.log(err.message);
-    })*/
-    console.log('actualizando tutor.... desde func' )
+    })
+    console.log('actualizando tutor.... desde func', newAsesor )
   }
 
     // función que realizara el update del tutor basado en el indice guardado en objectToModify
@@ -106,8 +108,10 @@ const Tutorings: NextPage = () => {
         return res.json();
       })
       .then(data => {
-        console.log('ok')
-        window.location.reload(false);
+        toast('Modalidad actualizada', {
+          icon: '😣'
+        })
+        getDataFromApi();
       })
       .catch(err => {
           console.log(err.message);
@@ -151,6 +155,7 @@ const Tutorings: NextPage = () => {
     onClickEditAsesor();
   }
 
+    // agregar token dinamico
   const del = () => {
     fetch('http://server-pae.azurewebsites.net/tutoring/'+TuteeIdToDelete, {
       method: 'DELETE',
@@ -163,7 +168,10 @@ const Tutorings: NextPage = () => {
       if (!res.ok) { // error coming back from server
         throw Error('could not make POST request for that endpoint');
       } else if (res.status === 204) {
-        window.location.reload(false);
+        getDataFromApi()
+        toast('Asesor eliminado', {
+          icon: '😣'
+        })
       }
       return res.json();
     })
@@ -191,9 +199,10 @@ const Tutorings: NextPage = () => {
     .then(data => {
       console.log('ok')
       onClickSuccessAcceptTutoring()
-      setTimeout(() => {
-        window.location.reload(false);
-      },3000)
+      getDataFromApi()
+      toast('Asesor aceptado', {
+        icon: '😣'
+      })
 
     })
     .catch(err => {
@@ -220,7 +229,8 @@ const Tutorings: NextPage = () => {
         <tbody> 
           {
             data.map(function(item,index) {
-              let {student, subject} = item
+              let {student, subject, tutor} = item
+              console.log(data)
               let modalidad = item.is_online ? 'En línea' : 'Presencial';
               return ( 
               <tr key={index}  className={styles.tr}>
@@ -233,11 +243,11 @@ const Tutorings: NextPage = () => {
                   </div>
                 </td>
                 <td className={styles.td}>
-                  <p className={tutorintstyles.name}></p>
+                  <p className={tutorintstyles.name}>{tutor.name}</p>
                   <p className={tutorintstyles.apellidos}></p>
                   <div className={tutorintstyles.data}>
                     <p className={tutorintstyles.major}></p>
-                    <p className={tutorintstyles.matricula}></p>
+                    <p className={tutorintstyles.matricula}>{tutor.registration_number}</p>
                     <button className={tutorintstyles.button}  onClick={() => EditAsesor(item.id, item.date, item.hour, subject.code)}>
                       <i className= {cx( tutorintstyles.button,"bi bi-pencil")}></i>
                     </button>

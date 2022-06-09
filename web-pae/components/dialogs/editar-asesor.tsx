@@ -19,17 +19,12 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
 
   const [asesorActual, setAsesorActual] = useState('');
   const [asesoresDisponibles, setAsesoresDisponibles] = useState([]);
+  const [pending, setPending] = useState(true);
 
   const onClickSave = () => {
     setVisible(false);
   };
 
-
-  let dummyData = [
-    { name: "Antonio", apellidos:"Bobadilla garcia", carrera: "ITC", matricula: "A01734433", horas:23},
-    { name: "Salvador", apellidos:"Gaytan Ibañez", carrera: "ITC", matricula: "A017346753", horas:80},
-    { name: "Karen", apellidos:"Rugerio Armenta", carrera: "ITC", matricula: "A01734f33", horas:80}
-  ]
 
   const clearAllBorders = () => {
     let wrapper = document.querySelector('#wrapper');
@@ -41,10 +36,12 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
   }
 
   const handleClickAsesor = (e) => {
-    let idOfAsesor = parseInt(e.target.id);
-    let asesorObj = dummyData[idOfAsesor];
-    let asesor = asesorObj.matricula
-    //setAsesorActual(asesor)
+    let idOfAsesor = e.target.id;
+
+    let asesorObj = asesoresDisponibles[idOfAsesor];
+
+    let asesor = asesorObj.registration_number
+    setAsesorActual(asesor)
     clearAllBorders();
     if (!e.target.classList.contains('active')){
       e.target.style.border = '2px solid #039BE5';
@@ -68,7 +65,7 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
     .then(function(data) {
       setAsesoresDisponibles(data);
       console.log("data: ",data)
-      //setPending(false);
+      setPending(false);
       })
     .catch(function(error) {
       console.log(error);
@@ -77,14 +74,18 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
 
   useEffect(() => {
     getAsesores()
-    setTimeout(() => {
-      let wrapper = document.querySelector('#wrapper');
+  }, [])
+
+  useEffect(() => {
+    let wrapper = document.querySelector('#wrapper');
+    if (wrapper != null ) {
       let asesores = wrapper.childNodes;
       asesores.forEach(item => {
         item.addEventListener("click", handleClickAsesor);
       })
-    },1000)
-  }, [])
+    }
+
+  },[asesoresDisponibles])
   
   const sendData = () => {
     setAsesor(asesorActual);
@@ -100,21 +101,23 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
     >
       <div className={editAsesorStyles.wrapper}>
         <div id='wrapper' className={editAsesorStyles.asesores}>
+          {pending && <div className={editAsesorStyles.message}>Cargando asesores....</div>}
+          {asesoresDisponibles.length == 0 && !pending && <div className={editAsesorStyles.message}>No hay asesores disponibles para esta asesoria.</div>}
           { 
-            dummyData.map(function(item,index) {
+            asesoresDisponibles.map(function(item,index) {
               return ( 
               <div key={index} id={index} className={editAsesorStyles.asesor}>
                   <div  className={editAsesorStyles.asesor_izq}>
                       <p className={editAsesorStyles.name}>{ item.name } </p>
-                      <p className={editAsesorStyles.apellidos}>{ item.apellidos }</p>
+                      <p className={editAsesorStyles.apellidos}></p>
                       <div className={editAsesorStyles.flex}>
-                          <p className={editAsesorStyles.carrera}>{ item.carrera }</p>
-                          <p className={editAsesorStyles.matricula}>{ item.matricula }</p>
+                          <p className={editAsesorStyles.carrera}>{ item.major }</p>
+                          <p className={editAsesorStyles.matricula}>{ item.registration_number }</p>
                       </div>
                   </div>
                   <div className={editAsesorStyles.asesor_der}>
                       <p className={editAsesorStyles.textHoras}>Horas totales</p>
-                      <p className={editAsesorStyles.horas}>{ item.horas }</p>
+                      <p className={editAsesorStyles.horas}>{ item.completed_hours }</p>
                   </div>
               </div>
               )
