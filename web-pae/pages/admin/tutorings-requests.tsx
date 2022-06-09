@@ -62,13 +62,10 @@ const Tutorings: NextPage = () => {
   const updateAsesor = () => {
       if (newAsesor == '')
         return; 
-    /*fetch('http://server-pae.azurewebsites.net/changetutoringlocation/'+newAsesor, {
+    fetch('http://server-pae.azurewebsites.net/changetutor/'+objectToModify, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "is_online": online,
-        "place": newPlace
-    }) // agregar json de update
+      body: JSON.stringify({"tutor": newAsesor.toLowerCase()}) // agregar json de update
   })
     .then(res => {
       if (!res.ok) { // error coming back from server
@@ -78,11 +75,11 @@ const Tutorings: NextPage = () => {
     })
     .then(data => {
       console.log('ok')
-      window.location.reload(false);
+      getDataFromApi();
     })
     .catch(err => {
         console.log(err.message);
-    })*/
+    })
     console.log('actualizando tutor.... desde func', newAsesor )
   }
 
@@ -107,7 +104,7 @@ const Tutorings: NextPage = () => {
       })
       .then(data => {
         console.log('ok')
-        window.location.reload(false);
+        getDataFromApi();
       })
       .catch(err => {
           console.log(err.message);
@@ -221,6 +218,7 @@ const Tutorings: NextPage = () => {
           {
             data.map(function(item,index) {
               let {student, subject, tutor} = item
+              console.log(data)
               let modalidad = item.is_online ? 'En línea' : 'Presencial';
               return ( 
               <tr key={index}  className={styles.tr}>
