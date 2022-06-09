@@ -4,12 +4,15 @@ type ToggleMenuProps = {
   onClickModifyPassword: () => void;
   onClickModifyLanguage: () => void;
   onClickModifySubjects: () => void;
+  onClickModifySchedule: () => void;
 };
 
 const ToggleMenu = ({
   onClickModifyPassword,
   onClickModifyLanguage,
-  onClickModifySubjects
+  onClickModifySubjects,
+  onClickModifySchedule
+
 }: ToggleMenuProps) => (
   <div className={tStyles.main}>
     <input type="checkbox" className={tStyles.toggler} />
@@ -20,7 +23,14 @@ const ToggleMenu = ({
       <nav className={tStyles.overlayMenu}>
         <ul className={tStyles.ul}>
           <li className={tStyles.li}>
-            <a className={tStyles.a}>Modificar horario</a>
+            <span
+              role="button"
+              className={tStyles.a}
+              onClick={() => onClickModifySchedule()}
+              tabIndex={-1}
+            >
+              Modificar horario
+            </span>
           </li>
           <li className={tStyles.li}>
             <span
