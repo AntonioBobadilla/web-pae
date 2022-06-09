@@ -7,7 +7,7 @@ import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectEmail, selectName, selectID } from 'store/reducers/user';
+import { selectEmail, selectID, selectName } from 'store/reducers/user';
 import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
@@ -108,6 +108,7 @@ const Profile: NextPage = () => {
         <ModifySubjects
           visible={modifySubjectsVisible}
           setVisible={setModifySubjectsVisible}
+          id={myUser.id}
         />
       )}
       {modifyScheduleVisible && (
