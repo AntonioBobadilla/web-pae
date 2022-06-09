@@ -28,8 +28,6 @@ const CalendarMax = ({
 
   }, 1000);
 
-
-
     // funcion que cambia el color de la celda.
     const changeColorOfCell = (cell: any) => {
         if (cell != null) {

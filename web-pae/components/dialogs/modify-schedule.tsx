@@ -94,9 +94,14 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }
 
   const updateBigSchedule = (data, id) => {
-    /*fetch('http://server-pae.azurewebsites.net/tutor/'+TuteeIdToDelete, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+    let dataToSend = {
+      "tutor": id.toLowerCase(),
+      "schedules":  [ ...data]
+    }
+    fetch('http://server-pae.azurewebsites.net/modifyschedule/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dataToSend)
   })
     .then(res => {
       if (!res.ok) { // error coming back from server
@@ -108,8 +113,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     })
     .catch(err => {
         console.log(err.message);
-    })*/
-    console.log('haciendo update de los siguientes datos: ',data, id);
+    })
   }
  
   const updateSchedule = () => {
