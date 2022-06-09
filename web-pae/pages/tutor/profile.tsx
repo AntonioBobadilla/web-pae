@@ -6,13 +6,14 @@ import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectEmail, selectName } from 'store/reducers/user';
+import { selectEmail, selectID, selectName } from 'store/reducers/user';
 import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
 
 const Profile: NextPage = () => {
   const myUser = {
+    id: useAppSelector(selectID),
     name: useAppSelector(selectName),
     email: useAppSelector(selectEmail),
     weekHours: '2',
@@ -99,6 +100,7 @@ const Profile: NextPage = () => {
         <ModifySubjects
           visible={modifySubjectsVisible}
           setVisible={setModifySubjectsVisible}
+          id={myUser.id}
         />
       )}
     </div>
