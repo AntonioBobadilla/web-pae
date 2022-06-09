@@ -41,10 +41,12 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
   }
 
   const handleClickAsesor = (e) => {
-    let idOfAsesor = parseInt(e.target.id);
-    let asesorObj = dummyData[idOfAsesor];
-    let asesor = asesorObj.matricula
-    //setAsesorActual(asesor)
+    let idOfAsesor = e.target.id;
+
+    let asesorObj = asesoresDisponibles[idOfAsesor];
+
+    let asesor = asesorObj.registration_number
+    setAsesorActual(asesor)
     clearAllBorders();
     if (!e.target.classList.contains('active')){
       e.target.style.border = '2px solid #039BE5';
@@ -77,14 +79,18 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
 
   useEffect(() => {
     getAsesores()
-    setTimeout(() => {
-      let wrapper = document.querySelector('#wrapper');
+  }, [])
+
+  useEffect(() => {
+    let wrapper = document.querySelector('#wrapper');
+    if (wrapper != null ) {
       let asesores = wrapper.childNodes;
       asesores.forEach(item => {
         item.addEventListener("click", handleClickAsesor);
       })
-    },1000)
-  }, [])
+    }
+
+  },[asesoresDisponibles])
   
   const sendData = () => {
     setAsesor(asesorActual);
@@ -101,20 +107,20 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
       <div className={editAsesorStyles.wrapper}>
         <div id='wrapper' className={editAsesorStyles.asesores}>
           { 
-            dummyData.map(function(item,index) {
+            asesoresDisponibles.map(function(item,index) {
               return ( 
               <div key={index} id={index} className={editAsesorStyles.asesor}>
                   <div  className={editAsesorStyles.asesor_izq}>
                       <p className={editAsesorStyles.name}>{ item.name } </p>
-                      <p className={editAsesorStyles.apellidos}>{ item.apellidos }</p>
+                      <p className={editAsesorStyles.apellidos}></p>
                       <div className={editAsesorStyles.flex}>
-                          <p className={editAsesorStyles.carrera}>{ item.carrera }</p>
-                          <p className={editAsesorStyles.matricula}>{ item.matricula }</p>
+                          <p className={editAsesorStyles.carrera}>{ item.major }</p>
+                          <p className={editAsesorStyles.matricula}>{ item.registration_number }</p>
                       </div>
                   </div>
                   <div className={editAsesorStyles.asesor_der}>
                       <p className={editAsesorStyles.textHoras}>Horas totales</p>
-                      <p className={editAsesorStyles.horas}>{ item.horas }</p>
+                      <p className={editAsesorStyles.horas}>{ item.completed_hours }</p>
                   </div>
               </div>
               )

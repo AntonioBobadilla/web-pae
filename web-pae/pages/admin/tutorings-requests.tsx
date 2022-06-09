@@ -34,7 +34,7 @@ const Tutorings: NextPage = () => {
     .then((resp) => resp.json())
     .then(function(data) {
       setData(data);
-      console.log(data)
+      console.log("aaaaa: ",data)
       setPending(false);
       })
     .catch(function(error) {
@@ -83,7 +83,7 @@ const Tutorings: NextPage = () => {
     .catch(err => {
         console.log(err.message);
     })*/
-    console.log('actualizando tutor.... desde func' )
+    console.log('actualizando tutor.... desde func', newAsesor )
   }
 
     // función que realizara el update del tutor basado en el indice guardado en objectToModify
@@ -220,7 +220,7 @@ const Tutorings: NextPage = () => {
         <tbody> 
           {
             data.map(function(item,index) {
-              let {student, subject} = item
+              let {student, subject, tutor} = item
               let modalidad = item.is_online ? 'En línea' : 'Presencial';
               return ( 
               <tr key={index}  className={styles.tr}>
@@ -233,11 +233,11 @@ const Tutorings: NextPage = () => {
                   </div>
                 </td>
                 <td className={styles.td}>
-                  <p className={tutorintstyles.name}></p>
+                  <p className={tutorintstyles.name}>{tutor.name}</p>
                   <p className={tutorintstyles.apellidos}></p>
                   <div className={tutorintstyles.data}>
                     <p className={tutorintstyles.major}></p>
-                    <p className={tutorintstyles.matricula}></p>
+                    <p className={tutorintstyles.matricula}>{tutor.registration_number}</p>
                     <button className={tutorintstyles.button}  onClick={() => EditAsesor(item.id, item.date, item.hour, subject.code)}>
                       <i className= {cx( tutorintstyles.button,"bi bi-pencil")}></i>
                     </button>
