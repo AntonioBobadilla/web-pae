@@ -27,7 +27,6 @@ const ViewCalendar = ({ visible, setVisible, schedules, tutorName }: ModifyLangu
     { width: 1200, itemsToShow: 1 }
   ];
 
-  const [eventObj, setEventObj] = useState([]);
   const [schedulesFirstPeriod, setSchedulesFirstPeriod] = useState([]);
   const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState([]);
   const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState([]);

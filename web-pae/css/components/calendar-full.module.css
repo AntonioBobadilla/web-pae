@@ -26,6 +26,9 @@
     font-size: 14px;
   }
   
+  .table tbody tr td:hover {
+    cursor: pointer;
+  }
   
   .table tbody tr .titleHour {
     background: white;

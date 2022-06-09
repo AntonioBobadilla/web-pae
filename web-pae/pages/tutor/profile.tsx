@@ -1,18 +1,20 @@
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ModifySubjects from '@/components/dialogs/modify-subjects';
+import ModifySchedule from '@/components/dialogs/modify-schedule';
 import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
 import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectEmail, selectName } from 'store/reducers/user';
+import { selectEmail, selectName, selectID } from 'store/reducers/user';
 import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
 
 const Profile: NextPage = () => {
   const myUser = {
+    id: useAppSelector(selectID),
     name: useAppSelector(selectName),
     email: useAppSelector(selectEmail),
     weekHours: '2',
@@ -28,6 +30,8 @@ const Profile: NextPage = () => {
     React.useState(false);
   const [modifySubjectsVisible, setModifySubjectsVisible] =
     React.useState(false);
+  const [modifyScheduleVisible, setModifyScheduleVisible] =
+  React.useState(false);
 
   const onClickModifyPassword = () => {
     setModifyPasswordVisible(true);
@@ -41,9 +45,14 @@ const Profile: NextPage = () => {
     setModifySubjectsVisible(true);
   };
 
+  const onClickModifySchedule = () => {
+    setModifyScheduleVisible(true);
+  };
+
   return (
     <div className={Styles.main}>
       <ToggleMenu
+        onClickModifySchedule={onClickModifySchedule}
         onClickModifyPassword={onClickModifyPassword}
         onClickModifyLanguage={onClickModifyLanguage}
         onClickModifySubjects={onClickModifySubjects}
@@ -99,6 +108,13 @@ const Profile: NextPage = () => {
         <ModifySubjects
           visible={modifySubjectsVisible}
           setVisible={setModifySubjectsVisible}
+        />
+      )}
+      {modifyScheduleVisible && (
+        <ModifySchedule
+          visible={modifyScheduleVisible}
+          setVisible={setModifyScheduleVisible}
+          id={myUser.id}
         />
       )}
     </div>
