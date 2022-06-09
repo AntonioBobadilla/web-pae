@@ -1,4 +1,5 @@
 import EditPolls from '@/components/edit-polls';
+import PollIndividualResults from '@/components/poll-individual-results';
 import PollResults from '@/components/poll-results';
 import Tabs from '@/components/tabs';
 import { ReactElement, useEffect, useState } from 'react';
@@ -60,7 +61,7 @@ const Polls = () => {
             currentTab == 'IndResults' ? styles.indResults : styles.hidden
           }
         >
-          <PollResults></PollResults>
+          <PollIndividualResults></PollIndividualResults>
         </div>
         <div
           className={currentTab == 'EditPoll' ? styles.editPoll : styles.hidden}

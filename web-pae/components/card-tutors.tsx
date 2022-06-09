@@ -25,9 +25,15 @@ const CardTutors = () => {
       .then((data) => {
         const newData = [...data];
         // sor by date
-        newData.sort(
-          (a, b) => createDate(b.date, b.hour) - createDate(a.date, a.hour)
-        );
+        newData.sort((a, b) => {
+          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+            return -1;
+          }
+          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+            return 1;
+          }
+          return 0;
+        });
         // TODO: SET DATA
         console.log(newData)
         setAssignedTutorings(newData);
@@ -42,8 +48,7 @@ const CardTutors = () => {
     { width: 1200, itemsToShow: 3 }
   ];
 
-
-  const onClickQuestionVisible = (obj) => {
+  const onClickQuestionVisible = (obj: Tutoring) => {
     setTutoringObject(obj);
     setQuestionVisible(true);
   };
