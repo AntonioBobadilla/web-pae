@@ -8,6 +8,7 @@ import Modalidad from '@/components/dialogs/edit-modalidad';
 import SeleccionarAsesor from '@/components/dialogs/editar-asesor';
 import SuccessAcceptTutoring from '@/components/dialogs/accept-tutoring';
 import DeniedTutoring from '@/components/dialogs/denied-tutoring';
+import toast, { Toaster } from 'react-hot-toast';
 const Tutorings: NextPage = () => {
 
   const [data, setData] = useState([]);
@@ -24,6 +25,7 @@ const Tutorings: NextPage = () => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [TuteeIdToDelete, setTuteeIdToDelete] = useState(0);
   const [pending, setPending] = useState(true);
+
 
   const [day, setDay] = useState('');
   const [hour, setHour] = useState('');
@@ -75,6 +77,9 @@ const Tutorings: NextPage = () => {
     })
     .then(data => {
       console.log('ok')
+      toast('Asesor actualizado', {
+        icon: '😣'
+      })
       getDataFromApi();
     })
     .catch(err => {
@@ -103,7 +108,9 @@ const Tutorings: NextPage = () => {
         return res.json();
       })
       .then(data => {
-        console.log('ok')
+        toast('Modalidad actualizada', {
+          icon: '😣'
+        })
         getDataFromApi();
       })
       .catch(err => {
@@ -148,6 +155,7 @@ const Tutorings: NextPage = () => {
     onClickEditAsesor();
   }
 
+    // agregar token dinamico
   const del = () => {
     fetch('http://server-pae.azurewebsites.net/tutoring/'+TuteeIdToDelete, {
       method: 'DELETE',
@@ -160,7 +168,10 @@ const Tutorings: NextPage = () => {
       if (!res.ok) { // error coming back from server
         throw Error('could not make POST request for that endpoint');
       } else if (res.status === 204) {
-        window.location.reload(false);
+        getDataFromApi()
+        toast('Asesor eliminado', {
+          icon: '😣'
+        })
       }
       return res.json();
     })
@@ -188,9 +199,10 @@ const Tutorings: NextPage = () => {
     .then(data => {
       console.log('ok')
       onClickSuccessAcceptTutoring()
-      setTimeout(() => {
-        window.location.reload(false);
-      },3000)
+      getDataFromApi()
+      toast('Asesor aceptado', {
+        icon: '😣'
+      })
 
     })
     .catch(err => {

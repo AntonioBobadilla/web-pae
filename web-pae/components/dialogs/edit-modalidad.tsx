@@ -45,7 +45,7 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
   const sendData = () => {
     setNewModalidad(option)
     setNewPlace(place)
-    console.log(option, place)
+    onClickSave()
   };
 
   return (

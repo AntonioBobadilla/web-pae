@@ -19,17 +19,12 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
 
   const [asesorActual, setAsesorActual] = useState('');
   const [asesoresDisponibles, setAsesoresDisponibles] = useState([]);
+  const [pending, setPending] = useState(true);
 
   const onClickSave = () => {
     setVisible(false);
   };
 
-
-  let dummyData = [
-    { name: "Antonio", apellidos:"Bobadilla garcia", carrera: "ITC", matricula: "A01734433", horas:23},
-    { name: "Salvador", apellidos:"Gaytan Ibañez", carrera: "ITC", matricula: "A017346753", horas:80},
-    { name: "Karen", apellidos:"Rugerio Armenta", carrera: "ITC", matricula: "A01734f33", horas:80}
-  ]
 
   const clearAllBorders = () => {
     let wrapper = document.querySelector('#wrapper');
@@ -70,7 +65,7 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
     .then(function(data) {
       setAsesoresDisponibles(data);
       console.log("data: ",data)
-      //setPending(false);
+      setPending(false);
       })
     .catch(function(error) {
       console.log(error);
@@ -106,6 +101,8 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
     >
       <div className={editAsesorStyles.wrapper}>
         <div id='wrapper' className={editAsesorStyles.asesores}>
+          {pending && <div className={editAsesorStyles.message}>Cargando asesores....</div>}
+          {asesoresDisponibles.length == 0 && !pending && <div className={editAsesorStyles.message}>No hay asesores disponibles para esta asesoria.</div>}
           { 
             asesoresDisponibles.map(function(item,index) {
               return ( 
