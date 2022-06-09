@@ -7,7 +7,7 @@ const Poll = (props: {
 }) => {
   const [answer, setAnswer] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setAnswer(e.target.value);
   };
 

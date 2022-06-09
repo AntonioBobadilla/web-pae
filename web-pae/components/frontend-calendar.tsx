@@ -28,7 +28,7 @@ const MyCalendar = ({
   }, [eventObj]);
 
   // función que obtiene las celdas entre 2 horarios. Ej. celdas entre 7am y 10am.
-  const getCellsBetween = (startCell, finishCell) => {
+  const getCellsBetween = (startCell: any, finishCell: any) => {
     const start = startCell.getAttribute('id').split(' ');
     const dia = start[0];
     const horaInicio = start[1];

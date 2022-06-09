@@ -37,10 +37,10 @@ const SubjectForm = () => {
         console.log(err);
       });
   };
-  const codeChange = (e) => {
+  const codeChange = (e: any) => {
     setCode(e.target.value);
   };
-  const nameChange = (e) => {
+  const nameChange = (e: any) => {
     setName(e.target.value);
   };
   return (
