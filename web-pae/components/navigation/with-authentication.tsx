@@ -15,11 +15,7 @@ const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
     const { push, asPath } = useRouter();
     const token = useAppSelector(selectToken);
     const role = useAppSelector(selectRole);
-    // const { role, setRole } = useRole();
-    // const { token, setToken } = useToken();
-    // const role = useAppSelector(selectRole);
     const [authorized, setAuthorized] = useState(false);
-    // const { token, setToken } = getToken();
 
     const publicPaths = useMemo(
       () => [

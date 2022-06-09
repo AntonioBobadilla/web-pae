@@ -12,34 +12,31 @@ import Calendar from '@/components/dialogs/view-calendar-tutee';
 import DeniedTutee from '@/components/dialogs/denied-tutee';
 
 const Tutorings: NextPage = () => {
-
   const [asesores, setAsesores] = useState([]);
   const [solicitudesAsesores, setSolicitudesAsesores] = useState([]);
   const [data, setData] = useState([]);
   const [flag, setFlag] = useState(false);
-  const [successAcceptTuteeVisible, setsuccessAcceptTuteeVisible] = useState(false);
+  const [successAcceptTuteeVisible, setsuccessAcceptTuteeVisible] =
+    useState(false);
   const [DeniedTuteeVisible, setdeniedTuteeVisible] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [TuteeIdToDelete, setTuteeIdToDelete] = useState(0);
   const [pending, setPending] = useState(true);
   const [ViewCalendar, setviewCalendar] = useState(false);
-  const [schedules, setSchedules] = useState([])
-  const [TutorName, setTutorName] = useState([])
+  const [schedules, setSchedules] = useState([]);
+  const [TutorName, setTutorName] = useState([]);
 
   const removeDuplicates = (arr) => {
-    return arr.filter((item,
-      index) => arr.indexOf(item) === index);
-  }
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+  };
 
   useEffect(() => {
-    if (confirmDelete == true)
-      del();
-},[confirmDelete]) // <-- here put the parameter to listen
+    if (confirmDelete == true) del();
+  }, [confirmDelete]); // <-- here put the parameter to listen
 
   const onClickSuccessAcceptTutee = () => {
     setsuccessAcceptTuteeVisible(true);
   };
-
 
   const onClickDeniedTutee = () => {
     setdeniedTuteeVisible(true);
@@ -50,51 +47,49 @@ const Tutorings: NextPage = () => {
   };
 
   const filterData = () => {
-    console.log(flag)
-    if (data != [] ){
-      data.forEach(item => {
+    console.log(flag);
+    if (data != []) {
+      data.forEach((item) => {
         if (item.is_accepted) {
-          setAsesores(asesores => [...asesores, item]);
+          setAsesores((asesores) => [...asesores, item]);
         } else {
-          setSolicitudesAsesores(solicitudesAsesores => [...solicitudesAsesores, item])
+          setSolicitudesAsesores((solicitudesAsesores) => [
+            ...solicitudesAsesores,
+            item
+          ]);
         }
       });
-      setFlag(true)
-    } 
-  }
+      setFlag(true);
+    }
+  };
 
   const getTuteesFromApi = () => {
     fetch('http://server-pae.azurewebsites.net/tutor/')
-    .then((resp) => resp.json())
-    .then(function(data) {
-      setPending(false);
-      setData(data);
+      .then((resp) => resp.json())
+      .then(function (data) {
+        setPending(false);
+        setData(data);
       })
-    .catch(function(error) {
-      console.log(error);
-    });
-  } 
-
-
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   const createDataArray = () => {
     //console.log(solicitudesAsesores);
-  } 
+  };
 
   const [currentTab, setCurrentTab] = useState('');
 
   useEffect(() => {
     filterData();
-
   }, [data]);
 
   useEffect(() => {
-    getTuteesFromApi()
+    getTuteesFromApi();
     setCurrentTab('tutors');
     //createDataArray();
   }, []);
-
-
 
   const tutorsButton = () => {
     setCurrentTab('tutors');
@@ -105,66 +100,63 @@ const Tutorings: NextPage = () => {
   };
 
   const acceptTutee = (id) => {
-    fetch('http://server-pae.azurewebsites.net/tutorisaccepted/'+id, {
+    fetch('http://server-pae.azurewebsites.net/tutorisaccepted/' + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({"is_accepted": true})
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        throw Error('could not make PUT request for that endpoint');
-      } 
-      return res.json();
+      body: JSON.stringify({ is_accepted: true })
     })
-    .then(data => {
-      console.log('ok')
-      onClickSuccessAcceptTutee()
-      window.location.reload(false);
-    })
-    .catch(err => {
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make PUT request for that endpoint');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log('ok');
+        onClickSuccessAcceptTutee();
+        window.location.reload(false);
+      })
+      .catch((err) => {
         console.log(err.message);
-    })
-    
-  }
+      });
+  };
 
   const deleteTutee = (id) => {
     setTuteeIdToDelete(id);
-    onClickDeniedTutee()
-  }
-
+    onClickDeniedTutee();
+  };
 
   const del = () => {
-    fetch('http://server-pae.azurewebsites.net/tutor/'+TuteeIdToDelete, {
+    fetch('http://server-pae.azurewebsites.net/tutor/' + TuteeIdToDelete, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        throw Error('could not make POST request for that endpoint');
-      } else if (res.status === 204) {
-        window.location.reload(false);
-      }
-      return res.json();
     })
-    .catch(err => {
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make POST request for that endpoint');
+        } else if (res.status === 204) {
+          window.location.reload(false);
+        }
+        return res.json();
+      })
+      .catch((err) => {
         console.log(err.message);
-    })
-    
-  }
-
-
+      });
+  };
 
   const showCalendar = (schedules, name) => {
-    setSchedules(schedules)
-    setTutorName(name)
-    onClickViewCalendar()
-  }
+    setSchedules(schedules);
+    setTutorName(name);
+    onClickViewCalendar();
+  };
 
   const renderAsesores = () => {
-    if (asesores.length != 0) { 
-      console.log(asesores)
+    if (asesores.length != 0) {
+      console.log(asesores);
       return (
-      <table
+        <table
           className={
             currentTab == 'tutors' ? styles.tableTutors : styles.hidden
           }
@@ -180,149 +172,163 @@ const Tutorings: NextPage = () => {
             </tr>
           </thead>
           <tbody>
-     { asesores.map(function (item,index) {
-      return (
-        <tr  key={index} className={styles.tr}>
-          <td className={styles.td}>
-            <p>{item.registration_number}</p>
-          </td>
-          <td className={styles.td}>
-            <p>{item.name}</p>
-          </td>
-          <td className={styles.td}>
-            <p>ITC</p>
-          </td>
-          <td className={styles.td}>
-            {
-              item.subjects.map( function(subject, index) {
-                return ( <p key={index}>{subject.subject} </p> )
-              })  
-            }
-          </td>
-          <td className={styles.td}>
-            <p>{item.completed_hours}/80</p>
-          </td>
-          <td className={styles.td}>
-            <button onClick={() => showCalendar(item.schedules,item.name)} className={styles.button}>Ver</button>
-          </td>
-        </tr>
-          );
-        })} 
-        </tbody>
-        </table> 
-      )  
+            {asesores.map(function (item, index) {
+              return (
+                <tr key={index} className={styles.tr}>
+                  <td className={styles.td}>
+                    <p>{item.registration_number}</p>
+                  </td>
+                  <td className={styles.td}>
+                    <p>{item.name}</p>
+                  </td>
+                  <td className={styles.td}>
+                    <p>ITC</p>
+                  </td>
+                  <td className={styles.td}>
+                    {item.subjects.map(function (subject, index) {
+                      return <p key={index}>{subject.subject} </p>;
+                    })}
+                  </td>
+                  <td className={styles.td}>
+                    <p>{item.completed_hours}/80</p>
+                  </td>
+                  <td className={styles.td}>
+                    <button
+                      onClick={() => showCalendar(item.schedules, item.name)}
+                      className={styles.button}
+                    >
+                      Ver
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      );
     } else {
       return (
-        <div className={
-          currentTab == 'request' ? styles.tableRequest : styles.hidden
-        }>
-        <table
-
-      >
-      <thead>
-        <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Número de horas</th>
-              <th className={styles.head}>Horarios</th>
-              <th className={styles.head}></th>
-        </tr>
-      </thead>
-      <tbody> 
-      </tbody>
-      </table>
-      <p className={styles.emptyMessage}>No hay asesores disponibles</p>    
-      </div>  
-      )
+        <div
+          className={
+            currentTab == 'request' ? styles.tableRequest : styles.hidden
+          }
+        >
+          <table>
+            <thead>
+              <tr className={cx(styles.headRow, styles.tr)}>
+                <th className={styles.head}>Matricula</th>
+                <th className={styles.head}>Nombre</th>
+                <th className={styles.head}>Carrera</th>
+                <th className={styles.head}>Materias de asesoría</th>
+                <th className={styles.head}>Número de horas</th>
+                <th className={styles.head}>Horarios</th>
+                <th className={styles.head}></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p className={styles.emptyMessage}>No hay asesores disponibles</p>
+        </div>
+      );
     }
-  }
+  };
 
   const renderSolicitudesAsesores = () => {
-    if (solicitudesAsesores.length != 0) { 
+    if (solicitudesAsesores.length != 0) {
       return (
         <table
           className={
             currentTab == 'request' ? styles.tableRequest : styles.hidden
           }
         >
-        <thead>
-          <tr className={cx(styles.headRow, styles.tr)}>
-            <th className={styles.head}>Matricula</th>
-            <th className={styles.head}>Nombre</th>
-            <th className={styles.head}>Carrera</th>
-            <th className={styles.head}>Materias de asesoría</th>
-            <th className={styles.head}>Horarios</th>
-            <th className={styles.head}>Aceptar/rechazar</th>
-          </tr>
-        </thead>
-        <tbody>
-         { solicitudesAsesores.map(function (item,index) {
-          return (
-            <tr  key={index} className={styles.tr}>
-              <td className={styles.td}>
-                <p>{item.registration_number}</p>
-              </td>
-              <td className={styles.td}>
-                <p>{item.name}</p>
-              </td>
-              <td className={styles.td}>
-                <p>ITC</p>
-              </td>
-              <td className={styles.td}>
-              {
-              item.subjects.map( function(subject, index) {
-                return ( <p key={index}>{subject.subject} </p> )
-              })  
-            }
-              </td>
-              <td className={styles.td}>
-                <button onClick={() => showCalendar(item.schedules,item.name)}  className={styles.button}>Ver</button>
-              </td>
-              <td className={styles.td}>
-                <div className={styles.flex}>
-                  <button onClick={() => acceptTutee(item.registration_number)} className={styles.accept}>Aceptar</button>
-                  <button onClick={() => deleteTutee(item.registration_number)} className={styles.denied}>Rechazar</button>
-                </div>
-              </td>
+          <thead>
+            <tr className={cx(styles.headRow, styles.tr)}>
+              <th className={styles.head}>Matricula</th>
+              <th className={styles.head}>Nombre</th>
+              <th className={styles.head}>Carrera</th>
+              <th className={styles.head}>Materias de asesoría</th>
+              <th className={styles.head}>Horarios</th>
+              <th className={styles.head}>Aceptar/rechazar</th>
             </tr>
-          );
-        })}
-        </tbody>
-        </table> 
-      )  
+          </thead>
+          <tbody>
+            {solicitudesAsesores.map(function (item, index) {
+              return (
+                <tr key={index} className={styles.tr}>
+                  <td className={styles.td}>
+                    <p>{item.registration_number}</p>
+                  </td>
+                  <td className={styles.td}>
+                    <p>{item.name}</p>
+                  </td>
+                  <td className={styles.td}>
+                    <p>ITC</p>
+                  </td>
+                  <td className={styles.td}>
+                    {item.subjects.map(function (subject, index) {
+                      return <p key={index}>{subject.subject} </p>;
+                    })}
+                  </td>
+                  <td className={styles.td}>
+                    <button
+                      onClick={() => showCalendar(item.schedules, item.name)}
+                      className={styles.button}
+                    >
+                      Ver
+                    </button>
+                  </td>
+                  <td className={styles.td}>
+                    <div className={styles.flex}>
+                      <button
+                        onClick={() => acceptTutee(item.registration_number)}
+                        className={styles.accept}
+                      >
+                        Aceptar
+                      </button>
+                      <button
+                        onClick={() => deleteTutee(item.registration_number)}
+                        className={styles.denied}
+                      >
+                        Rechazar
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      );
     } else {
       return (
-        <div className={
-          currentTab == 'request' ? styles.tableRequest : styles.hidden
-        }>
-        <table
-
-      >
-      <thead>
-        <tr className={cx(styles.headRow, styles.tr)}>
-          <th className={styles.head}>Matricula</th>
-          <th className={styles.head}>Nombre</th>
-          <th className={styles.head}>Carrera</th>
-          <th className={styles.head}>Materias de asesoría</th>
-          <th className={styles.head}>Horarios</th>
-          <th className={styles.head}>Aceptar/rechazar</th>
-        </tr>
-      </thead>
-      <tbody> 
-      </tbody>
-      </table>
-      <p className={styles.emptyMessage}>No hay solicitudes disponibles</p>    
-      </div>  
-      )
+        <div
+          className={
+            currentTab == 'request' ? styles.tableRequest : styles.hidden
+          }
+        >
+          <table>
+            <thead>
+              <tr className={cx(styles.headRow, styles.tr)}>
+                <th className={styles.head}>Matricula</th>
+                <th className={styles.head}>Nombre</th>
+                <th className={styles.head}>Carrera</th>
+                <th className={styles.head}>Materias de asesoría</th>
+                <th className={styles.head}>Horarios</th>
+                <th className={styles.head}>Aceptar/rechazar</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p className={styles.emptyMessage}>No hay solicitudes disponibles</p>
+        </div>
+      );
     }
-  }
+  };
 
   return (
     <div className={styles.main}>
       <div className={styles.searchBar}>
-        <SearchBar suggestions={['a']}/>
+        <SearchBar suggestions={['a']} />
       </div>
       <div className={styles.tabs}>
         <div className={styles.tutorTab}>
@@ -341,38 +347,34 @@ const Tutorings: NextPage = () => {
         </div>
       </div>
       <div className={styles.tables}>
-        
-            { pending && <div>Cargando datos...</div> }
-            { renderAsesores()  }
-            
+        {pending && <div>Cargando datos...</div>}
+        {renderAsesores()}
 
-            {renderSolicitudesAsesores()}
+        {renderSolicitudesAsesores()}
       </div>
       {successAcceptTuteeVisible && (
-            <SuccessAcceptTutee
-              visible={successAcceptTuteeVisible}
-              setVisible={setsuccessAcceptTuteeVisible}
-            />
+        <SuccessAcceptTutee
+          visible={successAcceptTuteeVisible}
+          setVisible={setsuccessAcceptTuteeVisible}
+        />
       )}
       {DeniedTuteeVisible && (
-            <DeniedTutee
-              visible={DeniedTuteeVisible}
-              setVisible={setdeniedTuteeVisible}
-              setConfirmDelete={setConfirmDelete}
-            />
+        <DeniedTutee
+          visible={DeniedTuteeVisible}
+          setVisible={setdeniedTuteeVisible}
+          setConfirmDelete={setConfirmDelete}
+        />
       )}
 
       {ViewCalendar && (
-            <Calendar
-              visible={ViewCalendar}
-              setVisible={setviewCalendar}
-              schedules={schedules}
-              tutorName={TutorName}
-            />
+        <Calendar
+          visible={ViewCalendar}
+          setVisible={setviewCalendar}
+          schedules={schedules}
+          tutorName={TutorName}
+        />
       )}
-
     </div>
-
   );
 };
 

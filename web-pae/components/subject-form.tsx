@@ -50,7 +50,7 @@ const SubjectForm = () => {
     let myname = e.target.value;
     myname = myname.toUpperCase();
     e.target.value = myname;
-    setName(e.target.value);
+    setName(myname);
   };
   return (
     <div className={Styles.main}>
