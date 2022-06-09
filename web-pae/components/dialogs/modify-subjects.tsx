@@ -81,9 +81,15 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   };
 
   const deleteSubjectFromTutor = (code) => {
-    fetch('http://server-pae.azurewebsites.net/subjectbytutor/'+id.toLowerCase()+"/"+code, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
+    fetch('http://server-pae.azurewebsites.net/subjectbytutor/', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(
+        {
+          tutor:   id.toLowerCase(),
+          subject: code
+        }
+      )
   })
     .then(res => {
       if (!res.ok) { // error coming back from server
