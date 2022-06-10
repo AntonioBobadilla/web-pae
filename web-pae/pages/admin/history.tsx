@@ -10,106 +10,12 @@ import ButtonTemplate from '@/components/button-template';
 
 const History: NextPage = () => {
 
-  const [currentTab, setCurrentTab] = useState('');
+  const [currentTab, setCurrentTab] = useState<any>('');
 
-  const [data, setData] = useState([]);
-  const [csvObj, setCsvObj] = useState([]);
+  const [data, setData] = useState<any>([]);
+  const [csvObj, setCsvObj] = useState<any>([]);
 
-  let dummyData = [
-    {
-        "id": 15,
-        "date": "2022-05-26",
-        "hour": 8,
-        "status": "PE",
-        "is_online": true,
-        "topic": "123",
-        "doubt": null,
-        "file": "http://localhost:8000/media/tutoring/Screenshot_from_2021-02-08_18-49-08.png",
-        "tutor": {
-            "registration_number": "a01731000",
-            "email": "a01731000@tec.mx",
-            "name": "Bryan G. Arellano",
-            "completed_hours": 0,
-            "is_active": true,
-            "is_accepted": false,
-            "user": "tutora01731000"
-        },
-        "student": {
-            "registration_number": "a01731097",
-            "email": "a01731097@tec.mx",
-            "name": "Salvador Gaytan putito",
-            "is_active": false,
-            "user": "studenta01731097"
-        },
-        "subject": {
-            "code": "L0173",
-            "name": "TC3004B",
-            "semester": 1
-        }
-    },
-    {
-        "id": 16,
-        "date": "2022-05-30",
-        "hour": 8,
-        "status": "PE",
-        "is_online": true,
-        "topic": "123",
-        "doubt": null,
-        "file": "http://localhost:8000/media/tutoring/Screenshot_from_2021-02-08_18-49-08.png",
-        "tutor": {
-            "registration_number": "a01731000",
-            "email": "a01731000@tec.mx",
-            "name": "Bryan G. Arellano",
-            "completed_hours": 0,
-            "is_active": true,
-            "is_accepted": false,
-            "user": "tutora01731000"
-        },
-        "student": {
-            "registration_number": "a01731097",
-            "email": "a01731097@tec.mx",
-            "name": "Karen Rugerio Armenta",
-            "is_active": false,
-            "user": "studenta01731097"
-        },
-        "subject": {
-            "code": "L0173",
-            "name": "F1004B.1",
-            "semester": 1
-        }
-    },
-    {
-        "id": 17,
-        "date": "2022-06-01",
-        "hour": 9,
-        "status": "PE",
-        "is_online": true,
-        "topic": "123",
-        "doubt": null,
-        "file": "http://localhost:8000/media/tutoring/Screenshot_from_2021-02-08_18-49-08_z3ZCK3o.png",
-        "tutor": {
-            "registration_number": "a01731005",
-            "email": "a01731005@tec.mx",
-            "name": "Bryan G. Arellano",
-            "completed_hours": 0,
-            "is_active": false,
-            "is_accepted": false,
-            "user": "tutora01731005"
-        },
-        "student": {
-            "registration_number": "a01731097",
-            "email": "a01731097@tec.mx",
-            "name": "José Antonio Bobadilla García",
-            "is_active": false,
-            "user": "studenta01731097"
-        },
-        "subject": {
-            "code": "L0173",
-            "name": "TC2005B",
-            "semester": 1
-        }
-    }
-];
+
 
   const getData = () => {
     fetch('http://server-pae.azurewebsites.net/tutoring/')
@@ -124,20 +30,21 @@ const History: NextPage = () => {
   } 
 
   const createObjToCSV = () => {
-      let arrObj = [];
+      let arrObj: ((prevState: never[]) => never[]) | { tutorName: any; studentName: any; subjectName: any; date: any; hour: any; }[] = [];
+      const utf8 = require('utf8');
+      data.map(function (item: any,index: any) {
 
-      data.map(function (item,index) {
-
-        let tutorName =  item.tutor != null ? item.tutor.name : "no hay tutor";
-        let studentName =  item.student != null ? item.student.name : "no hay estudiante";
-        let subjectName =  item.subject != null ? item.subject.name : "no hay materia";
-        let date =  item.date != null ? item.date : "no hay fecha";
-        let hour =  item.hour != null ? item.hour : "no hay hora";
+        let tutorName =  utf8.encode(item.tutor != null ? item.tutor.name : "no hay tutor");
+        let studentName =  utf8.encode(item.student != null ? item.student.name : "no hay estudiante");
+        let subjectName =  utf8.encode(item.subject != null ? item.subject.name : "no hay materia");
+        let date = utf8.encode(item.date != null ? item.date : "no hay fecha");
+        let hour =  utf8.encode(item.hour != null ? item.hour : "no hay hora");
 
         let obj = {tutorName, studentName, subjectName, date, hour};
 
-        arrObj.push(obj)
+        (arrObj as unknown as any[]).push(obj)
       })
+      
       setCsvObj(arrObj);
   }
   
@@ -165,7 +72,7 @@ const History: NextPage = () => {
           </tr>
         </thead>
         <tbody>
-        { data.map(function (item,index) {
+        { data.map(function (item: any,index: any) {
 
             let tutorName =  item.tutor != null ? item.tutor.name : "no hay tutor";
             let studentName =  item.student != null ? item.student.name : "no hay estudiante";
@@ -201,8 +108,6 @@ const History: NextPage = () => {
             <CsvDownload className={history.csvButton} filename={"historial-asesorias.csv"} data={csvObj} />
           </ButtonTemplate>
         </div>
-
-        
     </div>
   )
 };
