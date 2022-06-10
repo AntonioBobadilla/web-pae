@@ -36,19 +36,22 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
   }
 
   const handleClickAsesor = (e) => {
-    let idOfAsesor = e.target.id;
+    if (asesoresDisponibles.length != 0){
+      let idOfAsesor = e.target.id;
 
-    let asesorObj = asesoresDisponibles[idOfAsesor];
-
-    let asesor = asesorObj.registration_number
-    setAsesorActual(asesor)
-    clearAllBorders();
-    if (!e.target.classList.contains('active')){
-      e.target.style.border = '2px solid #039BE5';
-      e.target.classList.add('active')
+      let asesorObj = asesoresDisponibles[idOfAsesor];
+  
+      let asesor = asesorObj.registration_number
+      setAsesorActual(asesor)
+      clearAllBorders();
+      if (!e.target.classList.contains('active')){
+        e.target.style.border = '2px solid #039BE5';
+        e.target.classList.add('active')
+      }
+      setAsesorActual(asesor)
+      console.log("Asesor seleccionado: ", asesor)
     }
-    setAsesorActual(asesor)
-    console.log("Asesor seleccionado: ", asesor)
+
   }
 
   const getAsesores = () => {
@@ -79,10 +82,13 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
   useEffect(() => {
     let wrapper = document.querySelector('#wrapper');
     if (wrapper != null ) {
-      let asesores = wrapper.childNodes;
-      asesores.forEach(item => {
-        item.addEventListener("click", handleClickAsesor);
-      })
+      if (asesoresDisponibles.length != 0){
+        let asesores = wrapper.childNodes;
+        asesores.forEach(item => {
+          item.addEventListener("click", handleClickAsesor);
+        })
+      }
+
     }
 
   },[asesoresDisponibles])

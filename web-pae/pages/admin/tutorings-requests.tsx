@@ -9,27 +9,30 @@ import SeleccionarAsesor from '@/components/dialogs/editar-asesor';
 import SuccessAcceptTutoring from '@/components/dialogs/accept-tutoring';
 import DeniedTutoring from '@/components/dialogs/denied-tutoring';
 import toast, { Toaster } from 'react-hot-toast';
+import { useAppSelector } from 'store/hook';
+import { selectToken } from '@/redux/user';
 const Tutorings: NextPage = () => {
 
-  const [data, setData] = useState([]);
-  const [currentTab, setCurrentTab] = useState('');
-  const [EditModalidad, setModalidad] = useState(false);
-  const [Asesor, setAsesor] = useState(false);
-  const [newAsesor, setNewAsesor] = useState('');
-  const [objectToModify, setObjectToModify] = useState(0);
-  const [objectModalidad, setObjectModalidad] = useState([]);
-  const [newPlace, setNewPlace] = useState('');
-  const [NewModalidad, setNewModalidad] = useState('');
-  const [SuccessAcceptTutoringVisible, setSuccessAcceptTutoringVisible] = useState(false);
-  const [DeniedTutoringVisible, setDeniedTutoringVisible] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
-  const [TuteeIdToDelete, setTuteeIdToDelete] = useState(0);
-  const [pending, setPending] = useState(true);
+  const [data, setData] = useState<any>([]);
+  const [currentTab, setCurrentTab] = useState<any>('');
+  const [EditModalidad, setModalidad] = useState<any>(false);
+  const [Asesor, setAsesor] = useState<any>(false);
+  const [newAsesor, setNewAsesor] = useState<any>('');
+  const [objectToModify, setObjectToModify] = useState<any>(0);
+  const [objectModalidad, setObjectModalidad] = useState<any>([]);
+  const [newPlace, setNewPlace] = useState<any>('');
+  const [NewModalidad, setNewModalidad] = useState<any>('');
+  const [SuccessAcceptTutoringVisible, setSuccessAcceptTutoringVisible] = useState<any>(false);
+  const [DeniedTutoringVisible, setDeniedTutoringVisible] = useState<any>(false);
+  const [confirmDelete, setConfirmDelete] = useState<any>(false);
+  const [TuteeIdToDelete, setTuteeIdToDelete] = useState<any>(0);
+  const [pending, setPending] = useState<any>(true);
 
+  let token = useAppSelector(selectToken);
 
-  const [day, setDay] = useState('');
-  const [hour, setHour] = useState('');
-  const [subject, setSubject] = useState('');
+  const [day, setDay] = useState<any>('');
+  const [hour, setHour] = useState<any>('');
+  const [subject, setSubject] = useState<any>('');
 
   const getDataFromApi = () => {
     fetch('http://server-pae.azurewebsites.net/tutoring/?status=PE')
@@ -140,14 +143,14 @@ const Tutorings: NextPage = () => {
     updateModalidad();
   }, [NewModalidad]);
 
-  const editModalidad = (modalidadObj, idABorrar) => {
+  const editModalidad = (modalidadObj: any, idABorrar: any) => {
     setObjectToModify(idABorrar) // ese es el indice que guardaremos
     setObjectModalidad(modalidadObj);
     onClickModalidad();
   }
 // en esta funcion  vamos a recibir el indice del objeto del arreglo de objetos traidos por api
 // para así al actualizar ese objeto nos basemos en su indice para saber qué objeto actualizar
-  const EditAsesor = (idOfObject, day, hour, subject) => {
+  const EditAsesor = (idOfObject: any, day: any, hour: any, subject: any) => {
     setDay(day)
     setHour(hour)
     setSubject(subject)
@@ -161,7 +164,7 @@ const Tutorings: NextPage = () => {
       method: 'DELETE',
       headers: {
          'Content-Type': 'application/json',
-         'Authorization':'Token 5a752191e75533eaee3cfa008463ada6f343aea8'
+         'Authorization':`Token ${token}`
       }
   })
     .then(res => {
@@ -180,12 +183,12 @@ const Tutorings: NextPage = () => {
     })
   }
 
-  const deleteTutoring = (id) => {
+  const deleteTutoring = (id: any) => {
     setTuteeIdToDelete(id);
     onClickDeniedTutoring()
   }
 
-  const acceptTutoring = (id) => {
+  const acceptTutoring = (id: any) => {
     fetch('http://server-pae.azurewebsites.net/confirmtutoring/'+id, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
@@ -228,7 +231,7 @@ const Tutorings: NextPage = () => {
         </thead>
         <tbody> 
           {
-            data.map(function(item,index) {
+            data.map(function(item: any,index: any) {
               let {student, subject, tutor} = item
               console.log(data)
               let modalidad = item.is_online ? 'En línea' : 'Presencial';
