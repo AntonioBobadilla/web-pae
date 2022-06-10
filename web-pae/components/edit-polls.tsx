@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../css/components/editPolls.module.css';
 import cx from 'classnames';
 import DeleteQuestion from './dialogs/delete-question';
+import ModifyQuestion from './dialogs/modify-question';
 
 const EditPolls = () => {
   const [data, setData] = useState([]);
@@ -10,9 +11,11 @@ const EditPolls = () => {
   const [modifiedQuestion, setModifiedQuestion] = useState([]);
   const [add, setAdd] = useState(false);
   const [popUp, setPopUp] = useState(false);
+  const [popUp2, setPopUp2] = useState(false);
   const [id, setId] = useState(null);
 
   const modifyQuestion = (e) => {
+    visiblePopUp2();
     let element = e.target.parentElement.parentElement.childNodes[0];
     let element2 = e.target.parentElement.parentElement.childNodes[1];
     let newButton = e.target.parentElement.childNodes[0];
@@ -38,9 +41,15 @@ const EditPolls = () => {
   const visiblePopUp = () => {
     setPopUp(true);
   };
+  const visiblePopUp2 = () => {
+    setPopUp2(true);
+  };
 
   const notVisiblePopUp = () => {
     setPopUp(false);
+  };
+  const notVisiblePopUp2 = () => {
+    setPopUp2(false);
   };
 
   const changeAddVisibility = () => {
@@ -182,6 +191,12 @@ const EditPolls = () => {
         onClickFunction={() => deleteQuestion()}
         onClickCancel={notVisiblePopUp}
       ></DeleteQuestion>
+
+      <ModifyQuestion
+        visible={popUp2}
+        setVisible={setPopUp2}
+        onClickCancel={notVisiblePopUp2}
+      ></ModifyQuestion>
       <div className={add ? styles.questionInput : styles.hidden}>
         <input
           type="text"

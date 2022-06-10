@@ -4,7 +4,11 @@ import { isContext } from 'vm';
 import styles from '../css/components/pollIndividualResults.module.css';
 import classNames from 'classnames';
 
-const PollIndividualResults = () => {
+interface IndividualResultProps {
+  curTab: boolean;
+}
+
+const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
   const getPollsfromApi = () => {
@@ -24,6 +28,7 @@ const PollIndividualResults = () => {
   useEffect(() => {
     getPollsfromApi();
   }, []);
+  curTab ? getPollsfromApi() : null;
 
   function myArrow({ type, onClick, isEdge }) {
     const pointer = type === consts.PREV ? 'left' : 'right';
