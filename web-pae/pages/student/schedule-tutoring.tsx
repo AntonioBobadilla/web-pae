@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Meeting } from '@/components/data-table/types';
 import TutoringConfirmation from '@/components/tutoring/confirmation';
 import TutoringSubject from '@/components/tutoring/subject';
 import {
@@ -85,10 +87,17 @@ const ScheduleTutoring: NextPage = () => {
   const handleNextStepSubject = async () => {
     try {
       const data = await dispatch(getAvailableTutorings()).unwrap();
-      if (data && data.length > 0) {
+
+      const length = data.reduce(
+        (acc: any, curr: Meeting) => acc + curr.tutorings.length,
+        0
+      );
+      if (data && data.length > 0 && length > 0) {
         handleNextStep();
       } else {
-        // toast.error(error);
+        toast.error(
+          'Lo sentimos, por el momento no hay asesorías disponibles para esa materia.'
+        );
       }
     } catch (err: any) {
       toast.error(err.message);
