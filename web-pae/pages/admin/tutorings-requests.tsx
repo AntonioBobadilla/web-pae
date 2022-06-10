@@ -81,7 +81,7 @@ const Tutorings: NextPage = () => {
     .then(data => {
       console.log('ok')
       toast('Asesor actualizado', {
-        icon: '😣'
+        icon: '😄'
       })
       getDataFromApi();
     })
@@ -112,7 +112,7 @@ const Tutorings: NextPage = () => {
       })
       .then(data => {
         toast('Modalidad actualizada', {
-          icon: '😣'
+          icon: '✅'
         })
         getDataFromApi();
       })
@@ -173,7 +173,7 @@ const Tutorings: NextPage = () => {
       } else if (res.status === 204) {
         getDataFromApi()
         toast('Asesor eliminado', {
-          icon: '😣'
+          icon: '✅'
         })
       }
       return res.json();
@@ -204,7 +204,7 @@ const Tutorings: NextPage = () => {
       onClickSuccessAcceptTutoring()
       getDataFromApi()
       toast('Asesor aceptado', {
-        icon: '😣'
+        icon: '✅'
       })
 
     })
