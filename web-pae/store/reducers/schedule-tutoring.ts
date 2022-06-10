@@ -101,7 +101,10 @@ export const reserveTutoring = createAsyncThunk(
     formData.append('is_online', selectedItem.isOnline);
     formData.append('topic', title);
     formData.append('doubt', content);
-    formData.append('file', file);
+    if (file !== null) {
+      formData.append('file', file);
+    }
+
     formData.append('place', 'Zoom');
 
     const post = (data: any, url: string) =>
