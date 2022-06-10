@@ -173,9 +173,9 @@ const LoginForm = ({
                   <a className={styles.regLink}>Regístrate</a>
                 </Link>
               </h2>
-              <a href="#" className={styles.privacy}>
-                Aviso de privacidad
-              </a>
+              <Link href="/" passHref>
+                <a className={styles.privacy}>Aviso de privacidad</a>
+              </Link>
             </div>
           </div>
         </form>
