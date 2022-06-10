@@ -4,16 +4,10 @@ import Styles from '../../css/components/dialogs/delete-question.module.css';
 type props = {
   visible: boolean;
   setVisible: (visible: boolean) => void;
-  onClickFunction: any;
   onClickCancel: any;
 };
 
-const DeleteQuestion = ({
-  visible,
-  setVisible,
-  onClickFunction,
-  onClickCancel
-}: props) => (
+const ModifyQuestion = ({ visible, setVisible, onClickCancel }: props) => (
   <ClosablePopup
     title={undefined}
     line={false}
@@ -23,19 +17,17 @@ const DeleteQuestion = ({
   >
     <div className={Styles.main}>
       <span className={Styles.text}>
-        ¿Esta seguro que quiere eliminar la pregunta? Una vez eliminada
-        desaparecerá de todas las encuestas donde se usó
+        ¿Esta seguro que quiere modificar la pregunta? Una vez modificada todas
+        las encuestas donde se usó tendran las respuestas anteriores con la
+        nueva pregunta
       </span>
       <div className={Styles.buttons}>
-        <button onClick={onClickCancel} className={Styles.cancel}>
-          Cancelar
-        </button>
-        <button onClick={onClickFunction} className={Styles.delete}>
-          Si,eliminar
+        <button onClick={onClickCancel} className={Styles.delete}>
+          Entendido
         </button>
       </div>
     </div>
   </ClosablePopup>
 );
 
-export default DeleteQuestion;
+export default ModifyQuestion;
