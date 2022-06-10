@@ -23,7 +23,7 @@ const AcceptTutee = ({ visible, setVisible }: ModifyLanguageProps) => {
       setVisible={setVisible}
     >
       <div className={registerStyles.languageOptions}>
-        <p style={{'marginBottom':'50px'}}>¡Tutor aceptado con éxito!</p>
+        <p style={{ marginBottom: '50px' }}>¡Tutor aceptado con éxito!</p>
       </div>
     </ClosablePopup>
   );

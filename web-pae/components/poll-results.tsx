@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import styles from '../css/components/pollResults.module.css';
 
-const PollResults = () => {
+interface PollResultProps {
+  curTab: boolean;
+}
+
+const PollResults = ({ curTab }: PollResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
 
@@ -21,6 +25,7 @@ const PollResults = () => {
   useEffect(() => {
     getPollsfromApi();
   }, []);
+  curTab ? getPollsfromApi() : null;
   return (
     <div className={styles.main}>
       <div className={styles.header}>
@@ -33,7 +38,7 @@ const PollResults = () => {
         </div>
       </div>
       <div className={styles.questionContainer}>
-        {data.map(function (item, index) {
+        {data.map(function (item: any, index) {
           return (
             <div key={index} className={styles.questions}>
               <span className={styles.question}>{item.question.body}</span>

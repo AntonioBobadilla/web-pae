@@ -49,22 +49,23 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
     try {
       if (status === 200 || status === 201 || status === 204) {
         // toast success
-        toast.success('Successful logoout');
-
+        toast.success('Successful logout');
+      } else {
         // set user data
 
-        dispatch(setLogoutData());
-
-        // redirect to home
-        setTimeout(() => push(routes.exit), 500);
-      } else {
-        toast.error(responseData.message);
+        toast.error(responseData.token);
         setIsLoading(false);
       }
     } catch (error) {
       toast.error('Something went wrong');
       setIsLoading(false);
     }
+    // set user data
+
+    dispatch(setLogoutData());
+
+    // redirect to home
+    setTimeout(() => push(routes.exit), 500);
   };
 
   const logOut = () => {

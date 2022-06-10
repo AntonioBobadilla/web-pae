@@ -54,14 +54,18 @@ const Polls = () => {
         <div
           className={currentTab == 'Results' ? styles.results : styles.hidden}
         >
-          <PollResults></PollResults>
+          <PollResults
+            curTab={currentTab == 'Results' ? true : false}
+          ></PollResults>
         </div>
         <div
           className={
             currentTab == 'IndResults' ? styles.indResults : styles.hidden
           }
         >
-          <PollIndividualResults></PollIndividualResults>
+          <PollIndividualResults
+            curTab={currentTab == 'IndResults' ? true : false}
+          ></PollIndividualResults>
         </div>
         <div
           className={currentTab == 'EditPoll' ? styles.editPoll : styles.hidden}
