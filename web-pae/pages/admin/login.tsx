@@ -7,7 +7,7 @@ const Login: NextPage = () => (
   <LoginFormAdmin
     image="/images/admin-login-image.jpg"
     homeRoute="/admin/home"
-    user="admin"
+    user="administrator"
     forgotPasswordRoute="/admin/forgot-password"
   />
 );

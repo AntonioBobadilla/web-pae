@@ -43,24 +43,16 @@ const Home = () => {
             </a>
           </div>
           <div className={styles.buttons}>
-            <ButtonTemplate
-              className={styles.signup}
-              variant="info"
-              clickable
-              onClick={loginHandle}
-            >
-              {' '}
-              Ingresa{' '}
-            </ButtonTemplate>
-            <ButtonTemplate
-              className={styles.login}
-              variant="info"
-              clickable
-              onClick={registerHandle}
-            >
-              {' '}
-              Regístrate{' '}
-            </ButtonTemplate>
+            <div className={styles.btn}>
+              <div className={styles.btn}>
+                <button className={styles.login} onClick={loginHandle}>
+                  Ingresa
+                </button>
+                <button className={styles.signup} onClick={registerHandle}>
+                  Regístrate
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -149,10 +141,23 @@ const Home = () => {
             ¡En PAE estamos encantados de poder ayudarte!{' '}
           </span>
         </div>
+        <div className={styles.credits}>
+          <div className={styles.legal}>
+            <span className={styles.creditsTitle}> Legal </span>
+            <span className={styles.creditsTitle}> Legal </span>
+            <span className={styles.creditsTitle}> Legal </span>
+          </div>
+          <div className={styles.logoHacket}>
+            <img className={styles.hacketImg} src="/images/hacket.png" />
+          </div>
+          <div className={styles.credit}>Credits</div>
+        </div>
+        <div className={styles.copyrights}>
+          <span>Registrada ® </span>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Home;
-// <ConfirmPopup url="http://www.google.com" />

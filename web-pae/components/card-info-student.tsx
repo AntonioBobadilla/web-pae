@@ -11,7 +11,13 @@ const interpretation = (status: string) => {
       return 'Confirmada';
     case 'cancel':
       return 'Rechazada';
-    case 'info': //cambiar por completada
+    case 'info':
+      return 'Completada';
+    case 'PE':
+      return 'Pendiente';
+    case 'AP':
+      return 'Aprobada';
+    case 'CO':
       return 'Completada';
     default:
       return 'Pendiente';
@@ -27,32 +33,28 @@ const IsLink = (props: { location: string }) => {
         {props.location}{' '}
       </a>
     );
-  } else {
-    return (
-      <span className={cardInfoStylesStu.caption}> {props.location} </span>
-    );
   }
+  return <span className={cardInfoStylesStu.caption}> {props.location} </span>;
 };
 
 const ItsLink = (props: { location: string }) => {
   const { location } = props;
   if (props.location.includes('http')) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 };
 
 function CardInfoStu(props: {
   date: string;
   subject: string;
-  student: string;
+  topic: string;
   location: string;
   status: string;
 }) {
   const { date } = props; // descomposición del objeto props
   const { subject } = props;
-  const { student } = props;
+  const { topic } = props;
   const { location } = props;
   const { status } = props;
 
@@ -69,8 +71,8 @@ function CardInfoStu(props: {
       </div>
 
       <div className={cardInfoStylesStu.studentSize}>
-        <h1 className={cx('bi bi-person-circle', cardInfoStylesStu.icon)}> </h1>
-        <span className={cardInfoStylesStu.caption}> {props.student} </span>
+        <h1 className={cx('bi bi-search', cardInfoStylesStu.icon)}> </h1>
+        <span className={cardInfoStylesStu.caption}> {props.topic} </span>
       </div>
 
       <div className={cardInfoStylesStu.locationSize}>

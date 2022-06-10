@@ -5,14 +5,12 @@
   flex-direction: column;
   align-items: center;
 }
-
 .tabs {
   width: 80%;
   height: 5vh;
   display: flex;
   flex-direction: row;
 }
-
 .ufContainer {
   width: 80%;
   height: 60vh;
@@ -27,7 +25,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 .UfTab {
   width: 25%;
   height: 100%;
@@ -35,6 +32,10 @@
 .addTab {
   width: 30%;
   height: 100%;
+}
+.error {
+  color: red;
+  font-size: 500;
 }
 .addSubject {
   width: 60%;
@@ -47,7 +48,6 @@
   transition: all 1s ease;
   transition-delay: 0.2s;
 }
-
 .hidden {
   visibility: hidden;
   display: none;
@@ -60,14 +60,12 @@
   flex-direction: column;
   align-items: center;
 }
-
 .tabs {
   width: 80%;
   height: 5vh;
   display: flex;
   flex-direction: row;
 }
-
 .ufContainer {
   width: 80%;
   height: 60vh;
@@ -82,7 +80,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 .UfTab {
   width: 25%;
   height: 100%;
@@ -102,7 +99,11 @@
   transition: all 1s ease;
   transition-delay: 0.2s;
 }
-
+.loading {
+  font-size: 20px;
+  color: #3f3b3b;
+  font-weight: 300;
+}
 .hidden {
   visibility: hidden;
   transition: all 1s ease;
@@ -111,7 +112,6 @@
   position: absolute;
   display: none;
 }
-
 .subjects {
   width: 100%;
   height: 100%;
@@ -121,49 +121,49 @@
   width: 100%;
   height: 100%;
 }
-
 .tableRequest {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
 }
-
 .headRow {
   background: #039be5;
   color: white;
-  height: 15%;
-  width: 100%;
+  height: 7%;
+  width: 73.5%;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 1.5vw;
+  position: fixed;
+  z-index: 5;
 }
-
 .clave {
   width: 20%;
   padding-left: 20px;
 }
 .name {
-  width: 50%;
-  padding-left: 20px;
-}
-.edit {
-  width: 15%;
+  width: 65%;
   padding-left: 20px;
 }
 .delete {
   width: 15%;
   padding-left: 20px;
 }
-
+.bodyContainer {
+  height: 92%;
+  width: 100%;
+  margin-top: 50px;
+}
 .body {
+  position: relative;
   height: 10%;
   width: 100%;
   font-size: 1.3vw;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -173,7 +173,11 @@
   display: flex;
   flex-direction: row;
 }
-
+.de {
+  width: 15%;
+  padding-left: 55px;
+  color: #e00013;
+}
 .tr {
   color: white;
   height: 100%;
@@ -181,6 +185,14 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+}
+.searchBar {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  justify-content: left;
 }
 .search {
   width: 100%;
@@ -190,16 +202,60 @@
   align-items: center;
   justify-content: left;
   padding-left: 9.5vw;
-  background-color: yellowgreen;
+  padding-right: 9.5vw;
+}
+.searchtop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  width: 70%;
+  height: 50%;
+}
+.searchbottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  width: 30%;
+  height: 50%;
+}
+.inputID {
+  border: none;
+  width: 45%;
+  height: 70%;
+  border-radius: 5px;
+  color: #7c7c7c;
+  font-weight: 500;
+  margin-right: 20px;
+  font-size: 14px;
+  padding-left: 15px;
 }
 
-.inputNombre {
-  width: 40%;
-  height: 40%;
+.inputName {
+  border: none;
+  width: 65%;
+  height: 70%;
+  border-radius: 5px;
+  color: #7c7c7c;
+  font-weight: 500;
+  margin-right: 20px;
+  font-size: 14px;
+  padding-left: 15px;
 }
 .button {
-  margin-top: 20px;
-  margin-left: 50px;
-  height: 40%;
-  width: 100px;
+  width: 40%;
+  height: 70%;
+  background-color: #0277bd;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+}
+.button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.button:active {
+  scale: 0.9;
 }

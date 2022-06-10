@@ -3,237 +3,150 @@
 exports[`Student Profile renders admin profile page unchanged 1`] = `
 <div>
   <div
-    class="main"
+    class="box"
   >
     <div
-      class="main"
+      class="dateSize"
     >
-      <input
-        class="toggler"
-        type="checkbox"
-      />
-      <div
-        class="buttonContainer"
-        id="toggle"
+      <h1
+        class="bi bi-alarm icon"
       >
-        <img
-          class="icon"
-          src="/icons/gear.svg"
-        />
-      </div>
-      <div
-        class="overlay"
-        id="overlay"
+         
+      </h1>
+      <span
+        class="caption"
       >
-        <nav
-          class="overlayMenu"
-        >
-          <ul
-            class="ul"
-          >
-            <li
-              class="li"
-            >
-              <span
-                class="a"
-                role="button"
-                tabindex="-1"
-              >
-                Modificar contraseña
-              </span>
-            </li>
-            <li
-              class="li"
-            >
-              <span
-                class="a"
-                role="button"
-                tabindex="-1"
-              >
-                Modificar idioma
-              </span>
-            </li>
-          </ul>
-        </nav>
-      </div>
+         
+        Viernes 27 de Mayo - 9:00 AM - 10:00 AM
+         
+      </span>
     </div>
     <div
-      class="user"
+      class="subjectSize"
     >
-      <div
-        class="icon"
+      <h1
+        class="bi bi-stack icon"
       >
-        <i
-          class="bi bi-person-fill"
-          style="color: rgb(241, 241, 241);"
-        />
-      </div>
-      <p
-        class="userName"
+         
+      </h1>
+      <span
+        class="caption"
       >
-        Daniela Sánchez Hernández
-      </p>
-      <p
-        class="id"
-      >
-        dani@tec.mx
-      </p>
+         
+        Programación Orientada a Objetos
+         
+      </span>
     </div>
-    <p
-      class="tutorship"
-    >
-      Asesorías
-    </p>
     <div
-      class="cardInfo"
+      class="studentSize"
     >
-      <div
-        class="box"
+      <h1
+        class="bi bi-search icon"
       >
-        <div
-          class="dateSize"
-        >
-          <h1
-            class="bi bi-alarm icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Viernes 27 de Mayo - 9:00 AM - 10:00 AM
-             
-          </span>
-        </div>
-        <div
-          class="subjectSize"
-        >
-          <h1
-            class="bi bi-stack icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Programación Orientada a Objetos
-             
-          </span>
-        </div>
-        <div
-          class="studentSize"
-        >
-          <h1
-            class="bi bi-person-circle icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Bryan González Arellano
-             
-          </span>
-        </div>
-        <div
-          class="locationSize"
-        >
-          <a
-            class="caption2"
-            href="https://itesm.zoom.us/j/5519309007"
-          >
-             
-            https://itesm.zoom.us/j/5519309007
-             
-          </a>
-        </div>
-        <div
-          class="statusSize"
-        >
-          <button
-            class="container pending"
-          >
-             
-            Pendiente
-          </button>
-        </div>
-      </div>
-      <div
-        class="box"
+         
+      </h1>
+      <span
+        class="caption"
       >
-        <div
-          class="dateSize"
-        >
-          <h1
-            class="bi bi-alarm icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Lunes 27 de Marzo - 3:00 PM - 4:00 PM
-             
-          </span>
-        </div>
-        <div
-          class="subjectSize"
-        >
-          <h1
-            class="bi bi-stack icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Estructuras simbólicas en la imagen, la literatura y la música
-             
-          </span>
-        </div>
-        <div
-          class="studentSize"
-        >
-          <h1
-            class="bi bi-person-circle icon"
-          >
-             
-          </h1>
-          <span
-            class="caption"
-          >
-             
-            Karen Rugerio Armenta
-             
-          </span>
-        </div>
-        <div
-          class="locationSize"
-        >
-          <span
-            class="caption"
-          >
-             
-            A1332
-             
-          </span>
-        </div>
-        <div
-          class="statusSize"
-        >
-          <button
-            class="container info"
-          >
-             
-            Completada
-          </button>
-        </div>
-      </div>
+         
+        https://itesm.zoom.us/j/5519309007
+         
+      </span>
+    </div>
+    <div
+      class="locationSize"
+    >
+      <a
+        class="caption2"
+        href="https://itesm.zoom.us/j/5519309007"
+      >
+         
+        https://itesm.zoom.us/j/5519309007
+         
+      </a>
+    </div>
+    <div
+      class="statusSize"
+    >
+      <button
+        class="container pending"
+      >
+         
+        Pendiente
+      </button>
+    </div>
+  </div>
+  <div
+    class="box"
+  >
+    <div
+      class="dateSize"
+    >
+      <h1
+        class="bi bi-alarm icon"
+      >
+         
+      </h1>
+      <span
+        class="caption"
+      >
+         
+        Lunes 27 de Marzo - 3:00 PM - 4:00 PM
+         
+      </span>
+    </div>
+    <div
+      class="subjectSize"
+    >
+      <h1
+        class="bi bi-stack icon"
+      >
+         
+      </h1>
+      <span
+        class="caption"
+      >
+         
+        Estructuras simbólicas en la imagen, la literatura y la música
+         
+      </span>
+    </div>
+    <div
+      class="studentSize"
+    >
+      <h1
+        class="bi bi-search icon"
+      >
+         
+      </h1>
+      <span
+        class="caption"
+      >
+         
+        A1332
+         
+      </span>
+    </div>
+    <div
+      class="locationSize"
+    >
+      <span
+        class="caption"
+      >
+         
+        A1332
+         
+      </span>
+    </div>
+    <div
+      class="statusSize"
+    >
+      <button
+        class="container info"
+      >
+         
+        Completada
+      </button>
     </div>
   </div>
 </div>

@@ -20,7 +20,10 @@ const variants: Variant = {
   confirm: ButtonTemplateStyles.confirm,
   cancel: ButtonTemplateStyles.cancel,
   info: ButtonTemplateStyles.info,
-  pending: ButtonTemplateStyles.pending
+  pending: ButtonTemplateStyles.pending,
+  PE: ButtonTemplateStyles.pending,
+  AP: ButtonTemplateStyles.confirm,
+  CO: ButtonTemplateStyles.info
 };
 
 // creo un Stateless Functional Component

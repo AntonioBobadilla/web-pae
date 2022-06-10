@@ -1,5 +1,5 @@
 .wrapper {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
     padding-bottom: 50px;
   }
@@ -13,20 +13,19 @@
   }
   
   .table .heading {
-    padding: 20px;
+    padding: 15px;
     background: #f7fbfe;
     color: #5b6166;
     font-weight: 600;
   }
   
   .table tbody tr td {
-    padding: 7px;
+    padding: 2px 20px;
     border: 1px solid #f1f1f1;
     text-align: center;
     font-size: 14px;
   }
   
-
   
   .table tbody tr .titleHour {
     background: white;
@@ -39,6 +38,10 @@
   
   .border {
     border: 1px solid #f1f1f1;
+  }
+
+  .whitespace {
+    color:transparent;
   }
   
   @media screen and (max-width: 768px) {

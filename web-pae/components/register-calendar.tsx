@@ -11,7 +11,7 @@ import styles from '../css/components/register-calendar.module.css';
 import RegisterStyle from '../css/tutor/register.module.css';
 import ButtonTemplate from './button-template';
 import MyCalendar from './frontend-calendar';
-import ProgressBar from './progress-bar';
+import ProgressBar from './progress-bar/progress-bar';
 
 interface RegisterCalendarProps {
   nextStep: () => void;

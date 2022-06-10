@@ -1,13 +1,15 @@
 import styles from '@/css-components/tutoring/confirmation.module.css';
+import formatTime from '@/helpers/format-time';
 import {
+  reset,
   selectDate,
-  selectSubject,
-  selectTime
+  selectSelectedItem,
+  selectSubject
 } from '@/redux/schedule-tutoring';
 import { selectName } from '@/redux/user';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useAppSelector } from 'store/hook';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import ButtonTemplate from '../button-template';
 
 const TutoringConfirmation = () => {
@@ -16,17 +18,19 @@ const TutoringConfirmation = () => {
     name: useAppSelector(selectName),
     subject: useAppSelector(selectSubject),
     date: useAppSelector(selectDate),
-    time: useAppSelector(selectTime)
+    time: useAppSelector(selectSelectedItem).hour
   };
+  const dispatch = useAppDispatch();
   const { push } = useRouter();
 
   const scheduleTutoring = () => {
     setIsLoading(true);
     setTimeout(() => {
       // TODO: reserve tutoring
+      dispatch(reset());
       push('/student/profile');
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   };
 
   return (
@@ -37,10 +41,14 @@ const TutoringConfirmation = () => {
         {state.subject?.name}
         <br />
         <strong>Día: </strong>
-        {state.date}
+        {new Date(state.date).toLocaleDateString('es-MX', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long'
+        })}
         <br />
         <strong>Hora: </strong>
-        {state.time}
+        {formatTime(state.time)}
       </div>
       <p className={styles.message}>
         {state.name}, tu solicitud está siendo procesada, recibirás un correo

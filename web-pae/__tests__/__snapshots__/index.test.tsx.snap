@@ -48,20 +48,24 @@ exports[`Index renders index page unchanged 1`] = `
         <div
           class="buttons"
         >
-          <button
-            class="container button info signup"
+          <div
+            class="btn"
           >
-             
-            Ingresa
-             
-          </button>
-          <button
-            class="container button info login"
-          >
-             
-            Regístrate
-             
-          </button>
+            <div
+              class="btn"
+            >
+              <button
+                class="login"
+              >
+                Ingresa
+              </button>
+              <button
+                class="signup"
+              >
+                Regístrate
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -252,6 +256,49 @@ exports[`Index renders index page unchanged 1`] = `
         >
           ¡En PAE estamos encantados de poder ayudarte!
            
+        </span>
+      </div>
+      <div
+        class="credits"
+      >
+        <div
+          class="legal"
+        >
+          <span
+            class="creditsTitle"
+          >
+             Legal 
+          </span>
+          <span
+            class="creditsTitle"
+          >
+             Legal 
+          </span>
+          <span
+            class="creditsTitle"
+          >
+             Legal 
+          </span>
+        </div>
+        <div
+          class="logoHacket"
+        >
+          <img
+            class="hacketImg"
+            src="/images/hacket.png"
+          />
+        </div>
+        <div
+          class="credit"
+        >
+          Credits
+        </div>
+      </div>
+      <div
+        class="copyrights"
+      >
+        <span>
+          Registrada ® 
         </span>
       </div>
     </div>
