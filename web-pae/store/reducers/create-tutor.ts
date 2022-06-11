@@ -5,6 +5,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CreateTutorState, days, Period } from 'store/types';
 import type { RootState } from '../store';
 
+const ScheduleState = {
+  firstPeriod: [],
+  secondPeriod: [],
+  thirdPeriod: []
+};
+
 // Define the initial state using that type
 const initialState: CreateTutorState = {
   name: '',
@@ -12,11 +18,7 @@ const initialState: CreateTutorState = {
   major: '',
   password: '',
   passwordConfirmation: '',
-  schedule: {
-    firstPeriod: [],
-    secondPeriod: [],
-    thirdPeriod: []
-  },
+  schedule: ScheduleState,
   subjects: [],
   isLoading: false,
   error: ''
@@ -36,7 +38,7 @@ export const registerTutor = createAsyncThunk(
         schedule: { firstPeriod, secondPeriod, thirdPeriod },
         subjects
       }
-    } = getState();
+    } = getState() as RootState;
 
     const post = (data: any, url: string) =>
       fetch(url, {
@@ -130,7 +132,22 @@ export const createTutorSlice = createSlice({
         name: string;
       }>
     ) => {
-      state.schedule[`${action.payload.name}Period`] = action.payload.period;
+      const { period, name } = action.payload;
+      const { schedule } = state;
+
+      switch (name) {
+        case 'firstPeriod':
+          schedule.firstPeriod = [...schedule.firstPeriod, period];
+          break;
+        case 'secondPeriod':
+          schedule.secondPeriod = [...schedule.secondPeriod, period];
+          break;
+        case 'thirdPeriod':
+          schedule.thirdPeriod = [...schedule.thirdPeriod, period];
+          break;
+        default:
+          break;
+      }
     },
     setSubjects: (state, action: PayloadAction<Subject[]>) => {
       state.subjects = action.payload;

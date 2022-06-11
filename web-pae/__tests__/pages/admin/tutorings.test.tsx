@@ -1,4 +1,4 @@
-import Tutorings from '@/pages/admin/tutorings';
+import Tutorings from '@/pages/admin/tutorings-requests';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import React from 'react';

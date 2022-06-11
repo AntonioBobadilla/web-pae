@@ -37,7 +37,8 @@ export const store = configureStore({
     scheduleTutoring,
     createTutor
   },
-  middleware,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleware),
   preloadedState: persistedStore
 });
 

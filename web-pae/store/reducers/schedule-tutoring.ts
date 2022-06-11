@@ -6,7 +6,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
 interface ScheduleTutoringState {
-  subject: Subject | null;
+  subject: Subject;
   tutor: string | null;
   date: string;
   time: string | null;
@@ -24,7 +24,11 @@ interface ScheduleTutoringState {
 
 // Define the initial state using that type
 const initialState: ScheduleTutoringState = {
-  subject: null,
+  subject: {
+    name: '',
+    code: '',
+    semester: 0
+  },
   tutor: '',
   date: '',
   time: '',
@@ -51,7 +55,7 @@ export const getAvailableTutorings = createAsyncThunk(
     const { getState } = thunkAPI;
     const {
       scheduleTutoring: { subject }
-    } = getState();
+    } = getState() as RootState;
 
     const date = new Date();
 
@@ -86,19 +90,21 @@ export const reserveTutoring = createAsyncThunk(
   'schedule-tutoring/reserve-tutoring',
   async (arg, thunkAPI) => {
     const { getState } = thunkAPI;
+    const state: RootState = getState() as RootState;
+
     const {
       scheduleTutoring: { date, subject, title, content, file, selectedItem },
       user: { token, id }
-    } = getState();
+    } = state;
 
     const formData = new FormData();
 
     formData.append('subject_id', subject.code);
-    formData.append('student', id);
+    formData.append('student', id || '');
     formData.append('tutor_id', selectedItem.tutor);
     formData.append('date', date);
-    formData.append('hour', selectedItem.hour);
-    formData.append('is_online', selectedItem.isOnline);
+    formData.append('hour', selectedItem.hour.toString());
+    formData.append('is_online', selectedItem.isOnline.valueOf().toString());
     formData.append('topic', title);
     formData.append('doubt', content);
     if (file !== null) {
@@ -163,7 +169,11 @@ export const scheduleTutoringSlice = createSlice({
     },
 
     reset: (state) => {
-      state.subject = null;
+      state.subject = {
+        name: '',
+        code: '',
+        semester: 0
+      };
       state.tutor = '';
       state.date = '';
       state.time = '';
