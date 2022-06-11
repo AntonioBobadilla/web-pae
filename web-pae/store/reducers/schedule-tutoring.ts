@@ -6,7 +6,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
 interface ScheduleTutoringState {
-  subject: Subject;
+  subject: Subject | null;
   tutor: string | null;
   date: string;
   time: string | null;
@@ -73,7 +73,7 @@ export const getAvailableTutorings = createAsyncThunk(
 
     return post(
       {
-        subject: subject.code,
+        subject: subject?.code || '',
         initial_date_serializer: `${date.getFullYear()}-${
           date.getMonth() + 1
         }-${date.getDate() + 1}`,
@@ -99,7 +99,7 @@ export const reserveTutoring = createAsyncThunk(
 
     const formData = new FormData();
 
-    formData.append('subject_id', subject.code);
+    formData.append('subject_id', subject?.code || '');
     formData.append('student', id || '');
     formData.append('tutor_id', selectedItem.tutor);
     formData.append('date', date);
@@ -134,7 +134,7 @@ export const scheduleTutoringSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setSubject: (state, action: PayloadAction<Subject>) => {
+    setSubject: (state, action: PayloadAction<Subject | null>) => {
       state.subject = action.payload;
     },
     setTutor: (state, action: PayloadAction<string>) => {
