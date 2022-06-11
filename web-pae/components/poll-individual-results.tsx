@@ -30,7 +30,15 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   }, []);
   curTab ? getPollsfromApi() : null;
 
-  function myArrow({ type, onClick, isEdge }) {
+  function myArrow({
+    type,
+    onClick,
+    isEdge
+  }: {
+    type: any;
+    onClick: any;
+    isEdge: any;
+  }) {
     const pointer = type === consts.PREV ? 'left' : 'right';
     return (
       <div
@@ -46,7 +54,7 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   return (
     <div className={styles.main}>
       <Carousel pagination={false} renderArrow={myArrow}>
-        {data.map(function (item, index) {
+        {data.map(function (item: any, index) {
           let answers = item.question_polls;
           return (
             <div key={index} className={styles.poll}>
@@ -61,7 +69,7 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
                 </div>
               </div>
               <div className={styles.pollMap}>
-                {answers.map(function (item2, index2) {
+                {answers.map(function (item2: any, index2: any) {
                   return (
                     <div key={index2} className={styles.answersContainer}>
                       <div className={styles.answers}>

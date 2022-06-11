@@ -108,7 +108,7 @@ exports[`Tutor Login renders tutor login page unchanged 1`] = `
             </h2>
             <a
               class="privacy"
-              href="#"
+              href="/"
             >
               Aviso de privacidad
             </a>

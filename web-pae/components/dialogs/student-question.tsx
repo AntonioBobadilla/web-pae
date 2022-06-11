@@ -3,26 +3,25 @@ import Styles from '../../css/components/dialogs/studentQuestion.module.css';
 import ImageModal from '../dialogs/image-modal';
 import { useState } from 'react';
 
-
 type StudentQuestionProps = {
-  visible: boolean,
-  setVisible: (visible: boolean) => void,
+  visible: boolean;
+  setVisible: (visible: boolean) => void;
   tutoringObject: any;
 };
 
-const StudentQuestion = ({ visible, setVisible, tutoringObject }: StudentQuestionProps) => {
-
+const StudentQuestion = ({
+  visible,
+  setVisible,
+  tutoringObject
+}: StudentQuestionProps) => {
   const [imageModalVisible, setImageModalVisible] = useState(false);
 
-
-  const onClickImageModalVisible = (obj) => {
+  const onClickImageModalVisible = () => {
     setImageModalVisible(true);
   };
 
-
-
-  let { student } = tutoringObject
-  console.log(student.name)
+  let { student } = tutoringObject;
+  console.log(student.name);
   return (
     <ClosablePopup
       title={'Duda de ' + student.name}
@@ -38,11 +37,13 @@ const StudentQuestion = ({ visible, setVisible, tutoringObject }: StudentQuestio
           Visualizar archivo adjunto
         </button>
       </div>
-      { imageModalVisible && <ImageModal
-        visible={imageModalVisible}
-        setVisible={setImageModalVisible}
-        file={tutoringObject.file}
-      /> }
+      {imageModalVisible && (
+        <ImageModal
+          visible={imageModalVisible}
+          setVisible={setImageModalVisible}
+          file={tutoringObject.file}
+        />
+      )}
     </ClosablePopup>
   );
 };

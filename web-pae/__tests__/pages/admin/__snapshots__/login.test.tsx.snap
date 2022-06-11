@@ -82,8 +82,8 @@ exports[`Admin Login renders admin login page unchanged 1`] = `
               Olvidé mi contraseña
             </a>
             <a
-              class="privacy2"
-              href="#"
+              class="privacy"
+              href="/"
             >
               Aviso de privacidad
             </a>

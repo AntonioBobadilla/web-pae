@@ -14,7 +14,7 @@ const EditPolls = () => {
   const [popUp2, setPopUp2] = useState(false);
   const [id, setId] = useState(null);
 
-  const modifyQuestion = (e) => {
+  const modifyQuestion = (e: any) => {
     visiblePopUp2();
     let element = e.target.parentElement.parentElement.childNodes[0];
     let element2 = e.target.parentElement.parentElement.childNodes[1];
@@ -26,7 +26,7 @@ const EditPolls = () => {
     currButton.style.display = 'none';
   };
 
-  const confirmModifyQuestion = (e, id) => {
+  const confirmModifyQuestion = (e: any, id: any) => {
     editQuestion(id);
     let element = e.target.parentElement.parentElement.childNodes[0];
     let element2 = e.target.parentElement.parentElement.childNodes[1];
@@ -93,7 +93,7 @@ const EditPolls = () => {
       });
   };
 
-  const editQuestion = (id) => {
+  const editQuestion = (id: any) => {
     fetch('http://server-pae.azurewebsites.net/question/' + id + '/', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -115,7 +115,7 @@ const EditPolls = () => {
       });
   };
 
-  const addQuestion = (e) => {
+  const addQuestion = (e: any) => {
     fetch('http://server-pae.azurewebsites.net/question/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -141,15 +141,15 @@ const EditPolls = () => {
       });
   };
 
-  const questionChange = (e) => {
+  const questionChange = (e: any) => {
     setQuestion(e.target.value);
   };
 
-  const questionModifyChange = (e) => {
+  const questionModifyChange = (e: any) => {
     setModifiedQuestion(e.target.value);
   };
 
-  const checkItemState = (idItem) => {
+  const checkItemState = (idItem: any) => {
     setId(idItem);
     visiblePopUp();
   };
@@ -158,7 +158,7 @@ const EditPolls = () => {
     <div className={styles.main}>
       {pending && <div>Cargando datos...</div>}
       <div className={styles.questionsContainer}>
-        {data.map(function (item, index) {
+        {data.map(function (item: any, index) {
           return (
             <div key={index} className={styles.questions}>
               <input

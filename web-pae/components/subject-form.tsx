@@ -13,7 +13,7 @@ const SubjectForm = () => {
     setValidUF(true);
   };
 
-  const addSubject = (e) => {
+  const addSubject = (e: any) => {
     fetch('http://server-pae.azurewebsites.net/subject/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -40,13 +40,13 @@ const SubjectForm = () => {
         console.log(err);
       });
   };
-  const codeChange = (e) => {
+  const codeChange = (e: any) => {
     let mycode = e.target.value;
     mycode = mycode.toUpperCase();
     e.target.value = mycode;
     setCode(mycode);
   };
-  const nameChange = (e) => {
+  const nameChange = (e: any) => {
     let myname = e.target.value;
     myname = myname.toUpperCase();
     e.target.value = myname;
