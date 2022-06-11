@@ -39,7 +39,7 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
     onClick: any;
     isEdge: any;
   }) {
-    const pointer = type === consts.PREV ? 'left' : 'right';
+    const pointer = type === 'PREV' ? 'left' : 'right';
     return (
       <div
         className={classNames(styles.arrowButton, isEdge ? styles.edge : null)}

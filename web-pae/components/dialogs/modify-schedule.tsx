@@ -38,7 +38,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   };
 
   function myArrow({ type, onClick, isEdge }: any) {
-    const pointer = type === consts.PREV ? 'left' : 'right';
+    const pointer = type === 'PREV' ? 'left' : 'right';
     return (
       <div
         style={{'display':'flex', 'alignItems':'center'}}
