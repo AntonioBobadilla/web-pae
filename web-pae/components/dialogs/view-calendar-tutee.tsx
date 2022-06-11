@@ -6,7 +6,7 @@ import ClosablePopup from '../closable-popup';
 import ToggleButton from '../toggle-button';
 import MyCalendar from '@/components/frontend-calendar-view';
 import Carousel from 'react-elastic-carousel';
-import {consts} from "react-elastic-carousel";
+import consts from "react-elastic-carousel";
 import classNames from 'classnames';
 
 type ModifyLanguageProps = {
@@ -73,7 +73,7 @@ const filterSchedules = () => {
 
   function myArrow({ type, onClick, isEdge }: any) {
 
-    const pointer = type === consts.PREV ? 'left' : 'right';
+    const pointer = type === 'PREV' ? 'left' : 'right';
     return (
       <div
         style={{'display':'flex', 'alignItems':'center'}}
