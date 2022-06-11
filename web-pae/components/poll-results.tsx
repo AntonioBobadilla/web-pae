@@ -13,7 +13,7 @@ const PollResults = ({ curTab }: PollResultProps) => {
     fetch('http://server-pae.azurewebsites.net/pollresult/')
       .then((resp) => resp.json())
       .then(function (data) {
-        //console.log(data)
+        // console.log(data)
         setData(data);
         setPending(false);
         console.log(data);
@@ -29,7 +29,7 @@ const PollResults = ({ curTab }: PollResultProps) => {
   return (
     <div className={styles.main}>
       <div className={styles.header}>
-        <div className={styles.empty}></div>
+        <div className={styles.empty} />
         <div className={styles.values}>
           <span className={styles.value}>Totalmente en desacuerdo</span>
           <span className={styles.value}>En desacuerdo</span>

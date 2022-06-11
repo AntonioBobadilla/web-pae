@@ -34,19 +34,17 @@ const History = () => {
           date: any;
           hour: any;
         }[] = [];
-    const utf8 = require('utf8');
     data.map((item: any, index: any) => {
-      const tutorName = utf8.encode(
-        item.tutor != null ? item.tutor.name : 'no hay tutor'
-      );
-      const studentName = utf8.encode(
-        item.student != null ? item.student.name : 'no hay estudiante'
-      );
-      const subjectName = utf8.encode(
-        item.subject != null ? item.subject.name : 'no hay materia'
-      );
-      const date = utf8.encode(item.date != null ? item.date : 'no hay fecha');
-      const hour = utf8.encode(item.hour != null ? item.hour : 'no hay hora');
+      const tutorName = item.tutor != null ? item.tutor.name : 'no hay tutor';
+
+      const studentName =
+        item.student != null ? item.student.name : 'no hay estudiante';
+
+      const subjectName =
+        item.subject != null ? item.subject.name : 'no hay materia';
+
+      const date = item.date != null ? item.date : 'no hay fecha';
+      const hour = item.hour != null ? item.hour : 'no hay hora';
 
       const obj = { tutorName, studentName, subjectName, date, hour };
 

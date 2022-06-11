@@ -1,8 +1,7 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import Styles from '../css/components/subject-form.module.css';
 import SubjectAdded from './dialogs/subject-added';
-import SearchBar from './search-bar';
-import toast, { Toaster } from 'react-hot-toast';
 
 const SubjectForm = () => {
   const [code, setCode] = useState([]);
@@ -18,16 +17,14 @@ const SubjectForm = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        code: code,
-        name: name,
+        code,
+        name,
         semester: 1
       })
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        if (typeof data.code == 'string') {
+        if (typeof data.code === 'string') {
           isValid();
         } else {
           console.log(data.code);
@@ -59,17 +56,17 @@ const SubjectForm = () => {
         placeholder="CLAVE*"
         className={Styles.input}
         onChange={codeChange}
-      ></input>
+      />
       <input
         type="text"
         placeholder="NOMBRE*"
         className={Styles.input}
         onChange={nameChange}
-      ></input>
+      />
       <button className={Styles.button} onClick={() => addSubject(event)}>
         Agregar
       </button>
-      <SubjectAdded visible={validUF} setVisible={setValidUF}></SubjectAdded>
+      <SubjectAdded visible={validUF} setVisible={setValidUF} />
     </div>
   );
 };
