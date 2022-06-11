@@ -2,16 +2,18 @@
 import classNames from 'classnames';
 import React from 'react';
 import Carousel from 'react-elastic-carousel';
-import consts from "react-elastic-carousel";
 import styles from '../css/components/dailybar.module.css';
 import ItemDailyBar from './dailybar-item';
 import { Meeting } from './data-table/types';
 
 function myArrow({ type, onclick, isEdge }: any) {
-  const pointer = type === consts.PREV ? 'left' : 'right';
+  const pointer = type === 'PREV' ? 'left' : 'right';
   return (
     <div
-      className={classNames(styles.arrowButton, styles.isEdge ? styles.edge : null)}
+      className={classNames(
+        styles.arrowButton,
+        styles.isEdge ? styles.edge : null
+      )}
       onClick={() => onclick}
       role="button"
     >
