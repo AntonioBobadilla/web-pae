@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import Carousel, { consts } from 'react-elastic-carousel';
+import Carousel from 'react-elastic-carousel';
+import consts from "react-elastic-carousel";
 import styles from '../css/components/pollIndividualResults.module.css';
 
 interface IndividualResultProps {

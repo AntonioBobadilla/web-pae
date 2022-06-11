@@ -18,7 +18,7 @@ const CalendarMax = ({
   setEventObj
 }: MyCalendarProps) => {
 
-    const [loop, setLoop] = useState(false)
+    const [loop, setLoop] = useState<any>(false)
 
   setTimeout(() => {
       if (schedulesToShow.length != 0 && loop == false){
@@ -38,7 +38,7 @@ const CalendarMax = ({
         };
 
   // función que al dar click en una celda la encuentra dado un string perteneciente al dia y hora.
-  const findSelectedCell = (id) => {
+  const findSelectedCell = (id: any) => {
 
     let Cell = null;
     const cells = document.querySelectorAll('.data');
@@ -59,8 +59,8 @@ const CalendarMax = ({
       };
 
   // función que maneja el click en las celdas.
-  const showSchedules = (scheduleObj) => {
-        scheduleObj.forEach(item => {
+  const showSchedules = (scheduleObj: any) => {
+        scheduleObj.forEach((item: { day_week: { toString: () => any; }; hour: { toString: () => any; }; }) => {
             let dayWeek = item.day_week.toString();
             let hour = item.hour.toString();
             let id = dayWeek+"-"+hour+"-"+period;
@@ -70,21 +70,21 @@ const CalendarMax = ({
   
   };
 
-  const checkDuplicates = (id) => {
-    const isFound = eventObj.some((element) => {
+  const checkDuplicates = (id: string) => {
+    const isFound = eventObj.some((element: { id: any; }) => {
       if (element.id === id) return true;
     });
     return isFound;
   };
 
-  const deleteEventFromObj = (id) => {
-    const indexOfObject = eventObj.findIndex((object) => object.id === id);
+  const deleteEventFromObj = (id: string) => {
+    const indexOfObject = eventObj.findIndex((object: { id: any; }) => object.id === id);
     const copyOfEventObj = [...eventObj];
     copyOfEventObj.splice(indexOfObject, 1);
     setEventObj(copyOfEventObj);
   };
 
-  const findSelectedCell2 = (data) => {
+  const findSelectedCell2 = (data: string) => {
     const splittedData = data.split('-');
     const diaSelected = splittedData[0];
     const horaSelected = splittedData[1];
@@ -92,8 +92,8 @@ const CalendarMax = ({
 
     let Cell = null;
     const cells = document.querySelectorAll('.data');
-    cells.forEach((cell) => {
-      const attr = cell.getAttribute('id').split('-');
+    cells.forEach((cell: any) => {
+      const attr: any = cell.getAttribute('id').split('-');
       const dia = attr[0];
       const hora = attr[1];
       const periodo = attr[2];
@@ -112,11 +112,11 @@ const CalendarMax = ({
 
 
   // función que maneja el click en las celdas.
-  const getClick = (data) => {
+  const getClick = (data: any) => {
     const { dia, hora, cell } = findSelectedCell2(data);
     const idData = `${dia}-${hora}-${period}`;
     if (!checkDuplicates(idData)) {
-      setEventObj((eventObj) => [
+      setEventObj((eventObj: any) => [
         ...eventObj,
         { period:period, day_week: dia, hour: hora, id:idData }
       ]);

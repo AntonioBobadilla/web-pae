@@ -43,7 +43,7 @@ const ToggleMenu = ({
     dispatch(setLogoutData());
 
     // redirect to home
-    setTimeout(() => push(routes.exit), 500);
+   // setTimeout(() => push(routes.exit), 500);
   };
   const logOut = () => {
     // console.log(role);

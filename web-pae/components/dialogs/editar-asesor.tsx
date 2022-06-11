@@ -17,9 +17,9 @@ type ModifyLanguageProps = {
 
 const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: ModifyLanguageProps) => {
 
-  const [asesorActual, setAsesorActual] = useState('');
-  const [asesoresDisponibles, setAsesoresDisponibles] = useState([]);
-  const [pending, setPending] = useState(true);
+  const [asesorActual, setAsesorActual] = useState<any>('');
+  const [asesoresDisponibles, setAsesoresDisponibles] = useState<any>([]);
+  const [pending, setPending] = useState<any>(true);
 
   const onClickSave = () => {
     setVisible(false);
@@ -27,19 +27,19 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
 
 
   const clearAllBorders = () => {
-    let wrapper = document.querySelector('#wrapper');
-    let asesores = wrapper.childNodes;
-    asesores.forEach(item => {
+    let wrapper: any = document.querySelector('#wrapper');
+    let asesores: any = wrapper.childNodes;
+    asesores.forEach((item: { style: { border: string; }; classList: { remove: (arg0: string) => void; }; }) => {
       item.style.border = '1px solid #7a7a7a';
       item.classList.remove('active')
     })
   }
 
-  const handleClickAsesor = (e) => {
+  const handleClickAsesor = (e: any) => {
     if (asesoresDisponibles.length != 0){
       let idOfAsesor = e.target.id;
 
-      let asesorObj = asesoresDisponibles[idOfAsesor];
+      let asesorObj: any = asesoresDisponibles[idOfAsesor];
   
       let asesor = asesorObj.registration_number
       setAsesorActual(asesor)
@@ -110,7 +110,7 @@ const EditAsesor = ({ visible, setVisible, setAsesor, day, hour, subject }: Modi
           {pending && <div className={editAsesorStyles.message}>Cargando asesores....</div>}
           {asesoresDisponibles.length == 0 && !pending && <div className={editAsesorStyles.message}>No hay asesores disponibles para esta asesoria.</div>}
           { 
-            asesoresDisponibles.map(function(item,index) {
+            asesoresDisponibles.map(function(item: any,index: any) {
               return ( 
               <div key={index} id={index} className={editAsesorStyles.asesor}>
                   <div  className={editAsesorStyles.asesor_izq}>

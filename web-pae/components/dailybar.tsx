@@ -1,17 +1,18 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import classNames from 'classnames';
 import React from 'react';
-import Carousel, { consts } from 'react-elastic-carousel';
+import Carousel from 'react-elastic-carousel';
+import consts from "react-elastic-carousel";
 import styles from '../css/components/dailybar.module.css';
 import ItemDailyBar from './dailybar-item';
 import { Meeting } from './data-table/types';
 
-function myArrow({ type, onClick, isEdge }) {
+function myArrow({ type, onclick, isEdge }: any) {
   const pointer = type === consts.PREV ? 'left' : 'right';
   return (
     <div
-      className={classNames(styles.arrowButton, isEdge ? styles.edge : null)}
-      onClick={onClick}
+      className={classNames(styles.arrowButton, styles.isEdge ? styles.edge : null)}
+      onClick={() => onclick}
       role="button"
     >
       <i className={`bi bi-chevron-${pointer}`} />
