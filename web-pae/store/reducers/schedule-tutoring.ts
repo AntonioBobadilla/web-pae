@@ -169,11 +169,7 @@ export const scheduleTutoringSlice = createSlice({
     },
 
     reset: (state) => {
-      state.subject = {
-        name: '',
-        code: '',
-        semester: 0
-      };
+      state.subject = null;
       state.tutor = '';
       state.date = '';
       state.time = '';

@@ -130,14 +130,17 @@ const RegisterCalendar = React.memo(
         <div className={styles.calendar}>
           <div className={styles.header}>
             <h3 className={styles.title}>
-              Selecciona tu horario para el <strong> {title} </strong>
+              Selecciona tus horarios disponibles del <strong> {title} </strong>
             </h3>
             <div
               className={styles.icon}
               onMouseEnter={() =>
-                toast('Da click y arrastra para seleccionar tu horario', {
-                  icon: '😣'
-                })
+                toast(
+                  'Da click y arrastra para seleccionar tu horario. ¡Recuerda seleccionar al menos 5 horas!',
+                  {
+                    icon: '😊'
+                  }
+                )
               }
             >
               <i className="bi bi-info-circle" />
