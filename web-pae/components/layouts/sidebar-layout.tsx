@@ -1,3 +1,4 @@
+import { reset } from '@/redux/schedule-tutoring';
 import post from 'helpers/post';
 import Head from 'next/head';
 import { Router, withRouter } from 'next/router';
@@ -20,7 +21,7 @@ type LayoutProps = {
 };
 
 const SidebarLayout = ({ router, children, title }: LayoutProps) => {
-  const { pathname, push } = router;
+  const { pathname, push, route } = router;
   const [routes, setRoutes] = React.useState(TUTOR_ROUTES);
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -45,26 +46,33 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
     }
   }, [role]);
 
+  React.useEffect(() => {
+    if (!route.includes('schedule-tutoring')) {
+      dispatch(reset());
+    }
+  }, [route]);
+
   const handleStatus = (status: number, responseData: any) => {
     try {
       if (status === 200 || status === 201 || status === 204) {
         // toast success
-        toast.success('Successful logoout');
-
+        toast.success('Successful logout');
+      } else {
         // set user data
 
-        dispatch(setLogoutData());
-
-        // redirect to home
-        setTimeout(() => push(routes.exit), 500);
-      } else {
-        toast.error(responseData.message);
+        toast.error(responseData.token);
         setIsLoading(false);
       }
     } catch (error) {
       toast.error('Something went wrong');
       setIsLoading(false);
     }
+    // set user data
+
+    dispatch(setLogoutData());
+
+    // redirect to home
+    setTimeout(() => push(routes.exit), 500);
   };
 
   const logOut = () => {

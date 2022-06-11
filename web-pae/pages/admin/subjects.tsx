@@ -1,13 +1,13 @@
+import DeleteAdmin from '@/components/dialogs/delete-subject';
+import { Subject } from '@/components/search-bar';
 import SubjectForm from '@/components/subject-form';
-import cx from 'classnames';
 import Tabs from '@/components/tabs';
+import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
-import DeleteAdmin from '@/components/dialogs/delete-subject';
-import { Subject } from '@/components/search-bar';
 
-const Subject = () => {
+const Subjects = () => {
   const [currentTab, setCurrentTab] = useState('');
   const [popUp, setPopUp] = useState(false);
   const [id, setId] = useState(null);
@@ -42,12 +42,12 @@ const Subject = () => {
   const getData = () => {
     fetch('http://server-pae.azurewebsites.net/subject/')
       .then((resp) => resp.json())
-      .then(function (data) {
-        //console.log(data)
+      .then((data) => {
+        // console.log(data)
         setData(data);
         setPending(false);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -61,9 +61,9 @@ const Subject = () => {
     if (!typing && !typingName) {
       return (
         <>
-          {data.map(function (item, index) {
-            let subjectId = item.code != null ? item.code : 'no hay clave';
-            let subjectName = item.name != null ? item.name : 'no hay nombre';
+          {data.map((item, index) => {
+            const subjectId = item.code != null ? item.code : 'no hay clave';
+            const subjectName = item.name != null ? item.name : 'no hay nombre';
             return (
               <div key={index} className={styles.body}>
                 <span className={styles.clave}>{subjectId}</span>
@@ -71,74 +71,73 @@ const Subject = () => {
                 <i
                   className={cx('bi bi-trash', styles.de)}
                   onClick={() => checkItemState(item.code)}
-                ></i>
+                />
               </div>
             );
           })}
         </>
       );
-    } else if (typing && !typingName) {
+    }
+    if (typing && !typingName) {
       if (filteredArray.length === 0) {
         return (
           <span className={styles.error}>
             *Lo sentimos, no existe una unidad de formación con esta clave.*
           </span>
         );
-      } else {
-        return (
-          <>
-            {filteredArray.map(function (item, index) {
-              let subjectId = item.code != null ? item.code : 'no hay clave';
-              let subjectName = item.name != null ? item.name : 'no hay nombre';
-              return (
-                <div key={index} className={styles.body}>
-                  <span className={styles.clave}>{subjectId}</span>
-                  <span className={styles.name}>{subjectName}</span>
-                  <i
-                    className={cx('bi bi-trash', styles.de)}
-                    onClick={() => checkItemState(item.code)}
-                  ></i>
-                </div>
-              );
-            })}
-          </>
-        );
       }
-    } else if (typingName && !typing) {
+      return (
+        <>
+          {filteredArray.map((item, index) => {
+            const subjectId = item.code != null ? item.code : 'no hay clave';
+            const subjectName = item.name != null ? item.name : 'no hay nombre';
+            return (
+              <div key={index} className={styles.body}>
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                />
+              </div>
+            );
+          })}
+        </>
+      );
+    }
+    if (typingName && !typing) {
       if (filteredArrayName.length === 0) {
         return (
           <span className={styles.error}>
             *Lo sentimos, no existe una unidad de formación con este nombre.*
           </span>
         );
-      } else {
-        return (
-          <>
-            {filteredArrayName.map(function (item, index) {
-              let subjectId = item.code != null ? item.code : 'no hay clave';
-              let subjectName = item.name != null ? item.name : 'no hay nombre';
-              return (
-                <div key={index} className={styles.body}>
-                  <span className={styles.clave}>{subjectId}</span>
-                  <span className={styles.name}>{subjectName}</span>
-                  <i
-                    className={cx('bi bi-trash', styles.de)}
-                    onClick={() => checkItemState(item.code)}
-                  ></i>
-                </div>
-              );
-            })}
-          </>
-        );
       }
-    } else {
       return (
-        <span className={styles.error}>
-          *No es posible realizar esta búsqueda, por favor intenta buscar la
-          Unidad de Formación solo por clave o solo por nombre*
-        </span>
+        <>
+          {filteredArrayName.map((item, index) => {
+            const subjectId = item.code != null ? item.code : 'no hay clave';
+            const subjectName = item.name != null ? item.name : 'no hay nombre';
+            return (
+              <div key={index} className={styles.body}>
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                />
+              </div>
+            );
+          })}
+        </>
       );
     }
+    return (
+      <span className={styles.error}>
+        *No es posible realizar esta búsqueda, por favor intenta buscar la
+        Unidad de Formación solo por clave o solo por nombre*
+      </span>
+    );
   };
 
   const handleChangeClave = (e: any) => {
@@ -168,17 +167,17 @@ const Subject = () => {
     conditionalRendering();
   };
   const filterClave = (clave: string) => {
-    let subjectsCopy = [...data];
+    const subjectsCopy = [...data];
     console.log(subjectsCopy);
-    let filteredArray = subjectsCopy.filter((subject) =>
+    const filteredArray = subjectsCopy.filter((subject) =>
       subject.code.includes(clave.toUpperCase())
     );
     setFilteredArray(filteredArray);
   };
   const filterNombre = (nombre: string) => {
-    let subjectsCopy = [...data];
+    const subjectsCopy = [...data];
     console.log(subjectsCopy);
-    let filteredArrayName = subjectsCopy.filter((subject) =>
+    const filteredArrayName = subjectsCopy.filter((subject) =>
       subject.name.includes(nombre.toUpperCase())
     );
     setFilteredArrayName(filteredArrayName);
@@ -186,7 +185,7 @@ const Subject = () => {
 
   const deleteSubject = () => {
     console.log(id);
-    fetch('http://server-pae.azurewebsites.net/subject/' + id + '/', {
+    fetch(`http://server-pae.azurewebsites.net/subject/${id}/`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -224,7 +223,7 @@ const Subject = () => {
                   className={styles.inputID}
                   onChange={handleChangeClave}
                   readOnly={!editable}
-                ></input>
+                />
                 <input
                   style={{
                     backgroundColor: '#F1F1F1'
@@ -234,7 +233,7 @@ const Subject = () => {
                   className={styles.inputName}
                   onChange={handleChangeNombre}
                   readOnly={!editableName}
-                ></input>
+                />
               </>
             ) : !editableName ? (
               <>
@@ -247,7 +246,7 @@ const Subject = () => {
                   className={styles.inputID}
                   onChange={handleChangeClave}
                   readOnly={!editable}
-                ></input>
+                />
                 <input
                   style={{
                     backgroundColor: '#B9B6B6'
@@ -257,7 +256,7 @@ const Subject = () => {
                   className={styles.inputName}
                   onChange={handleChangeNombre}
                   readOnly={!editableName}
-                ></input>
+                />
               </>
             ) : (
               <>
@@ -270,7 +269,7 @@ const Subject = () => {
                   className={styles.inputID}
                   onChange={handleChangeClave}
                   readOnly={!editable}
-                ></input>
+                />
                 <input
                   style={{
                     backgroundColor: '#F1F1F1'
@@ -280,7 +279,7 @@ const Subject = () => {
                   className={styles.inputName}
                   onChange={handleChangeNombre}
                   readOnly={!editableName}
-                ></input>
+                />
               </>
             )}
           </div>
@@ -291,15 +290,15 @@ const Subject = () => {
           <Tabs
             handleClick={UFButton}
             text="Unidades de Formación"
-            active={currentTab == 'UF' ? true : false}
-          ></Tabs>
+            active={currentTab == 'UF'}
+          />
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddUFButton}
             text="Agregar Unidad de Formación"
-            active={currentTab == 'addUF' ? true : false}
-          ></Tabs>
+            active={currentTab == 'addUF'}
+          />
         </div>
       </div>
       <div className={styles.ufContainer}>
@@ -307,7 +306,7 @@ const Subject = () => {
         <div
           className={currentTab == 'addUF' ? styles.addSubject : styles.hidden}
         >
-          <SubjectForm></SubjectForm>
+          <SubjectForm />
         </div>
         <div className={currentTab == 'UF' ? styles.subjects : styles.hidden}>
           <div className={styles.down}>
@@ -326,7 +325,7 @@ const Subject = () => {
                 setVisible={setPopUp}
                 onClickFunction={() => deleteSubject()}
                 onClickCancel={notVisiblePopUp}
-              ></DeleteAdmin>
+              />
             </div>
           </div>
         </div>
@@ -335,11 +334,11 @@ const Subject = () => {
   );
 };
 // Add sidebar layout
-Subject.getLayout = function getLayout(page: ReactElement) {
+Subjects.getLayout = function getLayout(page: ReactElement) {
   return (
     <SidebarLayout title="ADMINISTRAR UNIDADES DE FORMACIÓN">
       {page}
     </SidebarLayout>
   );
 };
-export default Subject;
+export default Subjects;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Styles from '../css/components/subject-form.module.css';
 import SubjectAdded from './dialogs/subject-added';
 import SearchBar from './search-bar';
+import toast, { Toaster } from 'react-hot-toast';
 
 const SubjectForm = () => {
   const [code, setCode] = useState([]);
@@ -12,7 +13,7 @@ const SubjectForm = () => {
     setValidUF(true);
   };
 
-  const addSubject = () => {
+  const addSubject = (e: any) => {
     fetch('http://server-pae.azurewebsites.net/subject/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -23,25 +24,33 @@ const SubjectForm = () => {
       })
     })
       .then((res) => {
-        if (!res.ok) {
-          // error coming back from server
-          throw Error('could not make PUT request for that endpoint');
-        }
-        isValid();
         return res.json();
       })
       .then((data) => {
-        console.log('ok');
+        if (typeof data.code == 'string') {
+          isValid();
+        } else {
+          console.log(data.code);
+          toast.error(data.code[0]);
+        }
+        e.target.parentElement.childNodes[0].value = '';
+        e.target.parentElement.childNodes[1].value = '';
       })
       .catch((err) => {
         console.log(err);
       });
   };
   const codeChange = (e: any) => {
-    setCode(e.target.value);
+    let mycode = e.target.value;
+    mycode = mycode.toUpperCase();
+    e.target.value = mycode;
+    setCode(mycode);
   };
   const nameChange = (e: any) => {
-    setName(e.target.value);
+    let myname = e.target.value;
+    myname = myname.toUpperCase();
+    e.target.value = myname;
+    setName(myname);
   };
   return (
     <div className={Styles.main}>
@@ -57,7 +66,7 @@ const SubjectForm = () => {
         className={Styles.input}
         onChange={nameChange}
       ></input>
-      <button className={Styles.button} onClick={addSubject}>
+      <button className={Styles.button} onClick={() => addSubject(event)}>
         Agregar
       </button>
       <SubjectAdded visible={validUF} setVisible={setValidUF}></SubjectAdded>

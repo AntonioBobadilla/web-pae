@@ -20,6 +20,12 @@ export interface Period {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }
 
+export interface Schedule {
+  firstPeriod: Period[];
+  secondPeriod: Period[];
+  thirdPeriod: Period[];
+}
+
 // Define a type for the slice state
 export interface CreateTutorState {
   name: string;
@@ -27,11 +33,7 @@ export interface CreateTutorState {
   major: string;
   password: string;
   passwordConfirmation: string;
-  schedule: {
-    firstPeriod: Period[];
-    secondPeriod: Period[];
-    thirdPeriod: Period[];
-  };
+  schedule: Schedule;
   subjects: Subject[];
   isLoading: boolean;
   error: string;

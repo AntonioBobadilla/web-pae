@@ -153,9 +153,9 @@ const LoginFormAdmin = ({
               <Link href={forgotPasswordRoute}>
                 <a className={styles.forgotPassword}>Olvidé mi contraseña</a>
               </Link>
-              <a href="#" className={styles.privacy2}>
-                Aviso de privacidad
-              </a>
+              <Link href="/" passHref>
+                <a className={styles.privacy}>Aviso de privacidad</a>
+              </Link>
             </div>
           </div>
         </form>

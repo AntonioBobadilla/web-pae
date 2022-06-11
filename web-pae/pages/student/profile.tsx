@@ -2,22 +2,18 @@ import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ToggleMenuStudent from '@/components/toggle-menu-student';
 import { selectEmail, selectName } from '@/redux/user';
-import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
 import CardInformation from '../../components/card-information-student';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/student/profile.module.css';
 
-const Profile: NextPage = () => {
+const Profile = () => {
   const myUser = {
     name: useAppSelector(selectName),
     email: useAppSelector(selectEmail)
   };
-  const progress = {
-    weekHours: 2,
-    totalHours: 50
-  };
+
   const [modifyPasswordVisible, setModifyPasswordVisible] =
     React.useState(false);
   const [modifyLanguageVisible, setModifyLanguageVisible] =

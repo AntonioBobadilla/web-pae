@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Meeting } from '@/components/data-table/types';
 import TutoringConfirmation from '@/components/tutoring/confirmation';
 import TutoringSubject from '@/components/tutoring/subject';
 import {
   getAvailableTutorings,
   reserveTutoring
 } from '@/redux/schedule-tutoring';
-import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -21,7 +22,7 @@ import {
   TOPIC
 } from '../../helpers/student-steps';
 
-const ScheduleTutoring: NextPage = () => {
+const ScheduleTutoring = () => {
   const [step, setStep] = React.useState<string>(SUBJECT);
   const { query, push } = useRouter();
   const [isSubjectComplete, setIsSubjectComplete] = useState(true);
@@ -85,10 +86,17 @@ const ScheduleTutoring: NextPage = () => {
   const handleNextStepSubject = async () => {
     try {
       const data = await dispatch(getAvailableTutorings()).unwrap();
-      if (data && data.length > 0) {
+
+      const length = data.reduce(
+        (acc: any, curr: Meeting) => acc + curr.tutorings.length,
+        0
+      );
+      if (data && data.length > 0 && length > 0) {
         handleNextStep();
       } else {
-        // toast.error(error);
+        toast.error(
+          'Lo sentimos, por el momento no hay asesorías disponibles para esa materia.'
+        );
       }
     } catch (err: any) {
       toast.error(err.message);
