@@ -31,22 +31,22 @@ const Polls = () => {
           <Tabs
             handleClick={Results}
             text="Resultados"
-            active={currentTab == 'Results' ? true : false}
-          ></Tabs>
+            active={currentTab == 'Results'}
+          />
         </div>
         <div className={styles.indResultsTab}>
           <Tabs
             handleClick={IndResults}
             text="Resultados individuales"
-            active={currentTab == 'IndResults' ? true : false}
-          ></Tabs>
+            active={currentTab == 'IndResults'}
+          />
         </div>
         <div className={styles.editPollTab}>
           <Tabs
             handleClick={EditPoll}
             text="Editar Encuestas"
-            active={currentTab == 'EditPoll' ? true : false}
-          ></Tabs>
+            active={currentTab == 'EditPoll'}
+          />
         </div>
       </div>
 
@@ -54,23 +54,19 @@ const Polls = () => {
         <div
           className={currentTab == 'Results' ? styles.results : styles.hidden}
         >
-          <PollResults
-            curTab={currentTab == 'Results' ? true : false}
-          ></PollResults>
+          <PollResults curTab={currentTab == 'Results'} />
         </div>
         <div
           className={
             currentTab == 'IndResults' ? styles.indResults : styles.hidden
           }
         >
-          <PollIndividualResults
-            curTab={currentTab == 'IndResults' ? true : false}
-          ></PollIndividualResults>
+          <PollIndividualResults curTab={currentTab == 'IndResults'} />
         </div>
         <div
           className={currentTab == 'EditPoll' ? styles.editPoll : styles.hidden}
         >
-          <EditPolls></EditPolls>
+          <EditPolls />
         </div>
       </div>
     </div>

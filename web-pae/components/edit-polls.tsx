@@ -1,6 +1,6 @@
+import cx from 'classnames';
 import { useEffect, useState } from 'react';
 import styles from '../css/components/editPolls.module.css';
-import cx from 'classnames';
 import DeleteQuestion from './dialogs/delete-question';
 import ModifyQuestion from './dialogs/modify-question';
 
@@ -16,10 +16,10 @@ const EditPolls = () => {
 
   const modifyQuestion = (e: any) => {
     visiblePopUp2();
-    let element = e.target.parentElement.parentElement.childNodes[0];
-    let element2 = e.target.parentElement.parentElement.childNodes[1];
-    let newButton = e.target.parentElement.childNodes[0];
-    let currButton = e.target;
+    const element = e.target.parentElement.parentElement.childNodes[0];
+    const element2 = e.target.parentElement.parentElement.childNodes[1];
+    const newButton = e.target.parentElement.childNodes[0];
+    const currButton = e.target;
     element.style.display = 'block';
     element2.style.display = 'none';
     newButton.style.display = 'block';
@@ -28,10 +28,10 @@ const EditPolls = () => {
 
   const confirmModifyQuestion = (e: any, id: any) => {
     editQuestion(id);
-    let element = e.target.parentElement.parentElement.childNodes[0];
-    let element2 = e.target.parentElement.parentElement.childNodes[1];
-    let newButton = e.target.parentElement.childNodes[1];
-    let currButton = e.target;
+    const element = e.target.parentElement.parentElement.childNodes[0];
+    const element2 = e.target.parentElement.parentElement.childNodes[1];
+    const newButton = e.target.parentElement.childNodes[1];
+    const currButton = e.target;
     element.style.display = 'none';
     element2.style.display = 'flex';
     newButton.style.display = 'flex';
@@ -59,13 +59,13 @@ const EditPolls = () => {
   const getPollsfromApi = () => {
     fetch('http://server-pae.azurewebsites.net/question/')
       .then((resp) => resp.json())
-      .then(function (data) {
-        //console.log(data)
+      .then((data) => {
+        // console.log(data)
         setData(data);
         setPending(false);
         console.log(data);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -74,7 +74,7 @@ const EditPolls = () => {
   }, []);
 
   const deleteQuestion = () => {
-    fetch('http://server-pae.azurewebsites.net/question/' + id + '/', {
+    fetch(`http://server-pae.azurewebsites.net/question/${id}/`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -94,7 +94,7 @@ const EditPolls = () => {
   };
 
   const editQuestion = (id: any) => {
-    fetch('http://server-pae.azurewebsites.net/question/' + id + '/', {
+    fetch(`http://server-pae.azurewebsites.net/question/${id}/`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ body: modifiedQuestion })
@@ -128,7 +128,7 @@ const EditPolls = () => {
           // error coming back from server
           throw Error('could not make PUT request for that endpoint');
         }
-        let inputText = e.target.parentElement.parentElement.childNodes[0];
+        const inputText = e.target.parentElement.parentElement.childNodes[0];
         inputText.value = '';
         getPollsfromApi();
         return res.json();
@@ -158,61 +158,59 @@ const EditPolls = () => {
     <div className={styles.main}>
       {pending && <div>Cargando datos...</div>}
       <div className={styles.questionsContainer}>
-        {data.map(function (item: any, index) {
-          return (
-            <div key={index} className={styles.questions}>
-              <input
-                className={styles.inputText2}
-                placeholder={item.body}
-                onChange={questionModifyChange}
-              ></input>
-              <span className={styles.question}>{item.body}</span>
-              <div className={styles.buttons}>
-                <i
-                  className={cx('bi bi-check-lg', styles.confirmQuestionChange)}
-                  onClick={() => confirmModifyQuestion(event, item.id)}
-                ></i>
-                <i
-                  className={cx('bi bi-pencil-fill', styles.editQuestion)}
-                  onClick={modifyQuestion}
-                ></i>
-                <i
-                  className={cx('bi bi-trash', styles.delete)}
-                  onClick={() => checkItemState(item.id)}
-                ></i>
-              </div>
+        {data.map((item: any, index) => (
+          <div key={index} className={styles.questions}>
+            <input
+              className={styles.inputText2}
+              placeholder={item.body}
+              onChange={questionModifyChange}
+            />
+            <span className={styles.question}>{item.body}</span>
+            <div className={styles.buttons}>
+              <i
+                className={cx('bi bi-check-lg', styles.confirmQuestionChange)}
+                onClick={() => confirmModifyQuestion(event, item.id)}
+              />
+              <i
+                className={cx('bi bi-pencil-fill', styles.editQuestion)}
+                onClick={modifyQuestion}
+              />
+              <i
+                className={cx('bi bi-trash', styles.delete)}
+                onClick={() => checkItemState(item.id)}
+              />
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
       <DeleteQuestion
         visible={popUp}
         setVisible={setPopUp}
         onClickFunction={() => deleteQuestion()}
         onClickCancel={notVisiblePopUp}
-      ></DeleteQuestion>
+      />
 
       <ModifyQuestion
         visible={popUp2}
         setVisible={setPopUp2}
         onClickCancel={notVisiblePopUp2}
-      ></ModifyQuestion>
+      />
       <div className={add ? styles.questionInput : styles.hidden}>
         <input
           type="text"
           placeholder="Introduzca la nueva pregunta"
           onChange={questionChange}
           className={styles.inputText}
-        ></input>
+        />
         <div className={styles.buttons2}>
           <i
             className={cx('bi bi-check-lg', styles.questionCorrect)}
             onClick={() => addQuestion(event)}
-          ></i>
+          />
           <i
             className={cx('bi bi-x-circle', styles.cancel)}
             onClick={changeAddVisibility}
-          ></i>
+          />
         </div>
       </div>
       <div className={styles.addQuestionContainer}>

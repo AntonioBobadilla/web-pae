@@ -128,7 +128,7 @@ export const createTutorSlice = createSlice({
     setPeriod: (
       state,
       action: PayloadAction<{
-        period: Period;
+        period: Period[];
         name: string;
       }>
     ) => {
@@ -137,13 +137,13 @@ export const createTutorSlice = createSlice({
 
       switch (name) {
         case 'firstPeriod':
-          schedule.firstPeriod = [...schedule.firstPeriod, period];
+          schedule.firstPeriod = period;
           break;
         case 'secondPeriod':
-          schedule.secondPeriod = [...schedule.secondPeriod, period];
+          schedule.secondPeriod = period;
           break;
         case 'thirdPeriod':
-          schedule.thirdPeriod = [...schedule.thirdPeriod, period];
+          schedule.thirdPeriod = period;
           break;
         default:
           break;

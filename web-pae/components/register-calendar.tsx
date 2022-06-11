@@ -1,3 +1,5 @@
+// eslint-disable
+
 import {
   selectFirstPeriod,
   selectSecondPeriod,
@@ -7,6 +9,7 @@ import {
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
+import { Period } from 'store/types';
 import styles from '../css/components/register-calendar.module.css';
 import RegisterStyle from '../css/tutor/register.module.css';
 import ButtonTemplate from './button-template';
@@ -54,7 +57,7 @@ const RegisterCalendar = React.memo(
       3: []
     };
     const [title, setTitle] = useState(titles[0]);
-    const [eventObj, setEventObj] = useState([]);
+    const [eventObj, setEventObj] = useState<Period[]>([]);
     const dispatch = useAppDispatch();
 
     // funcion que cambia el color de la celda.
@@ -90,9 +93,11 @@ const RegisterCalendar = React.memo(
     };
 
     const clearCells = () => {
-      eventObj.forEach((cell: any) => {
-        resetColorOfCell(document.getElementById(cell.id));
-      });
+      if (eventObj) {
+        eventObj.forEach((cell: any) => {
+          resetColorOfCell(document.getElementById(cell.id));
+        });
+      }
     };
 
     const handleNextStep = () => {
