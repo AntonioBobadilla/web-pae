@@ -109,7 +109,7 @@ const AvailableTutorings = ({
       </div>
 
       <div className={AvailableStyles.bottom}>
-        {date !== '' && (
+        {date !== '' && filteredMeetings.length > 0 && (
           <div className={AvailableStyles.left}>
             <span className={AvailableStyles.date}>{formatDate(date)}</span>
             <div className={AvailableStyles.leftBottom}>

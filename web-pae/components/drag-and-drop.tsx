@@ -4,7 +4,7 @@ import { useAppDispatch } from 'store/hook';
 import { setFile } from 'store/reducers/schedule-tutoring';
 import styles from '../css/components/dragdrop.module.css';
 
-const DragAndDrop = ({ file }: { file: File }) => {
+const DragAndDrop = ({ file }: { file: File | null }) => {
   const fileTypes = ['JPG', 'PNG'];
   const dispatch = useAppDispatch();
   const handleChange = (newFile: any) => {

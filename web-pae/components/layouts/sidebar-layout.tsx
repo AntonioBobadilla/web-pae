@@ -1,3 +1,4 @@
+import { reset } from '@/redux/schedule-tutoring';
 import post from 'helpers/post';
 import Head from 'next/head';
 import { Router, withRouter } from 'next/router';
@@ -20,7 +21,7 @@ type LayoutProps = {
 };
 
 const SidebarLayout = ({ router, children, title }: LayoutProps) => {
-  const { pathname, push } = router;
+  const { pathname, push, route } = router;
   const [routes, setRoutes] = React.useState(TUTOR_ROUTES);
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -44,6 +45,12 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
         break;
     }
   }, [role]);
+
+  React.useEffect(() => {
+    if (!route.includes('schedule-tutoring')) {
+      dispatch(reset());
+    }
+  }, [route]);
 
   const handleStatus = (status: number, responseData: any) => {
     try {

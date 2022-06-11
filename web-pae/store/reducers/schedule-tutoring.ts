@@ -24,7 +24,11 @@ interface ScheduleTutoringState {
 
 // Define the initial state using that type
 const initialState: ScheduleTutoringState = {
-  subject: null,
+  subject: {
+    name: '',
+    code: '',
+    semester: 0
+  },
   tutor: '',
   date: '',
   time: '',
@@ -51,7 +55,7 @@ export const getAvailableTutorings = createAsyncThunk(
     const { getState } = thunkAPI;
     const {
       scheduleTutoring: { subject }
-    } = getState();
+    } = getState() as RootState;
 
     const date = new Date();
 
@@ -69,7 +73,7 @@ export const getAvailableTutorings = createAsyncThunk(
 
     return post(
       {
-        subject: subject.code,
+        subject: subject?.code || '',
         initial_date_serializer: `${date.getFullYear()}-${
           date.getMonth() + 1
         }-${date.getDate() + 1}`,
@@ -86,19 +90,21 @@ export const reserveTutoring = createAsyncThunk(
   'schedule-tutoring/reserve-tutoring',
   async (arg, thunkAPI) => {
     const { getState } = thunkAPI;
+    const state: RootState = getState() as RootState;
+
     const {
       scheduleTutoring: { date, subject, title, content, file, selectedItem },
       user: { token, id }
-    } = getState();
+    } = state;
 
     const formData = new FormData();
 
-    formData.append('subject_id', subject.code);
-    formData.append('student', id);
+    formData.append('subject_id', subject?.code || '');
+    formData.append('student', id || '');
     formData.append('tutor_id', selectedItem.tutor);
     formData.append('date', date);
-    formData.append('hour', selectedItem.hour);
-    formData.append('is_online', selectedItem.isOnline);
+    formData.append('hour', selectedItem.hour.toString());
+    formData.append('is_online', selectedItem.isOnline.valueOf().toString());
     formData.append('topic', title);
     formData.append('doubt', content);
     if (file !== null) {
@@ -128,7 +134,7 @@ export const scheduleTutoringSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setSubject: (state, action: PayloadAction<Subject>) => {
+    setSubject: (state, action: PayloadAction<Subject | null>) => {
       state.subject = action.payload;
     },
     setTutor: (state, action: PayloadAction<string>) => {

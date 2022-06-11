@@ -1,10 +1,9 @@
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
-import ModifySubjects from '@/components/dialogs/modify-subjects';
 import ModifySchedule from '@/components/dialogs/modify-schedule';
+import ModifySubjects from '@/components/dialogs/modify-subjects';
 import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
-import type { NextPage } from 'next';
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
 import { selectEmail, selectID, selectName } from 'store/reducers/user';
@@ -12,7 +11,7 @@ import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
 
-const Profile: NextPage = () => {
+const Profile = () => {
   const myUser = {
     id: useAppSelector(selectID),
     name: useAppSelector(selectName),
@@ -31,7 +30,7 @@ const Profile: NextPage = () => {
   const [modifySubjectsVisible, setModifySubjectsVisible] =
     React.useState(false);
   const [modifyScheduleVisible, setModifyScheduleVisible] =
-  React.useState(false);
+    React.useState(false);
 
   const onClickModifyPassword = () => {
     setModifyPasswordVisible(true);

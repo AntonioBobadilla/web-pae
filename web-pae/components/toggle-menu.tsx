@@ -1,9 +1,8 @@
 import post from '@/helpers/post';
-import { selectToken, setLogoutData } from 'store/reducers/user';
-import router from 'next/router';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
+import { selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenu.module.css';
 import Exit from './dialogs/exit';
 
@@ -24,7 +23,28 @@ const ToggleMenu = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectToken);
+  const handleStatus = (status: number, responseData: any) => {
+    try {
+      if (status === 200 || status === 201 || status === 204) {
+        // toast success
+        toast.success('Successful logout');
+      } else {
+        // set user data
 
+        toast.error(responseData.token);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+      setIsLoading(false);
+    }
+    // set user data
+
+    dispatch(setLogoutData());
+
+    // redirect to home
+    setTimeout(() => push(routes.exit), 500);
+  };
   const logOut = () => {
     // console.log(role);
     setIsLoading(true);
@@ -36,27 +56,7 @@ const ToggleMenu = ({
         handleStatus(500, err);
       });
   };
-  const handleStatus = (status: number, responseData: any) => {
-    try {
-      if (status === 200 || status === 201 || status === 204) {
-        // toast success
-        toast.success('Successful logoout');
 
-        // set user data
-
-        dispatch(setLogoutData());
-
-        // redirect to home
-        setTimeout(() => router.push('/tutor/login/'), 500);
-      } else {
-        toast.error(responseData.message);
-        setIsLoading(false);
-      }
-    } catch (error) {
-      toast.error('Something went wrong');
-      setIsLoading(false);
-    }
-  };
   const handleLogOut = () => {
     setVisible(true);
   };

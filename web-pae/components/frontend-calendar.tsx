@@ -1,11 +1,12 @@
 import cx from 'classnames';
 import React, { useEffect } from 'react';
+import { Period } from 'store/types';
 import styles from '../css/components/calendar.module.css';
 import Cell from './frontend-calendar-cellComponent';
 
 interface MyCalendarProps {
-  eventObj: never[];
-  setEventObj: React.Dispatch<React.SetStateAction<never[]>>;
+  eventObj: Period[];
+  setEventObj: React.Dispatch<React.SetStateAction<Period[]>>;
   changeColorOfCell: (cell: any) => void;
   resetColorOfCell: (cell: any) => void;
 }
@@ -63,10 +64,10 @@ const MyCalendar = ({
         const attr = cell.getAttribute('id').split(' ');
         const dia = attr[0];
         const hora = attr[1];
-        if (obj.dia === dia && obj.inicio === hora) {
+        if (obj.dia === dia && obj.inicio.toString() === hora) {
           startCell = cell;
         }
-        if (obj.dia === dia && obj.fin === hora) {
+        if (obj.dia === dia && obj.fin.toString() === hora) {
           finishCell = cell;
         }
       });

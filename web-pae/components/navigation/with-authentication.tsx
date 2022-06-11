@@ -5,11 +5,7 @@ import { useAppSelector } from 'store/hook';
 import { selectRole, selectToken } from 'store/reducers/user';
 import LoadingScreen from '../transitions/loading-screen';
 
-type withAuthenticationProps = {
-  WrappedComponent: React.ComponentType<any>;
-};
-
-const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
+const withAuthentication = (WrappedComponent: React.ComponentType<any>) => {
   const RequiresAuthentication = (props: any) => {
     // get user role from redux state
     const { push, asPath } = useRouter();

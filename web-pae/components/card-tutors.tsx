@@ -14,7 +14,7 @@ const CardTutors = () => {
     []
   );
   const [QuestionVisible, setQuestionVisible] = React.useState(false);
-  const [tutoringObject, setTutoringObject] = React.useState([]);
+  const [tutoringObject, setTutoringObject] = React.useState<Tutoring>();
 
   const id = useAppSelector(selectID);
   React.useEffect(() => {
@@ -35,7 +35,7 @@ const CardTutors = () => {
           return 0;
         });
         // TODO: SET DATA
-        console.log(newData)
+        console.log(newData);
         setAssignedTutorings(newData);
       })
       .catch((err) => console.log(err.message));
@@ -53,14 +53,14 @@ const CardTutors = () => {
     setQuestionVisible(true);
   };
 
-
-
   return (
     <div className={cardTutorsStyles.cardTutorsSection}>
-      <Carousel breakPoints={breakPoints} pagination={false}>
+      <Carousel breakPoints={breakPoints} pagination={false} isRTL={false}>
         {assignedTutorings.map((obj, index) => {
-          let { student, subject} = obj;
-          let place =  obj.is_online ? "ZOOM ID: "+obj.place : "AULA: "+obj.place;
+          const { student, subject } = obj;
+          const place = obj.is_online
+            ? `ZOOM ID: ${obj.place}`
+            : `AULA: ${obj.place}`;
           return (
             <div key={index} className={cardTutorsStyles.cardTutors}>
               <div className={cardTutorsStyles.studentInfo}>
@@ -68,10 +68,12 @@ const CardTutors = () => {
                   <i className="bi bi-person-circle" />
                 </div>
                 <b className={cardTutorsStyles.firstName}>{student.name}</b>
-                <p className={cardTutorsStyles.lastName}></p>
+                <p className={cardTutorsStyles.lastName} />
                 <div className={cardTutorsStyles.degreeSection}>
                   <p className={cardTutorsStyles.degree}>{student.major}</p>
-                  <p className={cardTutorsStyles.matricula}>{student.registration_number}</p>
+                  <p className={cardTutorsStyles.matricula}>
+                    {student.registration_number}
+                  </p>
                 </div>
               </div>
               <div className={cardTutorsStyles.itemsWrap}>
@@ -79,13 +81,17 @@ const CardTutors = () => {
                   <div className={cardTutorsStyles.itemIcon}>
                     <i className="bi bi-calendar" />
                   </div>
-                  <p className={cardTutorsStyles.itemText}>{formatDate(obj.date)}</p>
+                  <p className={cardTutorsStyles.itemText}>
+                    {formatDate(obj.date)}
+                  </p>
                 </div>
                 <div className={cardTutorsStyles.itemCard}>
                   <div className={cardTutorsStyles.itemIcon}>
                     <i className="bi bi-alarm" />
                   </div>
-                  <p className={cardTutorsStyles.itemText}>{formatTime(parseInt(obj.hour))}</p>
+                  <p className={cardTutorsStyles.itemText}>
+                    {formatTime(obj.hour)}
+                  </p>
                 </div>
                 <div className={cardTutorsStyles.itemCard}>
                   <div className={cardTutorsStyles.itemIcon}>
@@ -107,19 +113,19 @@ const CardTutors = () => {
                 </button>
               </div>
             </div>
-          )
+          );
         })}
       </Carousel>
-      { tutoringObject.student && <StudentQuestion
-        visible={QuestionVisible}
-        setVisible={setQuestionVisible}
-        tutoringObject={tutoringObject}
-        /* handle attachment showing with this on click :) */
-      /> }
-
-      
+      {tutoringObject != null && tutoringObject.student && (
+        <StudentQuestion
+          visible={QuestionVisible}
+          setVisible={setQuestionVisible}
+          tutoringObject={tutoringObject}
+          /* handle attachment showing with this on click :) */
+        />
+      )}
     </div>
-    );
+  );
 };
 
 export default CardTutors;

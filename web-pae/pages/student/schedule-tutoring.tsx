@@ -6,7 +6,6 @@ import {
   getAvailableTutorings,
   reserveTutoring
 } from '@/redux/schedule-tutoring';
-import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -23,7 +22,7 @@ import {
   TOPIC
 } from '../../helpers/student-steps';
 
-const ScheduleTutoring: NextPage = () => {
+const ScheduleTutoring = () => {
   const [step, setStep] = React.useState<string>(SUBJECT);
   const { query, push } = useRouter();
   const [isSubjectComplete, setIsSubjectComplete] = useState(true);

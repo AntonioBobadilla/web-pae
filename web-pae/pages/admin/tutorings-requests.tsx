@@ -1,18 +1,17 @@
-import type { NextPage } from 'next';
-import React, { ReactElement, useEffect, useState } from 'react';
-import SidebarLayout from '../../components/layouts/sidebar-layout';
-import tutorintstyles from '@/css-components/tutoring-requests.module.css';
-import styles from '@/css-admin/tutees.module.css';
-import cx from 'classnames';
-import Modalidad from '@/components/dialogs/edit-modalidad';
-import SeleccionarAsesor from '@/components/dialogs/editar-asesor';
 import SuccessAcceptTutoring from '@/components/dialogs/accept-tutoring';
 import DeniedTutoring from '@/components/dialogs/denied-tutoring';
-import toast, { Toaster } from 'react-hot-toast';
-import { useAppSelector } from 'store/hook';
+import Modalidad from '@/components/dialogs/edit-modalidad';
+import SeleccionarAsesor from '@/components/dialogs/editar-asesor';
+import styles from '@/css-admin/tutees.module.css';
+import tutorintstyles from '@/css-components/tutoring-requests.module.css';
 import { selectToken } from '@/redux/user';
-const Tutorings: NextPage = () => {
+import cx from 'classnames';
+import React, { ReactElement, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useAppSelector } from 'store/hook';
+import SidebarLayout from '../../components/layouts/sidebar-layout';
 
+const Tutorings = () => {
   const [data, setData] = useState<any>([]);
   const [currentTab, setCurrentTab] = useState<any>('');
   const [EditModalidad, setModalidad] = useState<any>(false);
@@ -22,13 +21,15 @@ const Tutorings: NextPage = () => {
   const [objectModalidad, setObjectModalidad] = useState<any>([]);
   const [newPlace, setNewPlace] = useState<any>('');
   const [NewModalidad, setNewModalidad] = useState<any>('');
-  const [SuccessAcceptTutoringVisible, setSuccessAcceptTutoringVisible] = useState<any>(false);
-  const [DeniedTutoringVisible, setDeniedTutoringVisible] = useState<any>(false);
+  const [SuccessAcceptTutoringVisible, setSuccessAcceptTutoringVisible] =
+    useState<any>(false);
+  const [DeniedTutoringVisible, setDeniedTutoringVisible] =
+    useState<any>(false);
   const [confirmDelete, setConfirmDelete] = useState<any>(false);
   const [TuteeIdToDelete, setTuteeIdToDelete] = useState<any>(0);
   const [pending, setPending] = useState<any>(true);
 
-  let token = useAppSelector(selectToken);
+  const token = useAppSelector(selectToken);
 
   const [day, setDay] = useState<any>('');
   const [hour, setHour] = useState<any>('');
@@ -36,21 +37,20 @@ const Tutorings: NextPage = () => {
 
   const getDataFromApi = () => {
     fetch('http://server-pae.azurewebsites.net/tutoring/?status=PE')
-    .then((resp) => resp.json())
-    .then(function(data) {
-      setData(data);
-      console.log("aaaaa: ",data)
-      setPending(false);
+      .then((resp) => resp.json())
+      .then((data) => {
+        setData(data);
+        console.log('aaaaa: ', data);
+        setPending(false);
       })
-    .catch(function(error) {
-      console.log(error);
-    });
-  } 
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const onClickSuccessAcceptTutoring = () => {
     setSuccessAcceptTutoringVisible(true);
   };
-
 
   const onClickDeniedTutoring = () => {
     setDeniedTutoringVisible(true);
@@ -65,78 +65,79 @@ const Tutorings: NextPage = () => {
   };
   // función que realizara el update del tutor basado en el indice guardado en objectToModify
   const updateAsesor = () => {
-      if (newAsesor == '')
-        return; 
-    fetch('http://server-pae.azurewebsites.net/changetutor/'+objectToModify, {
+    if (newAsesor == '') return;
+    fetch(`http://server-pae.azurewebsites.net/changetutor/${objectToModify}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({"tutor": newAsesor.toLowerCase()}) // agregar json de update
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        throw Error('could not make PUT request for that endpoint');
-      } 
-      return res.json();
+      body: JSON.stringify({ tutor: newAsesor.toLowerCase() }) // agregar json de update
     })
-    .then(data => {
-      console.log('ok')
-      toast('Asesor actualizado', {
-        icon: '😄'
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make PUT request for that endpoint');
+        }
+        return res.json();
       })
-      getDataFromApi();
-    })
-    .catch(err => {
+      .then((data) => {
+        console.log('ok');
+        toast('Asesor actualizado', {
+          icon: '😄'
+        });
+        getDataFromApi();
+      })
+      .catch((err) => {
         console.log(err.message);
-    })
-    console.log('actualizando tutor.... desde func', newAsesor )
-  }
+      });
+    console.log('actualizando tutor.... desde func', newAsesor);
+  };
 
-    // función que realizara el update del tutor basado en el indice guardado en objectToModify
-    const updatemodalidad = () => {
-      let online = NewModalidad == "En línea" ? true : false
-      if (objectToModify == 0)
-        return;
-      fetch('http://server-pae.azurewebsites.net/changetutoringlocation/'+objectToModify, {
+  // función que realizara el update del tutor basado en el indice guardado en objectToModify
+  const updatemodalidad = () => {
+    const online = NewModalidad == 'En línea';
+    if (objectToModify == 0) return;
+    fetch(
+      `http://server-pae.azurewebsites.net/changetutoringlocation/${objectToModify}`,
+      {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          "is_online": online,
-          "place": newPlace
-      }) // agregar json de update
-    })
-      .then(res => {
-        if (!res.ok) { // error coming back from server
+          is_online: online,
+          place: newPlace
+        }) // agregar json de update
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
           throw Error('could not make PUT request for that endpoint');
-        } 
+        }
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         toast('Modalidad actualizada', {
           icon: '✅'
-        })
+        });
         getDataFromApi();
       })
-      .catch(err => {
-          console.log(err.message);
-      })
-    }
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   const updateModalidad = () => {
     updatemodalidad();
-  }
+  };
 
   useEffect(() => {
-    if (confirmDelete == true)
-      del();
-},[confirmDelete]) // <-- here put the parameter to listen
+    if (confirmDelete == true) del();
+  }, [confirmDelete]); // <-- here put the parameter to listen
 
   useEffect(() => {
-    getDataFromApi()
+    getDataFromApi();
   }, []);
 
-
   useEffect(() => {
-    updateAsesor()
+    updateAsesor();
   }, [newAsesor]);
 
   useEffect(() => {
@@ -144,214 +145,247 @@ const Tutorings: NextPage = () => {
   }, [NewModalidad]);
 
   const editModalidad = (modalidadObj: any, idABorrar: any) => {
-    setObjectToModify(idABorrar) // ese es el indice que guardaremos
+    setObjectToModify(idABorrar); // ese es el indice que guardaremos
     setObjectModalidad(modalidadObj);
     onClickModalidad();
-  }
-// en esta funcion  vamos a recibir el indice del objeto del arreglo de objetos traidos por api
-// para así al actualizar ese objeto nos basemos en su indice para saber qué objeto actualizar
+  };
+  // en esta funcion  vamos a recibir el indice del objeto del arreglo de objetos traidos por api
+  // para así al actualizar ese objeto nos basemos en su indice para saber qué objeto actualizar
   const EditAsesor = (idOfObject: any, day: any, hour: any, subject: any) => {
-    setDay(day)
-    setHour(hour)
-    setSubject(subject)
-    setObjectToModify(idOfObject) // ese es el indice que guardaremos
+    setDay(day);
+    setHour(hour);
+    setSubject(subject);
+    setObjectToModify(idOfObject); // ese es el indice que guardaremos
     onClickEditAsesor();
-  }
+  };
 
-    // agregar token dinamico
+  // agregar token dinamico
   const del = () => {
-    fetch('http://server-pae.azurewebsites.net/tutoring/'+TuteeIdToDelete, {
+    fetch(`http://server-pae.azurewebsites.net/tutoring/${TuteeIdToDelete}`, {
       method: 'DELETE',
       headers: {
-         'Content-Type': 'application/json',
-         'Authorization':`Token ${token}`
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
       }
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        throw Error('could not make POST request for that endpoint');
-      } else if (res.status === 204) {
-        getDataFromApi()
-        toast('Asesor eliminado', {
-          icon: '✅'
-        })
-      }
-      return res.json();
     })
-    .catch(err => {
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make POST request for that endpoint');
+        } else if (res.status === 204) {
+          getDataFromApi();
+          toast('Asesor eliminado', {
+            icon: '✅'
+          });
+        }
+        return res.json();
+      })
+      .catch((err) => {
         console.log(err.message);
-    })
-  }
+      });
+  };
 
   const deleteTutoring = (id: any) => {
     setTuteeIdToDelete(id);
-    onClickDeniedTutoring()
-  }
+    onClickDeniedTutoring();
+  };
 
   const acceptTutoring = (id: any) => {
-    fetch('http://server-pae.azurewebsites.net/confirmtutoring/'+id, {
+    fetch(`http://server-pae.azurewebsites.net/confirmtutoring/${id}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        throw Error('could not make PUT request for that endpoint');
-      } 
-      return res.json();
     })
-    .then(data => {
-      console.log('ok')
-      onClickSuccessAcceptTutoring()
-      getDataFromApi()
-      toast('Asesor aceptado', {
-        icon: '✅'
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make PUT request for that endpoint');
+        }
+        return res.json();
       })
-
-    })
-    .catch(err => {
+      .then((data) => {
+        console.log('ok');
+        onClickSuccessAcceptTutoring();
+        getDataFromApi();
+        toast('Asesor aceptado', {
+          icon: '✅'
+        });
+      })
+      .catch((err) => {
         console.log(err.message);
-    })
-  }
+      });
+  };
 
   const renderTable = () => {
-    if (data.length != 0){
+    if (data.length != 0) {
       return (
-          <table
-          className={styles.tableRequest}
-          >
-        <thead>
-          <tr className={cx(styles.headRow, styles.tr)}>
-            <th className={styles.head}>Alumno solicitante</th>
-            <th className={styles.head}>Asesor sugerido</th>
-            <th className={styles.head}>UF solicitada</th>
-            <th className={styles.head}>Horario</th>
-            <th className={styles.head}>Modalidad</th>
-            <th className={styles.head}></th>
-          </tr>
-        </thead>
-        <tbody> 
-          {
-            data.map(function(item: any,index: any) {
-              let {student, subject, tutor} = item
-              console.log(data)
-              let modalidad = item.is_online ? 'En línea' : 'Presencial';
-              return ( 
-              <tr key={index}  className={styles.tr}>
-                <td className={styles.td}>
-                  <p className={tutorintstyles.name}>{student.name} </p>
-                  <p className={tutorintstyles.apellidos}></p>
-                  <div className={tutorintstyles.data}>
-                    <p className={tutorintstyles.major}>{student.major}</p>
-                    <p className={tutorintstyles.matricula}>{student.registration_number}</p>
-                  </div>
-                </td>
-                <td className={styles.td}>
-                  <p className={tutorintstyles.name}>{tutor.name}</p>
-                  <p className={tutorintstyles.apellidos}></p>
-                  <div className={tutorintstyles.data}>
-                    <p className={tutorintstyles.major}></p>
-                    <p className={tutorintstyles.matricula}>{tutor.registration_number}</p>
-                    <button className={tutorintstyles.button}  onClick={() => EditAsesor(item.id, item.date, item.hour, subject.code)}>
-                      <i className= {cx( tutorintstyles.button,"bi bi-pencil")}></i>
-                    </button>
-                    
-                  </div>
-                </td>
-                <td className={styles.td}>
-                  <p className={tutorintstyles.subject}> {subject.code } </p>
-                  <p className={tutorintstyles.subjectfull}>{subject.name }</p>
-                </td>
-                <td className={styles.td}>
-                  <p className={tutorintstyles.fullday}>{item.date}</p>
-                  <p className={tutorintstyles.hora}>{item.hour}</p>
-                </td>
-                <td className={styles.td}>
+        <table className={styles.tableRequest}>
+          <thead>
+            <tr className={cx(styles.headRow, styles.tr)}>
+              <th className={styles.head}>Alumno solicitante</th>
+              <th className={styles.head}>Asesor sugerido</th>
+              <th className={styles.head}>UF solicitada</th>
+              <th className={styles.head}>Horario</th>
+              <th className={styles.head}>Modalidad</th>
+              <th className={styles.head} />
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item: any, index: any) => {
+              const { student, subject, tutor } = item;
+              console.log(data);
+              const modalidad = item.is_online ? 'En línea' : 'Presencial';
+              return (
+                <tr key={index} className={styles.tr}>
+                  <td className={styles.td}>
+                    <p className={tutorintstyles.name}>{student.name} </p>
+                    <p className={tutorintstyles.apellidos} />
+                    <div className={tutorintstyles.data}>
+                      <p className={tutorintstyles.major}>{student.major}</p>
+                      <p className={tutorintstyles.matricula}>
+                        {student.registration_number}
+                      </p>
+                    </div>
+                  </td>
+                  <td className={styles.td}>
+                    <p className={tutorintstyles.name}>{tutor.name}</p>
+                    <p className={tutorintstyles.apellidos} />
+                    <div className={tutorintstyles.data}>
+                      <p className={tutorintstyles.major} />
+                      <p className={tutorintstyles.matricula}>
+                        {tutor.registration_number}
+                      </p>
+                      <button
+                        className={tutorintstyles.button}
+                        onClick={() =>
+                          EditAsesor(
+                            item.id,
+                            item.date,
+                            item.hour,
+                            subject.code
+                          )
+                        }
+                      >
+                        <i
+                          className={cx(tutorintstyles.button, 'bi bi-pencil')}
+                        />
+                      </button>
+                    </div>
+                  </td>
+                  <td className={styles.td}>
+                    <p className={tutorintstyles.subject}> {subject.code} </p>
+                    <p className={tutorintstyles.subjectfull}>{subject.name}</p>
+                  </td>
+                  <td className={styles.td}>
+                    <p className={tutorintstyles.fullday}>{item.date}</p>
+                    <p className={tutorintstyles.hora}>{item.hour}</p>
+                  </td>
+                  <td className={styles.td}>
                     <p className={tutorintstyles.item}>{modalidad}</p>
                     <p className={tutorintstyles.item}>{item.place}</p>
-                    <button className={tutorintstyles.button} onClick={() => editModalidad({ forma: modalidad,lugar: item.place}, item.id)}>
-                      <i className= {cx( tutorintstyles.button,"bi bi-pencil")}></i>
+                    <button
+                      className={tutorintstyles.button}
+                      onClick={() =>
+                        editModalidad(
+                          { forma: modalidad, lugar: item.place },
+                          item.id
+                        )
+                      }
+                    >
+                      <i
+                        className={cx(tutorintstyles.button, 'bi bi-pencil')}
+                      />
                     </button>
-
-                </td>
-                <td className={styles.td}>
-                  <div className={styles.flex}>
-                    <button  onClick={() => acceptTutoring(item.id)} className={styles.accept}>Aceptar asesoría</button>
-                    <button  onClick={() => deleteTutoring(item.id)} className={styles.denied}>Rechazar asesoría</button>
-                  </div>
-                </td>
-              </tr>
-            )}) 
-          }
-        </tbody>
-          </table>
-      )
-    } else if (data.length == 0 && pending == false){
+                  </td>
+                  <td className={styles.td}>
+                    <div className={styles.flex}>
+                      <button
+                        onClick={() => acceptTutoring(item.id)}
+                        className={styles.accept}
+                      >
+                        Aceptar asesoría
+                      </button>
+                      <button
+                        onClick={() => deleteTutoring(item.id)}
+                        className={styles.denied}
+                      >
+                        Rechazar asesoría
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      );
+    }
+    if (data.length == 0 && pending == false) {
       return (
         <div>
-          <table
-          className={styles.tableRequest}
-          >
-        <thead>
-          <tr className={cx(styles.headRow, styles.tr)}>
-            <th className={styles.head}>Alumno solicitante</th>
-            <th className={styles.head}>Asesor sugerido</th>
-            <th className={styles.head}>UF solicitada</th>
-            <th className={styles.head}>Horario</th>
-            <th className={styles.head}>Modalidad</th>
-            <th className={styles.head}></th>
-          </tr>
-        </thead>
-        <tbody> 
-        </tbody>
-        </table>
-        <p className={tutorintstyles.emptyMessage}>No hay solicitudes disponibles</p> 
-       </div>   
-         )
+          <table className={styles.tableRequest}>
+            <thead>
+              <tr className={cx(styles.headRow, styles.tr)}>
+                <th className={styles.head}>Alumno solicitante</th>
+                <th className={styles.head}>Asesor sugerido</th>
+                <th className={styles.head}>UF solicitada</th>
+                <th className={styles.head}>Horario</th>
+                <th className={styles.head}>Modalidad</th>
+                <th className={styles.head} />
+              </tr>
+            </thead>
+            <tbody />
+          </table>
+          <p className={tutorintstyles.emptyMessage}>
+            No hay solicitudes disponibles
+          </p>
+        </div>
+      );
     }
-  }
+  };
 
   return (
     <div className={tutorintstyles.main}>
-      <button className={tutorintstyles.Mainbutton}>Asesorías solicitadas</button>
-        { renderTable() }
+      <button className={tutorintstyles.Mainbutton}>
+        Asesorías solicitadas
+      </button>
+      {renderTable()}
 
-        { pending && <div>Cargando datos...</div> }
+      {pending && <div>Cargando datos...</div>}
 
-        {EditModalidad && (
-            <Modalidad
-              visible={EditModalidad}
-              setVisible={setModalidad}
-              modalidad={objectModalidad}
-              setNewModalidad={setNewModalidad}
-              setNewPlace={setNewPlace}
-            />
+      {EditModalidad && (
+        <Modalidad
+          visible={EditModalidad}
+          setVisible={setModalidad}
+          modalidad={objectModalidad}
+          setNewModalidad={setNewModalidad}
+          setNewPlace={setNewPlace}
+        />
       )}
       {SuccessAcceptTutoringVisible && (
-            <SuccessAcceptTutoring
-              visible={SuccessAcceptTutoringVisible}
-              setVisible={setSuccessAcceptTutoringVisible}
-            />
+        <SuccessAcceptTutoring
+          visible={SuccessAcceptTutoringVisible}
+          setVisible={setSuccessAcceptTutoringVisible}
+        />
       )}
       {DeniedTutoringVisible && (
-            <DeniedTutoring
-              visible={DeniedTutoringVisible}
-              setVisible={setDeniedTutoringVisible}
-              setConfirmDelete={setConfirmDelete}
-            />
+        <DeniedTutoring
+          visible={DeniedTutoringVisible}
+          setVisible={setDeniedTutoringVisible}
+          setConfirmDelete={setConfirmDelete}
+        />
       )}
-        {Asesor && (
-            <SeleccionarAsesor
-              visible={Asesor}
-              setVisible={setAsesor}
-              setAsesor={setNewAsesor}
-              day={day}
-              hour={hour}
-              subject={subject}
-            />
+      {Asesor && (
+        <SeleccionarAsesor
+          visible={Asesor}
+          setVisible={setAsesor}
+          setAsesor={setNewAsesor}
+          day={day}
+          hour={hour}
+          subject={subject}
+        />
       )}
     </div>
-    
-  )
+  );
 };
 
 // Add sidebar layout
