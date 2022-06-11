@@ -6,13 +6,11 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding-left: 5vh;
-  padding-right: 5vh;
 }
 
 .card {
-  width: 45vh;
-  height: 40vh;
+  width: 25%;
+  height: 20%;
   animation: 1s ease 0s 1 appear;
   margin-left: 5vh;
   margin-right: 5vh;
