@@ -4,7 +4,8 @@ import registerStyles from '../../css/register.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import ToggleButton from '../toggle-button';
-import Carousel, { consts } from 'react-elastic-carousel';
+import Carousel from 'react-elastic-carousel';
+import consts from "react-elastic-carousel";
 import classNames from 'classnames';
 import MyCalendar from '../frontend-calendar-full';
 
@@ -17,11 +18,11 @@ type ModifyLanguageProps = {
 
 const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
 
-   const [allSchedules, setAllSchedules] = useState([]);
-   const [schedulesFirstPeriod, setSchedulesFirstPeriod] = useState([]);
-   const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState([]);
-   const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState([]);
-   const [textPeriod, setTextPeriod] = useState('Primer periodo');
+   const [allSchedules, setAllSchedules] = useState<any>([]);
+   const [schedulesFirstPeriod, setSchedulesFirstPeriod] = useState<any>([]);
+   const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState<any>([]);
+   const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState<any>([]);
+   const [textPeriod, setTextPeriod] = useState<any>('Primer periodo');
 
    
   const breakPoints = [
@@ -36,7 +37,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     setVisible(false);
   };
 
-  function myArrow({ type, onClick, isEdge }) {
+  function myArrow({ type, onClick, isEdge }: any) {
     const pointer = type === consts.PREV ? 'left' : 'right';
     return (
       <div
@@ -59,8 +60,8 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        let newArr = [];
-        data.schedules.map(function(item,index){
+        let newArr: any = [];
+        data.schedules.map(function(item: any,index: any){
             let { period, day_week, hour } = item;
             let uniqueId = day_week.toString()+"-"+hour.toString()+"-"+period.toString();
             let obj = {period, day_week, hour, id:uniqueId};
@@ -72,20 +73,20 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }, []);
 
   const filterSchedules = () => {
-    allSchedules.forEach(schedule => {
+    allSchedules.forEach((schedule: { period: any; }) => {
       if (schedule.period == 0){
-        setSchedulesFirstPeriod(schedulesFirstPeriod => [...schedulesFirstPeriod, schedule]);
+        setSchedulesFirstPeriod((schedulesFirstPeriod: any) => [...schedulesFirstPeriod, schedule]);
       } else if(schedule.period == 1) {
-        setSchedulesSecondPeriod(schedulesSecondPeriod => [...schedulesSecondPeriod, schedule]);
+        setSchedulesSecondPeriod((schedulesSecondPeriod: any) => [...schedulesSecondPeriod, schedule]);
       } else if (schedule.period == 2) {
-        setSchedulesThirdPeriod(schedulesThirdPeriod => [...schedulesThirdPeriod, schedule]);
+        setSchedulesThirdPeriod((schedulesThirdPeriod: any) => [...schedulesThirdPeriod, schedule]);
       }
     })
   }
 
-  const deleteIdFromObj = (array) => {
-    let newArr = [];
-    array.map(function(item){
+  const deleteIdFromObj = (array:any) => {
+    let newArr: any = [];
+    array.map(function(item: any){
       let { period, day_week, hour } = item;
       let obj = {period, day_week, hour };
       newArr.push(obj)
@@ -93,7 +94,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     return newArr;
   }
 
-  const updateBigSchedule = (data, id) => {
+  const updateBigSchedule = (data: any, id: any) => {
     let dataToSend = {
       "tutor": id.toLowerCase(),
       "schedules":  [ ...data]
@@ -107,7 +108,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
       if (!res.ok) { // error coming back from server
         throw Error('could not make POST request for that endpoint');
       } else if (res.status === 204) {
-        window.location.reload(false);
+        window.location.reload();
       }
       return res.json();
     })
@@ -132,7 +133,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
  },[allSchedules])
 
 
-  const handleChangeSlider = (currentItem, pageIndex) => {
+  const handleChangeSlider = (currentItem: any, pageIndex: any) => {
     if (pageIndex == 0){
       setTextPeriod('Primer periodo');
     } else if(pageIndex == 1) {
@@ -152,7 +153,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     >
       <div className={styles.wrapper}>
       <h2 style={{'margin':'0px 10px 20px 10px'}}>{textPeriod}</h2>
-      <Carousel pagination={false} renderArrow={myArrow}   onChange={(currentItem, pageIndex) => handleChangeSlider(currentItem, pageIndex )} breakPoints={breakPoints}>
+      <Carousel isRTL={false} pagination={false} renderArrow={myArrow}   onChange={(currentItem, pageIndex) => handleChangeSlider(currentItem, pageIndex )} breakPoints={breakPoints}>
           <MyCalendar 
                       schedulesToShow={schedulesFirstPeriod}
                       period={0}

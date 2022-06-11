@@ -5,7 +5,8 @@ import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import ToggleButton from '../toggle-button';
 import MyCalendar from '@/components/frontend-calendar-view';
-import Carousel, { consts } from 'react-elastic-carousel';
+import Carousel from 'react-elastic-carousel';
+import {consts} from "react-elastic-carousel";
 import classNames from 'classnames';
 
 type ModifyLanguageProps = {
@@ -27,9 +28,9 @@ const ViewCalendar = ({ visible, setVisible, schedules, tutorName }: ModifyLangu
     { width: 1200, itemsToShow: 1 }
   ];
 
-  const [schedulesFirstPeriod, setSchedulesFirstPeriod] = useState([]);
-  const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState([]);
-  const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState([]);
+  const [schedulesFirstPeriod, setSchedulesFirstPeriod] = useState<any>([]);
+  const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState<any>([]);
+  const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState<any>([]);
   const [textPeriod, setTextPeriod] = useState('Primer periodo');
   // funcion que cambia el color de la celda.
   const changeColorOfCell = (cell: any) => {
@@ -41,13 +42,13 @@ const ViewCalendar = ({ visible, setVisible, schedules, tutorName }: ModifyLangu
 
 
 const filterSchedules = () => {
-  schedules.forEach(schedule => {
+  schedules.forEach((schedule: { period: number; }) => {
     if (schedule.period == 0){
-      setSchedulesFirstPeriod(schedulesFirstPeriod => [...schedulesFirstPeriod, schedule]);
+      setSchedulesFirstPeriod((schedulesFirstPeriod: any) => [...schedulesFirstPeriod, schedule]);
     } else if(schedule.period == 1) {
-      setSchedulesSecondPeriod(schedulesSecondPeriod => [...schedulesSecondPeriod, schedule]);
+      setSchedulesSecondPeriod((schedulesSecondPeriod: any) => [...schedulesSecondPeriod, schedule]);
     } else if (schedule.period == 2) {
-      setSchedulesThirdPeriod(schedulesThirdPeriod => [...schedulesThirdPeriod, schedule]);
+      setSchedulesThirdPeriod((schedulesThirdPeriod: any) => [...schedulesThirdPeriod, schedule]);
     }
   })
 }
@@ -60,7 +61,7 @@ const filterSchedules = () => {
 
 
     let titleTutor = "Horario de "+tutorName
-  const handleChangeSlider = (currentItem, pageIndex) => {
+  const handleChangeSlider = (currentItem: any, pageIndex: any) => {
     if (currentItem.item.period == 0){
       setTextPeriod('Primer periodo');
     } else if(currentItem.item.period == 1) {
@@ -70,7 +71,8 @@ const filterSchedules = () => {
     }
   }  
 
-  function myArrow({ type, onClick, isEdge }) {
+  function myArrow({ type, onClick, isEdge }: any) {
+
     const pointer = type === consts.PREV ? 'left' : 'right';
     return (
       <div
@@ -96,7 +98,7 @@ const filterSchedules = () => {
     >
       <div className={registerStyles.languageOptions} style={{'flexDirection':'column', 'padding':'30px'}}>
         <h2 style={{'margin':'0px 10px 20px 10px'}}>{textPeriod}</h2>
-        <Carousel renderArrow={myArrow}   onChange={(currentItem, pageIndex) => handleChangeSlider(currentItem, pageIndex )} breakPoints={breakPoints}>
+        <Carousel isRTL={false} renderArrow={myArrow}   onChange={(currentItem, pageIndex) => handleChangeSlider(currentItem, pageIndex )} breakPoints={breakPoints}>
           <MyCalendar 
                       changeColorOfCell={changeColorOfCell}
                       schedulesToShow={schedulesFirstPeriod}

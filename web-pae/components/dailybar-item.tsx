@@ -21,7 +21,7 @@ const ItemDailyBar = ({
       disabled ? styles.disabled : styles.item,
       active && styles.active
     )}
-    onClick={disabled ? undefined : onClick}
+    onClick={ () => disabled ? undefined : onClick}
   >
     <p style={{ textTransform: 'capitalize' }}>{day}</p>
     <p>{number}</p>

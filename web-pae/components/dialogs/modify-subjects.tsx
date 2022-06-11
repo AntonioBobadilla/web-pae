@@ -17,8 +17,8 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     setVisible(false);
   };
 
-  const [subjectsFromApi, setSubjectsFromApi] = useState([]);
-  const [subjectsFromTutor, setSubjectsFromTutor] = useState([]);
+  const [subjectsFromApi, setSubjectsFromApi] =  useState<any>([]);
+  const [subjectsFromTutor, setSubjectsFromTutor] =  useState<any>([]);
 
   const getAllSubjects = () => {
     fetch('http://server-pae.azurewebsites.net/subject/')
@@ -38,7 +38,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }
 
   const showSuccessModal = () => {
-    let modal = document.querySelector('#message');
+    let modal: any = document.querySelector('#message');
     setTimeout(() => {
       modal.style.display = "block";
       setTimeout(() => {
@@ -52,7 +52,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     getAllSubjectsFromTutor()
   }, []);
 
-  const insertSubjectOnTutor = (subject) => {
+  const insertSubjectOnTutor = (subject: any) => {
     fetch('http://server-pae.azurewebsites.net/subjectbytutor/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -75,12 +75,12 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     }) 
   }
 
-  const handleSubject = (subject) => {
+  const handleSubject = (subject: any) => {
     insertSubjectOnTutor(subject.code)
-    setSubjectsFromTutor((subjectsFromTutor) => [...subjectsFromTutor, subject]);
+    setSubjectsFromTutor((subjectsFromTutor: any) => [...subjectsFromTutor, subject]);
   };
 
-  const deleteSubjectFromTutor = (code) => {
+  const deleteSubjectFromTutor = (code: any) => {
     fetch('http://server-pae.azurewebsites.net/subjectbytutor/', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
@@ -108,9 +108,9 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     })     
   }
 
-  const handleDelete = (subjectCode) => {
-    const arr = subjectsFromTutor.filter((item) => item.code.toUpperCase() !== subjectCode);
-    setSubjectsFromTutor((subjectsFromTutor) => arr);
+  const handleDelete = (subjectCode: any) => {
+    const arr = subjectsFromTutor.filter((item: any) => item.code.toUpperCase() !== subjectCode);
+    setSubjectsFromTutor((subjectsFromTutor: any) => arr);
     deleteSubjectFromTutor(subjectCode);
   };
 
@@ -135,7 +135,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
         </div>
 
         <div className={stylesSubjects.wrapper}>
-          {subjectsFromTutor.map((materia, index) => (
+          {subjectsFromTutor.map((materia: any, index: any) => (
             <div key={index} className={stylesSubjects.subjectsWrapper}>
               <li className={stylesSubjects.materia}>
                 {materia.code}{' '} {materia.name}
