@@ -1,9 +1,7 @@
 import React from 'react';
 import styles from '../../css/components/dialogs/modify-password.module.css';
 import registerStyles from '../../css/register.module.css';
-import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
-import ToggleButton from '../toggle-button';
 
 type ModifyLanguageProps = {
   visible: boolean;

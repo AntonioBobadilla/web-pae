@@ -4,7 +4,7 @@ import ModifySchedule from '@/components/dialogs/modify-schedule';
 import ModifySubjects from '@/components/dialogs/modify-subjects';
 import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import { selectEmail, selectID, selectName } from 'store/reducers/user';
 import CardInformation from '../../components/card-information';
@@ -12,6 +12,7 @@ import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
 
 const Profile = () => {
+  const [data, setData] = useState([]);
   const myUser = {
     id: useAppSelector(selectID),
     name: useAppSelector(selectName),
@@ -47,6 +48,21 @@ const Profile = () => {
   const onClickModifySchedule = () => {
     setModifyScheduleVisible(true);
   };
+  const getData = () => {
+    fetch(`http://server-pae.azurewebsites.net/tutor/${myUser.id}/`)
+      .then((resp) => resp.json())
+      .then((data) => {
+        // console.log(data)
+        setData(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className={Styles.main}>

@@ -7,16 +7,9 @@
   flex-direction: column;
   cursor: pointer;
 }
-
-.selected {
-  height: 65%;
-  width: 65%;
-  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.5));
-}
-
 .flag {
-  height: 65%;
-  width: 65%;
+  height: 75%;
+  width: 75%;
 }
 
 .flag:hover {

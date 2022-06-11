@@ -54,7 +54,7 @@ const Subject = () => {
     setPopUp(false);
   };
 
-  const deleteQuestion = () => {
+  const deleteAdmin = () => {
     console.log(id);
     fetch('http://server-pae.azurewebsites.net/administrator/' + id + '/', {
       method: 'DELETE',
@@ -149,7 +149,7 @@ const Subject = () => {
               <DeleteAdmin
                 visible={popUp}
                 setVisible={setPopUp}
-                onClickFunction={() => deleteQuestion()}
+                onClickFunction={() => deleteAdmin()}
                 onClickCancel={notVisiblePopUp}
               ></DeleteAdmin>
             </div>
