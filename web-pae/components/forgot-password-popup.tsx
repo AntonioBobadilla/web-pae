@@ -68,7 +68,7 @@ const ForgotPasswordPopup = ({
     setIsLoading(true);
     post(
       { email: data.email.toLowerCase(), user_type: user },
-      'http://server-pae.azurewebsites.net/resetpassword/'
+      'https://server-pae.azurewebsites.net/resetpassword/'
     )
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);

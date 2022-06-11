@@ -65,7 +65,7 @@ const Tutorings = () => {
   };
 
   const getTuteesFromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/tutor/')
+    fetch('https://server-pae.azurewebsites.net/tutor/')
       .then((resp) => resp.json())
       .then((data) => {
         setPending(false);
@@ -99,7 +99,7 @@ const Tutorings = () => {
   };
 
   const acceptTutee = (id: any) => {
-    fetch(`http://server-pae.azurewebsites.net/tutorisaccepted/${id}`, {
+    fetch(`https://server-pae.azurewebsites.net/tutorisaccepted/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ is_accepted: true })
@@ -127,7 +127,7 @@ const Tutorings = () => {
   };
 
   const del = () => {
-    fetch(`http://server-pae.azurewebsites.net/tutor/${TuteeIdToDelete}`, {
+    fetch(`https://server-pae.azurewebsites.net/tutor/${TuteeIdToDelete}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })

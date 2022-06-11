@@ -19,7 +19,7 @@ const TutoringSubject = ({
 
   const usefetch = async () => {
     const response = await fetch(
-      'http://server-pae.azurewebsites.net/subject/'
+      'https://server-pae.azurewebsites.net/subject/'
     );
     const data = await response.json();
     // console.log(data);

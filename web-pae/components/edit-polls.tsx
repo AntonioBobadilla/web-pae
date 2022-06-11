@@ -57,7 +57,7 @@ const EditPolls = () => {
   };
 
   const getPollsfromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/question/')
+    fetch('https://server-pae.azurewebsites.net/question/')
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)
@@ -74,7 +74,7 @@ const EditPolls = () => {
   }, []);
 
   const deleteQuestion = () => {
-    fetch(`http://server-pae.azurewebsites.net/question/${id}/`, {
+    fetch(`https://server-pae.azurewebsites.net/question/${id}/`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -94,7 +94,7 @@ const EditPolls = () => {
   };
 
   const editQuestion = (id: any) => {
-    fetch(`http://server-pae.azurewebsites.net/question/${id}/`, {
+    fetch(`https://server-pae.azurewebsites.net/question/${id}/`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ body: modifiedQuestion })
@@ -116,7 +116,7 @@ const EditPolls = () => {
   };
 
   const addQuestion = (e: any) => {
-    fetch('http://server-pae.azurewebsites.net/question/', {
+    fetch('https://server-pae.azurewebsites.net/question/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

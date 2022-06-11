@@ -11,7 +11,7 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
   const getPollsfromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/poll/')
+    fetch('https://server-pae.azurewebsites.net/poll/')
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)

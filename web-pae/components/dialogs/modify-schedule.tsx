@@ -50,7 +50,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }
 
   React.useEffect(() => {
-    fetch(`http://server-pae.azurewebsites.net/tutor/${id?.toLowerCase()}`)
+    fetch(`https://server-pae.azurewebsites.net/tutor/${id?.toLowerCase()}`)
       .then((res) => res.json())
       .then((data) => {
         let newArr: any = [];
@@ -106,7 +106,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
       tutor: id.toLowerCase(),
       schedules: [...data]
     };
-    fetch('http://server-pae.azurewebsites.net/modifyschedule/', {
+    fetch('https://server-pae.azurewebsites.net/modifyschedule/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dataToSend)

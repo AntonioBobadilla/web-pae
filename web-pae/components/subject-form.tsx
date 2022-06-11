@@ -13,7 +13,7 @@ const SubjectForm = () => {
   };
 
   const addSubject = (e: any) => {
-    fetch('http://server-pae.azurewebsites.net/subject/', {
+    fetch('https://server-pae.azurewebsites.net/subject/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

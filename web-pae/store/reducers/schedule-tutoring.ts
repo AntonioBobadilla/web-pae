@@ -81,7 +81,7 @@ export const getAvailableTutorings = createAsyncThunk(
           date.getDate() + 15
         }`
       },
-      'http://server-pae.azurewebsites.net/availabletutoring/'
+      'https://server-pae.azurewebsites.net/availabletutoring/'
     );
   }
 );
@@ -125,7 +125,7 @@ export const reserveTutoring = createAsyncThunk(
         // mode: 'cors'
       });
 
-    return post(formData, 'http://server-pae.azurewebsites.net/tutoring/');
+    return post(formData, 'https://server-pae.azurewebsites.net/tutoring/');
   }
 );
 

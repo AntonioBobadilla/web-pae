@@ -52,7 +52,7 @@ const ToggleMenu = ({
   const logOut = () => {
     // console.log(role);
     setIsLoading(true);
-    post({ token }, 'http://server-pae.azurewebsites.net/logout/')
+    post({ token }, 'https://server-pae.azurewebsites.net/logout/')
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);
       })

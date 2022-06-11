@@ -34,7 +34,7 @@ const Subject = () => {
   }, []);
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/administrator/')
+    fetch('https://server-pae.azurewebsites.net/administrator/')
       .then((resp) => resp.json())
       .then(function (data) {
         //console.log(data)
@@ -56,7 +56,7 @@ const Subject = () => {
 
   const deleteQuestion = () => {
     console.log(id);
-    fetch('http://server-pae.azurewebsites.net/administrator/' + id + '/', {
+    fetch('https://server-pae.azurewebsites.net/administrator/' + id + '/', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })

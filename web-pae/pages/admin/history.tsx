@@ -13,7 +13,7 @@ const History = () => {
   const [csvObj, setCsvObj] = useState<any>([]);
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/tutoring/')
+    fetch('https://server-pae.azurewebsites.net/tutoring/')
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)

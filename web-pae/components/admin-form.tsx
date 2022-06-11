@@ -38,7 +38,7 @@ const SubjectForm = () => {
   const addAdmin = (data: AdminFormData) => {
     const { password, email, registrationNumber, passwordConfirmation, name } =
       data;
-    fetch('http://server-pae.azurewebsites.net/administrator/', {
+    fetch('https://server-pae.azurewebsites.net/administrator/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
