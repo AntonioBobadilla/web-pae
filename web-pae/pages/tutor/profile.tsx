@@ -15,6 +15,8 @@ import {
 import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'; 
 
 const Profile = () => {
   const [data, setData] = useState([]);
@@ -151,6 +153,17 @@ const Profile = () => {
 
 // Add sidebar layout
 Profile.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Mi perfil">{page}</SidebarLayout>;
+  const { t } = useTranslation('tutor-profile');
+  return <SidebarLayout title={t('My Profile')}>{page}</SidebarLayout>;
+
 };
+
+export async function getStaticProps({ locale }) { 
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['tutor-profile']))
+    }
+  };
+}
+
 export default Profile;

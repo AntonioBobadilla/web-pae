@@ -8,6 +8,7 @@ import styles from '../css/components/forgot-password-popup.module.css';
 import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
+import { useTranslation } from 'next-i18next'; 
 
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
@@ -27,6 +28,7 @@ const ForgotPasswordPopup = ({
   user
 }: ForgotPasswordPopupProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation('student-forgot-password');
 
   const {
     control,
@@ -79,10 +81,12 @@ const ForgotPasswordPopup = ({
   });
 
   return (
-    <Popup title="Recuperación de contraseña" line style={styles.modal}>
+    <Popup title={t('Password recovery')} line style={styles.modal}>
       <form className={styles.form} onSubmit={onSubmit}>
         <div className={styles.input}>
-          <span className={styles.text}>Ingresa tu correo institucional</span>
+          <span className={styles.text}>
+            {t('Enter your institutional email')}
+          </span>
           <TextInput
             name="email"
             placeholder="A0XXXXXXX@tec.mx"
@@ -104,21 +108,23 @@ const ForgotPasswordPopup = ({
             disabled={!isDirty || isLoading}
             loading={isLoading}
           >
-            RECUPERAR CONTRASEÑA
+            {t('Recover password')}
           </ButtonTemplate>
         </div>
       </form>
       <div className={styles.links}>
         <Link href={loginUrl} passHref>
-          <a>Login</a>
+          <a>{t('Login')}</a>
         </Link>
         <Link href={registerUrl} passHref>
-          <a>Registro</a>
+          <a>{t('Sign up')}</a>
         </Link>
       </div>
       <Toaster position="top-right" reverseOrder={false} />
     </Popup>
   );
 };
+
+
 
 export default ForgotPasswordPopup;

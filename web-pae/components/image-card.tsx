@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import imageCardStyles from '../css/components/imageCard.module.css';
+import { useState } from 'react';
+import { useTranslation } from 'next-i18next'; //////////translate
 
 const ImageCard = (props: {
   image: string;
@@ -13,8 +15,8 @@ const ImageCard = (props: {
   const { description } = props;
   const { path } = props;
   // creo un Stateless Functional Component
-  const [isToggled, setIsToggled] = useState(false); // used to store the state of the toggle button
-
+  const [isToggled, setIsToggled] = useState(false); //used to store the state of the toggle button
+  const { t } = useTranslation('student-home'); //////////translate
   const clicked = () => {
     setIsToggled(!isToggled);
   };
@@ -27,7 +29,7 @@ const ImageCard = (props: {
           } // terneario
           src={image}
         />
-        <p className={imageCardStyles.description}> {description} </p>
+        <p className={imageCardStyles.description}> {t(props.description)} </p>
       </div>
     </Link>
   );

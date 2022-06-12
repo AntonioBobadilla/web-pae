@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import ButtonTemplate from '../components/button-template';
 import ToggleButton from '../components/toggle-button';
 import styles from '../css/register.module.css';
