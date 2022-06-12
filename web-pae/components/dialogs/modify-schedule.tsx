@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
+import { selectToken } from '@/redux/user';
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
+import { useAppSelector } from 'store/hook';
 import styles from '../../css/components/dialogs/modify-schedule.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
@@ -18,6 +20,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState<any>([]);
   const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState<any>([]);
   const [textPeriod, setTextPeriod] = useState<any>('Primer periodo');
+  const token = useAppSelector(selectToken);
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -109,7 +112,10 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
 
     fetch('https://server-pae.azurewebsites.net/modifyschedule/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify(dataToSend)
     })
       .then((res) => {

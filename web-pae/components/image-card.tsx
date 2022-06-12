@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
-import Link from 'next/link';
-import React, { useState } from 'react';
-import imageCardStyles from '../css/components/imageCard.module.css';
-import { useState } from 'react';
 import { useTranslation } from 'next-i18next'; //////////translate
+import Link from 'next/link';
+import { useState } from 'react';
+import imageCardStyles from '../css/components/imageCard.module.css';
 
 const ImageCard = (props: {
   image: string;

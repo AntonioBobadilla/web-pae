@@ -1,5 +1,7 @@
 import stylesSubjects from '@/css-tutor/modify-subjects.module.css';
-import React, { useEffect, useState } from 'react';
+import { selectToken } from '@/redux/user';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import styles from '../../css/components/dialogs/modify-password.module.css';
 import registerStyles from '../../css/register.module.css';
 import ButtonTemplate from '../button-template';
@@ -16,7 +18,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   const onClickSave = () => {
     setVisible(false);
   };
-
+  const token = useAppSelector(selectToken);
   const [subjectsFromApi, setSubjectsFromApi] = useState<any>([]);
   const [subjectsFromTutor, setSubjectsFromTutor] = useState<any>([]);
 
@@ -57,7 +59,10 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   const insertSubjectOnTutor = (subject: any) => {
     fetch('https://server-pae.azurewebsites.net/subjectbytutor/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({ tutor: id.toLowerCase(), subject: subject })
     })
       .then((res) => {
@@ -89,7 +94,10 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   const deleteSubjectFromTutor = (code: any) => {
     fetch('https://server-pae.azurewebsites.net/subjectbytutor/', {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({
         tutor: id.toLowerCase(),
         subject: code
