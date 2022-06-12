@@ -90,7 +90,10 @@
 .toggle {
   width: 50%;
 }
-
+.nonSelectable {
+  width: 50%;
+  opacity: 0.5;
+}
 @media screen and (max-width: 800px) {
   .mainContainer {
     flex-direction: column;
@@ -119,6 +122,9 @@
   }
   .fontS {
     font-size: 2vw;
+  }
+  .nonSelectable {
+    width: 25%;
   }
 }
 

@@ -3,13 +3,12 @@ import styles from '../../css/components/dialogs/modify-password.module.css';
 import stylesModalidad from '../../css/components/dialogs/edit-modalidad.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
-import ToggleButton from '../toggle-button';
 
 type ModifyLanguageProps = {
   visible: boolean;
-  setVisible: (visible: boolean) => void,
-  modalidad: any,
-  setNewModalidad: any,
+  setVisible: (visible: boolean) => void;
+  modalidad: any;
+  setNewModalidad: any;
   setNewPlace: any;
 };
 
@@ -27,9 +26,9 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
     if (value == "En línea"){
         input.placeholder = "ZOOM ID:";
     } else {
-        input.placeholder = "AULA:";
+      input.placeholder = 'AULA:';
     }
-  }
+  };
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -43,9 +42,9 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
   };
 
   const sendData = () => {
-    setNewModalidad(option)
-    setNewPlace(place)
-    onClickSave()
+    setNewModalidad(option);
+    setNewPlace(place);
+    onClickSave();
   };
 
   return (
@@ -56,38 +55,45 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
       style={stylesModalidad.container}
       setVisible={setVisible}
     >
-    <div className={stylesModalidad.wrapper}>
-      <div className={stylesModalidad.radioOptions}>
+      <div className={stylesModalidad.wrapper}>
+        <div className={stylesModalidad.radioOptions}>
           <div className={stylesModalidad.radioOption}>
-              <input
-                id="enLinea"
-                value="En línea"
-                name="option"
-                type="radio"
-                onChange={handleChange}
-                defaultChecked={modalidad.forma == "En línea" ? true: false}
-              />
-              <p className={stylesModalidad.text}>En línea</p>
+            <input
+              id="enLinea"
+              value="En línea"
+              name="option"
+              type="radio"
+              onChange={handleChange}
+              defaultChecked={modalidad.forma == 'En línea' ? true : false}
+            />
+            <p className={stylesModalidad.text}>En línea</p>
           </div>
           <div className={stylesModalidad.radioOption}>
             <input
-                id="presencial"
-                value="Presencial"
-                name="option"
-                type="radio"
-                onChange={handleChange}
-                defaultChecked={modalidad.forma == "Presencial" ? true: false}
+              id="presencial"
+              value="Presencial"
+              name="option"
+              type="radio"
+              onChange={handleChange}
+              defaultChecked={modalidad.forma == 'Presencial' ? true : false}
             />
-            <p className={stylesModalidad.text}>Presencial</p> 
+            <p className={stylesModalidad.text}>Presencial</p>
           </div>
+        </div>
+        <input
+          onChange={handlePlace}
+          id="input"
+          value={place}
+          className={stylesModalidad.inputText}
+          type="text"
+          placeholder="ZOOM ID:"
+        />
+        <div className={stylesModalidad.button}>
+          <ButtonTemplate variant="confirm" onClick={sendData}>
+            GUARDAR
+          </ButtonTemplate>
+        </div>
       </div>
-      <input onChange={handlePlace} id='input' value={place} className={stylesModalidad.inputText} type="text" placeholder='ZOOM ID:' />
-      <div className={stylesModalidad.button}>
-                <ButtonTemplate variant="confirm" onClick={sendData}>
-                GUARDAR
-                </ButtonTemplate>
-      </div>
-    </div>
     </ClosablePopup>
   );
 };
