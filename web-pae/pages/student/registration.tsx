@@ -11,7 +11,14 @@ import styles2 from '../../css/components/popup.module.css';
 import styles from '../../css/tutor/registration.module.css';
 import register from '../../helpers/student-register';
 
+
+import { useTranslation } from 'next-i18next';  // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
+
 const Registration: NextPage = () => {
+
+  const { t } = useTranslation('student-registration'); // add this
+
   const { push } = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -32,7 +39,7 @@ const Registration: NextPage = () => {
       }
     } catch (err) {
       setIsLoading(false);
-      toast.error('Something went wrong');
+      toast.error(t('Algo salio mal'));
     }
   };
 
@@ -57,8 +64,8 @@ const Registration: NextPage = () => {
 
   return (
     <div className={cx(styles.container, styles2.containerPopup)}>
-      <h1 className={styles.title}>REGISTRO</h1>
-      <h2 className={styles.subtitle}>Datos personales</h2>
+      <h1 className={styles.title}>{t('REGISTRO')}</h1>
+      <h2 className={styles.subtitle}>{t('Datos personales')}</h2>
 
       <RegisterForm
         nextStep={(data) => handleNextStep(data)}
@@ -68,5 +75,13 @@ const Registration: NextPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ locale }) { 
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['student-registration']))
+    }
+  };
+}
 
 export default Registration;

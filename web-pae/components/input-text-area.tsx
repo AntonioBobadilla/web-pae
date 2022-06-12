@@ -2,6 +2,8 @@ import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setContent, setTitle } from 'store/reducers/schedule-tutoring';
 import itaStyles from '../css/components/inputTextArea.module.css';
+import { useTranslation } from 'next-i18next';  // add this
+
 
 type InputTextAreaProps = {
   title: string;
@@ -9,6 +11,8 @@ type InputTextAreaProps = {
 };
 
 const InputTextArea = ({ title, content }: InputTextAreaProps) => {
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
+
   const [current1, setCurrent1] = React.useState(0);
   const [current2, setCurrent2] = React.useState(0);
 
@@ -31,7 +35,7 @@ const InputTextArea = ({ title, content }: InputTextAreaProps) => {
           name="title"
           id="title"
           maxLength={50}
-          placeholder="Tema a tratar*"
+          placeholder={t('Tema a tratar*')}
           value={title}
           className={itaStyles.title}
           onChange={handleChange1}
@@ -47,7 +51,7 @@ const InputTextArea = ({ title, content }: InputTextAreaProps) => {
           id="content"
           value={content}
           maxLength={200}
-          placeholder="Duda especifica a tratar en asesoria"
+          placeholder={t('Duda especifica a tratar en asesoria')}
           className={itaStyles.content}
           onChange={handleChange2}
         />

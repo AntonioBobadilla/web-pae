@@ -5,6 +5,9 @@ import Lexer from 'helpers/lexer';
 import React, { useState } from 'react';
 import styles from '../css/components/searchBar.module.css';
 
+import { useTranslation } from 'next-i18next';  // add this
+
+
 export type Subject = {
   name: string;
   code: string;
@@ -17,6 +20,7 @@ type SearchBarProps = {
 };
 
 const SearchBar = ({ suggestions, handleSuggestions }: SearchBarProps) => {
+  const { t } = useTranslation('student-profile'); // add this
   const [active, setActive] = useState(0);
   const [filtered, setFiltered] = useState<Subject[]>([]);
   const [isShow, setIsShow] = useState(false);
@@ -124,7 +128,7 @@ const SearchBar = ({ suggestions, handleSuggestions }: SearchBarProps) => {
         <input
           type="text"
           className={styles.inputSearch}
-          placeholder="Busca una unidad de formación (Clave / Nombre)"
+          placeholder={t('Busca una unidad de formación (Clave / Nombre)')}
           onChange={onChange}
           onKeyDown={onKeyDown}
           value={input}
