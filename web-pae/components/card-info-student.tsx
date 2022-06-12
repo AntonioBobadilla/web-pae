@@ -19,6 +19,8 @@ const interpretation = (status: string) => {
       return 'Aprobada';
     case 'CO':
       return 'Completada';
+    case 'CA':
+      return 'Cancelada';
     default:
       return 'Pendiente';
   }

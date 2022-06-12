@@ -23,7 +23,8 @@ const variants: Variant = {
   pending: ButtonTemplateStyles.pending,
   PE: ButtonTemplateStyles.pending,
   AP: ButtonTemplateStyles.confirm,
-  CO: ButtonTemplateStyles.info
+  CO: ButtonTemplateStyles.info,
+  CA: ButtonTemplateStyles.cancel
 };
 
 // creo un Stateless Functional Component
