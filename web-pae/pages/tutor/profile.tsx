@@ -6,7 +6,12 @@ import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectEmail, selectID, selectName } from 'store/reducers/user';
+import {
+  selectEmail,
+  selectID,
+  selectName,
+  selectToken
+} from 'store/reducers/user';
 import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
@@ -24,6 +29,8 @@ const Profile = () => {
     weekHours: 2,
     totalHours: 50
   };
+
+  const token = useAppSelector(selectToken);
   const [modifyPasswordVisible, setModifyPasswordVisible] =
     React.useState(false);
   const [modifyLanguageVisible, setModifyLanguageVisible] =
@@ -49,7 +56,12 @@ const Profile = () => {
     setModifyScheduleVisible(true);
   };
   const getData = () => {
-    fetch(`http://server-pae.azurewebsites.net/tutor/${myUser.id}/`)
+    fetch(`http://server-pae.azurewebsites.net/tutor/${myUser.id}/`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)

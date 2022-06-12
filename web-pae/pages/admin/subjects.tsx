@@ -2,8 +2,10 @@ import DeleteAdmin from '@/components/dialogs/delete-subject';
 import { Subject } from '@/components/search-bar';
 import SubjectForm from '@/components/subject-form';
 import Tabs from '@/components/tabs';
+import { selectToken } from '@/redux/user';
 import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
 
@@ -21,6 +23,7 @@ const Subjects = () => {
   const [filteredArrayName, setFilteredArrayName] = useState<Subject[]>([]);
   const [editable, setEditable] = useState(true);
   const [editableName, setEditableName] = useState(true);
+  const token = useAppSelector(selectToken);
 
   const UFButton = () => {
     setCurrentTab('UF');
@@ -40,7 +43,12 @@ const Subjects = () => {
     setCurrentTab('UF');
   }, []);
   const getData = () => {
-    fetch('https://server-pae.azurewebsites.net/subject/')
+    fetch('https://server-pae.azurewebsites.net/subject/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)

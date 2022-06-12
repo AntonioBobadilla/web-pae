@@ -36,7 +36,12 @@ const Tutorings = () => {
   const [subject, setSubject] = useState<any>('');
 
   const getDataFromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/tutoring/?status=PE')
+    fetch('https://server-pae.azurewebsites.net/tutoring/?status=PE', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         setData(data);
@@ -70,7 +75,10 @@ const Tutorings = () => {
       `https://server-pae.azurewebsites.net/changetutor/${objectToModify}`,
       {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
+        },
         body: JSON.stringify({ tutor: newAsesor.toLowerCase() }) // agregar json de update
       }
     )
@@ -102,7 +110,10 @@ const Tutorings = () => {
       `https://server-pae.azurewebsites.net/changetutoringlocation/${objectToModify}`,
       {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
+        },
         body: JSON.stringify({
           is_online: online,
           place: newPlace
@@ -199,7 +210,10 @@ const Tutorings = () => {
   const acceptTutoring = (id: any) => {
     fetch(`https://server-pae.azurewebsites.net/updatetutoring/${id}/AP`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {

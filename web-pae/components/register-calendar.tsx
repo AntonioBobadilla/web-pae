@@ -103,6 +103,7 @@ const RegisterCalendar = React.memo(
     const handleNextStep = () => {
       clearCells();
 
+      // console.log("okay")
       dispatch(
         setPeriod({ period: eventObj, name: periods[progressBarState] })
       );
@@ -130,7 +131,8 @@ const RegisterCalendar = React.memo(
         <div className={styles.calendar}>
           <div className={styles.header}>
             <h3 className={styles.title}>
-              Selecciona tus horarios disponibles del <strong> {title} </strong>
+              Selecciona tus horarios <strong>disponibles</strong> del{' '}
+              <strong> {title} </strong>
             </h3>
             <div
               className={styles.icon}

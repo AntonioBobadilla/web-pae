@@ -1,9 +1,11 @@
 import ButtonTemplate from '@/components/button-template';
 import history from '@/css-admin/history.module.css';
 import styles from '@/css-admin/tutees.module.css';
+import { selectToken } from '@/redux/user';
 import cx from 'classnames';
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import CsvDownload from 'react-json-to-csv';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 
 const History = () => {
@@ -11,9 +13,15 @@ const History = () => {
 
   const [data, setData] = useState<any>([]);
   const [csvObj, setCsvObj] = useState<any>([]);
+  const token = useAppSelector(selectToken);
 
   const getData = () => {
-    fetch('https://server-pae.azurewebsites.net/tutoring/')
+    fetch('https://server-pae.azurewebsites.net/tutoring/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)

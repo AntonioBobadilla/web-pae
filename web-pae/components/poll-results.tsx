@@ -1,4 +1,6 @@
+import { selectToken } from '@/redux/user';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import styles from '../css/components/pollResults.module.css';
 
 interface PollResultProps {
@@ -8,9 +10,15 @@ interface PollResultProps {
 const PollResults = ({ curTab }: PollResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  const token = useAppSelector(selectToken);
 
   const getPollsfromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/pollresult/')
+    fetch('https://server-pae.azurewebsites.net/pollresult/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then(function (data) {
         // console.log(data)
