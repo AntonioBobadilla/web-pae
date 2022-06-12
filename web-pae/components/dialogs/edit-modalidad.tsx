@@ -12,36 +12,31 @@ type ModifyLanguageProps = {
   setNewPlace: any;
 };
 
-const EditModalidad = ({
-  visible,
-  setVisible,
-  modalidad,
-  setNewModalidad,
-  setNewPlace
-}: ModifyLanguageProps) => {
-  const [option, setOption] = useState('');
-  const [place, setPlace] = useState(modalidad.lugar);
+const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewPlace }: ModifyLanguageProps) => {
+
+    const [option, setOption] = useState<any>('');
+    const [place, setPlace] = useState<any>(modalidad.lugar);
 
   const onClickSave = () => {
     setVisible(false);
   };
 
-  const changePlaceholder = (value) => {
-    let input = document.querySelector('#input');
-    if (value == 'En línea') {
-      input.placeholder = 'ZOOM ID:';
+  const changePlaceholder = (value: any) => {
+    let input: any = document.querySelector('#input');
+    if (value == "En línea"){
+        input.placeholder = "ZOOM ID:";
     } else {
       input.placeholder = 'AULA:';
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setOption(value);
     changePlaceholder(value);
   };
 
-  const handlePlace = (e) => {
+  const handlePlace = (e: any) => {
     const { value } = e.target;
     setPlace(value);
   };

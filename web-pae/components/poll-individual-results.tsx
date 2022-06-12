@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import Carousel, { consts } from 'react-elastic-carousel';
+import Carousel from 'react-elastic-carousel';
 import styles from '../css/components/pollIndividualResults.module.css';
 
 interface IndividualResultProps {
@@ -11,7 +11,7 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
   const getPollsfromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/poll/')
+    fetch('https://server-pae.azurewebsites.net/poll/')
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)
@@ -38,7 +38,7 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
     onClick: any;
     isEdge: any;
   }) {
-    const pointer = type === consts.PREV ? 'left' : 'right';
+    const pointer = type === 'PREV' ? 'left' : 'right';
     return (
       <div
         className={classNames(styles.arrowButton, isEdge ? styles.edge : null)}

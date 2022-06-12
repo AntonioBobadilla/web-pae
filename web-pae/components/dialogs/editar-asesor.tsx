@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../css/components/dialogs/modify-password.module.css';
 import editAsesorStyles from '../../css/components/dialogs/edit-asesor.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
@@ -21,29 +20,33 @@ const EditAsesor = ({
   hour,
   subject
 }: ModifyLanguageProps) => {
-  const [asesorActual, setAsesorActual] = useState('');
-  const [asesoresDisponibles, setAsesoresDisponibles] = useState([]);
-  const [pending, setPending] = useState(true);
+  const [asesorActual, setAsesorActual] = useState<any>('');
+  const [asesoresDisponibles, setAsesoresDisponibles] = useState<any>([]);
+  const [pending, setPending] = useState<any>(true);
 
   const onClickSave = () => {
     setVisible(false);
   };
 
   const clearAllBorders = () => {
-    let wrapper = document.querySelector('#wrapper');
-    let asesores = wrapper.childNodes;
-    asesores.forEach((item) => {
-      item.style.border = '1px solid #7a7a7a';
-      item.classList.remove('active');
-    });
+    let wrapper: any = document.querySelector('#wrapper');
+    let asesores: any = wrapper.childNodes;
+    asesores.forEach(
+      (item: {
+        style: { border: string };
+        classList: { remove: (arg0: string) => void };
+      }) => {
+        item.style.border = '1px solid #7a7a7a';
+        item.classList.remove('active');
+      }
+    );
   };
 
-  const handleClickAsesor = (e) => {
+  const handleClickAsesor = (e: any) => {
     if (asesoresDisponibles.length != 0) {
       let idOfAsesor = e.target.id;
 
-      let asesorObj = asesoresDisponibles[idOfAsesor];
-
+      let asesorObj: any = asesoresDisponibles[idOfAsesor];
       let asesor = asesorObj.registration_number;
       setAsesorActual(asesor);
       clearAllBorders();
@@ -57,7 +60,7 @@ const EditAsesor = ({
   };
 
   const getAsesores = () => {
-    fetch('http://server-pae.azurewebsites.net/alternatetutor/', {
+    fetch('https://server-pae.azurewebsites.net/alternatetutor/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -117,12 +120,12 @@ const EditAsesor = ({
               No hay asesores disponibles para esta asesoria.
             </div>
           )}
-          {asesoresDisponibles.map(function (item, index) {
+          {asesoresDisponibles.map(function (item: any, index: any) {
             return (
               <div key={index} id={index} className={editAsesorStyles.asesor}>
                 <div className={editAsesorStyles.asesor_izq}>
                   <p className={editAsesorStyles.name}>{item.name} </p>
-                  <p className={editAsesorStyles.apellidos}></p>
+                  <p className={editAsesorStyles.apellidos} />
                   <div className={editAsesorStyles.flex}>
                     <p className={editAsesorStyles.carrera}>{item.major}</p>
                     <p className={editAsesorStyles.matricula}>

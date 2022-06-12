@@ -9,7 +9,7 @@ const Cell = (props: any) => {
       setCellValue(props.value);
     }, [props.value]);
   }
-  return <td className="data" id={cellValue}  />;
+  return <td className="data" id={cellValue} />;
 };
 
 export default Cell; // exporto la función

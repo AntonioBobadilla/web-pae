@@ -1,12 +1,14 @@
 import post from '@/helpers/post';
+import { Router, withRouter } from 'next/router';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
-import { selectToken, setLogoutData } from 'store/reducers/user';
+import { selectRole, selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenu.module.css';
 import Exit from './dialogs/exit';
 
 type ToggleMenuProps = {
+  router: Router;
   onClickModifyPassword: () => void;
   onClickModifyLanguage: () => void;
   onClickModifySubjects: () => void;
@@ -14,6 +16,7 @@ type ToggleMenuProps = {
 };
 
 const ToggleMenu = ({
+  router,
   onClickModifyPassword,
   onClickModifyLanguage,
   onClickModifySubjects,
@@ -23,6 +26,7 @@ const ToggleMenu = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectToken);
+  const role = useAppSelector(selectRole);
   const handleStatus = (status: number, responseData: any) => {
     try {
       if (status === 200 || status === 201 || status === 204) {
@@ -43,12 +47,12 @@ const ToggleMenu = ({
     dispatch(setLogoutData());
 
     // redirect to home
-    setTimeout(() => push(routes.exit), 500);
+    setTimeout(() => router.push(`/${role}/login/`), 500);
   };
   const logOut = () => {
     // console.log(role);
     setIsLoading(true);
-    post({ token }, 'http://server-pae.azurewebsites.net/logout/')
+    post({ token }, 'https://server-pae.azurewebsites.net/logout/')
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);
       })
@@ -135,4 +139,4 @@ const ToggleMenu = ({
   );
 };
 
-export default ToggleMenu;
+export default withRouter(ToggleMenu);

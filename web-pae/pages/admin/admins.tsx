@@ -1,10 +1,10 @@
 import AdminForm from '@/components/admin-form';
+import DeleteAdmin from '@/components/dialogs/delete-admin';
 import Tabs from '@/components/tabs';
+import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
-import cx from 'classnames';
-import DeleteAdmin from '@/components/dialogs/delete-admin';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
@@ -34,7 +34,7 @@ const Subject = () => {
   }, []);
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/administrator/')
+    fetch('https://server-pae.azurewebsites.net/administrator/')
       .then((resp) => resp.json())
       .then(function (data) {
         //console.log(data)
@@ -56,7 +56,7 @@ const Subject = () => {
 
   const deleteAdmin = () => {
     console.log(id);
-    fetch('http://server-pae.azurewebsites.net/administrator/' + id + '/', {
+    fetch('https://server-pae.azurewebsites.net/administrator/' + id + '/', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -83,14 +83,14 @@ const Subject = () => {
             handleClick={AdminButton}
             text="Administradores"
             active={currentTab == 'admins' ? true : false}
-          ></Tabs>
+          />
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddAdminButton}
             text="Agregar Administrador"
             active={currentTab == 'addAdmins' ? true : false}
-          ></Tabs>
+          />
         </div>
       </div>
 
@@ -107,7 +107,7 @@ const Subject = () => {
             </span>
           </div>
           <div className={styles.bottom}>
-            <AdminForm></AdminForm>
+            <AdminForm />
           </div>
         </div>
         <div
@@ -142,7 +142,7 @@ const Subject = () => {
                     <i
                       className={cx('bi bi-trash', styles.de)}
                       onClick={() => checkItemState(item.registration_number)}
-                    ></i>
+                    />
                   </div>
                 );
               })}
@@ -151,7 +151,7 @@ const Subject = () => {
                 setVisible={setPopUp}
                 onClickFunction={() => deleteAdmin()}
                 onClickCancel={notVisiblePopUp}
-              ></DeleteAdmin>
+              />
             </div>
           </div>
         </div>

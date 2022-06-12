@@ -8,7 +8,7 @@ import SearchBar from '../search-bar';
 
 type ModifyLanguageProps = {
   visible: boolean;
-  setVisible: (visible: boolean) => void,
+  setVisible: (visible: boolean) => void;
   id: any;
 };
 
@@ -17,103 +17,109 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     setVisible(false);
   };
 
-  const [subjectsFromApi, setSubjectsFromApi] = useState([]);
-  const [subjectsFromTutor, setSubjectsFromTutor] = useState([]);
+  const [subjectsFromApi, setSubjectsFromApi] = useState<any>([]);
+  const [subjectsFromTutor, setSubjectsFromTutor] = useState<any>([]);
 
   const getAllSubjects = () => {
-    fetch('http://server-pae.azurewebsites.net/subject/')
-    .then((resp) => resp.json())
-    .then((data) => {
-      setSubjectsFromApi(data);
-    });
-  }
+    fetch('https://server-pae.azurewebsites.net/subject/')
+      .then((resp) => resp.json())
+      .then((data) => {
+        setSubjectsFromApi(data);
+      });
+  };
 
   const getAllSubjectsFromTutor = () => {
-    fetch('http://server-pae.azurewebsites.net/subjectbytutor/'+id.toLowerCase())
-    .then((resp) => resp.json())
-    .then((data) => {
-      setSubjectsFromTutor(data);
-      console.log(data)
-    });
-  }
+    fetch(
+      'https://server-pae.azurewebsites.net/subjectbytutor/' + id.toLowerCase()
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        setSubjectsFromTutor(data);
+        console.log(data);
+      });
+  };
 
   const showSuccessModal = () => {
-    let modal = document.querySelector('#message');
+    let modal: any = document.querySelector('#message');
     setTimeout(() => {
-      modal.style.display = "block";
+      modal.style.display = 'block';
       setTimeout(() => {
-        modal.style.display = "none";
-      },3000)
-    },3000)
-  }
+        modal.style.display = 'none';
+      }, 3000);
+    }, 3000);
+  };
 
   useEffect(() => {
-    getAllSubjects()
-    getAllSubjectsFromTutor()
+    getAllSubjects();
+    getAllSubjectsFromTutor();
   }, []);
 
-  const insertSubjectOnTutor = (subject) => {
-    fetch('http://server-pae.azurewebsites.net/subjectbytutor/', {
+  const insertSubjectOnTutor = (subject: any) => {
+    fetch('https://server-pae.azurewebsites.net/subjectbytutor/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({"tutor": id.toLowerCase(), "subject":subject})
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        throw Error('could not make POST request on subject on tutor');
-      } 
-      return res.json();
+      body: JSON.stringify({ tutor: id.toLowerCase(), subject: subject })
     })
-    .then(data => {
-      console.log('ok')
-      showSuccessModal();
-      //onClickSuccessAcceptTutee()
-      //window.location.reload(false);
-    })
-    .catch(err => {
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make POST request on subject on tutor');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log('ok');
+        showSuccessModal();
+        //onClickSuccessAcceptTutee()
+        //window.location.reload(false);
+      })
+      .catch((err) => {
         console.log(err.message);
-    }) 
-  }
-
-  const handleSubject = (subject) => {
-    insertSubjectOnTutor(subject.code)
-    setSubjectsFromTutor((subjectsFromTutor) => [...subjectsFromTutor, subject]);
+      });
   };
 
-  const deleteSubjectFromTutor = (code) => {
-    fetch('http://server-pae.azurewebsites.net/subjectbytutor/', {
+  const handleSubject = (subject: any) => {
+    insertSubjectOnTutor(subject.code);
+    setSubjectsFromTutor((subjectsFromTutor: any) => [
+      ...subjectsFromTutor,
+      subject
+    ]);
+  };
+
+  const deleteSubjectFromTutor = (code: any) => {
+    fetch('https://server-pae.azurewebsites.net/subjectbytutor/', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(
-        {
-          tutor:   id.toLowerCase(),
-          subject: code
+      body: JSON.stringify({
+        tutor: id.toLowerCase(),
+        subject: code
+      })
+    })
+      .then((res) => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not make DELETE request on subject on tutor');
         }
-      )
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        throw Error('could not make DELETE request on subject on tutor');
-      } 
-      return res.json();
-    })
-    .then(data => {
-      console.log('ok MATERIA BORRADA PERRO')
-      showSuccessModal();
-      //onClickSuccessAcceptTutee()
-      //window.location.reload(false);
-    })
-    .catch(err => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log('ok MATERIA BORRADA PERRO');
+        showSuccessModal();
+        //onClickSuccessAcceptTutee()
+        //window.location.reload(false);
+      })
+      .catch((err) => {
         console.log(err.message);
-    })     
-  }
-
-  const handleDelete = (subjectCode) => {
-    const arr = subjectsFromTutor.filter((item) => item.code.toUpperCase() !== subjectCode);
-    setSubjectsFromTutor((subjectsFromTutor) => arr);
-    deleteSubjectFromTutor(subjectCode);
+      });
   };
 
+  const handleDelete = (subjectCode: any) => {
+    const arr = subjectsFromTutor.filter(
+      (item: any) => item.code.toUpperCase() !== subjectCode
+    );
+    setSubjectsFromTutor((subjectsFromTutor: any) => arr);
+    deleteSubjectFromTutor(subjectCode);
+  };
 
   return (
     <ClosablePopup
@@ -125,21 +131,27 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     >
       <div
         className={registerStyles.languageOptions}
-        style={{ 'flexDirection': 'column' }}
+        style={{ flexDirection: 'column' }}
       >
-        <div id='message' className={stylesSubjects.successMessage}>
+        <div id="message" className={stylesSubjects.successMessage}>
           <p>Materia agregada con éxito.</p>
         </div>
         <div className={stylesSubjects.wrapperSearchBar}>
-          <SearchBar handleSuggestions={handleSubject} suggestions={subjectsFromApi} />
+          <SearchBar
+            handleSuggestions={handleSubject}
+            suggestions={subjectsFromApi}
+          />
         </div>
 
         <div className={stylesSubjects.wrapper}>
-          {subjectsFromTutor.map((materia, index) => (
+          {subjectsFromTutor.map((materia: any, index: any) => (
             <div key={index} className={stylesSubjects.subjectsWrapper}>
               <li className={stylesSubjects.materia}>
-                {materia.code}{' '} {materia.name}
-                <button onClick={ () => handleDelete(materia.code) } className={stylesSubjects.icon}>
+                {materia.code} {materia.name}
+                <button
+                  onClick={() => handleDelete(materia.code)}
+                  className={stylesSubjects.icon}
+                >
                   <i className="bi bi-trash3" />
                 </button>
               </li>

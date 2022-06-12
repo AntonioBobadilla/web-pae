@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
+import Carousel from 'react-elastic-carousel';
 import styles from '../../css/components/dialogs/modify-schedule.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
-import Carousel, { consts } from 'react-elastic-carousel';
 import MyCalendar from '../frontend-calendar-full';
 
 type ModifyLanguageProps = {
@@ -12,11 +13,11 @@ type ModifyLanguageProps = {
 };
 
 const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
-  const [allSchedules, setAllSchedules] = useState([]);
-  const [schedulesFirstPeriod, setSchedulesFirstPeriod] = useState([]);
-  const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState([]);
-  const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState([]);
-  const [textPeriod, setTextPeriod] = useState('Primer periodo');
+  const [allSchedules, setAllSchedules] = useState<any>([]);
+  const [schedulesFirstPeriod, setSchedulesFirstPeriod] = useState<any>([]);
+  const [schedulesSecondPeriod, setSchedulesSecondPeriod] = useState<any>([]);
+  const [schedulesThirdPeriod, setSchedulesThirdPeriod] = useState<any>([]);
+  const [textPeriod, setTextPeriod] = useState<any>('Primer periodo');
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -29,8 +30,8 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     setVisible(false);
   };
 
-  function myArrow({ type, onClick, isEdge }) {
-    const pointer = type === consts.PREV ? 'left' : 'right';
+  function myArrow({ type, onClick, isEdge }: any) {
+    const pointer = type === 'PREV' ? 'left' : 'right';
     return (
       <div
         style={{ display: 'flex', alignItems: 'center' }}
@@ -49,11 +50,11 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }
 
   React.useEffect(() => {
-    fetch(`http://server-pae.azurewebsites.net/tutor/${id?.toLowerCase()}`)
+    fetch(`https://server-pae.azurewebsites.net/tutor/${id?.toLowerCase()}`)
       .then((res) => res.json())
       .then((data) => {
-        let newArr = [];
-        data.schedules.map(function (item, index) {
+        let newArr: any = [];
+        data.schedules.map(function (item: any, index: any) {
           let { period, day_week, hour } = item;
           let uniqueId =
             day_week.toString() +
@@ -70,19 +71,19 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }, []);
 
   const filterSchedules = () => {
-    allSchedules.forEach((schedule) => {
+    allSchedules.forEach((schedule: { period: any }) => {
       if (schedule.period == 0) {
-        setSchedulesFirstPeriod((schedulesFirstPeriod) => [
+        setSchedulesFirstPeriod((schedulesFirstPeriod: any) => [
           ...schedulesFirstPeriod,
           schedule
         ]);
       } else if (schedule.period == 1) {
-        setSchedulesSecondPeriod((schedulesSecondPeriod) => [
+        setSchedulesSecondPeriod((schedulesSecondPeriod: any) => [
           ...schedulesSecondPeriod,
           schedule
         ]);
       } else if (schedule.period == 2) {
-        setSchedulesThirdPeriod((schedulesThirdPeriod) => [
+        setSchedulesThirdPeriod((schedulesThirdPeriod: any) => [
           ...schedulesThirdPeriod,
           schedule
         ]);
@@ -90,9 +91,9 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     });
   };
 
-  const deleteIdFromObj = (array) => {
-    let newArr = [];
-    array.map(function (item) {
+  const deleteIdFromObj = (array: any) => {
+    let newArr: any = [];
+    array.map(function (item: any) {
       let { period, day_week, hour } = item;
       let obj = { period, day_week, hour };
       newArr.push(obj);
@@ -100,12 +101,13 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     return newArr;
   };
 
-  const updateBigSchedule = (data, id) => {
+  const updateBigSchedule = (data: any, id: any) => {
     let dataToSend = {
       tutor: id.toLowerCase(),
       schedules: [...data]
     };
-    fetch('http://server-pae.azurewebsites.net/modifyschedule/', {
+
+    fetch('https://server-pae.azurewebsites.net/modifyschedule/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dataToSend)
@@ -115,7 +117,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
           // error coming back from server
           throw Error('could not make POST request for that endpoint');
         } else if (res.status === 204) {
-          window.location.reload(false);
+          window.location.reload();
         }
         return res.json();
       })
@@ -138,7 +140,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     filterSchedules();
   }, [allSchedules]);
 
-  const handleChangeSlider = (currentItem, pageIndex) => {
+  const handleChangeSlider = (currentItem: any, pageIndex: any) => {
     if (pageIndex == 0) {
       setTextPeriod('Primer periodo');
     } else if (pageIndex == 1) {
@@ -159,6 +161,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
       <div className={styles.wrapper}>
         <h2 style={{ margin: '0px 10px 20px 10px' }}>{textPeriod}</h2>
         <Carousel
+          isRTL={false}
           pagination={false}
           renderArrow={myArrow}
           onChange={(currentItem, pageIndex) =>

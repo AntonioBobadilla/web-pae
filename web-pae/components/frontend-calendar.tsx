@@ -60,7 +60,7 @@ const MyCalendar = ({
     let finishCell = null;
     const cells = document.querySelectorAll('.data');
     eventObj.forEach((obj) => {
-      cells.forEach((cell) => {
+      cells.forEach((cell: any) => {
         const attr = cell.getAttribute('id').split(' ');
         const dia = attr[0];
         const hora = attr[1];
@@ -76,7 +76,7 @@ const MyCalendar = ({
   };
 
   // función que regresa solo números enteros de un string
-  const getOnlyNumbers = (string) => parseInt(string.replace(/\D/g, ''));
+  const getOnlyNumbers = (string: any) => parseInt(string.replace(/\D/g, ''));
 
   // // función que recibe los valores del formulario inicial.
   // const getValues = (dia, inicio, fin) => {
@@ -87,8 +87,8 @@ const MyCalendar = ({
   // };
 
   // función que obtiene la celda siguiente dado un string perteneciente al valor de una celda.
-  const getNextCell = (data) => {
-    let hora = parseInt(data.match(/\d+/g));
+  const getNextCell = (data: any) => {
+    let hora: any = parseInt(data.match(/\d+/g));
     hora += 1;
     hora = hora.toString();
     const amOpm = data.match(/[a-zA-Z]+/g);
@@ -99,7 +99,7 @@ const MyCalendar = ({
   };
 
   // función que al dar click en una celda la encuentra dado un string perteneciente al dia y hora.
-  const findSelectedCell = (data) => {
+  const findSelectedCell = (data: any) => {
     const splittedData = data.split(' ');
     const diaSelected = splittedData[0];
     const horaSelected = splittedData[1];
@@ -107,8 +107,8 @@ const MyCalendar = ({
     let Cell = null;
     let NextCell = null;
     const cells = document.querySelectorAll('.data');
-    cells.forEach((cell) => {
-      const attr = cell.getAttribute('id').split(' ');
+    cells.forEach((cell:any) => {
+      const attr: any = cell.getAttribute('id').split(' ');
       const dia = attr[0];
       const hora = attr[1];
 
@@ -126,14 +126,14 @@ const MyCalendar = ({
     };
   };
 
-  const checkDuplicates = (id) => {
+  const checkDuplicates = (id: any) => {
     const isFound = eventObj.some((element) => {
       if (element.id === id) return true;
     });
     return isFound;
   };
 
-  const deleteEventFromObj = (id) => {
+  const deleteEventFromObj = (id: any) => {
     const indexOfObject = eventObj.findIndex((object) => object.id === id);
     const copyOfEventObj = [...eventObj];
     copyOfEventObj.splice(indexOfObject, 1);
@@ -141,7 +141,7 @@ const MyCalendar = ({
   };
 
   // función que maneja el click en las celdas.
-  const getClick = (data) => {
+  const getClick = (data: any) => {
     const { dia, inicio, fin, cell } = findSelectedCell(data);
     const idData = `${dia} ${inicio}`;
     const inicioNumber = getOnlyNumbers(inicio);

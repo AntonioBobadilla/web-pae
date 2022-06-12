@@ -86,7 +86,7 @@ export const registerTutor = createAsyncThunk(
           }))
         ]
       },
-      'http://server-pae.azurewebsites.net/tutor/'
+      'https://server-pae.azurewebsites.net/tutor/'
     );
   }
 );

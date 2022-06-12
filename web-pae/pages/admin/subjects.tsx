@@ -40,7 +40,7 @@ const Subjects = () => {
     setCurrentTab('UF');
   }, []);
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/subject/')
+    fetch('https://server-pae.azurewebsites.net/subject/')
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)
@@ -185,7 +185,7 @@ const Subjects = () => {
 
   const deleteSubject = () => {
     console.log(id);
-    fetch(`http://server-pae.azurewebsites.net/subject/${id}/`, {
+    fetch(`https://server-pae.azurewebsites.net/subject/${id}/`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })

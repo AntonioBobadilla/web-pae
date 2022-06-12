@@ -12,22 +12,20 @@ const CardInformationStu = () => {
 
   React.useEffect(() => {
     fetch(
-      `http://server-pae.azurewebsites.net/tutoring/?student=${id?.toLowerCase()}`
+      `https://server-pae.azurewebsites.net/tutoring/?student=${id?.toLowerCase()}`
     )
       .then((res) => res.json())
       .then((data) => {
         const newData = [...data];
-        newData.sort( 
-          (a, b) => {
-            if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
-              return -1;
-            }
-            if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
-              return 1;
-            }
-            return 0;
+        newData.sort((a, b) => {
+          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+            return -1;
           }
-        );
+          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+            return 1;
+          }
+          return 0;
+        });
         setHistoryStu(newData);
       })
       .catch((err) => console.log(err.message));

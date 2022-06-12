@@ -36,7 +36,7 @@ const Tutorings = () => {
   const [subject, setSubject] = useState<any>('');
 
   const getDataFromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/tutoring/?status=PE')
+    fetch('https://server-pae.azurewebsites.net/tutoring/?status=PE')
       .then((resp) => resp.json())
       .then((data) => {
         setData(data);
@@ -66,11 +66,14 @@ const Tutorings = () => {
   // función que realizara el update del tutor basado en el indice guardado en objectToModify
   const updateAsesor = () => {
     if (newAsesor == '') return;
-    fetch(`http://server-pae.azurewebsites.net/changetutor/${objectToModify}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tutor: newAsesor.toLowerCase() }) // agregar json de update
-    })
+    fetch(
+      `https://server-pae.azurewebsites.net/changetutor/${objectToModify}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tutor: newAsesor.toLowerCase() }) // agregar json de update
+      }
+    )
       .then((res) => {
         if (!res.ok) {
           // error coming back from server
@@ -96,7 +99,7 @@ const Tutorings = () => {
     const online = NewModalidad == 'En línea';
     if (objectToModify == 0) return;
     fetch(
-      `http://server-pae.azurewebsites.net/changetutoringlocation/${objectToModify}`,
+      `https://server-pae.azurewebsites.net/changetutoringlocation/${objectToModify}`,
       {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -161,20 +164,23 @@ const Tutorings = () => {
 
   // agregar token dinamico
   const del = () => {
-    fetch(`http://server-pae.azurewebsites.net/tutoring/${TuteeIdToDelete}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Token ${token}`
+    fetch(
+      `https://server-pae.azurewebsites.net/updatetutoring/${TuteeIdToDelete}/CA`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
+        }
       }
-    })
+    )
       .then((res) => {
         if (!res.ok) {
           // error coming back from server
           throw Error('could not make POST request for that endpoint');
         } else if (res.status === 204) {
           getDataFromApi();
-          toast('Asesor eliminado', {
+          toast('Asesoría rechazada', {
             icon: '✅'
           });
         }
@@ -191,8 +197,8 @@ const Tutorings = () => {
   };
 
   const acceptTutoring = (id: any) => {
-    fetch(`http://server-pae.azurewebsites.net/confirmtutoring/${id}`, {
-      method: 'POST',
+    fetch(`https://server-pae.azurewebsites.net/updatetutoring/${id}/AP`, {
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' }
     })
       .then((res) => {
@@ -205,8 +211,8 @@ const Tutorings = () => {
       .then((data) => {
         console.log('ok');
         onClickSuccessAcceptTutoring();
-        getDataFromApi();
-        toast('Asesor aceptado', {
+
+        toast('Asesoría aceptada', {
           icon: '✅'
         });
       })

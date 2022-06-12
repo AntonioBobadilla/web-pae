@@ -1,13 +1,21 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import classNames from 'classnames';
 import React from 'react';
-import Carousel, { consts } from 'react-elastic-carousel';
+import Carousel from 'react-elastic-carousel';
 import styles from '../css/components/dailybar.module.css';
 import ItemDailyBar from './dailybar-item';
 import { Meeting } from './data-table/types';
 
-function myArrow({ type, onClick, isEdge }) {
-  const pointer = type === consts.PREV ? 'left' : 'right';
+function myArrow({
+  type,
+  onClick,
+  isEdge
+}: {
+  type: any;
+  onClick: any;
+  isEdge: any;
+}) {
+  const pointer = type === 'PREV' ? 'left' : 'right';
   return (
     <div
       className={classNames(styles.arrowButton, isEdge ? styles.edge : null)}

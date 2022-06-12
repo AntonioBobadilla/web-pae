@@ -8,26 +8,8 @@ function DataTable({
   selectedItem,
   setSelectedItem
 }: DataTableProps): JSX.Element {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: '',
-        accessor: 'col1' // accessor is the "key" in the data
-      },
-      {
-        Header: 'Modalidad',
-        accessor: 'col2'
-      },
-      {
-        Header: 'Asesor',
-        accessor: 'col3'
-      }
-    ],
-    []
-  );
-
   const tutors = React.useMemo(
-    () => new Map(meetings.map((meeting, index) => [meeting.tutor, index])),
+    () => new Map(meetings.map((meeting, index) => [meeting.tutor, index + 1])),
     [meetings]
   );
   const data = React.useMemo(

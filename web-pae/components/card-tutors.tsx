@@ -19,7 +19,7 @@ const CardTutors = () => {
   const id = useAppSelector(selectID);
   React.useEffect(() => {
     fetch(
-      `http://server-pae.azurewebsites.net/tutoring/?status=AP&tutor=${id?.toLowerCase()}`
+      `https://server-pae.azurewebsites.net/tutoring/?status=AP&tutor=${id?.toLowerCase()}`
     )
       .then((res) => res.json())
       .then((data) => {

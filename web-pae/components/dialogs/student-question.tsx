@@ -1,7 +1,7 @@
-import ClosablePopup from '../closable-popup';
-import Styles from '../../css/components/dialogs/studentQuestion.module.css';
-import ImageModal from '../dialogs/image-modal';
 import { useState } from 'react';
+import Styles from '../../css/components/dialogs/studentQuestion.module.css';
+import ClosablePopup from '../closable-popup';
+import ImageModal from '../dialogs/image-modal';
 
 type StudentQuestionProps = {
   visible: boolean;
