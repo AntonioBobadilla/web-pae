@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import { useForm, useFormState } from 'react-hook-form';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useAppSelector } from 'store/hook';
+import { selectRegisterData } from 'store/reducers/create-tutor';
 import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
+import Password from './password';
 import TextInput from './text-input';
 
 interface RegisterFormProps {
   nextStep: (data: StudentRegisterData) => void;
   student: boolean;
+  isLoading: boolean;
 }
 
 export type StudentRegisterData = {
   name: string;
   email: string;
+  major: string;
   password: string;
   passwordConfirmation: string;
 };
@@ -19,33 +24,27 @@ export type StudentRegisterData = {
 export const studentRegisterDefaultValue: StudentRegisterData = {
   email: '',
   password: '',
+  major: '',
   name: '',
   passwordConfirmation: ''
 };
 
-const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
-  const [isValid, setIsValid] = React.useState(false);
+const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
+  const tutorDefaultValues = useAppSelector(selectRegisterData);
 
-  const [isLoading, setIsLoading] = useState(false);
   const {
     control,
     handleSubmit,
     getValues,
     formState: { errors }
   } = useForm<StudentRegisterData>({
-    defaultValues: studentRegisterDefaultValue
+    defaultValues: student ? studentRegisterDefaultValue : tutorDefaultValues
   });
 
-  const { isDirty } = useFormState({ control });
+  // TODO: DELETE DATA ON NAVIGATE CHANGED
+  // const { isDirty } = useFormState({ control });
 
-  const onSubmit = handleSubmit((data) => {
-    // save data to local storage
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      nextStep(data);
-    }, 1000);
-  });
+  const onSubmit = handleSubmit((data) => nextStep(data));
 
   return (
     <form className={styles.registerForm} onSubmit={onSubmit}>
@@ -81,20 +80,29 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
       </div>
       <div className={styles.input}>
         <TextInput
+          name="major"
+          placeholder="CARRERA*"
+          control={control}
+          error={errors.major}
+          style={{ textTransform: 'uppercase' }}
+          rules={{
+            required: 'Carrera requerida',
+            pattern: {
+              value: /^[A-Za-z]{2,4}$/,
+              message: 'Carrera inválida. E.g. ARQ, LAD, MEC'
+            }
+          }}
+        />
+      </div>
+
+      <div className={styles.input}>
+        <Password
           name="password"
-          type="password"
-          placeholder="CONTRASEÑA*"
           control={control}
           error={errors.password}
           rules={{
             required: 'Contraseña requerida',
-            minLength: { value: 8, message: 'Contraseña muy corta' },
-            pattern: {
-              value:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
-              message:
-                'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
-            }
+            minLength: { value: 8, message: 'Contraseña muy corta' }
           }}
         />
       </div>
@@ -114,7 +122,7 @@ const RegisterForm = ({ nextStep, student }: RegisterFormProps) => {
       <div className={styles.button}>
         <ButtonTemplate
           variant="primary"
-          disabled={!isDirty || isLoading}
+          disabled={isLoading}
           loading={isLoading}
           type="submit"
         >

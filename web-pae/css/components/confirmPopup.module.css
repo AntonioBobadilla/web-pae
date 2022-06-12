@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.modal {
+  width: 40%;
+}
+
 .icon {
   font-size: 50px;
 }
@@ -26,5 +30,9 @@
 
   .linkStyle {
     font-size: 4vw;
+  }
+
+  .modal {
+    width: 95%;
   }
 }

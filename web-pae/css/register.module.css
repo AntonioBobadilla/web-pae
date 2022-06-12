@@ -8,6 +8,7 @@
 .leftCont {
   width: 50%;
   height: 100%;
+  animation: 2s ease-out 0s 1 slideInFromLeft;
 }
 
 .registerImage {
@@ -23,6 +24,7 @@
   align-items: center;
   padding-top: 20vh;
   align-items: center;
+  animation: 2.5s ease-out 0s 1 slideInFromTop;
 }
 
 .paeRegister {
@@ -88,7 +90,10 @@
 .toggle {
   width: 50%;
 }
-
+.nonSelectable {
+  width: 50%;
+  opacity: 0.5;
+}
 @media screen and (max-width: 800px) {
   .mainContainer {
     flex-direction: column;
@@ -118,10 +123,40 @@
   .fontS {
     font-size: 2vw;
   }
+  .nonSelectable {
+    width: 25%;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .fontS {
     font-size: 3.5vw;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-35%);
+    opacity: 0;
+  }
+  65% {
+    transform: translateY(0.5%);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

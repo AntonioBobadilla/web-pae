@@ -14,7 +14,7 @@ const ConfirmationPopup = (props: ConfirmationPopupProps) => {
   const { t } = useTranslation('tutor-confirmation');
 
   return (
-    <Popup title={t('Registration completed')} line={false}>
+    <Popup title={t('Registration completed')} line={false} style={confirmPopupStyles.modal}>
       <p className={confirmPopupStyles.paragraph}>
       {t('You will receive an email')}
       </p>

@@ -11,17 +11,18 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 const ForgotPassword: NextPage = () => {
   const [emailSent, setEmailSent] = useState(false);
 
-  const sendEmail = () => console.log('ij');
-
   return (
     <div className={styles.container}>
-      <div className={styles.background}>
-        {!emailSent ? (
-          <ForgotPasswordPopup setEmailSent={setEmailSent} />
-        ) : (
-          <PasswordConfirmationPopup />
-        )}
-      </div>
+      {!emailSent ? (
+        <ForgotPasswordPopup
+          setEmailSent={setEmailSent}
+          loginUrl="/tutor/login"
+          registerUrl="/tutor/registration"
+          user={1}
+        />
+      ) : (
+        <PasswordConfirmationPopup login="/tutor/login" />
+      )}
     </div>
   );
 };

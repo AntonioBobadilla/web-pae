@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import post from 'helpers/post';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
+import toast, { Toaster } from 'react-hot-toast';
 import styles from '../css/components/forgot-password-popup.module.css';
 import ButtonTemplate from './button-template';
 import Popup from './popup';
@@ -10,13 +12,21 @@ import { useTranslation } from 'next-i18next';
 
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
+  loginUrl: string;
+  registerUrl: string;
+  user: number;
 }
 
 interface ForgotPasswordData {
   email: string;
 }
 
-const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
+const ForgotPasswordPopup = ({
+  setEmailSent,
+  loginUrl,
+  registerUrl,
+  user
+}: ForgotPasswordPopupProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation('student-forgot-password');
 
@@ -28,16 +38,50 @@ const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
 
   const { isDirty } = useFormState({ control });
 
+  const handleStatus = (status: number, responseData: any) => {
+    try {
+      if (status === 200 || status === 201 || status === 204) {
+        // toast success
+
+        // set user data
+
+        // dispatch(setLogoutData());
+
+        // redirect to home
+        setEmailSent(true);
+        setIsLoading(false);
+      } else {
+        if (responseData.email) {
+          const { email } = responseData;
+          const input = document.getElementById('email');
+          input?.focus();
+          toast.error(email);
+        }
+        toast.error('Something went wrong');
+        setIsLoading(false);
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+      setIsLoading(false);
+    }
+  };
+
   const onSubmit = handleSubmit((data) => {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      setEmailSent(true);
-    }, 2000);
+    post(
+      { email: data.email.toLowerCase(), user_type: user },
+      'https://server-pae.azurewebsites.net/resetpassword/'
+    )
+      .then(({ status, responseData }) => {
+        handleStatus(status, responseData);
+      })
+      .catch((err) => {
+        handleStatus(500, err);
+      });
   });
 
   return (
-    <Popup title={t('Password recovery')} line>
+    <Popup title={t('Password recovery')} line style={styles.modal}>
       <form className={styles.form} onSubmit={onSubmit}>
         <div className={styles.input}>
           <span className={styles.text}>
@@ -45,7 +89,7 @@ const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
           </span>
           <TextInput
             name="email"
-            placeholder='INSTITUTIONAL EMAIL'
+            placeholder="A0XXXXXXX@tec.mx"
             control={control}
             error={errors.email}
             rules={{
@@ -69,13 +113,14 @@ const ForgotPasswordPopup = ({ setEmailSent }: ForgotPasswordPopupProps) => {
         </div>
       </form>
       <div className={styles.links}>
-        <Link href="/student/login" passHref>
+        <Link href={loginUrl} passHref>
           <a>{t('Login')}</a>
         </Link>
-        <Link href="/student/register" passHref>
+        <Link href={registerUrl} passHref>
           <a>{t('Sign up')}</a>
         </Link>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </Popup>
   );
 };

@@ -21,7 +21,7 @@
       "title": "Administrar materias"
     },
     {
-      "path": "/admin/tutorings-history",
+      "path": "/admin/history",
       "icon": "clock-history",
       "title": "Historial de asesorías"
     },
@@ -29,6 +29,11 @@
       "path": "/admin/polls",
       "icon": "clipboard-data",
       "title": "Encuestas"
+    },
+    {
+      "path": "/admin/admins",
+      "icon": "person-video2",
+      "title": "Administradores"
     }
   ],
   "exit": "/admin/login/"

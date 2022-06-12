@@ -1,10 +1,10 @@
-import Home from '@/pages/student/home';
+import Home from '@/pages/index';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import React from 'react';
 
-describe('Home', () => {
-  it('renders homepage unchanged', () => {
+describe('Index', () => {
+  it('renders index page unchanged', () => {
     const { container } = render(<Home />);
     expect(container).toMatchSnapshot();
   });

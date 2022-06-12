@@ -1,3 +1,4 @@
+import withAuthentication from '@/components/navigation/with-authentication';
 import type { NextPage } from 'next';
 import React from 'react';
 import LoginForm from '../../components/login-form';
@@ -5,7 +6,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Login: NextPage = () => (
   <LoginForm
-    url="http://server-pae.azurewebsites.net/logintutor/"
     image="/images/tutor-login-image.jpg"
     homeRoute="/tutor/home"
     user="tutor"
@@ -21,4 +21,5 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export default Login;
+export default withAuthentication(Login);
+
