@@ -189,7 +189,7 @@ const Tutorings = () => {
         if (!res.ok) {
           // error coming back from server
           throw Error('could not make POST request for that endpoint');
-        } else if (res.status === 204) {
+        } else if (res.status === 200) {
           getDataFromApi();
           toast('Asesoría rechazada', {
             icon: '✅'
