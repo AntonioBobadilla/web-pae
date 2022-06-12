@@ -10,5 +10,9 @@
     "Dont have account": "Don't have an account?",
     "Notice of privacy": "Notice of privacy",
     "PASSWORD": "PASSWORD",
-    "Sign up": "Sign up"
+    "Sign up": "Sign up",
+    "Required Id" : "Required Id",
+	  "Invalid Email. E.g. A0XXXXXXX@tec.mx" : "Invalid Email. E.g. A0XXXXXXX@tec.mx",
+	  "Required email" : "Required email",
+	  "Password too short" : "Password too short"
   }

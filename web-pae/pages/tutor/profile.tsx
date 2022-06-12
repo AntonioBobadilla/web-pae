@@ -107,7 +107,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <p className={Styles.tutorship}>{t('Tutoring')}Asesorías</p>
+      <p className={Styles.tutorship}>{t('Tutoring')}</p>
       <div className={Styles.cardInfo}>
         <CardInformation />
       </div>
