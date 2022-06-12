@@ -53,7 +53,11 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }
 
   React.useEffect(() => {
-    fetch(`https://server-pae.azurewebsites.net/tutor/${id?.toLowerCase()}`)
+    fetch(`https://server-pae.azurewebsites.net/tutor/${id?.toLowerCase()}`, {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         let newArr: any = [];

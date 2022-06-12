@@ -195,7 +195,10 @@ const Subjects = () => {
     console.log(id);
     fetch(`https://server-pae.azurewebsites.net/subject/${id}/`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {

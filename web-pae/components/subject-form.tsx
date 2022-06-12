@@ -1,5 +1,7 @@
+import { selectToken } from '@/redux/user';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useAppSelector } from 'store/hook';
 import Styles from '../css/components/subject-form.module.css';
 import SubjectAdded from './dialogs/subject-added';
 
@@ -8,6 +10,8 @@ const SubjectForm = () => {
   const [name, setName] = useState([]);
   const [validUF, setValidUF] = useState(Boolean);
 
+  const token = useAppSelector(selectToken);
+
   const isValid = () => {
     setValidUF(true);
   };
@@ -15,7 +19,10 @@ const SubjectForm = () => {
   const addSubject = (e: any) => {
     fetch('https://server-pae.azurewebsites.net/subject/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({
         code,
         name,

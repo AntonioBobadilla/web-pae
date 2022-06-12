@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { selectToken } from '@/redux/user';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import editAsesorStyles from '../../css/components/dialogs/edit-asesor.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
@@ -23,6 +25,8 @@ const EditAsesor = ({
   const [asesorActual, setAsesorActual] = useState<any>('');
   const [asesoresDisponibles, setAsesoresDisponibles] = useState<any>([]);
   const [pending, setPending] = useState<any>(true);
+
+  const token = useAppSelector(selectToken);
 
   const onClickSave = () => {
     setVisible(false);
@@ -62,7 +66,10 @@ const EditAsesor = ({
   const getAsesores = () => {
     fetch('https://server-pae.azurewebsites.net/alternatetutor/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({
         date: day,
         hour: hour,
