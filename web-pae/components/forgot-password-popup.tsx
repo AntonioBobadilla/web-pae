@@ -8,7 +8,7 @@ import styles from '../css/components/forgot-password-popup.module.css';
 import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
-import { useTranslation } from 'next-i18next'; 
+import { useTranslation } from 'next-i18next';
 
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
@@ -89,7 +89,11 @@ const ForgotPasswordPopup = ({
           </span>
           <TextInput
             name="email"
+<<<<<<< HEAD
+            placeholder={t('INSTITUTIONAL EMAIL')}
+=======
             placeholder="A0XXXXXXX@tec.mx"
+>>>>>>> 5896bbb6bab49c6802f883a92fd923799a0f8051
             control={control}
             error={errors.email}
             rules={{
@@ -124,7 +128,5 @@ const ForgotPasswordPopup = ({
     </Popup>
   );
 };
-
-
 
 export default ForgotPasswordPopup;

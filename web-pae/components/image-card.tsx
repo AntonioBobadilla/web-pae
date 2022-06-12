@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import imageCardStyles from '../css/components/imageCard.module.css';
-import { useState } from 'react';
-import { useTranslation } from 'next-i18next'; //////////translate
+import { useTranslation } from 'next-i18next';
 
 const ImageCard = (props: {
   image: string;
@@ -16,6 +15,7 @@ const ImageCard = (props: {
   const { path } = props;
   // creo un Stateless Functional Component
   const [isToggled, setIsToggled] = useState(false); //used to store the state of the toggle button
+
   const { t } = useTranslation('student-home'); //////////translate
   const clicked = () => {
     setIsToggled(!isToggled);
