@@ -5,6 +5,8 @@ import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
@@ -12,6 +14,7 @@ const Subject = () => {
   const [id, setId] = useState(null);
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  const { t } = useTranslation('admin-admins');
 
   const AdminButton = () => {
     setCurrentTab('admins');
@@ -81,30 +84,28 @@ const Subject = () => {
         <div className={styles.UfTab}>
           <Tabs
             handleClick={AdminButton}
-            text="Administradores"
+            text={t('Administrators')}
             active={currentTab == 'admins' ? true : false}
           />
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddAdminButton}
-            text="Agregar Administrador"
+            text={t('Add administrator')}
             active={currentTab == 'addAdmins' ? true : false}
           />
         </div>
       </div>
 
       <div className={styles.ufContainer}>
-        {pending && <div className={styles.loading}>Cargando datos...</div>}
+        {pending && <div className={styles.loading}>{t('Loading data')}</div>}
         <div
           className={
             currentTab == 'addAdmins' ? styles.addSubject : styles.hidden
           }
         >
           <div className={styles.top}>
-            <span className={styles.description}>
-              Favor de llenar el formulario con los datos correspondientes
-            </span>
+            <span className={styles.description}>{t('Please fill')}</span>
           </div>
           <div className={styles.bottom}>
             <AdminForm />
@@ -116,20 +117,20 @@ const Subject = () => {
           <div className={styles.down}>
             <div className={styles.tableRequest}>
               <div className={styles.headRow}>
-                <span className={styles.clave}>Matrícula/Nómina</span>
-                <span className={styles.name}>Nombre</span>
-                <span className={styles.email}>Correo electrónico</span>
-                <span className={styles.delete}>Eliminar</span>
+                <span className={styles.clave}>{t('Registration number')}</span>
+                <span className={styles.name}>{t('Name')}</span>
+                <span className={styles.email}>{t('Mail')}</span>
+                <span className={styles.delete}>{t('Delete')}</span>
               </div>
               {data.map(function (item: any, index) {
                 let adminId =
                   item.registration_number != null
                     ? item.registration_number
-                    : 'no hay clave';
-                let adminName = item.name != null ? item.name : 'no hay nombre';
+                    : t('No registration');
+                let adminName = item.name != null ? item.name : t('No name');
                 let adminEmail = () => {
                   if (item.email == null) {
-                    return 'no hay correo';
+                    return t('No mail');
                   }
                   return item.email;
                 };
@@ -162,11 +163,20 @@ const Subject = () => {
 
 // Add sidebar layout
 Subject.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <SidebarLayout title="ADMINISTRAR UNIDADES DE FORMACIÓN">
-      {page}
-    </SidebarLayout>
-  );
+  const { t } = useTranslation('admin-admins');
+  return <SidebarLayout title={t('Manage subjects')}>{page}</SidebarLayout>;
 };
+
+export async function getStaticProps({ locale }) {
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-admins',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
 
 export default Subject;

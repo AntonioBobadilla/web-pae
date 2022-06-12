@@ -89,11 +89,7 @@ const ForgotPasswordPopup = ({
           </span>
           <TextInput
             name="email"
-<<<<<<< HEAD
-            placeholder={t('INSTITUTIONAL EMAIL')}
-=======
             placeholder="A0XXXXXXX@tec.mx"
->>>>>>> 5896bbb6bab49c6802f883a92fd923799a0f8051
             control={control}
             error={errors.email}
             rules={{

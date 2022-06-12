@@ -1,4 +1,11 @@
 {
-    "Tutor-Student": "Tutor-Student Platform",
-    "My Profile": "My Profile"
+  "Tutor-Student": "Tutor-Student Platform",
+  "My Profile": "My Profile",
+  "Dashboard": "Dashboard",
+  "Asesores PAE": "PAE tutors",
+  "Solicitudes de asesorías": "Tutoring requests",
+  "Administrar materias": "Manage subjects",
+  "Historial de asesorías": "Tutoring records",
+  "Encuestas": "Polls",
+  "Administradores": "Administrators"
 }

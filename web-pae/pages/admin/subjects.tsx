@@ -6,6 +6,8 @@ import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const Subjects = () => {
   const [currentTab, setCurrentTab] = useState('');
@@ -21,6 +23,7 @@ const Subjects = () => {
   const [filteredArrayName, setFilteredArrayName] = useState<Subject[]>([]);
   const [editable, setEditable] = useState(true);
   const [editableName, setEditableName] = useState(true);
+  const { t } = useTranslation('admin-subjects');
 
   const UFButton = () => {
     setCurrentTab('UF');
@@ -341,4 +344,17 @@ Subjects.getLayout = function getLayout(page: ReactElement) {
     </SidebarLayout>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-subjects',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
+
 export default Subjects;

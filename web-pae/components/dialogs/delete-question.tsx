@@ -1,5 +1,6 @@
 import ClosablePopup from '../closable-popup';
 import Styles from '../../css/components/dialogs/delete-question.module.css';
+import { useTranslation } from 'next-i18next';
 
 type props = {
   visible: boolean;
@@ -13,29 +14,29 @@ const DeleteQuestion = ({
   setVisible,
   onClickFunction,
   onClickCancel
-}: props) => (
-  <ClosablePopup
-    title={undefined}
-    line={false}
-    visible={visible}
-    style={Styles.popUp}
-    setVisible={setVisible}
-  >
-    <div className={Styles.main}>
-      <span className={Styles.text}>
-        ¿Esta seguro que quiere eliminar la pregunta? Una vez eliminada
-        desaparecerá de todas las encuestas donde se usó
-      </span>
-      <div className={Styles.buttons}>
-        <button onClick={onClickCancel} className={Styles.cancel}>
-          Cancelar
-        </button>
-        <button onClick={onClickFunction} className={Styles.delete}>
-          Si,eliminar
-        </button>
+}: props) => {
+  const { t } = useTranslation('admin-polls');
+  return (
+    <ClosablePopup
+      title={undefined}
+      line={false}
+      visible={visible}
+      style={Styles.popUp}
+      setVisible={setVisible}
+    >
+      <div className={Styles.main}>
+        <span className={Styles.text}>{t('Are your sure')}</span>
+        <div className={Styles.buttons}>
+          <button onClick={onClickCancel} className={Styles.cancel}>
+            {t('Cancel')}
+          </button>
+          <button onClick={onClickFunction} className={Styles.delete}>
+            {t('Yes, delete')}
+          </button>
+        </div>
       </div>
-    </div>
-  </ClosablePopup>
-);
+    </ClosablePopup>
+  );
+};
 
 export default DeleteQuestion;
