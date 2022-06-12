@@ -47,7 +47,6 @@ const EditAsesor = ({
       let idOfAsesor = e.target.id;
 
       let asesorObj: any = asesoresDisponibles[idOfAsesor];
-
       let asesor = asesorObj.registration_number;
       setAsesorActual(asesor);
       clearAllBorders();

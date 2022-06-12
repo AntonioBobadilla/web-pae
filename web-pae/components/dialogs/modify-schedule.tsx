@@ -106,6 +106,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
       tutor: id.toLowerCase(),
       schedules: [...data]
     };
+
     fetch('https://server-pae.azurewebsites.net/modifyschedule/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

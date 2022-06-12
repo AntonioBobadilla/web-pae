@@ -5,6 +5,7 @@ import styles from '../../css/components/dialogs/modify-password.module.css';
 import registerStyles from '../../css/register.module.css';
 import ClosablePopup from '../closable-popup';
 
+
 type ModifyLanguageProps = {
   visible: boolean;
   setVisible: (visible: boolean) => void;
