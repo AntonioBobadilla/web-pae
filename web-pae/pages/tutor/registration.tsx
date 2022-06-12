@@ -19,6 +19,7 @@ import StepsRegister from '../../components/steps-register';
 import styles from '../../css/tutor/registration.module.css';
 import { REGISTER, SCHEDULE, Steps, SUBJECTS } from '../../helpers/steps';
 
+
 const Registration: NextPage = () => {
   const router = useRouter();
   const { query, push } = router;

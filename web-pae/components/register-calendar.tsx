@@ -15,6 +15,8 @@ import RegisterStyle from '../css/tutor/register.module.css';
 import ButtonTemplate from './button-template';
 import MyCalendar from './frontend-calendar';
 import ProgressBar from './progress-bar/progress-bar';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'; 
 
 interface RegisterCalendarProps {
   nextStep: () => void;
@@ -45,6 +47,8 @@ const periods: Title = {
 
 const max = 3;
 const min = 0;
+
+const { t } = useTranslation('assigned-tutoring');
 
 const RegisterCalendar = React.memo(
   ({ nextStep, previousStep }: RegisterCalendarProps) => {
@@ -130,13 +134,13 @@ const RegisterCalendar = React.memo(
         <div className={styles.calendar}>
           <div className={styles.header}>
             <h3 className={styles.title}>
-              Selecciona tus horarios disponibles del <strong> {title} </strong>
+              {t('Select your avaialability from')}<strong> {title} </strong>
             </h3>
             <div
               className={styles.icon}
               onMouseEnter={() =>
                 toast(
-                  'Da click y arrastra para seleccionar tu horario. ¡Recuerda seleccionar al menos 5 horas!',
+                  t('Click and drag to select your desired schedule. Remember to select at least 5 hours!'),
                   {
                     icon: '😊'
                   }
@@ -157,7 +161,7 @@ const RegisterCalendar = React.memo(
         <div className={styles.buttons}>
           <div className={RegisterStyle.completed}>
             <div className={RegisterStyle.box}>
-              <p className={RegisterStyle.per}> Completado </p>
+              <p className={RegisterStyle.per}> {t('Completed')} </p>
               <div className={RegisterStyle.barDiv}>
                 <ProgressBar progress={progressBarState} />
               </div>
@@ -172,7 +176,7 @@ const RegisterCalendar = React.memo(
                 variant="secondary"
                 style={{ marginRight: '7.5px' }}
               >
-                ANTERIOR
+                {t('PREVIOUS')}
               </ButtonTemplate>
               <ButtonTemplate
                 onClick={handleNextStep}
@@ -180,7 +184,7 @@ const RegisterCalendar = React.memo(
                 style={{ marginLeft: '7.5px' }}
                 disabled={eventObj.length < 5}
               >
-                SIGUIENTE
+                {t('NEXT')}
               </ButtonTemplate>
             </div>
           </div>
@@ -190,5 +194,13 @@ const RegisterCalendar = React.memo(
     );
   }
 );
+
+export async function getStaticProps({ locale }) { 
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+    }
+  };
+}
 
 export default RegisterCalendar;

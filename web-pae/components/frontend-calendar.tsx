@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { Period } from 'store/types';
 import styles from '../css/components/calendar.module.css';
 import Cell from './frontend-calendar-cellComponent';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'; 
 
 interface MyCalendarProps {
   eventObj: Period[];
@@ -41,6 +43,8 @@ const MyCalendar = ({
     const numFinal = parseInt(horaFin.match(/(\d+)/)[0]);
 
     const numberCycles = numFinal - numInicio;
+
+    
 
     if (numberCycles == 1) {
       changeColorOfCell(startCell);
@@ -167,6 +171,8 @@ const MyCalendar = ({
     return true;
   };
 
+  const { t } = useTranslation('assigned-tutoring');
+
   return (
     <div className={styles.wrapper}>
       {/* <AddEvent function={getValues} /> */}
@@ -174,11 +180,11 @@ const MyCalendar = ({
         <thead className={styles.tableHead}>
           <tr className={styles.border}>
             <th className={styles.heading}> </th>
-            <th className={styles.heading}>Lunes</th>
-            <th className={styles.heading}>Martes</th>
-            <th className={styles.heading}>Miercoles</th>
-            <th className={styles.heading}>Jueves</th>
-            <th className={styles.heading}>Viernes</th>
+            <th className={styles.heading}>{t('Monday')}</th>
+            <th className={styles.heading}>{t('Tuesday')}</th>
+            <th className={styles.heading}>{t('Wednesday')}</th>
+            <th className={styles.heading}>{t('Thursday')}</th>
+            <th className={styles.heading}>{t('Friday')}</th>
           </tr>
         </thead>
         <tbody>
@@ -292,4 +298,11 @@ const MyCalendar = ({
   );
 };
 
+export async function getStaticProps({ locale }) { 
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+    }
+  };
+}
 export default MyCalendar;

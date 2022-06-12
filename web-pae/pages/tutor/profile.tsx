@@ -66,6 +66,8 @@ const Profile = () => {
     getData();
   }, []);
 
+  const { t } = useTranslation('tutor-profile');
+
   return (
     <div className={Styles.main}>
       <ToggleMenu
@@ -84,7 +86,7 @@ const Profile = () => {
       <div className={Styles.progress}>
         <div className={Styles.weekHours}>
           <span className={Styles.progressText}>
-            Progreso de horas semanales
+            {t('Weekly Progress')}
           </span>
           <div className={Styles.hoursContainer}>
             <div className={Styles.bar}>
@@ -94,7 +96,7 @@ const Profile = () => {
           </div>
         </div>
         <div className={Styles.totalHours}>
-          <span className={Styles.progressText}>Progreso de horas totales</span>
+          <span className={Styles.progressText}>{t('Total Progress')}</span>
           <div className={Styles.hoursContainer}>
             <div className={Styles.bar}>
               <ProgressBarHours progress={progress.totalHours} total={180} />
@@ -105,7 +107,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <p className={Styles.tutorship}>Asesorías</p>
+      <p className={Styles.tutorship}>{t('Tutoring')}Asesorías</p>
       <div className={Styles.cardInfo}>
         <CardInformation />
       </div>
