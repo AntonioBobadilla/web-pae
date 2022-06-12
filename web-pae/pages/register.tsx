@@ -1,15 +1,17 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import React from 'react';
 import ButtonTemplate from '../components/button-template';
 import ToggleButton from '../components/toggle-button';
 import styles from '../css/register.module.css';
 
 const Register: NextPage = () => {
   const router = useRouter();
-  console.log(router.asPath);
+  const [selectableEn, setSelectableEn] = useState(true);
+  const [selectableEs, setSelectableEs] = useState(true);
+
   const studentHandle = () => {
     router.push('/student/registration');
   };
@@ -17,7 +19,14 @@ const Register: NextPage = () => {
   const tutorHandle = () => {
     router.push('/tutor/registration');
   };
-
+  const changeLanguageEn = () => {
+    setSelectableEn(true);
+    setSelectableEs(false);
+  };
+  const changeLanguageEs = () => {
+    setSelectableEs(true);
+    setSelectableEn(false);
+  };
   return (
     <div>
       <Head>
@@ -60,25 +69,21 @@ const Register: NextPage = () => {
               </div>
               <h2 className={styles.language}>Idioma / Language</h2>
               <div className={styles.languageOptions}>
-                <div className={styles.toggle}>
-                  <Link href="/register" locale={'es'}>
-                    <a>
-                      <ToggleButton
-                        flagType="/images/mxflag.png"
-                        desc="Español"
-                      />
-                    </a>
-                  </Link>
+                <div
+                  className={
+                    selectableEs ? styles.toggle : styles.nonSelectable
+                  }
+                  onClick={changeLanguageEs}
+                >
+                  <ToggleButton flagType="/images/mxflag.png" desc="Español" />
                 </div>
-                <div className={styles.toggle}>
-                  <Link href="/register" locale={'en'}>
-                    <a>
-                      <ToggleButton
-                        flagType="/images/usaflag.png"
-                        desc="English"
-                      />
-                    </a>
-                  </Link>
+                <div
+                  className={
+                    selectableEn ? styles.toggle : styles.nonSelectable
+                  }
+                  onClick={changeLanguageEn}
+                >
+                  <ToggleButton flagType="/images/usaflag.png" desc="English" />
                 </div>
               </div>
             </div>

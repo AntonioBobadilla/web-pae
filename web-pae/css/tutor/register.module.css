@@ -1,6 +1,6 @@
 .completed {
   height: 200px;
-  width: 250px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,7 @@
   color: #3f3b3b;
 }
 .barDiv {
-  margin-left: 20px;
+  margin: 0 auto;
   height: 40px;
   width: 80%;
 }
@@ -40,4 +40,28 @@
   display: flex;
   flex-direction: row;
   justify-items: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .completed {
+    height: auto;
+  }
+  .per {
+    font-size: 4vw;
+  }
+  .barDiv {
+    width: 90%;
+  }
+  .estatus {
+    font-size: 3.5vw;
+    text-align: start;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    height: 7vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
 }

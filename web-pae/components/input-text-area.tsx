@@ -1,9 +1,28 @@
 import React from 'react';
+import { useAppDispatch } from 'store/hook';
+import { setContent, setTitle } from 'store/reducers/schedule-tutoring';
 import itaStyles from '../css/components/inputTextArea.module.css';
 
-const InputTextArea = () => {
+type InputTextAreaProps = {
+  title: string;
+  content: string;
+};
+
+const InputTextArea = ({ title, content }: InputTextAreaProps) => {
   const [current1, setCurrent1] = React.useState(0);
   const [current2, setCurrent2] = React.useState(0);
+
+  const dispatch = useAppDispatch();
+
+  const handleChange1 = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(setTitle(e.currentTarget.value));
+    setCurrent1(e.target.value.length);
+  };
+
+  const handleChange2 = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(setContent(e.currentTarget.value));
+    setCurrent2(e.target.value.length);
+  };
 
   return (
     <div className={itaStyles.main}>
@@ -13,11 +32,10 @@ const InputTextArea = () => {
           id="title"
           maxLength={50}
           placeholder="Tema a tratar*"
+          value={title}
           className={itaStyles.title}
-          onChange={(e) => {
-            setCurrent1(e.currentTarget.textLength);
-          }}
-        ></textarea>
+          onChange={handleChange1}
+        />
         <div className={itaStyles.count1}>
           <span id="current">{current1}</span>
           <span id="maximum">/ 50</span>
@@ -27,13 +45,12 @@ const InputTextArea = () => {
         <textarea
           name="content"
           id="content"
+          value={content}
           maxLength={200}
           placeholder="Duda especifica a tratar en asesoria"
           className={itaStyles.content}
-          onChange={(e) => {
-            setCurrent2(e.currentTarget.textLength);
-          }}
-        ></textarea>
+          onChange={handleChange2}
+        />
         <div className={itaStyles.count2}>
           <span id="current">{current2}</span>
           <span id="maximum">/ 200</span>

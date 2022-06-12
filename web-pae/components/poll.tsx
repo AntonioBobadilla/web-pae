@@ -1,10 +1,13 @@
 import { ReactChild, ReactFragment, ReactPortal, useState } from 'react';
 import pStyles from '../css/components/poll.module.css';
 
-const Poll = (props: { question: string | null | undefined }) => {
+const Poll = (props: {
+  question: string | null | undefined;
+  name: string | undefined;
+}) => {
   const [answer, setAnswer] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setAnswer(e.target.value);
   };
 
@@ -15,7 +18,7 @@ const Poll = (props: { question: string | null | undefined }) => {
         <input
           type="radio"
           id="1"
-          name="answer"
+          name={props.name}
           value="Tagree"
           className={pStyles.rButton}
           onChange={handleChange}
@@ -23,7 +26,7 @@ const Poll = (props: { question: string | null | undefined }) => {
         <input
           type="radio"
           id="2"
-          name="answer"
+          name={props.name}
           value="agree"
           className={pStyles.rButton}
           onChange={handleChange}
@@ -31,7 +34,7 @@ const Poll = (props: { question: string | null | undefined }) => {
         <input
           type="radio"
           id="3"
-          name="answer"
+          name={props.name}
           value="disagree"
           className={pStyles.rButton}
           onChange={handleChange}
@@ -39,7 +42,7 @@ const Poll = (props: { question: string | null | undefined }) => {
         <input
           type="radio"
           id="4"
-          name="answer"
+          name={props.name}
           value="Tdisagree"
           className={pStyles.rButton}
           onChange={handleChange}

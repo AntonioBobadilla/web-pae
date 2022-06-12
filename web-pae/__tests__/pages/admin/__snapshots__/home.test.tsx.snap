@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin Home renders admin home page unchanged 1`] = `
+<div>
+  <div
+    class="cards"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutors"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/tutors.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Asesores PAE
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/tutorings-requests"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/tutoring-request.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Solicitudes de asesoría
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/history"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/back.jpeg"
+        />
+        <p
+          class="description"
+        >
+           
+          Historial de asesoría
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/subjects"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/adminUF.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Administrar unidades de formación
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/polls"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/survey.jpeg"
+        />
+        <p
+          class="description"
+        >
+           
+          Encuestas
+           
+        </p>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <div
+        class="box"
+        href="/admin/admins"
+        role="button"
+      >
+        <img
+          class="image"
+          src="/images/administrators.jpg"
+        />
+        <p
+          class="description"
+        >
+           
+          Administradores PAE
+           
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

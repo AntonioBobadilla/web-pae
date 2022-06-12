@@ -1,9 +1,20 @@
+// eslint-disable
+
+import {
+  selectFirstPeriod,
+  selectSecondPeriod,
+  selectThirdPeriod,
+  setPeriod
+} from '@/redux/create-tutor';
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAppDispatch, useAppSelector } from 'store/hook';
+import { Period } from 'store/types';
 import styles from '../css/components/register-calendar.module.css';
 import RegisterStyle from '../css/tutor/register.module.css';
 import ButtonTemplate from './button-template';
 import MyCalendar from './frontend-calendar';
-import ProgressBar from './progress-bar';
+import ProgressBar from './progress-bar/progress-bar';
 
 interface RegisterCalendarProps {
   nextStep: () => void;
@@ -14,87 +25,170 @@ interface Title {
   [key: number]: string;
 }
 
+interface State {
+  [key: number]: any;
+}
+
 const titles: Title = {
   0: 'primer periodo',
   1: 'segundo periodo',
-  2: 'tercer periodo'
+  2: 'tercer periodo',
+  3: 'final'
 };
 
-const RegisterCalendar = ({
-  nextStep,
-  previousStep
-}: RegisterCalendarProps) => {
-  const [progressBarState, setProgressBarState] = React.useState(0);
-  const [eventObj, setEventObj] = useState([]);
-  const [title, setTitle] = useState(titles[0]);
-  const max = 3;
-  const min = 0;
+const periods: Title = {
+  0: 'first',
+  1: 'second',
+  2: 'third',
+  3: 'fourth'
+};
 
-  const handleNextStep = () => {
-    if (progressBarState === max) {
-      nextStep();
-    } else {
+const max = 3;
+const min = 0;
+
+const RegisterCalendar = React.memo(
+  ({ nextStep, previousStep }: RegisterCalendarProps) => {
+    const [progressBarState, setProgressBarState] = React.useState(0);
+
+    const states: State = {
+      0: useAppSelector(selectFirstPeriod),
+      1: useAppSelector(selectSecondPeriod),
+      2: useAppSelector(selectThirdPeriod),
+      3: []
+    };
+    const [title, setTitle] = useState(titles[0]);
+    const [eventObj, setEventObj] = useState<Period[]>([]);
+    const dispatch = useAppDispatch();
+
+    // funcion que cambia el color de la celda.
+    const changeColorOfCell = (cell: any) => {
+      cell.style.background = '#039BE5';
+      cell.style.border = 'none';
+    };
+
+    React.useEffect(() => {
+      const paintCells = (cells: any) => {
+        cells.forEach((cell: any) => {
+          changeColorOfCell(document.getElementById(cell.id));
+        });
+      };
+
+      if (progressBarState === max) {
+        nextStep();
+      }
+
+      const newData = states[progressBarState];
+      setEventObj(newData);
+
+      setTimeout(() => {
+        paintCells(newData);
+      }, 100);
+      // paintCells(eventObj);
+    }, [progressBarState]);
+
+    // funcion que cambia el color de la celda.
+    const resetColorOfCell = (cell: any) => {
+      cell.style.background = 'none';
+      cell.style.border = '1px solid #f1f1f1';
+    };
+
+    const clearCells = () => {
+      if (eventObj) {
+        eventObj.forEach((cell: any) => {
+          resetColorOfCell(document.getElementById(cell.id));
+        });
+      }
+    };
+
+    const handleNextStep = () => {
+      clearCells();
+
+      dispatch(
+        setPeriod({ period: eventObj, name: periods[progressBarState] })
+      );
+
       setProgressBarState(progressBarState + 1);
       setTitle(titles[progressBarState + 1]);
-      setEventObj([]);
-    }
-  };
+    };
 
-  const handlePreviousStep = () => {
-    if (progressBarState === min) {
-      previousStep();
-    } else {
-      setProgressBarState(progressBarState - 1);
-      setTitle(titles[progressBarState - 1]);
-    }
-  };
-  // const back = () => {
-  //   if (progressBarState > min) {
-  //     setProgressBarState(progressBarState - 1);
-  //   } else {
-  //     setProgressBarState(progressBarState);
-  //   }
-  // };
+    const handlePreviousStep = () => {
+      clearCells();
 
-  // const next = () => {
-  //   if (progressBarState < max) {
-  //     setProgressBarState(progressBarState + 1);
-  //   } else {
-  //     setProgressBarState(progressBarState);
-  //   }
-  // };
-  return (
-    <div className={styles.container}>
-      <div className={styles.calendar}>
-        <h3 className={styles.title}>
-          Selecciona tu horario para el <strong> {title} </strong>
-        </h3>
-        <MyCalendar eventObj={eventObj} setEventObj={setEventObj} />
-      </div>
-      <div className={styles.buttons}>
-        <div className={RegisterStyle.completed}>
-          <div className={RegisterStyle.box}>
-            <p className={RegisterStyle.per}> Completado </p>
-            <div className={RegisterStyle.barDiv}>
-              <ProgressBar progress={progressBarState} />
+      dispatch(
+        setPeriod({ period: eventObj, name: periods[progressBarState] })
+      );
+      if (progressBarState === min) {
+        previousStep();
+      } else {
+        setProgressBarState(progressBarState - 1);
+        setTitle(titles[progressBarState - 1]);
+      }
+    };
+
+    return (
+      <div className={styles.container}>
+        <div className={styles.calendar}>
+          <div className={styles.header}>
+            <h3 className={styles.title}>
+              Selecciona tus horarios disponibles del <strong> {title} </strong>
+            </h3>
+            <div
+              className={styles.icon}
+              onMouseEnter={() =>
+                toast(
+                  'Da click y arrastra para seleccionar tu horario. ¡Recuerda seleccionar al menos 5 horas!',
+                  {
+                    icon: '😊'
+                  }
+                )
+              }
+            >
+              <i className="bi bi-info-circle" />
             </div>
-            <p className={RegisterStyle.estatus}>
-              {progressBarState} / {max}
-            </p>
           </div>
 
-          <div className={RegisterStyle.buttons}>
-            <ButtonTemplate onClick={handlePreviousStep} variant="secondary">
-              ANTERIOR
-            </ButtonTemplate>
-            <ButtonTemplate onClick={handleNextStep} variant="primary">
-              SIGUIENTE
-            </ButtonTemplate>
+          <MyCalendar
+            eventObj={eventObj}
+            setEventObj={setEventObj}
+            resetColorOfCell={resetColorOfCell}
+            changeColorOfCell={changeColorOfCell}
+          />
+        </div>
+        <div className={styles.buttons}>
+          <div className={RegisterStyle.completed}>
+            <div className={RegisterStyle.box}>
+              <p className={RegisterStyle.per}> Completado </p>
+              <div className={RegisterStyle.barDiv}>
+                <ProgressBar progress={progressBarState} />
+              </div>
+              <p className={RegisterStyle.estatus}>
+                {progressBarState} / {max}
+              </p>
+            </div>
+
+            <div className={RegisterStyle.buttons}>
+              <ButtonTemplate
+                onClick={handlePreviousStep}
+                variant="secondary"
+                style={{ marginRight: '7.5px' }}
+              >
+                ANTERIOR
+              </ButtonTemplate>
+              <ButtonTemplate
+                onClick={handleNextStep}
+                variant="primary"
+                style={{ marginLeft: '7.5px' }}
+                disabled={eventObj.length < 5}
+              >
+                SIGUIENTE
+              </ButtonTemplate>
+            </div>
           </div>
         </div>
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default RegisterCalendar;

@@ -5,6 +5,9 @@
   flex-direction: column;
   background-color: #0277bd;
   align-items: center;
+  position: fixed;
+  z-index: 999;
+  overflow: hidden;
 }
 
 .hamburgerMenu {
@@ -91,6 +94,9 @@
   }
   .hamburgerMenu {
     display: flex;
+    z-index: 999;
+    position: absolute;
+    overflow: hidden;
   }
   .pae {
     width: 8vh;
@@ -107,8 +113,9 @@
   }
 
   .dashboard {
-    width: 11vh;
-    height: 11vh;
+    width: 12vh;
+    height: 12vh;
+    z-index: 5;
   }
   .dbImage {
     font-size: 4vh;
@@ -194,6 +201,7 @@
     height: 100vh;
     /* APPLYING TRANSITION TO THE MENU :  */
     transition: all 0.4s ease;
+    overflow: hidden;
   }
   /* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
   .toggler:checked ~ .menu {
@@ -218,5 +226,47 @@
     transition: visibility 0.4s ease;
     transition-delay: 0.1s;
     visibility: visible;
+  }
+
+  @media screen and (max-width: 500px) {
+    .hamburgerMenu {
+      width: 15vw;
+    }
+    .hamburger {
+      width: 45px;
+      height: 45px;
+      padding: 8px;
+    }
+    .pae {
+      width: 7vh;
+      height: 7vh;
+      margin-bottom: 20px;
+    }
+
+    .logoPae {
+      width: 2.5vh;
+    }
+
+    .textPae {
+      font-size: 2vh;
+    }
+
+    .dashboard {
+      width: 9vh;
+      height: 9vh;
+    }
+    .dbImage {
+      font-size: 2.5vh;
+    }
+
+    .dbText {
+      font-size: 1.4vh;
+      margin-top: 1.8vh;
+    }
+    .exit {
+      font-size: 4vh;
+      position: relative;
+      margin-top: 10vh;
+    }
   }
 }

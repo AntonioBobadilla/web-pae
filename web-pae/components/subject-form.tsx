@@ -1,0 +1,74 @@
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import Styles from '../css/components/subject-form.module.css';
+import SubjectAdded from './dialogs/subject-added';
+
+const SubjectForm = () => {
+  const [code, setCode] = useState([]);
+  const [name, setName] = useState([]);
+  const [validUF, setValidUF] = useState(Boolean);
+
+  const isValid = () => {
+    setValidUF(true);
+  };
+
+  const addSubject = (e: any) => {
+    fetch('https://server-pae.azurewebsites.net/subject/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        code,
+        name,
+        semester: 1
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (typeof data.code === 'string') {
+          isValid();
+        } else {
+          console.log(data.code);
+          toast.error(data.code[0]);
+        }
+        e.target.parentElement.childNodes[0].value = '';
+        e.target.parentElement.childNodes[1].value = '';
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const codeChange = (e: any) => {
+    let mycode = e.target.value;
+    mycode = mycode.toUpperCase();
+    e.target.value = mycode;
+    setCode(mycode);
+  };
+  const nameChange = (e: any) => {
+    let myname = e.target.value;
+    myname = myname.toUpperCase();
+    e.target.value = myname;
+    setName(myname);
+  };
+  return (
+    <div className={Styles.main}>
+      <input
+        type="text"
+        placeholder="CLAVE*"
+        className={Styles.input}
+        onChange={codeChange}
+      />
+      <input
+        type="text"
+        placeholder="NOMBRE*"
+        className={Styles.input}
+        onChange={nameChange}
+      />
+      <button className={Styles.button} onClick={() => addSubject(event)}>
+        Agregar
+      </button>
+      <SubjectAdded visible={validUF} setVisible={setValidUF} />
+    </div>
+  );
+};
+
+export default SubjectForm;

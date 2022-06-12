@@ -15,7 +15,10 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/components/$1',
-    '^@/pages/(.*)$': '<rootDir>/pages/$1'
+    '^@/pages/(.*)$': '<rootDir>/pages/$1',
+    '^@/helpers/(.*)$': '<rootDir>/helpers/$1',
+    '^@/hooks/(.*)$': '<rootDir>/hooks/$1',
+    '^@/redux/(.*)$': '<rootDir>/store/reducers/$1'
   }
 };
 

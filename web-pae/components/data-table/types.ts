@@ -1,11 +1,24 @@
 export interface DataTableProps {
-  meetings: Meeting[];
+  meetings: AvailableTutoring[];
+  selectedItem: AvailableTutoring;
+  setSelectedItem: (meeting: AvailableTutoring) => void;
+}
+
+export interface Column {
+  col1: string;
+  col2: string;
+}
+
+export interface AvailableTutoring {
+  isOnline: boolean;
+  period: number;
+  hour: number;
+  tutor: string;
 }
 
 export interface Meeting {
-  isOnline: boolean;
   date: string;
-  hour: number;
+  tutorings: AvailableTutoring[];
 }
 
 export interface Tutoring {
