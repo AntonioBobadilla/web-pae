@@ -142,18 +142,39 @@ const Home = () => {
           </span>
         </div>
         <div className={styles.credits}>
-          <div className={styles.legal}>
-            <span className={styles.creditsTitle}> Legal </span>
-            <span className={styles.creditsTitle}> Legal </span>
-            <span className={styles.creditsTitle}> Legal </span>
+          <div className={styles.sideBlock}>
+            <span className={styles.sideBlockTitle}> Legal </span>
+            <a href="/hacket/developers" className={styles.sideBlockText}>
+              {' '}
+              Desarrolladores{' '}
+            </a>
+            <a href="/hacket/copy-rights" className={styles.sideBlockText}>
+              {' '}
+              Copyright de imágenes{' '}
+            </a>
           </div>
           <div className={styles.logoHacket}>
-            <img className={styles.hacketImg} src="/images/hacket.png" />
+            <a
+              className={styles.logoHacketLink}
+              href="https://github.com/ZukiGA/hacket/wiki"
+            >
+              <img className={styles.hacketImg} src="/images/hacket.png" />
+            </a>
           </div>
-          <div className={styles.credit}>Credits</div>
+          <div className={styles.sideBlock}>
+            <span className={styles.sideBlockTitle}> Credits </span>
+            <a href="/hacket/terms" className={styles.sideBlockText}>
+              {' '}
+              Términos y conidicones{' '}
+            </a>
+            <a href="/hacket/privacy" className={styles.sideBlockText}>
+              {' '}
+              Aviso de privacidad{' '}
+            </a>
+          </div>
         </div>
         <div className={styles.copyrights}>
-          <span>Registrada ® </span>
+          <span>Copyright © 2022 Hacket, Inc. All rights reserved. </span>
         </div>
       </div>
     </div>

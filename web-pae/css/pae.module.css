@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: row;
   position: fixed;
+  z-index: 5;
 }
 .logoContainer {
   height: 100%;
@@ -102,6 +103,7 @@
 .mainImage {
   width: 100%;
   height: 100%;
+  opacity: 0.6;
 }
 .mainText {
   color: white;
@@ -214,22 +216,38 @@
 }
 
 .credits {
-  background-color: yellowgreen;
+  background-color: #f1f1f1;
   width: 100%;
-  height: 45vh;
+  height: 35vh;
   display: flex;
   flex-direction: row;
 }
-.legal {
-  background-color: red;
+.sideBlock {
   width: 25%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: top;
+  align-items: left;
+  margin-left: 10vw;
+}
+.sideBlockTitle {
+  font-size: 30px;
+  font-weight: 300;
+  margin-top: 5vh;
+  color: #0277bd;
+}
+.sideBlockText {
+  font-size: 20px;
+  font-weight: 200;
+  color: #3f3b3b;
+  margin-top: 3vh;
+}
+
+.sideBlockText:hover {
+  text-decoration: underline;
 }
 .logoHacket {
-  background-color: violet;
+  background-color: white;
   width: 50%;
   height: 100%;
   display: flex;
@@ -237,21 +255,27 @@
   justify-content: center;
   align-items: center;
 }
-.hacketImg {
-  border-radius: 10px;
+.logoHacketLink {
   width: 70%;
   height: 50%;
-  background-color: #0277bd;
 }
-.credit {
-  background-color: yellow;
-  width: 25%;
+.hacketImg {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: #0277bd;
+  box-shadow: #3f3b3b 0px 2px 10px;
 }
 
 .copyrights {
   height: 7vh;
   width: 100%;
-  background-color: aquamarine;
+  background-color: #0277bd;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 1225px) {
@@ -356,5 +380,15 @@
     font-size: 20px;
     margin-top: 100px;
     text-align: center;
+  }
+
+  .login {
+    height: 30px;
+    width: 70px;
+  }
+
+  .signup {
+    height: 30px;
+    width: 70px;
   }
 }
