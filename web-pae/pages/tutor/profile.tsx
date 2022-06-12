@@ -1,9 +1,12 @@
+import { TutorObject } from '@/components/card-info-student/types';
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ModifySchedule from '@/components/dialogs/modify-schedule';
 import ModifySubjects from '@/components/dialogs/modify-subjects';
 import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import {
@@ -15,11 +18,9 @@ import {
 import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
 
 const Profile = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<TutorObject>();
   const myUser = {
     id: useAppSelector(selectID),
     name: useAppSelector(selectName),
@@ -28,8 +29,8 @@ const Profile = () => {
     totalHours: '15'
   };
   const progress = {
-    weekHours: 2,
-    totalHours: 50
+    weekHours: 1,
+    totalHours: data?.completed_hours ?? 0
   };
 
   const token = useAppSelector(selectToken);
@@ -58,12 +59,15 @@ const Profile = () => {
     setModifyScheduleVisible(true);
   };
   const getData = () => {
-    fetch(`http://server-pae.azurewebsites.net/tutor/${myUser.id}/`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Token ${token}`
+    fetch(
+      `http://server-pae.azurewebsites.net/tutor/${myUser.id?.toLowerCase()}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Token ${token}`
+        }
       }
-    })
+    )
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)
@@ -109,10 +113,10 @@ const Profile = () => {
           <span className={Styles.progressText}>Progreso de horas totales</span>
           <div className={Styles.hoursContainer}>
             <div className={Styles.bar}>
-              <ProgressBarHours progress={progress.totalHours} total={180} />
+              <ProgressBarHours progress={progress.totalHours} total={60} />
             </div>
             <span className={Styles.progressValue}>
-              {progress.totalHours}/180
+              {progress.totalHours}/60
             </span>
           </div>
         </div>
@@ -155,10 +159,9 @@ const Profile = () => {
 Profile.getLayout = function getLayout(page: ReactElement) {
   const { t } = useTranslation('tutor-profile');
   return <SidebarLayout title={t('My Profile')}>{page}</SidebarLayout>;
-
 };
 
-export async function getStaticProps({ locale }) { 
+export async function getStaticProps({ locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['tutor-profile']))

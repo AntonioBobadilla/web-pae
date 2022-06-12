@@ -1,10 +1,9 @@
 import MyCalendar from '@/components/frontend-calendar-view';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 import styles from '../../css/components/dialogs/modify-password.module.css';
 import registerStyles from '../../css/register.module.css';
 import ClosablePopup from '../closable-popup';
-
 
 type ModifyLanguageProps = {
   visible: boolean;
