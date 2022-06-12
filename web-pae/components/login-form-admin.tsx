@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch } from 'store/hook';
@@ -118,7 +118,7 @@ const LoginFormAdmin = ({
                   rules={{
                     required: 'Matrícula requerida',
                     pattern: {
-                      value: /^([A,a]{1}[0]{1}[0-9]{7}(@tec\.mx)*)/i,
+                      value: /^([A,a,L,l]{1}[0-9]{8}(@tec\.mx)*)/i,
                       message:
                         'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
                     }
