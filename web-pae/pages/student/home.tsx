@@ -37,7 +37,7 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title={t('INICIO')}>{page}</SidebarLayout>;
 };
 
-export async function getStaticProps({ locale }) { 
+export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['student-home']))

@@ -166,7 +166,7 @@ ScheduleTutoring.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title={t('Agendar asesoría')}>{page}</SidebarLayout>;
 };
 
-export async function getStaticProps({ locale }) { 
+export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['student-schedule-tutoring']))

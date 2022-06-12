@@ -76,7 +76,7 @@ const Registration: NextPage = () => {
   );
 };
 
-export async function getStaticProps({ locale }) { 
+export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['student-registration']))
