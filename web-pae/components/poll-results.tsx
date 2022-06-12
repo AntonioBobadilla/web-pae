@@ -1,4 +1,6 @@
+import { selectToken } from '@/redux/user';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import styles from '../css/components/pollResults.module.css';
 
 interface PollResultProps {
@@ -8,12 +10,18 @@ interface PollResultProps {
 const PollResults = ({ curTab }: PollResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  const token = useAppSelector(selectToken);
 
   const getPollsfromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/pollresult/')
+    fetch('https://server-pae.azurewebsites.net/pollresult/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then(function (data) {
-        //console.log(data)
+        // console.log(data)
         setData(data);
         setPending(false);
         console.log(data);
@@ -29,7 +37,7 @@ const PollResults = ({ curTab }: PollResultProps) => {
   return (
     <div className={styles.main}>
       <div className={styles.header}>
-        <div className={styles.empty}></div>
+        <div className={styles.empty} />
         <div className={styles.values}>
           <span className={styles.value}>Totalmente en desacuerdo</span>
           <span className={styles.value}>En desacuerdo</span>

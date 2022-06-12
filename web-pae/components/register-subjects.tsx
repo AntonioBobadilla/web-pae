@@ -32,7 +32,7 @@ const RegisterSubjects = ({
 
   const usefetch = async () => {
     const response = await fetch(
-      'http://server-pae.azurewebsites.net/subject/'
+      'https://server-pae.azurewebsites.net/subject/'
     );
     const data = await response.json();
     // console.log(data);
@@ -73,6 +73,12 @@ const RegisterSubjects = ({
 
   return (
     <div className={styles.wrapper}>
+      <h3
+        className={styles.title}
+        style={{ marginTop: '4vh', fontWeight: 'lighter' }}
+      >
+        Agrega las materias de las que te gustaría dar asesoría.
+      </h3>
       <SearchBar
         handleSuggestions={(subject) => handleSuggestions(subject)}
         suggestions={subjectsFromApi}

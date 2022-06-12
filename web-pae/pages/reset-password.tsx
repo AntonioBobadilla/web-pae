@@ -69,7 +69,7 @@ const ChangePassword: NextPage = () => {
         token,
         new_password: data.newPassword
       },
-      'http://server-pae.azurewebsites.net/changepasswordtoken/'
+      'https://server-pae.azurewebsites.net/changepasswordtoken/'
     )
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);

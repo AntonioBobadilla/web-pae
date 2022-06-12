@@ -4,11 +4,8 @@ import { Router, withRouter } from 'next/router';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
-import { selectRole, selectToken, setLogoutData } from 'store/reducers/user';
+import { selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenuStudent.module.css';
-import ADMIN_ROUTES from '../constants/admin-routes.json';
-import STUDENT_ROUTES from '../constants/student-routes.json';
-import TUTOR_ROUTES from '../constants/tutor-routes.json';
 import Exit from './dialogs/exit';
 
 type ToggleMenuStudentProps = {
@@ -31,7 +28,7 @@ const ToggleMenuStudent = ({
   const logOut = () => {
     // console.log(role);
     setIsLoading(true);
-    post({ token }, 'http://server-pae.azurewebsites.net/logout/')
+    post({ token }, 'https://server-pae.azurewebsites.net/logout/')
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);
       })

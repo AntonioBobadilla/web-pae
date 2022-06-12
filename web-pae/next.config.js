@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
+const { i18n } = require('./next-i18next.config');
+
 const nextConfig = {
   reactStrictMode: true,
-  styledComponents: true
+  styledComponents: true,
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true
+  }
 };
 
 module.exports = {
@@ -24,5 +31,5 @@ module.exports = {
       }
     ];
   },
-  nextConfig
+  nextConfig, i18n
 };

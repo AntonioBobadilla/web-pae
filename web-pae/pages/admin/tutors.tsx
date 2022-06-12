@@ -3,8 +3,10 @@ import DeniedTutee from '@/components/dialogs/denied-tutee';
 import Calendar from '@/components/dialogs/view-calendar-tutee';
 import Tabs from '@/components/tabs';
 import styles from '@/css-admin/tutees.module.css';
+import { selectToken } from '@/redux/user';
 import cx from 'classnames';
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 
 const Tutorings = () => {
@@ -30,6 +32,7 @@ const Tutorings = () => {
   const [currentTab, setCurrentTab] = useState<any>('');
   const removeDuplicates = (arr: any) =>
     arr.filter((item: any, index: any) => arr.indexOf(item) === index);
+  const token = useAppSelector(selectToken);
 
   useEffect(() => {
     if (confirmDelete == true) del();
@@ -65,7 +68,12 @@ const Tutorings = () => {
   };
 
   const getTuteesFromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/tutor/')
+    fetch('https://server-pae.azurewebsites.net/tutor/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         setPending(false);
@@ -99,9 +107,12 @@ const Tutorings = () => {
   };
 
   const acceptTutee = (id: any) => {
-    fetch(`http://server-pae.azurewebsites.net/tutorisaccepted/${id}`, {
+    fetch(`https://server-pae.azurewebsites.net/tutorisaccepted/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({ is_accepted: true })
     })
       .then((res) => {
@@ -127,9 +138,12 @@ const Tutorings = () => {
   };
 
   const del = () => {
-    fetch(`http://server-pae.azurewebsites.net/tutor/${TuteeIdToDelete}`, {
+    fetch(`https://server-pae.azurewebsites.net/tutor/${TuteeIdToDelete}`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {

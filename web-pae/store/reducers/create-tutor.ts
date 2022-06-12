@@ -86,7 +86,7 @@ export const registerTutor = createAsyncThunk(
           }))
         ]
       },
-      'http://server-pae.azurewebsites.net/tutor/'
+      'https://server-pae.azurewebsites.net/tutor/'
     );
   }
 );
@@ -136,13 +136,13 @@ export const createTutorSlice = createSlice({
       const { schedule } = state;
 
       switch (name) {
-        case 'firstPeriod':
+        case 'first':
           schedule.firstPeriod = period;
           break;
-        case 'secondPeriod':
+        case 'second':
           schedule.secondPeriod = period;
           break;
-        case 'thirdPeriod':
+        case 'third':
           schedule.thirdPeriod = period;
           break;
         default:

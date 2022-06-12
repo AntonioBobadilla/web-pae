@@ -1,13 +1,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
+import Link from 'next/link';
 import ButtonTemplate from '../components/button-template';
 import ToggleButton from '../components/toggle-button';
 import styles from '../css/register.module.css';
 
 const Register: NextPage = () => {
   const router = useRouter();
+  const [selectableEn, setSelectableEn] = useState(true);
+  const [selectableEs, setSelectableEs] = useState(true);
 
   const studentHandle = () => {
     router.push('/student/registration');
@@ -16,7 +19,14 @@ const Register: NextPage = () => {
   const tutorHandle = () => {
     router.push('/tutor/registration');
   };
-
+  const changeLanguageEn = () => {
+    setSelectableEn(true);
+    setSelectableEs(false);
+  };
+  const changeLanguageEs = () => {
+    setSelectableEs(true);
+    setSelectableEn(false);
+  };
   return (
     <div>
       <Head>
@@ -59,10 +69,20 @@ const Register: NextPage = () => {
               </div>
               <h2 className={styles.language}>Idioma / Language</h2>
               <div className={styles.languageOptions}>
-                <div className={styles.toggle}>
+                <div
+                  className={
+                    selectableEs ? styles.toggle : styles.nonSelectable
+                  }
+                  onClick={changeLanguageEs}
+                >
                   <ToggleButton flagType="/images/mxflag.png" desc="Español" />
                 </div>
-                <div className={styles.toggle}>
+                <div
+                  className={
+                    selectableEn ? styles.toggle : styles.nonSelectable
+                  }
+                  onClick={changeLanguageEn}
+                >
                   <ToggleButton flagType="/images/usaflag.png" desc="English" />
                 </div>
               </div>

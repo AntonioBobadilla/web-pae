@@ -1,9 +1,11 @@
 import ButtonTemplate from '@/components/button-template';
 import history from '@/css-admin/history.module.css';
 import styles from '@/css-admin/tutees.module.css';
+import { selectToken } from '@/redux/user';
 import cx from 'classnames';
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import CsvDownload from 'react-json-to-csv';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 
 const History = () => {
@@ -11,9 +13,15 @@ const History = () => {
 
   const [data, setData] = useState<any>([]);
   const [csvObj, setCsvObj] = useState<any>([]);
+  const token = useAppSelector(selectToken);
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/tutoring/')
+    fetch('https://server-pae.azurewebsites.net/tutoring/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)
@@ -34,19 +42,17 @@ const History = () => {
           date: any;
           hour: any;
         }[] = [];
-    const utf8 = require('utf8');
     data.map((item: any, index: any) => {
-      const tutorName = utf8.encode(
-        item.tutor != null ? item.tutor.name : 'no hay tutor'
-      );
-      const studentName = utf8.encode(
-        item.student != null ? item.student.name : 'no hay estudiante'
-      );
-      const subjectName = utf8.encode(
-        item.subject != null ? item.subject.name : 'no hay materia'
-      );
-      const date = utf8.encode(item.date != null ? item.date : 'no hay fecha');
-      const hour = utf8.encode(item.hour != null ? item.hour : 'no hay hora');
+      const tutorName = item.tutor != null ? item.tutor.name : 'no hay tutor';
+
+      const studentName =
+        item.student != null ? item.student.name : 'no hay estudiante';
+
+      const subjectName =
+        item.subject != null ? item.subject.name : 'no hay materia';
+
+      const date = item.date != null ? item.date : 'no hay fecha';
+      const hour = item.hour != null ? item.hour : 'no hay hora';
 
       const obj = { tutorName, studentName, subjectName, date, hour };
 

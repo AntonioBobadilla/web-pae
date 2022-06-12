@@ -1,7 +1,8 @@
+import { selectToken } from '@/redux/user';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
-import consts from "react-elastic-carousel";
+import { useAppSelector } from 'store/hook';
 import styles from '../css/components/pollIndividualResults.module.css';
 
 interface IndividualResultProps {
@@ -11,8 +12,15 @@ interface IndividualResultProps {
 const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+
+  const token = useAppSelector(selectToken);
   const getPollsfromApi = () => {
-    fetch('http://server-pae.azurewebsites.net/poll/')
+    fetch('https://server-pae.azurewebsites.net/poll/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)

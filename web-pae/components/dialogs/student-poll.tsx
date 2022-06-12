@@ -1,6 +1,6 @@
+import pStyles from '../../css/components/dialogs/studentPoll.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
-import pStyles from '../../css/components/dialogs/studentPoll.module.css';
 import Poll from '../poll';
 
 type StudentPollProps = {
@@ -20,7 +20,7 @@ const StudentPoll = ({ visible, setVisible }: StudentPollProps) => {
     >
       <div className={pStyles.questions}>
         <div className={pStyles.options}>
-          <div className={pStyles.empty}></div>
+          <div className={pStyles.empty} />
           <div className={pStyles.text}>
             <p className={pStyles.value}>Totalmente en desacuerdo</p>
             <p className={pStyles.value}>En desacuerdo</p>
@@ -29,13 +29,13 @@ const StudentPoll = ({ visible, setVisible }: StudentPollProps) => {
           </div>
         </div>
         {questions.map(function (obj) {
-          return <Poll key={obj.id} question={obj.poll} name={obj.id}></Poll>;
+          return <Poll key={obj.id} question={obj.poll} name={obj.id} />;
         })}
         <textarea
           placeholder="Comentarios"
           maxLength={250}
           className={pStyles.comment}
-        ></textarea>
+        />
         <div className={pStyles.button}>
           <ButtonTemplate variant="confirm">Enviar</ButtonTemplate>
         </div>

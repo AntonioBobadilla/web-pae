@@ -6,7 +6,7 @@ export type ModifyPasswordData = {
 async function changePassword(data: ModifyPasswordData, token: string) {
   try {
     const response = await fetch(
-      'http://server-pae.azurewebsites.net/changepassword/',
+      'https://server-pae.azurewebsites.net/changepassword/',
       {
         method: 'PATCH',
         headers: {

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import ForgotPasswordPopup from '../../components/forgot-password-popup';
 import PasswordConfirmationPopup from '../../components/password-confirmation-popup';
 import styles from '../../css/student/forgot-password.module.css';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; //traductor pagina principal
 
 const ForgotPassword: NextPage = () => {
   const [emailSent, setEmailSent] = useState(false);
@@ -24,5 +25,13 @@ const ForgotPassword: NextPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ locale }) { //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['student-forgot-password']))
+    }
+  };
+}
 
 export default ForgotPassword;

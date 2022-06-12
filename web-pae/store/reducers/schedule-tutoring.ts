@@ -54,7 +54,8 @@ export const getAvailableTutorings = createAsyncThunk(
   async (arg, thunkAPI) => {
     const { getState } = thunkAPI;
     const {
-      scheduleTutoring: { subject }
+      scheduleTutoring: { subject },
+      user: { token }
     } = getState() as RootState;
 
     const date = new Date();
@@ -63,7 +64,8 @@ export const getAvailableTutorings = createAsyncThunk(
       fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
         },
         body: JSON.stringify(data),
         cache: 'no-cache',
@@ -81,7 +83,7 @@ export const getAvailableTutorings = createAsyncThunk(
           date.getDate() + 15
         }`
       },
-      'http://server-pae.azurewebsites.net/availabletutoring/'
+      'https://server-pae.azurewebsites.net/availabletutoring/'
     );
   }
 );
@@ -106,7 +108,10 @@ export const reserveTutoring = createAsyncThunk(
     formData.append('hour', selectedItem.hour.toString());
     formData.append('is_online', selectedItem.isOnline.valueOf().toString());
     formData.append('topic', title);
-    formData.append('doubt', content);
+
+    if (content !== '') {
+      formData.append('doubt', content);
+    }
     if (file !== null) {
       formData.append('file', file);
     }
@@ -125,7 +130,7 @@ export const reserveTutoring = createAsyncThunk(
         // mode: 'cors'
       });
 
-    return post(formData, 'http://server-pae.azurewebsites.net/tutoring/');
+    return post(formData, 'https://server-pae.azurewebsites.net/tutoring/');
   }
 );
 
