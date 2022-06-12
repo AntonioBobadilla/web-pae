@@ -177,6 +177,9 @@
   padding-left: 50px;
   color: #e00013;
 }
+.de:hover {
+  cursor: pointer;
+}
 
 .body {
   height: 10%;

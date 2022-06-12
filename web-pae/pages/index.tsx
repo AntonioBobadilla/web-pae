@@ -150,7 +150,7 @@ const Home = () => {
             </a>
             <a href="/hacket/copy-rights" className={styles.sideBlockText}>
               {' '}
-              Copyright de imágenes{' '}
+              Derechos de autor de imágenes{' '}
             </a>
           </div>
           <div className={styles.logoHacket}>
@@ -169,7 +169,7 @@ const Home = () => {
             </a>
             <a href="/hacket/privacy" className={styles.sideBlockText}>
               {' '}
-              Aviso de privacidad{' '}
+              Política de privacidad{' '}
             </a>
           </div>
         </div>
