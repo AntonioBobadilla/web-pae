@@ -414,12 +414,11 @@ const Tutorings = () => {
 
 // Add sidebar layout
 Tutorings.getLayout = function getLayout(page: ReactElement) {
-  const { t } = useTranslation('admin-home');
+  const { t } = useTranslation('admin-tutorings-requests');
   return <SidebarLayout title={t('Tutoring requests')}>{page}</SidebarLayout>;
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {
-
   //traductor pagina principal
   return {
     props: {
