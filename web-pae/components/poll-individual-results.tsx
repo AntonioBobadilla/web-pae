@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 import styles from '../css/components/pollIndividualResults.module.css';
@@ -10,6 +11,8 @@ interface IndividualResultProps {
 const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  const { t } = useTranslation('admin-polls');
+
   const getPollsfromApi = () => {
     fetch('https://server-pae.azurewebsites.net/poll/')
       .then((resp) => resp.json())
@@ -61,10 +64,10 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
               <div className={styles.header}>
                 <div className={styles.empty} />
                 <div className={styles.values}>
-                  <span className={styles.value}>Totalmente en desacuerdo</span>
-                  <span className={styles.value}>En desacuerdo</span>
-                  <span className={styles.value}>De acuerdo</span>
-                  <span className={styles.value}>Totalmente de acuerdo</span>
+                  <span className={styles.value}>{t('Totally disagree')}</span>
+                  <span className={styles.value}>{t('Disagree')}</span>
+                  <span className={styles.value}>{t('Agree')}</span>
+                  <span className={styles.value}>{t('Totally agree')}</span>
                 </div>
               </div>
               <div className={styles.pollMap}>

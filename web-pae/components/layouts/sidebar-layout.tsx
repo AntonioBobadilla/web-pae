@@ -13,7 +13,7 @@ import styles from '../../css/components/layouts/sidebarLayout.module.css';
 import Exit from '../dialogs/exit';
 import withAuthentication from '../navigation/with-authentication';
 import SideBar from '../sidebar';
-import { useTranslation } from 'next-i18next'; 
+import { useTranslation } from 'next-i18next';
 
 type LayoutProps = {
   router: Router;

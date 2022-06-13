@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import styles from '../css/components/editPolls.module.css';
 import DeleteQuestion from './dialogs/delete-question';
@@ -13,6 +14,7 @@ const EditPolls = () => {
   const [popUp, setPopUp] = useState(false);
   const [popUp2, setPopUp2] = useState(false);
   const [id, setId] = useState(null);
+  const { t } = useTranslation('admin-polls');
 
   const modifyQuestion = (e: any) => {
     visiblePopUp2();
@@ -198,7 +200,7 @@ const EditPolls = () => {
       <div className={add ? styles.questionInput : styles.hidden}>
         <input
           type="text"
-          placeholder="Introduzca la nueva pregunta"
+          placeholder={t('Enter new question')}
           onChange={questionChange}
           className={styles.inputText}
         />

@@ -1,0 +1,22 @@
+{
+  "There is no code": "no hay clave",
+  "There is no name": "no hay nombre",
+  "There is no subject with such code": "*Lo sentimos, no existe una unidad de formación con esta clave.*",
+  "There is no subject with such name": "*Lo sentimos, no existe una unidad de formación con este nombre.*",
+  "It is impossible to do this search": "  *No es posible realizar esta búsqueda, por favor intenta buscar la Unidad de Formación solo por clave o solo por nombre*",
+  "CODE*": "CLAVE*",
+  "NAME*": "NOMBRE*",
+  "IT IS NOT POSSIBLE TO WRITE IN THIS FIELD": "NO ES POSIBLE ESCRIBIR EN ESTE CAMPO",
+  "Subjects": "Unidades de Formación",
+  "Add subject": "Agregar Unidad de Formación",
+  "Loading data": "Cargando datos...",
+  "Code": "Clave",
+  "Name": "Nombre",
+  "Delete": "Eliminar",
+  "Search": "Buscar",
+  "Manage subjects": "ADMINISTRAR UNIDADES DE FORMACIÓN",
+  "Are you sure": "¿Está seguro de que desea eliminar esta materia?",
+  "Cancel": "Cancelar",
+  "Yes, delete": "Sí eliminar",
+  "Add": "Agregar"
+}

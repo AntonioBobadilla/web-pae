@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import Styles from '../css/components/subject-form.module.css';
@@ -7,6 +8,7 @@ const SubjectForm = () => {
   const [code, setCode] = useState([]);
   const [name, setName] = useState([]);
   const [validUF, setValidUF] = useState(Boolean);
+  const { t } = useTranslation('admin-subjects');
 
   const isValid = () => {
     setValidUF(true);
@@ -53,18 +55,18 @@ const SubjectForm = () => {
     <div className={Styles.main}>
       <input
         type="text"
-        placeholder="CLAVE*"
+        placeholder={t('CODE*')}
         className={Styles.input}
         onChange={codeChange}
       />
       <input
         type="text"
-        placeholder="NOMBRE*"
+        placeholder={t('NAME*')}
         className={Styles.input}
         onChange={nameChange}
       />
       <button className={Styles.button} onClick={() => addSubject(event)}>
-        Agregar
+        {t('Add')}
       </button>
       <SubjectAdded visible={validUF} setVisible={setValidUF} />
     </div>
