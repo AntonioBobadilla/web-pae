@@ -88,22 +88,22 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
                     <div className={styles.choices}>
                       <input
                         type="radio"
-                        checked={item2.result === '1'}
+                        checked={item2.result === 1}
                         className={styles.radio}
                       />
                       <input
                         type="radio"
-                        checked={item2.result === '2'}
+                        checked={item2.result === 2}
                         className={styles.radio}
                       />
                       <input
                         type="radio"
-                        checked={item2.result === '3'}
+                        checked={item2.result === 3}
                         className={styles.radio}
                       />
                       <input
                         type="radio"
-                        checked={item2.result === '4'}
+                        checked={item2.result === 4}
                         className={styles.radio}
                       />
                     </div>

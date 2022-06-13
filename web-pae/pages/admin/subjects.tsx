@@ -28,7 +28,6 @@ const Subjects = () => {
   const { t } = useTranslation('admin-subjects');
   const token = useAppSelector(selectToken);
 
-
   const UFButton = () => {
     setCurrentTab('UF');
     getData();
@@ -215,6 +214,7 @@ const Subjects = () => {
           throw Error('could not make POST request for that endpoint');
         } else if (res.status == 204) {
           notVisiblePopUp();
+          window.location.reload();
           getData();
         }
         return res.json();
@@ -336,8 +336,10 @@ const Subjects = () => {
                 <span className={styles.name}>{t('Name')}</span>
                 <span className={styles.delete}>{t('Delete')}</span>
               </div>
-              <div className={styles.bodyContainer}>
-                {conditionalRendering()}
+              <div className={styles.quickfix}>
+                <div className={styles.bodyContainer}>
+                  {conditionalRendering()}
+                </div>
               </div>
 
               <DeleteAdmin
@@ -360,7 +362,6 @@ Subjects.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {
-
   //traductor pagina principal
   return {
     props: {

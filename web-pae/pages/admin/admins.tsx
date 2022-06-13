@@ -132,31 +132,33 @@ const Subject = () => {
                 <span className={styles.email}>Correo electrónico</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
-              {data.map(function (item: any, index) {
-                let adminId =
-                  item.registration_number != null
-                    ? item.registration_number
-                    : 'no hay clave';
-                let adminName = item.name != null ? item.name : 'no hay nombre';
-                let adminEmail = () => {
-                  if (item.email == null) {
-                    return 'no hay correo';
-                  }
-                  return item.email;
-                };
-
-                return (
-                  <div className={styles.body}>
-                    <span className={styles.clave}>{adminId}</span>
-                    <span className={styles.name}>{adminName}</span>
-                    <span className={styles.email}>{adminEmail()}</span>
-                    <i
-                      className={cx('bi bi-trash', styles.de)}
-                      onClick={() => checkItemState(item.registration_number)}
-                    />
-                  </div>
-                );
-              })}
+              <div className={styles.adminsContainer}>
+                {data.map(function (item: any, index) {
+                  let adminId =
+                    item.registration_number != null
+                      ? item.registration_number
+                      : 'no hay clave';
+                  let adminName =
+                    item.name != null ? item.name : 'no hay nombre';
+                  let adminEmail = () => {
+                    if (item.email == null) {
+                      return 'no hay correo';
+                    }
+                    return item.email;
+                  };
+                  return (
+                    <div className={styles.body}>
+                      <span className={styles.clave}>{adminId}</span>
+                      <span className={styles.name}>{adminName}</span>
+                      <span className={styles.email}>{adminEmail()}</span>
+                      <i
+                        className={cx('bi bi-trash', styles.de)}
+                        onClick={() => checkItemState(item.registration_number)}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
               <DeleteAdmin
                 visible={popUp}
                 setVisible={setPopUp}

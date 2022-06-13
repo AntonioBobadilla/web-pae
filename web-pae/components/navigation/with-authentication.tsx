@@ -15,6 +15,7 @@ const withAuthentication = (WrappedComponent: React.ComponentType<any>) => {
 
     const publicPaths = useMemo(
       () => [
+        '/',
         '/login',
         '/forgot-password',
         '/registration',

@@ -68,10 +68,10 @@ const Profile = () => {
         });
 
         newData.sort((a, b) => {
-          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
             return -1;
           }
-          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
             return 1;
           }
           return 0;
