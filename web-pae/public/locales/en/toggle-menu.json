@@ -1,7 +1,9 @@
 {
-    "Modify schedule" : "Modify schedule",
-    "Modify subjects" : "Modify subjects",
-    "Modify password" : "Modify password",
-    "Language" : "Language",
-    "Sign out" : "Sign out"
+  "Modify schedule": "Modify schedule",
+  "Modify Schedule": "Modify Schedule",
+  "Modify subjects": "Modify subjects",
+  "Modify password": "Modify password",
+  "Language": "Language",
+  "Sign out": "Sign out",
+  "SAVE": "SAVE"
 }

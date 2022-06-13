@@ -11,7 +11,7 @@ import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
+import { useTranslation } from 'next-i18next';
 
 const Profile = () => {
   const [data, setData] = useState([]);
@@ -85,9 +85,7 @@ const Profile = () => {
       </div>
       <div className={Styles.progress}>
         <div className={Styles.weekHours}>
-          <span className={Styles.progressText}>
-            {t('Weekly Progress')}
-          </span>
+          <span className={Styles.progressText}>{t('Weekly Progress')}</span>
           <div className={Styles.hoursContainer}>
             <div className={Styles.bar}>
               <ProgressBarHours progress={progress.weekHours} total={5} />
@@ -145,13 +143,15 @@ const Profile = () => {
 Profile.getLayout = function getLayout(page: ReactElement) {
   const { t } = useTranslation('tutor-profile');
   return <SidebarLayout title={t('My Profile')}>{page}</SidebarLayout>;
-
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['tutor-profile',  'tutor-profile']))
+      ...(await serverSideTranslations(locale, [
+        'toggle-menu',
+        'tutor-profile'
+      ]))
     }
   };
 }

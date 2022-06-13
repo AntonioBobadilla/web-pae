@@ -7,7 +7,7 @@ import { selectRole, selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenu.module.css';
 import Exit from './dialogs/exit';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
+import { useTranslation } from 'next-i18next';
 
 type ToggleMenuProps = {
   router: Router;
@@ -145,7 +145,10 @@ const ToggleMenu = ({
 export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['toggle-menu']))
+      ...(await serverSideTranslations(locale, [
+        'toggle-menu',
+        'assigned-tutoring'
+      ]))
     }
   };
 }

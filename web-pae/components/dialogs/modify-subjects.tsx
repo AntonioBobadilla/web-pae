@@ -5,8 +5,7 @@ import registerStyles from '../../css/register.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import SearchBar from '../search-bar';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
+import { useTranslation } from 'next-i18next';
 
 type ModifyLanguageProps = {
   visible: boolean;
@@ -164,7 +163,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
       </div>
       <div className={styles.button}>
         <ButtonTemplate variant="confirm" onClick={() => onClickSave()}>
-        {t('SAVE')}
+          {t('SAVE')}
         </ButtonTemplate>
       </div>
     </ClosablePopup>
