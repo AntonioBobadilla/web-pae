@@ -10,7 +10,6 @@ import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
 
-import { useTranslation } from 'next-i18next';
 
 
 interface ForgotPasswordPopupProps {

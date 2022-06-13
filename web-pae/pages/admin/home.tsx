@@ -2,8 +2,9 @@ import React, { ReactElement } from 'react';
 import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/home.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 
 const Home = () => {
   const { t } = useTranslation('admin-home');
@@ -66,7 +67,8 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title={t('HOME')}>{page}</SidebarLayout>;
 };
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }: { locale: any }) {
+
   //traductor pagina principal
   return {
     props: {

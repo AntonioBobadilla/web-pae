@@ -418,7 +418,8 @@ Tutorings.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title={t('Tutoring requests')}>{page}</SidebarLayout>;
 };
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }: { locale: any }) {
+
   //traductor pagina principal
   return {
     props: {

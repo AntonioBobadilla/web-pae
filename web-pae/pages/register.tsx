@@ -105,7 +105,8 @@ const Register: NextPage = () => {
   );
 };
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }: { locale: any }) {
+
   //traductor pagina principal
   return {
     props: {
