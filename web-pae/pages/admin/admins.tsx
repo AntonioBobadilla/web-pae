@@ -148,13 +148,16 @@ const Subject = () => {
 
                 return (
                   <div className={styles.body}>
-                    <span className={styles.clave}>{adminId}</span>
-                    <span className={styles.name}>{adminName}</span>
-                    <span className={styles.email}>{adminEmail()}</span>
-                    <i
-                      className={cx('bi bi-trash', styles.de)}
-                      onClick={() => checkItemState(item.registration_number)}
-                    />
+                    <div className={styles.row}>
+                      {' '}
+                      <span className={styles.clave}>{adminId}</span>
+                      <span className={styles.name}>{adminName}</span>
+                      <span className={styles.email}>{adminEmail()}</span>
+                      <i
+                        className={cx('bi bi-trash', styles.de)}
+                        onClick={() => checkItemState(item.registration_number)}
+                      />
+                    </div>
                   </div>
                 );
               })}
@@ -179,7 +182,6 @@ Subject.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {
-
   //traductor pagina principal
   return {
     props: {
