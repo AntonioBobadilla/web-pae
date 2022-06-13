@@ -151,7 +151,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     }
   };
 
-  const { t } = useTranslation('tutor-profile');
+  const { t } = useTranslation('toggle-menu');
 
   return (
     <ClosablePopup

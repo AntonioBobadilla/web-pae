@@ -2,6 +2,9 @@ import cx from 'classnames';
 import React, { useEffect, useState } from 'react';
 import styles from '../css/components/calendar-full.module.css';
 import Cell from './frontend-calendar-cellComponent';
+import styles from '../../css/student/forgot-password.module.css';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'; 
 
 interface MyCalendarProps {
   schedulesToShow: any,
@@ -127,18 +130,18 @@ const CalendarMax = ({
     }
   };
 
-
+  const { t } = useTranslation('assigned-tutoring');
   return (
     <div className={styles.wrapper}>
       <table className={cx(styles.table, styles.border)}>
         <thead className={styles.tableHead}>
           <tr className={styles.border}>
             <th className={styles.heading} style={{'color':'transparent'}}>xxxxxxxxx</th>
-            <th className={styles.heading}>Lunes</th>
-            <th className={styles.heading}>Martes</th>
-            <th className={styles.heading}>Miercoles</th>
-            <th className={styles.heading}>Jueves</th>
-            <th className={styles.heading}>Viernes</th>
+            <th className={styles.heading}>{t('Monday')}</th>
+            <th className={styles.heading}>{t('Tuesday')}</th>
+            <th className={styles.heading}>{t('Wednesday')}</th>
+            <th className={styles.heading}>{t('Thursday')}</th>
+            <th className={styles.heading}>{t('Friday')}</th>
           </tr>
         </thead>
         <tbody>
@@ -251,5 +254,13 @@ const CalendarMax = ({
     </div>
   );
 };
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+    }
+  };
+}
+
 
 export default CalendarMax;
