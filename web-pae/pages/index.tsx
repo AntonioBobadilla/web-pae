@@ -1,8 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
-import ButtonTemplate from '../components/button-template';
 import styles from '../css/pae.module.css';
 
 const Home = () => {
@@ -29,18 +28,18 @@ const Home = () => {
             <img className={styles.logo} src="/images/logo.png" />
           </div>
           <div className={styles.sections}>
-            <a href="#qs" className={styles.section}>
-              {' '}
-              Quiénes somos{' '}
-            </a>
-            <a href="#cf" className={styles.section}>
-              {' '}
-              Cómo funciona{' '}
-            </a>
-            <a href="#ubi" className={styles.section}>
-              {' '}
-              Ubicación{' '}
-            </a>
+            <Link href="#qs">
+              <a className={styles.section}> Quiénes somos </a>
+            </Link>
+            <Link href="#cf">
+              <a href="#cf" className={styles.section}>
+                {' '}
+                Cómo funciona{' '}
+              </a>
+            </Link>
+            <Link href="#ubi">
+              <a className={styles.section}> Ubicación </a>
+            </Link>
           </div>
           <div className={styles.buttons}>
             <div className={styles.btn}>
@@ -144,33 +143,31 @@ const Home = () => {
         <div className={styles.credits}>
           <div className={styles.sideBlock}>
             <span className={styles.sideBlockTitle}> Legal </span>
-            <a href="/hacket/developers" className={styles.sideBlockText}>
-              {' '}
-              Desarrolladores{' '}
-            </a>
-            <a href="/hacket/copy-rights" className={styles.sideBlockText}>
-              {' '}
-              Derechos de autor de imágenes{' '}
-            </a>
+            <Link href="/hacket/developers">
+              <a className={styles.sideBlockText}> Desarrolladores </a>
+            </Link>
+            <Link href="/hacket/copy-rights">
+              <a className={styles.sideBlockText}>
+                {' '}
+                Derechos de autor de imágenes{' '}
+              </a>
+            </Link>
           </div>
           <div className={styles.logoHacket}>
-            <a
-              className={styles.logoHacketLink}
-              href="https://github.com/ZukiGA/hacket/wiki"
-            >
-              <img className={styles.hacketImg} src="/images/hacket.png" />
-            </a>
+            <Link href="https://github.com/ZukiGA/hacket/wiki">
+              <a className={styles.logoHacketLink}>
+                <img className={styles.hacketImg} src="/images/hacket.png" />
+              </a>
+            </Link>
           </div>
           <div className={styles.sideBlock}>
             <span className={styles.sideBlockTitle}> Credits </span>
-            <a href="/hacket/terms" className={styles.sideBlockText}>
-              {' '}
-              Términos y conidicones{' '}
-            </a>
-            <a href="/hacket/privacy" className={styles.sideBlockText}>
-              {' '}
-              Política de privacidad{' '}
-            </a>
+            <Link href="/hacket/terms">
+              <a className={styles.sideBlockText}> Términos y conidicones </a>
+            </Link>
+            <Link href="/hacket/privacy">
+              <a className={styles.sideBlockText}> Política de privacidad </a>
+            </Link>
           </div>
         </div>
         <div className={styles.copyrights}>

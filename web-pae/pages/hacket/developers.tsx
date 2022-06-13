@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React from 'react';
+import Link from 'next/link';
 import styles from '../../css/hacket/developers.module.css';
 
 const Developers = () => {
@@ -15,22 +15,18 @@ const Developers = () => {
           <img className={styles.logo} src="/images/hacket.png" />
         </div>
         <div className={styles.sections}>
-          <a href="/hacket/developers" className={styles.section}>
-            {' '}
-            Desarrolladores{' '}
-          </a>
-          <a href="/hacket/copy-rights" className={styles.section}>
-            {' '}
-            Derechos de autor{' '}
-          </a>
-          <a href="/hacket/terms" className={styles.section}>
-            {' '}
-            Términos y conidicones{' '}
-          </a>
-          <a href="/hacket/privacy" className={styles.section}>
-            {' '}
-            Política de privacidad{' '}
-          </a>
+          <Link href="/hacket/developers">
+            <a className={styles.section}> Desarrolladores </a>
+          </Link>
+          <Link href="/hacket/copy-rights">
+            <a className={styles.section}> Derechos de autor </a>
+          </Link>
+          <Link href="/hacket/terms">
+            <a className={styles.section}> Términos y conidicones </a>
+          </Link>
+          <Link href="/hacket/privacy">
+            <a className={styles.section}> Política de privacidad </a>
+          </Link>
         </div>
       </div>
       <div className={styles.page}>

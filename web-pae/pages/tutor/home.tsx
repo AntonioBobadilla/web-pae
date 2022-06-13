@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; //translate the text
+import { ReactElement } from 'react';
 import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/tutor/home.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; //translate the text
 
 const Home = () => (
   <div className={styles.cards}>
@@ -28,7 +28,7 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title="Inicio">{page}</SidebarLayout>;
 };
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }: { locale: any }) {
   //translate
   return {
     props: {

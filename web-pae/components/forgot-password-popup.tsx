@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import post from 'helpers/post';
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import styles from '../css/components/forgot-password-popup.module.css';
 import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
-import { useTranslation } from 'next-i18next'; 
 
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
@@ -124,7 +124,5 @@ const ForgotPasswordPopup = ({
     </Popup>
   );
 };
-
-
 
 export default ForgotPasswordPopup;

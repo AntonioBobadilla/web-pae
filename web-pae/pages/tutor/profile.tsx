@@ -161,7 +161,7 @@ Profile.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title={t('My Profile')}>{page}</SidebarLayout>;
 };
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['tutor-profile']))
