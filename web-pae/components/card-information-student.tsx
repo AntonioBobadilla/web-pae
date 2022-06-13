@@ -1,3 +1,4 @@
+import formatTime from '@/helpers/format-time';
 import formatDate from 'helpers/format-date';
 import CardInfoStu from './card-info-student';
 import { Tutoring } from './card-info-student/types';
@@ -7,7 +8,7 @@ const CardInformationStu = ({ historystu }: { historystu: Tutoring[] }) => {
     <>
       {historystu.map((history) => (
         <CardInfoStu
-          date={formatDate(history.date)}
+          date={formatDate(history.date) + ' ' + formatTime(history.hour)}
           subject={history.subject === null ? '-' : history.subject.name}
           topic={history.topic}
           location={history.place}

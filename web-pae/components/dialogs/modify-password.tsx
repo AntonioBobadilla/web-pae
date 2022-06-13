@@ -101,20 +101,12 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
         <div className={formStyles.input}>
           <Password
             name="newPassword"
-            type="password"
             placeholder={t('NUEVA CONTRASEÑA*')}
             control={control}
             error={errors.newPassword}
             rules={{
               required: t('Contraseña requerida'),
-              minLength: { value: 8, message: t('Contraseña muy corta') },
-              pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
-                message: t(
-                  'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
-                )
-              }
+              minLength: { value: 8, message: t('Contraseña muy corta') }
             }}
           />
         </div>
