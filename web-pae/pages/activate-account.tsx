@@ -27,7 +27,7 @@ const ActivateAccount = () => {
           setTimeout(() => push(`/${role}/login`), 1000);
         } else {
           // toast error
-          toast.error(message);
+          toast.error('Invalid token or email already verified');
         }
         setIsLoading(false);
       } catch (err) {
