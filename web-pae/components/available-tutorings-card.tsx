@@ -2,6 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 import availableTutStyle from '../css/components/availableTutoringsCard.module.css';
 import ButtonTemplate from './button-template';
+import { useTranslation } from 'next-i18next';  // add this
 
 const IsLink = (props: { location: string }) => {
   const { location } = props;
@@ -24,19 +25,23 @@ const ItsLink = (props: { location: string }) => {
   return false;
 };
 
+
+
 function AvailableTutCard(props: {
   date: string;
   time: string;
   location: string;
   nextStep: () => void;
 }) {
+const { t } = useTranslation('student-schedule-tutoring'); // add this
+
   const { date } = props; // descomposición del objeto props
   const { time } = props;
   const { location, nextStep } = props;
 
   return (
     <div className={availableTutStyle.box}>
-      <span className={availableTutStyle.title}>Fecha seleccionada</span>
+      <span className={availableTutStyle.title}>{t('Fecha seleccionada')}</span>
 
       <div className={availableTutStyle.components}>
         <div className={availableTutStyle.date}>
@@ -59,7 +64,7 @@ function AvailableTutCard(props: {
       <div className={availableTutStyle.btnctn}>
         <div className={availableTutStyle.btn}>
           <ButtonTemplate onClick={() => nextStep()} variant="primary">
-            CONFIRMAR HORARIO
+            {t('CONFIRMAR HORARIO')}
           </ButtonTemplate>
         </div>
       </div>

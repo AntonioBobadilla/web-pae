@@ -1,0 +1,22 @@
+{
+  "There is no code": "there is no code",
+  "There is no name": "there is no name",
+  "There is no subject with such code": "*We are sorry, there is no subject with such code*",
+  "There is no subject with such name": "*We are sorry, there is no subject with such name*",
+  "It is impossible to do this search": "*It is impossible to do this search, please try searching the subject just by code or just by name*",
+  "CODE*": "CODE*",
+  "NAME*": "NAME*",
+  "IT IS NOT POSSIBLE TO WRITE IN THIS FIELD": "IT IS NOT POSSIBLE TO WRITE IN THIS FIELD",
+  "Subjects": "Subjects",
+  "Add subject": "Add subject",
+  "Loading data": "Loading data...",
+  "Code": "Code",
+  "Name": "Name",
+  "Delete": "Delete",
+  "Search": "Search",
+  "Manage subjects": "Manage subjects",
+  "Are you sure": "Are you sure you want to delete this subject",
+  "Cancel": "Cancel",
+  "Yes, delete": "Yes, delete",
+  "Add": "Add"
+}

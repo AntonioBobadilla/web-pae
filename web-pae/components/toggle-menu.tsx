@@ -24,6 +24,7 @@ const ToggleMenu = ({
   onClickModifySubjects,
   onClickModifySchedule
 }: ToggleMenuProps) => {
+  const { t } = useTranslation('student-profile'); // add this
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();

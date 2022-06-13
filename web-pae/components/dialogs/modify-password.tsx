@@ -9,6 +9,7 @@ import styles from '../../css/components/dialogs/modify-password.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import TextInput from '../text-input';
+import { useTranslation } from 'next-i18next';  // add this
 
 type ModifyPasswordProps = {
   visible: boolean;
@@ -22,6 +23,7 @@ const modifyPasswordDefaultValue = {
 };
 
 const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
+  const { t } = useTranslation('student-profile'); // add this
   const [isLoading, setIsLoading] = useState(false);
   const token = useAppSelector(selectToken);
   const {
@@ -76,7 +78,7 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
 
   return (
     <ClosablePopup
-      title="Modificar contraseña"
+      title={t('Modificar contraseña')}
       line
       visible={visible}
       style={styles.container}
@@ -87,17 +89,17 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
           <TextInput
             name="currentPassword"
             type="password"
-            placeholder="CONTRASEÑA ACTUAL*"
+            placeholder={t('CONTRASEÑA ACTUAL*')}
             control={control}
             error={errors.currentPassword}
             rules={{
-              required: 'Contraseña requerida',
-              minLength: { value: 8, message: 'Contraseña muy corta' },
+              required: t('Contraseña requerida'),
+              minLength: { value: 8, message: t('Contraseña muy corta') },
               pattern: {
                 value:
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
                 message:
-                  'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
+                  t('Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial')
               }
             }}
           />
@@ -106,17 +108,17 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
           <TextInput
             name="newPassword"
             type="password"
-            placeholder="NUEVA CONTRASEÑA*"
+            placeholder= {t('NUEVA CONTRASEÑA*')}
             control={control}
             error={errors.newPassword}
             rules={{
-              required: 'Contraseña requerida',
-              minLength: { value: 8, message: 'Contraseña muy corta' },
+              required: t('Contraseña requerida'),
+              minLength: { value: 8, message: t('Contraseña muy corta') },
               pattern: {
                 value:
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
                 message:
-                  'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
+                   t('Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial') 
               }
             }}
           />
@@ -125,11 +127,11 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
           <TextInput
             name="passwordConfirmation"
             type="password"
-            placeholder="CONFIRMAR CONTRASEÑA*"
+            placeholder={t('CONFIRMAR CONTRASEÑA*')}
             control={control}
             error={errors.passwordConfirmation}
             rules={{
-              required: 'Confirmación de contraseña requerida',
+              required: t('Confirmación de contraseña requerida'),
               validate: (value) => value === getValues().newPassword
             }}
           />
@@ -141,7 +143,7 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
             loading={isLoading}
             type="submit"
           >
-            GUARDAR
+            {t('GUARDAR')}
           </ButtonTemplate>
         </div>
       </form>

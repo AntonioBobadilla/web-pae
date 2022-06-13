@@ -3,6 +3,7 @@ import styles from '../../css/components/dialogs/modify-password.module.css';
 import stylesModalidad from '../../css/components/dialogs/edit-modalidad.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
+import { useTranslation } from 'next-i18next';
 
 type ModifyLanguageProps = {
   visible: boolean;
@@ -12,10 +13,16 @@ type ModifyLanguageProps = {
   setNewPlace: any;
 };
 
-const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewPlace }: ModifyLanguageProps) => {
-
-    const [option, setOption] = useState<any>('');
-    const [place, setPlace] = useState<any>(modalidad.lugar);
+const EditModalidad = ({
+  visible,
+  setVisible,
+  modalidad,
+  setNewModalidad,
+  setNewPlace
+}: ModifyLanguageProps) => {
+  const [option, setOption] = useState<any>('');
+  const [place, setPlace] = useState<any>(modalidad.lugar);
+  const { t } = useTranslation('admin-tutorings-requests');
 
   const onClickSave = () => {
     setVisible(false);
@@ -23,8 +30,8 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
 
   const changePlaceholder = (value: any) => {
     let input: any = document.querySelector('#input');
-    if (value == "En línea"){
-        input.placeholder = "ZOOM ID:";
+    if (value == 'En línea') {
+      input.placeholder = 'ZOOM ID:';
     } else {
       input.placeholder = 'AULA:';
     }
@@ -49,7 +56,7 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
 
   return (
     <ClosablePopup
-      title="Modalidad"
+      title={t('Modality')}
       line
       visible={visible}
       style={stylesModalidad.container}
@@ -66,7 +73,7 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
               onChange={handleChange}
               defaultChecked={modalidad.forma == 'En línea' ? true : false}
             />
-            <p className={stylesModalidad.text}>En línea</p>
+            <p className={stylesModalidad.text}>{t('Online')}</p>
           </div>
           <div className={stylesModalidad.radioOption}>
             <input
@@ -77,7 +84,7 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
               onChange={handleChange}
               defaultChecked={modalidad.forma == 'Presencial' ? true : false}
             />
-            <p className={stylesModalidad.text}>Presencial</p>
+            <p className={stylesModalidad.text}>{t('Face-to-face')}</p>
           </div>
         </div>
         <input
@@ -90,7 +97,7 @@ const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewP
         />
         <div className={stylesModalidad.button}>
           <ButtonTemplate variant="confirm" onClick={sendData}>
-            GUARDAR
+            {t('SAVE')}
           </ButtonTemplate>
         </div>
       </div>

@@ -1,0 +1,16 @@
+{
+  "Results": "Resultados",
+  "Individual results": "Resultados individuales",
+  "Edit polls": "Editar encuestas",
+  "Polls": "Encuestas",
+  "Enter new question": "Introduzca la nueva pregunta",
+  "Are your sure": "¿Esta seguro que quiere eliminar la pregunta? Una vez eliminada desaparecerá de todas las encuestas donde se usó",
+  "Cancel": "Cancelar",
+  "Yes, delete": "Sí, eliminar",
+  "Are you sure modify": "¿Esta seguro que quiere modificar la pregunta? Una vez modificada todas las encuestas donde se usó tendran las respuestas anteriores con la nueva pregunta",
+  "Understood": "Entendido",
+  "Totally disagree": "Totalmente en desacuerdo",
+  "Disagree": "En desacuerdo",
+  "Agree": "De acuerdo",
+  "Totally agree": "Totalmente de acuerdo"
+}

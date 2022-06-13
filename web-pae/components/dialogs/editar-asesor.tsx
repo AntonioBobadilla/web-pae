@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import editAsesorStyles from '../../css/components/dialogs/edit-asesor.module.css';
 import ButtonTemplate from '../button-template';
@@ -23,7 +24,7 @@ const EditAsesor = ({
   const [asesorActual, setAsesorActual] = useState<any>('');
   const [asesoresDisponibles, setAsesoresDisponibles] = useState<any>([]);
   const [pending, setPending] = useState<any>(true);
-
+  const { t } = useTranslation('admin-tutorings-requests');
   const onClickSave = () => {
     setVisible(false);
   };
@@ -102,7 +103,7 @@ const EditAsesor = ({
   };
   return (
     <ClosablePopup
-      title="Otros asesores disponibles"
+      title={t('Other available tutors')}
       line
       visible={visible}
       style={editAsesorStyles.container}
@@ -112,12 +113,12 @@ const EditAsesor = ({
         <div id="wrapper" className={editAsesorStyles.asesores}>
           {pending && (
             <div className={editAsesorStyles.message}>
-              Cargando asesores....
+              {t('Loading tutors')}
             </div>
           )}
           {asesoresDisponibles.length == 0 && !pending && (
             <div className={editAsesorStyles.message}>
-              No hay asesores disponibles para esta asesoria.
+              {t('No available tutors for this tutoring')}
             </div>
           )}
           {asesoresDisponibles.map(function (item: any, index: any) {
@@ -134,7 +135,9 @@ const EditAsesor = ({
                   </div>
                 </div>
                 <div className={editAsesorStyles.asesor_der}>
-                  <p className={editAsesorStyles.textHoras}>Horas totales</p>
+                  <p className={editAsesorStyles.textHoras}>
+                    {t('Total hours')}
+                  </p>
                   <p className={editAsesorStyles.horas}>
                     {item.completed_hours}
                   </p>
@@ -145,7 +148,7 @@ const EditAsesor = ({
         </div>
         <div className={editAsesorStyles.button}>
           <ButtonTemplate variant="confirm" onClick={sendData}>
-            GUARDAR
+            {t('SAVE')}
           </ButtonTemplate>
         </div>
       </div>
