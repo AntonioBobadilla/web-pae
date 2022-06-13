@@ -178,6 +178,10 @@
   padding-left: 55px;
   color: #e00013;
 }
+.de:hover {
+  cursor: pointer;
+}
+
 .tr {
   color: white;
   height: 100%;
@@ -258,4 +262,8 @@
 }
 .button:active {
   scale: 0.9;
+}
+
+.quickfix {
+  margin-top: 8vh;
 }
