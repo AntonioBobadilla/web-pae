@@ -5,6 +5,7 @@ import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import ToggleButton from '../toggle-button';
 import { useTranslation } from 'next-i18next';  // add this
+import Link from 'next/link';
 type ModifyLanguageProps = {
   visible: boolean;
   setVisible: (visible: boolean) => void;
@@ -43,13 +44,21 @@ const ModifyLanguage = ({ visible, setVisible }: ModifyLanguageProps) => {
           className={selectableEs ? styles.toggle : styles.nonSelectable}
           onClick={changeLanguageEs}
         >
-          <ToggleButton flagType="/images/mxflag.png" desc={t('Español')} />
+          <Link href='./profile' locale={"es"}>
+            <a>
+              <ToggleButton flagType="/images/mxflag.png"  desc={t('Español')} />
+            </a>
+          </Link>
         </div>
         <div
           className={selectableEn ? styles.toggle : styles.nonSelectable}
           onClick={changeLanguageEn}
         >
-          <ToggleButton flagType="/images/usaflag.png" desc={t('English')} />
+          <Link href='./profile' locale={"en"}>
+            <a>
+              <ToggleButton flagType="/images/usaflag.png"  desc={t('English')} />
+            </a>
+          </Link>
         </div>
       </div>
 
