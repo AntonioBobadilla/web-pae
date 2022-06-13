@@ -1,4 +1,5 @@
 import ButtonTemplate from '@/components/button-template';
+import Password from '@/components/password';
 import Popup from '@/components/popup';
 import TextInput from '@/components/text-input';
 import formStyles from '@/css-components/registerForm.module.css';
@@ -6,7 +7,7 @@ import styles from '@/css-components/resetPassword.module.css';
 import post from '@/helpers/post';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -83,21 +84,14 @@ const ChangePassword: NextPage = () => {
     <Popup title="Renovación de contraseña" line style={styles.modal}>
       <form className={formStyles.registerForm} onSubmit={onSubmit}>
         <div className={formStyles.input}>
-          <TextInput
+          <Password
             name="newPassword"
-            type="password"
             placeholder="NUEVA CONTRASEÑA*"
             control={control}
             error={errors.newPassword}
             rules={{
               required: 'Contraseña requerida',
-              minLength: { value: 8, message: 'Contraseña muy corta' },
-              pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
-                message:
-                  'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
-              }
+              minLength: { value: 8, message: 'Contraseña muy corta' }
             }}
           />
         </div>
