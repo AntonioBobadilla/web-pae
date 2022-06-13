@@ -1,10 +1,11 @@
-import { TutorObject } from '@/components/card-info-student/types';
+import { Tutoring, TutorObject } from '@/components/card-info-student/types';
 import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ModifySchedule from '@/components/dialogs/modify-schedule';
 import ModifySubjects from '@/components/dialogs/modify-subjects';
 import ProgressBarHours from '@/components/progress-bar/progress-bar-hours';
 import ToggleMenu from '@/components/toggle-menu';
+import createDate from '@/helpers/create-date';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
@@ -19,10 +20,10 @@ import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
 
-
-
 const Profile = () => {
   const [data, setData] = useState<TutorObject>();
+
+  const [history, setHistory] = React.useState<Tutoring[]>([]);
   const myUser = {
     id: useAppSelector(selectID),
     name: useAppSelector(selectName),
@@ -30,12 +31,43 @@ const Profile = () => {
     weekHours: '2',
     totalHours: '15'
   };
+
+  const token = useAppSelector(selectToken);
+
+  useEffect(() => {
+    getData();
+  }, []);
+  useEffect(() => {
+    fetch(
+      `https://server-pae.azurewebsites.net/tutoring/?tutor=${myUser.id?.toLowerCase()}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const newData = [...data];
+        newData.sort((a, b) => {
+          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+            return -1;
+          }
+          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+            return 1;
+          }
+          return 0;
+        });
+        setHistory(newData);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
   const progress = {
     weekHours: 1,
     totalHours: data?.completed_hours ?? 0
   };
 
-  const token = useAppSelector(selectToken);
   const [modifyPasswordVisible, setModifyPasswordVisible] =
     React.useState(false);
   const [modifyLanguageVisible, setModifyLanguageVisible] =
@@ -81,9 +113,6 @@ const Profile = () => {
         console.log(error);
       });
   };
-  useEffect(() => {
-    getData();
-  }, []);
 
   const { t } = useTranslation('tutor-profile');
 
@@ -126,7 +155,7 @@ const Profile = () => {
       </div>
       <p className={Styles.tutorship}>{t('Tutoring')}</p>
       <div className={Styles.cardInfo}>
-        <CardInformation />
+        <CardInformation history={history} />
       </div>
       {modifyPasswordVisible && (
         <ModifyPassword
