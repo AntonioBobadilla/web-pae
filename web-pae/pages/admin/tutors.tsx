@@ -32,7 +32,7 @@ const Tutorings = () => {
   );
   const [typing, setTyping] = useState<any>(false);
   const [currentTab, setCurrentTab] = useState<any>('');
-  const { t } = useTranslation('admin-home');
+  const { t } = useTranslation('admin-tutors');
   const removeDuplicates = (arr: any) =>
     arr.filter((item: any, index: any) => arr.indexOf(item) === index);
   const token = useAppSelector(selectToken);
@@ -666,7 +666,7 @@ const Tutorings = () => {
 
 // Add sidebar layout
 Tutorings.getLayout = function getLayout(page: ReactElement) {
-  const { t } = useTranslation('admin-home');
+  const { t } = useTranslation('admin-tutors');
   return <SidebarLayout title={t('PAE TUTORS')}>{page}</SidebarLayout>;
 };
 

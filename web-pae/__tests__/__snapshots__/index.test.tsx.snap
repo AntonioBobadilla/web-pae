@@ -22,11 +22,9 @@ exports[`Index renders index page unchanged 1`] = `
         >
           <a
             class="section"
-            href="#qs"
+            href="/#qs"
           >
-             
-            Quiénes somos
-             
+             Quiénes somos 
           </a>
           <a
             class="section"
@@ -38,11 +36,9 @@ exports[`Index renders index page unchanged 1`] = `
           </a>
           <a
             class="section"
-            href="#ubi"
+            href="/#ubi"
           >
-             
-            Ubicación
-             
+             Ubicación 
           </a>
         </div>
         <div
@@ -51,20 +47,21 @@ exports[`Index renders index page unchanged 1`] = `
           <div
             class="btn"
           >
-            <div
-              class="btn"
+            <button
+              class="logTutor"
             >
-              <button
-                class="login"
-              >
-                Ingresa
-              </button>
-              <button
-                class="signup"
-              >
-                Regístrate
-              </button>
-            </div>
+              Ingresa Tutor
+            </button>
+            <button
+              class="login"
+            >
+              Ingresa Estudiante
+            </button>
+            <button
+              class="signup"
+            >
+              Regístrate
+            </button>
           </div>
         </div>
       </div>
@@ -273,9 +270,7 @@ exports[`Index renders index page unchanged 1`] = `
             class="sideBlockText"
             href="/hacket/developers"
           >
-             
-            Desarrolladores
-             
+             Desarrolladores 
           </a>
           <a
             class="sideBlockText"
@@ -311,17 +306,13 @@ exports[`Index renders index page unchanged 1`] = `
             class="sideBlockText"
             href="/hacket/terms"
           >
-             
-            Términos y conidicones
-             
+             Términos y conidicones 
           </a>
           <a
             class="sideBlockText"
             href="/hacket/privacy"
           >
-             
-            Política de privacidad
-             
+             Política de privacidad 
           </a>
         </div>
       </div>
