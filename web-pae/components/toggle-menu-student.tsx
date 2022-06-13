@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenuStudent.module.css';
 import Exit from './dialogs/exit';
+import { useTranslation } from 'next-i18next';  // add this
 
 type ToggleMenuStudentProps = {
   onClickModifyPassword: () => void;
@@ -20,6 +21,7 @@ const ToggleMenuStudent = ({
   onClickModifyLanguage,
   router
 }: ToggleMenuStudentProps) => {
+  const { t } = useTranslation('student-profile'); // add this
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();
@@ -76,7 +78,7 @@ const ToggleMenuStudent = ({
                 onClick={() => onClickModifyPassword()}
                 tabIndex={-1}
               >
-                Modificar contraseña
+                {t('Modificar contraseña')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -86,7 +88,7 @@ const ToggleMenuStudent = ({
                 onClick={() => onClickModifyLanguage()}
                 tabIndex={-1}
               >
-                Modificar idioma
+                {t('Modificar idioma')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -96,7 +98,7 @@ const ToggleMenuStudent = ({
                 onClick={() => handleLogOut()}
                 tabIndex={-1}
               >
-                Cerrar sesión
+                {t('Cerrar sesión')}
               </span>
             </li>
           </ul>

@@ -10,10 +10,12 @@ import toast from 'react-hot-toast';
 import CsvDownload from 'react-json-to-csv';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const History = () => {
   const [currentTab, setCurrentTab] = useState<any>('');
-
+  const { t } = useTranslation('admin-history');
   const [data, setData] = useState<any>([]);
   const [csvObj, setCsvObj] = useState<any>([]);
   const token = useAppSelector(selectToken);
@@ -81,16 +83,17 @@ const History = () => {
           hour: any;
         }[] = [];
     data.map((item: any, index: any) => {
-      const tutorName = item.tutor != null ? item.tutor.name : 'no hay tutor';
+      const tutorName =
+        item.tutor != null ? item.tutor.name : t('There is no tutor');
 
       const studentName =
-        item.student != null ? item.student.name : 'no hay estudiante';
+        item.student != null ? item.student.name : t('There is no student');
 
       const subjectName =
-        item.subject != null ? item.subject.name : 'no hay materia';
+        item.subject != null ? item.subject.name : t('There is no subject');
 
-      const date = item.date != null ? item.date : 'no hay fecha';
-      const hour = item.hour != null ? item.hour : 'no hay hora';
+      const date = item.date != null ? item.date : t('There is no date');
+      const hour = item.hour != null ? item.hour : t('There is no hour');
 
       const obj = { tutorName, studentName, subjectName, date, hour };
 
@@ -110,30 +113,31 @@ const History = () => {
 
   return (
     <div className={history.main}>
-      <button className={history.Mainbutton}>Asesorías solicitadas</button>
+      <button className={history.Mainbutton}>{t('Requested tutorings')}</button>
       <table className={styles.tableRequest}>
         <thead>
           <tr className={cx(styles.headRow, styles.tr)}>
-            <th className={styles.head}>Asesor</th>
-            <th className={styles.head}>Alumno</th>
-            <th className={styles.head}>Materia solicitada</th>
-            <th className={styles.head}>Fecha</th>
-            <th className={styles.head}>Hora</th>
-            <th className={styles.head}>Status</th>
+            <th className={styles.head}>{t('Tutor')}</th>
+            <th className={styles.head}>{t('Student')}</th>
+            <th className={styles.head}>{t('Requested subject')}</th>
+            <th className={styles.head}>{t('Date')}</th>
+            <th className={styles.head}>{t('Hour')}</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item: any, index: any) => {
             const tutorName =
-              item.tutor != null ? item.tutor.name : 'no hay tutor';
+              item.tutor != null ? item.tutor.name : t('There is no tutor');
             const studentName =
-              item.student != null ? item.student.name : 'no hay estudiante';
+              item.student != null
+                ? item.student.name
+                : t('There is no student');
             const subjectName =
-              item.subject != null ? item.subject.name : 'no hay materia';
-            const date = item.date != null ? item.date : 'no hay fecha';
-            const hour = item.hour != null ? item.hour : 'no hay hora';
-            const status = item.status != null ? item.status : 'no hay status';
-
+              item.subject != null
+                ? item.subject.name
+                : t('There is no subject');
+            const date = item.date != null ? item.date : t('There is no date');
+            const hour = item.hour != null ? item.hour : t('There is no hour');
             return (
               <tr className={styles.tr}>
                 <td className={styles.td}>
@@ -184,7 +188,21 @@ const History = () => {
 
 // Add sidebar layout
 History.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Historial de asesorías">{page}</SidebarLayout>;
+  const { t } = useTranslation('admin-history');
+  return <SidebarLayout title={t('Tutoring records')}>{page}</SidebarLayout>;
 };
+
+export async function getStaticProps({ locale }: { locale: any }) {
+
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-history',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
 
 export default History;

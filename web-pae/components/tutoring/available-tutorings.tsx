@@ -16,6 +16,8 @@ import AvailableTutCard from '../available-tutorings-card';
 import DailyBar from '../dailybar';
 import DataTable from '../data-table/data-table';
 import { AvailableTutoring } from '../data-table/types';
+import { useTranslation } from 'next-i18next';  // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 
 const initialState = {
   isOnline: false,
@@ -34,6 +36,7 @@ const AvailableTutorings = ({
 
   // const dispatch = useAppDispatch();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
 
   // const [date, setDate] = React.useState<string>(meetings[0].date);
   const date = useAppSelector(selectDate);
@@ -95,7 +98,7 @@ const AvailableTutorings = ({
     <div className={AvailableStyles.page}>
       <div className={AvailableStyles.top}>
         <span className={AvailableStyles.title}>
-          Elige el día que quieres tu asesoría
+          {t('Elige el día que quieres tu asesoría')}
         </span>
         <div className={AvailableStyles.dailybar}>
           {meetings.length > 0 && (
@@ -128,7 +131,7 @@ const AvailableTutorings = ({
               <AvailableTutCard
                 date={formatDate(date)}
                 time={formatTime(selectedItem.hour)}
-                location={selectedItem.isOnline ? 'Virtual' : 'Presencial'}
+                location={selectedItem.isOnline ? t('Virtual') : t('Presencial')}
                 nextStep={nextStep}
               />
             )}

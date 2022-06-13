@@ -10,6 +10,8 @@ import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
 
+
+
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
   loginUrl: string;
@@ -93,10 +95,10 @@ const ForgotPasswordPopup = ({
             control={control}
             error={errors.email}
             rules={{
-              required: 'Correo eléctrónico requerido',
+              required: t('Email required'),
               pattern: {
                 value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
-                message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+                message: t('Invalid email. E.g. A0XXXXXXX@tec.mx')
               }
             }}
           />

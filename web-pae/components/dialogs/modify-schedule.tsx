@@ -7,6 +7,8 @@ import styles from '../../css/components/dialogs/modify-schedule.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import MyCalendar from '../frontend-calendar-full';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type ModifyLanguageProps = {
   visible: boolean;
@@ -161,9 +163,11 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     }
   };
 
+  const { t } = useTranslation('toggle-menu');
+
   return (
     <ClosablePopup
-      title="Modificar horario"
+      title={t('Modify Schedule')}
       line
       visible={visible}
       style={styles.container}
@@ -201,7 +205,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
         </Carousel>
         <div className={styles.button}>
           <ButtonTemplate variant="confirm" onClick={updateSchedule}>
-            GUARDAR
+            {t('SAVE')}
           </ButtonTemplate>
         </div>
       </div>
@@ -209,4 +213,14 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'assigned-tutoring',
+        'toggle-menu'
+      ]))
+    }
+  };
+}
 export default ModifySchedule;

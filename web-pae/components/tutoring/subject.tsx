@@ -6,11 +6,15 @@ import { selectSubject, setSubject } from 'store/reducers/schedule-tutoring';
 import ButtonTemplate from '../button-template';
 import SearchBar, { Subject } from '../search-bar';
 
+import { useTranslation } from 'next-i18next';  // add this
+
+
 const TutoringSubject = ({
   handleNextStep
 }: {
   handleNextStep: () => void;
 }) => {
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
   const subject = useAppSelector(selectSubject);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((state) => state.scheduleTutoring.isLoading);
@@ -47,7 +51,7 @@ const TutoringSubject = ({
         suggestions={subjectsFromApi}
       />
       <div className={styles.selectedSubjects}>
-        <h2 className={styles.title}>Materia escogida</h2>
+        <h2 className={styles.title}>{t('Materia escogida')}</h2>
         <div className={styles.values}>
           {subject && (
             <div
@@ -75,7 +79,7 @@ const TutoringSubject = ({
           onClick={handleNextStep}
           loading={isLoading}
         >
-          BUSCAR ASESORÍAS
+          {t('BUSCAR ASESORÍAS')}
         </ButtonTemplate>
       </div>
     </div>

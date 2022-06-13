@@ -15,7 +15,7 @@ const Login: NextPage = () => (
 export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['tutor-login']))
+      ...(await serverSideTranslations(locale, ['tutor-login',  'tutor-profile']))
     }
   };
 }

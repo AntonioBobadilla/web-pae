@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { selectToken } from '@/redux/user';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
@@ -10,6 +11,7 @@ interface PollResultProps {
 const PollResults = ({ curTab }: PollResultProps) => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  const { t } = useTranslation('admin-polls');
   const token = useAppSelector(selectToken);
 
   const getPollsfromApi = () => {
@@ -39,10 +41,10 @@ const PollResults = ({ curTab }: PollResultProps) => {
       <div className={styles.header}>
         <div className={styles.empty} />
         <div className={styles.values}>
-          <span className={styles.value}>Totalmente en desacuerdo</span>
-          <span className={styles.value}>En desacuerdo</span>
-          <span className={styles.value}>De acuerdo</span>
-          <span className={styles.value}>Totalmente de acuerdo</span>
+          <span className={styles.value}>{t('Totally disagree')}</span>
+          <span className={styles.value}>{t('Disagree')}</span>
+          <span className={styles.value}>{t('Agree')}</span>
+          <span className={styles.value}>{t('Totally agree')}</span>
         </div>
       </div>
       <div className={styles.questionContainer}>

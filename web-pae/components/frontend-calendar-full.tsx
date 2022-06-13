@@ -2,6 +2,8 @@ import cx from 'classnames';
 import { useState } from 'react';
 import styles from '../css/components/calendar-full.module.css';
 import Cell from './frontend-calendar-cellComponent';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 interface MyCalendarProps {
   schedulesToShow: any;
@@ -17,6 +19,8 @@ const CalendarMax = ({
   setEventObj
 }: MyCalendarProps) => {
   const [loop, setLoop] = useState<any>(false);
+
+  const { t } = useTranslation('assigned-tutoring');
 
   setTimeout(() => {
     if (schedulesToShow.length != 0 && loop == false) {
@@ -139,11 +143,11 @@ const CalendarMax = ({
             <th className={styles.heading} style={{ color: 'transparent' }}>
               xxxxxxxxx
             </th>
-            <th className={styles.heading}>Lunes</th>
-            <th className={styles.heading}>Martes</th>
-            <th className={styles.heading}>Miercoles</th>
-            <th className={styles.heading}>Jueves</th>
-            <th className={styles.heading}>Viernes</th>
+            <th className={styles.heading}>{t('Monday')}</th>
+            <th className={styles.heading}>{t('Tuesday')}</th>
+            <th className={styles.heading}>{t('Wednesday')}</th>
+            <th className={styles.heading}>{t('Thursday')}</th>
+            <th className={styles.heading}>{t('Friday')}</th>
           </tr>
         </thead>
         <tbody>
@@ -256,5 +260,12 @@ const CalendarMax = ({
     </div>
   );
 };
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+    }
+  };
+}
 
 export default CalendarMax;

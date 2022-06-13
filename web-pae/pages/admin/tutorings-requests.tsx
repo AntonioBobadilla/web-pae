@@ -6,6 +6,8 @@ import styles from '@/css-admin/tutees.module.css';
 import tutorintstyles from '@/css-components/tutoring-requests.module.css';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hook';
@@ -34,6 +36,8 @@ const Tutorings = () => {
   const [day, setDay] = useState<any>('');
   const [hour, setHour] = useState<any>('');
   const [subject, setSubject] = useState<any>('');
+
+  const { t } = useTranslation('admin-tutorings-requests');
 
   const getDataFromApi = () => {
     fetch('https://server-pae.azurewebsites.net/tutoring/?status=PE', {
@@ -91,7 +95,7 @@ const Tutorings = () => {
       })
       .then((data) => {
         console.log('ok');
-        toast('Asesor actualizado', {
+        toast(t('Tutor updated'), {
           icon: '😄'
         });
         getDataFromApi();
@@ -128,7 +132,7 @@ const Tutorings = () => {
         return res.json();
       })
       .then((data) => {
-        toast('Modalidad actualizada', {
+        toast(t('Modality updated'), {
           icon: '✅'
         });
         getDataFromApi();
@@ -191,7 +195,7 @@ const Tutorings = () => {
           throw Error('could not make POST request for that endpoint');
         } else if (res.status === 200) {
           getDataFromApi();
-          toast('Asesoría rechazada', {
+          toast('Tutoring rejected', {
             icon: '✅'
           });
         }
@@ -226,7 +230,7 @@ const Tutorings = () => {
         console.log('ok');
         onClickSuccessAcceptTutoring();
 
-        toast('Asesoría aceptada', {
+        toast('Tutoring accepted', {
           icon: '✅'
         });
       })
@@ -241,11 +245,11 @@ const Tutorings = () => {
         <table className={styles.tableRequest}>
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Alumno solicitante</th>
-              <th className={styles.head}>Asesor sugerido</th>
-              <th className={styles.head}>UF solicitada</th>
-              <th className={styles.head}>Horario</th>
-              <th className={styles.head}>Modalidad</th>
+              <th className={styles.head}>{t('Student requesting')}</th>
+              <th className={styles.head}>{t('Suggested tutor')}</th>
+              <th className={styles.head}>{t('Requested subject')}</th>
+              <th className={styles.head}>{t('Schedule')}</th>
+              <th className={styles.head}>{t('Modality')}</th>
               <th className={styles.head} />
             </tr>
           </thead>
@@ -322,13 +326,13 @@ const Tutorings = () => {
                         onClick={() => acceptTutoring(item.id)}
                         className={styles.accept}
                       >
-                        Aceptar asesoría
+                        {t('Accept tutoring')}
                       </button>
                       <button
                         onClick={() => deleteTutoring(item.id)}
                         className={styles.denied}
                       >
-                        Rechazar asesoría
+                        {t('Reject tutoring')}
                       </button>
                     </div>
                   </td>
@@ -345,18 +349,18 @@ const Tutorings = () => {
           <table className={styles.tableRequest}>
             <thead>
               <tr className={cx(styles.headRow, styles.tr)}>
-                <th className={styles.head}>Alumno solicitante</th>
-                <th className={styles.head}>Asesor sugerido</th>
-                <th className={styles.head}>UF solicitada</th>
-                <th className={styles.head}>Horario</th>
-                <th className={styles.head}>Modalidad</th>
+                <th className={styles.head}>{t('Student requesting')}</th>
+                <th className={styles.head}>{t('Suggested tutor')}</th>
+                <th className={styles.head}>{t('Requested subject')}</th>
+                <th className={styles.head}>{t('Schedule')}</th>
+                <th className={styles.head}>{t('Modality')}</th>
                 <th className={styles.head} />
               </tr>
             </thead>
             <tbody />
           </table>
           <p className={tutorintstyles.emptyMessage}>
-            No hay solicitudes disponibles
+            {t('No available tutorings')}
           </p>
         </div>
       );
@@ -366,11 +370,11 @@ const Tutorings = () => {
   return (
     <div className={tutorintstyles.main}>
       <button className={tutorintstyles.Mainbutton}>
-        Asesorías solicitadas
+        {t('Requested tutorings')}
       </button>
       {renderTable()}
 
-      {pending && <div>Cargando datos...</div>}
+      {pending && <div>{t('Loading data')}</div>}
 
       {EditModalidad && (
         <Modalidad
@@ -410,7 +414,21 @@ const Tutorings = () => {
 
 // Add sidebar layout
 Tutorings.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Solicitudes de asesorías">{page}</SidebarLayout>;
+  const { t } = useTranslation('admin-home');
+  return <SidebarLayout title={t('Tutoring requests')}>{page}</SidebarLayout>;
 };
+
+export async function getStaticProps({ locale }: { locale: any }) {
+
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-tutorings-requests',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
 
 export default Tutorings;

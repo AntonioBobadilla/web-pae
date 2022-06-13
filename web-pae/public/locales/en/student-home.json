@@ -1,4 +1,10 @@
 {
+  "Profile": "Profile",
+  "Assigned tutorings": "Assigned tutorings",
+  "Selected subjects" : "Selected subjects",
+  "FINISH REGISTER" : "FINISH REGISTER",
+  "HOME" : "HOME",
   "Perfil": "Profile",
-  "Asesorías asignadas": "Assigned tutorings"
+  "Agendar asesoría": "Schedule tutoring",
+  "INICIO": "HOME"
 }

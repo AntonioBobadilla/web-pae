@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import styles from '../../css/components/dialogs/modify-password.module.css';
 import registerStyles from '../../css/register.module.css';
@@ -12,9 +13,10 @@ const acceptTutoring = ({ visible, setVisible }: ModifyLanguageProps) => {
   const onClickSave = () => {
     setVisible(false);
   };
+  const { t } = useTranslation('admin-tutorings-requests');
   return (
     <ClosablePopup
-      title="Tutoría aceptada"
+      title={t('Tutoring accepted')}
       line
       visible={visible}
       style={styles.container}
@@ -22,7 +24,7 @@ const acceptTutoring = ({ visible, setVisible }: ModifyLanguageProps) => {
     >
       <div className={registerStyles.languageOptions}>
         <h3 style={{ marginBottom: '50px', textAlign: 'center' }}>
-          La asesoría fue aceptada. Los alumnos serán notificados{' '}
+          {t('Tutoring was accepted')}
         </h3>
       </div>
     </ClosablePopup>

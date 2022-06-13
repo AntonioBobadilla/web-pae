@@ -1,0 +1,18 @@
+{
+    "FULL NAME*": "NOMBRE COMPLETO*",
+    "Full name required": "Nombre completo requerido",
+    "The name must contain at least 3 characters" : "El nombre debe tener al menos 3 caracteres",
+    "INSTITUTIONAL EMAIL*" : "CORREO INSTITUCIONAL*",
+    "Required email" : "Nombre requerido",
+    "Invalid email. E.g. A0XXXXXXX@tec.mx" : "Correo invalido. E.g. A0XXXXXXX@tec.mx",
+    "MAJOR*" : "CARRERA*",
+    "Major required" : "Carrera requerida",
+    "Invalid major. E.g. ARQ, LAD, MEC" : "Carrera invalida. E.g. ARQ, LAD, MEC",
+    "Password required" : "Contraseña requerida",
+    "Password too short" : "Contraseña demasiado corta",
+    "CONFIRM PASSWORD" : "CONFIRMAR CONTRASEÑA",
+    "Password confirmation required" : "La confirmación de la contraseña es requerida",
+    "FINISH REGISTER" : "FINALIAR REGISTRO",
+    "CONTINUE WITH REGISTER" : "CONTINUAR REGISTRO",
+    "Search a formation unit (Code/Name)" : "Busca una unidad de formación (Clave / Nombre)"
+}

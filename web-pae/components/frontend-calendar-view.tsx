@@ -1,6 +1,8 @@
 import cx from 'classnames';
 import styles from '../css/components/calendar-view.module.css';
 import Cell from './frontend-calendar-cellComponentView';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 interface MyCalendarProps {
   changeColorOfCell: (cell: any) => void;
@@ -41,7 +43,7 @@ const MyCalendar = ({
       changeColorOfCell(cell);
     });
   };
-
+  const { t } = useTranslation('assigned-tutoring');
   return (
     <div className={styles.wrapper}>
       <table className={cx(styles.table, styles.border)}>
@@ -50,11 +52,11 @@ const MyCalendar = ({
             <th className={styles.heading} style={{ color: 'transparent' }}>
               xxxxxxxxx
             </th>
-            <th className={styles.heading}>Lunes</th>
-            <th className={styles.heading}>Martes</th>
-            <th className={styles.heading}>Miercoles</th>
-            <th className={styles.heading}>Jueves</th>
-            <th className={styles.heading}>Viernes</th>
+            <th className={styles.heading}>{t('Monday')}</th>
+            <th className={styles.heading}>{t('Tuesday')}</th>
+            <th className={styles.heading}>{t('Wednesday')}</th>
+            <th className={styles.heading}>{t('Thursday')}</th>
+            <th className={styles.heading}>{t('Friday')}</th>
           </tr>
         </thead>
         <tbody>
@@ -167,5 +169,13 @@ const MyCalendar = ({
     </div>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+    }
+  };
+}
 
 export default MyCalendar;

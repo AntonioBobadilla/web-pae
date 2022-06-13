@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import { useTranslation } from 'next-i18next'; //////////translate
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import imageCardStyles from '../css/components/imageCard.module.css';
 
 const ImageCard = (props: {
@@ -15,6 +15,7 @@ const ImageCard = (props: {
   const { path } = props;
   // creo un Stateless Functional Component
   const [isToggled, setIsToggled] = useState(false); //used to store the state of the toggle button
+
   const { t } = useTranslation('student-home'); //////////translate
   const clicked = () => {
     setIsToggled(!isToggled);
