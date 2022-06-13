@@ -18,8 +18,7 @@ import {
 import CardInformation from '../../components/card-information';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/tutor/profile.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
+
 
 
 const Profile = () => {
