@@ -14,9 +14,8 @@ type ModifyLanguageProps = {
 
 const EditModalidad = ({ visible, setVisible, modalidad,setNewModalidad, setNewPlace }: ModifyLanguageProps) => {
 
-    const [option, setOption] = useState<any>('');
+    const [option, setOption] = useState<any>(modalidad.forma);
     const [place, setPlace] = useState<any>(modalidad.lugar);
-
   const onClickSave = () => {
     setVisible(false);
   };
