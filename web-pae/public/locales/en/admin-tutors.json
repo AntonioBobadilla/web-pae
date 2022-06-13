@@ -16,5 +16,12 @@
   "Loading data": "Loading data",
   "PAE TUTORS": "PAE TUTORS",
   "Search": "Search",
-  "NAME*": "NAME*"
+  "NAME*": "NAME*",
+  "Primer periodo": "First period",
+  "Segundo periodo": "Second period",
+  "Tercer periodo": "Third period",
+  "Rejected tutor": "Rejected tutor",
+  "Are you sure to reject": "Are you want to delete this request",
+  "YES": "YES",
+  "NO, CANCEL": "NO, CANCEL"
 }
