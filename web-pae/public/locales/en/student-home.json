@@ -1,8 +1,5 @@
 {
-<<<<<<< HEAD
-  "Profile": "Profile"
-=======
   "Perfil": "Profile",
-  "Asesorías asignadas": "Assigned tutorings"
->>>>>>> 6b1c617113437ae9fa88123f412fbb1b577da722
+  "Agendar asesoría": "Schedule tutoring",
+  "INICIO": "HOME"
 }
