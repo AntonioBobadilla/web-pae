@@ -75,7 +75,7 @@ Profile.getLayout = function getLayout(page: ReactElement) {
 export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['student-profile']))
+      ...(await serverSideTranslations(locale, ['tutor-profile', 'student-profile']))
     }
   };
 }

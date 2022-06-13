@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectRole, selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenu.module.css';
 import Exit from './dialogs/exit';
+import { useTranslation } from 'next-i18next'; 
 
 type ToggleMenuProps = {
   router: Router;
@@ -22,6 +23,7 @@ const ToggleMenu = ({
   onClickModifySubjects,
   onClickModifySchedule
 }: ToggleMenuProps) => {
+  const { t } = useTranslation('student-profile'); // add this
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();
@@ -80,7 +82,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifySchedule()}
                 tabIndex={-1}
               >
-                Modificar horario
+                {t('Modificar horario')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -90,7 +92,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifySubjects()}
                 tabIndex={-1}
               >
-                Modificar materias
+                {t('Modificar materias')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -100,7 +102,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifyPassword()}
                 tabIndex={-1}
               >
-                Modificar contraseña
+                {t('Modificar contraseña')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -110,7 +112,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifyLanguage()}
                 tabIndex={-1}
               >
-                Modificar idioma
+                {t('Modificar idioma')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -120,7 +122,7 @@ const ToggleMenu = ({
                 onClick={() => handleLogOut()}
                 tabIndex={-1}
               >
-                Cerrar sesión
+                {t('Cerrar sesión')}
               </span>
             </li>
           </ul>
