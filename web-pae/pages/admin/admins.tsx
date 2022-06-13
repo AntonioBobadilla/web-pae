@@ -3,8 +3,6 @@ import DeleteAdmin from '@/components/dialogs/delete-admin';
 import Tabs from '@/components/tabs';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
@@ -16,7 +14,6 @@ const Subject = () => {
   const [id, setId] = useState(null);
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
-  const { t } = useTranslation('admin-admins');
   const token = useAppSelector(selectToken);
 
   const AdminButton = () => {
@@ -95,28 +92,30 @@ const Subject = () => {
         <div className={styles.UfTab}>
           <Tabs
             handleClick={AdminButton}
-            text={t('Administrators')}
+            text="Administradores"
             active={currentTab == 'admins' ? true : false}
           />
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddAdminButton}
-            text={t('Add administrator')}
+            text="Agregar Administrador"
             active={currentTab == 'addAdmins' ? true : false}
           />
         </div>
       </div>
 
       <div className={styles.ufContainer}>
-        {pending && <div className={styles.loading}>{t('Loading data')}</div>}
+        {pending && <div className={styles.loading}>Cargando datos...</div>}
         <div
           className={
             currentTab == 'addAdmins' ? styles.addSubject : styles.hidden
           }
         >
           <div className={styles.top}>
-            <span className={styles.description}>{t('Please fill')}</span>
+            <span className={styles.description}>
+              Favor de llenar el formulario con los datos correspondientes
+            </span>
           </div>
           <div className={styles.bottom}>
             <AdminForm />
@@ -128,36 +127,33 @@ const Subject = () => {
           <div className={styles.down}>
             <div className={styles.tableRequest}>
               <div className={styles.headRow}>
-                <span className={styles.clave}>{t('Registration number')}</span>
-                <span className={styles.name}>{t('Name')}</span>
-                <span className={styles.email}>{t('Mail')}</span>
-                <span className={styles.delete}>{t('Delete')}</span>
+                <span className={styles.clave}>Matrícula/Nómina</span>
+                <span className={styles.name}>Nombre</span>
+                <span className={styles.email}>Correo electrónico</span>
+                <span className={styles.delete}>Eliminar</span>
               </div>
               {data.map(function (item: any, index) {
                 let adminId =
                   item.registration_number != null
                     ? item.registration_number
-                    : t('No registration');
-                let adminName = item.name != null ? item.name : t('No name');
+                    : 'no hay clave';
+                let adminName = item.name != null ? item.name : 'no hay nombre';
                 let adminEmail = () => {
                   if (item.email == null) {
-                    return t('No mail');
+                    return 'no hay correo';
                   }
                   return item.email;
                 };
 
                 return (
                   <div className={styles.body}>
-                    <div className={styles.row}>
-                      {' '}
-                      <span className={styles.clave}>{adminId}</span>
-                      <span className={styles.name}>{adminName}</span>
-                      <span className={styles.email}>{adminEmail()}</span>
-                      <i
-                        className={cx('bi bi-trash', styles.de)}
-                        onClick={() => checkItemState(item.registration_number)}
-                      />
-                    </div>
+                    <span className={styles.clave}>{adminId}</span>
+                    <span className={styles.name}>{adminName}</span>
+                    <span className={styles.email}>{adminEmail()}</span>
+                    <i
+                      className={cx('bi bi-trash', styles.de)}
+                      onClick={() => checkItemState(item.registration_number)}
+                    />
                   </div>
                 );
               })}
@@ -177,20 +173,11 @@ const Subject = () => {
 
 // Add sidebar layout
 Subject.getLayout = function getLayout(page: ReactElement) {
-  const { t } = useTranslation('admin-admins');
-  return <SidebarLayout title={t('Manage subjects')}>{page}</SidebarLayout>;
+  return (
+    <SidebarLayout title="ADMINISTRAR UNIDADES DE FORMACIÓN">
+      {page}
+    </SidebarLayout>
+  );
 };
-
-export async function getStaticProps({ locale }: { locale: any }) {
-  //traductor pagina principal
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, [
-        'admin-admins',
-        'tutor-profile'
-      ]))
-    }
-  };
-}
 
 export default Subject;
