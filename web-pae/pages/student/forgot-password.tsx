@@ -26,7 +26,7 @@ const ForgotPassword: NextPage = () => {
   );
 };
 
-export async function getStaticProps({ locale }) { //traductor pagina principal
+export async function getStaticProps({ locale }: { locale: any }) { //traductor pagina principal
   return {
     props: {
       ...(await serverSideTranslations(locale, ['student-forgot-password']))

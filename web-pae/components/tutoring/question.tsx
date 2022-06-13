@@ -9,6 +9,7 @@ import {
 import ButtonTemplate from '../button-template';
 import DragAndDrop from '../drag-and-drop';
 import InputTextArea from '../input-text-area';
+import { useTranslation } from 'next-i18next';  // add this
 
 const TutoringQuestion = ({
   handleNextStep
@@ -24,15 +25,18 @@ const TutoringQuestion = ({
     handleNextStep();
   };
 
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
+
+
   return (
     <div className={qStyles.main}>
       <p className={qStyles.qText}>
-        Ingresa tus dudas de manera específica a tratar en asesoría*
+       {t('Ingresa tus dudas de manera específica a tratar en asesoría*')}
       </p>
       <div className={qStyles.doubt}>
         <InputTextArea title={title} content={content} />
       </div>
-      <p className={qStyles.qText}>Adjuntar archivo</p>
+      <p className={qStyles.qText}>{t('Adjuntar archivo')}</p>
       <div className={qStyles.dragDrop}>
         <DragAndDrop file={file} />
       </div>
@@ -43,7 +47,7 @@ const TutoringQuestion = ({
           loading={isLoading}
           disabled={isLoading}
         >
-          Agendar Asesoría
+          {t('Agendar Asesoría')}
         </ButtonTemplate>
       </div>
     </div>
