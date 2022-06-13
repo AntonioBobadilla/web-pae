@@ -16,7 +16,7 @@ import ButtonTemplate from './button-template';
 import MyCalendar from './frontend-calendar';
 import ProgressBar from './progress-bar/progress-bar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
+import { useTranslation } from 'next-i18next';
 
 interface RegisterCalendarProps {
   nextStep: () => void;
@@ -48,8 +48,6 @@ const periods: Title = {
 const max = 3;
 const min = 0;
 
-const { t } = useTranslation('assigned-tutoring');
-
 const RegisterCalendar = React.memo(
   ({ nextStep, previousStep }: RegisterCalendarProps) => {
     const [progressBarState, setProgressBarState] = React.useState(0);
@@ -60,6 +58,7 @@ const RegisterCalendar = React.memo(
       2: useAppSelector(selectThirdPeriod),
       3: []
     };
+    const { t } = useTranslation('assigned-tutoring');
     const [title, setTitle] = useState(titles[0]);
     const [eventObj, setEventObj] = useState<Period[]>([]);
     const dispatch = useAppDispatch();
@@ -134,13 +133,16 @@ const RegisterCalendar = React.memo(
         <div className={styles.calendar}>
           <div className={styles.header}>
             <h3 className={styles.title}>
-              {t('Select your avaialability from')}<strong> {title} </strong>
+              {t('Select your avaialability from')}
+              <strong> {title} </strong>
             </h3>
             <div
               className={styles.icon}
               onMouseEnter={() =>
                 toast(
-                  t('Click and drag to select your desired schedule. Remember to select at least 5 hours!'),
+                  t(
+                    'Click and drag to select your desired schedule. Remember to select at least 5 hours!'
+                  ),
                   {
                     icon: '😊'
                   }
@@ -195,7 +197,7 @@ const RegisterCalendar = React.memo(
   }
 );
 
-export async function getStaticProps({ locale }) { 
+export async function getStaticProps({ locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['assigned-tutoring']))
