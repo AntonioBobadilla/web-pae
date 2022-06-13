@@ -13,7 +13,15 @@ const nextConfig = {
   }
 };
 
-module.exports = {
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    runtimeCaching
+  },
+  i18n,
+  otherLanguages: ['es', 'tr'],
+  defaultLanguage: 'es',
+  fallbackLng: ['es'],
   async redirects() {
     return [
       {
@@ -33,15 +41,4 @@ module.exports = {
       }
     ];
   }
-};
-
-module.exports = withPWA({
-  pwa: {
-    dest: 'public',
-    runtimeCaching
-  },
-  i18n,
-  otherLanguages: ['es', 'tr'],
-  defaultLanguage: 'es',
-  fallbackLng: ['es']
 });

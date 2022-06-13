@@ -43,4 +43,5 @@ export interface Tutoring {
   topic: string;
   status: string;
   tutor: Tutor;
+  has_feeback: boolean;
 }

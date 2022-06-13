@@ -122,6 +122,7 @@ const History = () => {
             <th className={styles.head}>{t('Requested subject')}</th>
             <th className={styles.head}>{t('Date')}</th>
             <th className={styles.head}>{t('Hour')}</th>
+            <th className={styles.head}>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -138,6 +139,7 @@ const History = () => {
                 : t('There is no subject');
             const date = item.date != null ? item.date : t('There is no date');
             const hour = item.hour != null ? item.hour : t('There is no hour');
+            const status = item.status != null ? item.status : 'PE';
             return (
               <tr className={styles.tr}>
                 <td className={styles.td}>
@@ -193,7 +195,6 @@ History.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {
-
   //traductor pagina principal
   return {
     props: {
