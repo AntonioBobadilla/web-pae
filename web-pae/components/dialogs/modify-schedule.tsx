@@ -60,6 +60,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         let newArr: any = [];
         data.schedules.map(function (item: any, index: any) {
           let { period, day_week, hour } = item;

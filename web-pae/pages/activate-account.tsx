@@ -1,14 +1,17 @@
+import ButtonTemplate from '@/components/button-template';
 import post from '@/helpers/post';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const ActivateAccount = () => {
   const { query, push } = useRouter();
-  const { token } = query;
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  const verifyEmail = () => {
+    const { token } = query;
+    setIsLoading(true);
     post(
       {
         token
@@ -24,13 +27,15 @@ const ActivateAccount = () => {
           setTimeout(() => push(`/${role}/login`), 1000);
         } else {
           // toast error
-          toast.error(message);
+          toast.error('Invalid token or email already verified');
         }
+        setIsLoading(false);
       } catch (err) {
         toast.error('Algo salió mal');
+        setIsLoading(false);
       }
     });
-  }, []);
+  };
 
   return (
     <div>
@@ -42,8 +47,17 @@ const ActivateAccount = () => {
         width={100}
         height={33}
       />
-      <h1>Verificando cuenta</h1>
-      <h2>Espera un momento...</h2>
+
+      <ButtonTemplate
+        style={{ width: '25%', margin: 'auto', height: '35px' }}
+        variant="primary"
+        onClick={() => verifyEmail()}
+        loading={isLoading}
+        disabled={isLoading}
+      >
+        {!isLoading ? 'Verificar mi cuenta' : 'Verificando...'}
+      </ButtonTemplate>
+
       <Toaster position="top-right" reverseOrder={false} />
     </div>
   );

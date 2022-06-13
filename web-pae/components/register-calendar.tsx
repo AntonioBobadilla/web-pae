@@ -138,7 +138,7 @@ const RegisterCalendar = React.memo(
               className={styles.icon}
               onMouseEnter={() =>
                 toast(
-                  'Da click y arrastra para seleccionar tu horario. ¡Recuerda seleccionar al menos 5 horas!',
+                  'Da click para seleccionar tu horario. ¡Recuerda seleccionar al menos 5 horas!',
                   {
                     icon: '😊'
                   }
