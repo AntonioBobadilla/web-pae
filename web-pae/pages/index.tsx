@@ -12,6 +12,9 @@ const Home = () => {
     router.push('/register');
   };
 
+  const loginHandleTutor = () => {
+    router.push('../tutor/login');
+  };
   const loginHandle = () => {
     router.push('../student/login');
   };
@@ -44,14 +47,15 @@ const Home = () => {
           </div>
           <div className={styles.buttons}>
             <div className={styles.btn}>
-              <div className={styles.btn}>
-                <button className={styles.login} onClick={loginHandle}>
-                  Ingresa
-                </button>
-                <button className={styles.signup} onClick={registerHandle}>
-                  Regístrate
-                </button>
-              </div>
+              <button className={styles.logTutor} onClick={loginHandleTutor}>
+                Ingresa Tutor
+              </button>
+              <button className={styles.login} onClick={loginHandle}>
+                Ingresa Estudiante
+              </button>
+              <button className={styles.signup} onClick={registerHandle}>
+                Regístrate
+              </button>
             </div>
           </div>
         </div>
