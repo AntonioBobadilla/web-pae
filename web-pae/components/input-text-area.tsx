@@ -4,7 +4,6 @@ import { useAppDispatch } from 'store/hook';
 import { setContent, setTitle } from 'store/reducers/schedule-tutoring';
 import itaStyles from '../css/components/inputTextArea.module.css';
 
-
 type InputTextAreaProps = {
   title: string;
   content: string;
@@ -51,8 +50,7 @@ const InputTextArea = ({ title, content }: InputTextAreaProps) => {
           id="content"
           value={content}
           maxLength={200}
-          placeholder={t('Duda especifica a tratar en asesoria')}
-
+          placeholder={t('Duda especifica a tratar en asesoria*')}
           className={itaStyles.content}
           onChange={handleChange2}
         />
