@@ -46,6 +46,9 @@ const History = () => {
   };
 
   const changeStatus = (id: number, e: any) => {
+    toast('Cambiando estado...', {
+      icon: '✔️'
+    });
     // console.log(e.target.value, id);
     fetch(
       `https://server-pae.azurewebsites.net/updatetutoring/${id}/${e.target.value}`,
