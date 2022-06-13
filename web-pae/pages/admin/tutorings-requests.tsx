@@ -4,11 +4,13 @@ import Modalidad from '@/components/dialogs/edit-modalidad';
 import SeleccionarAsesor from '@/components/dialogs/editar-asesor';
 import styles from '@/css-admin/tutees.module.css';
 import tutorintstyles from '@/css-components/tutoring-requests.module.css';
+import formatDate from '@/helpers/format-date';
+import formatTime from '@/helpers/format-time';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
@@ -300,8 +302,12 @@ const Tutorings = () => {
                     <p className={tutorintstyles.subjectfull}>{subject.name}</p>
                   </td>
                   <td className={styles.td}>
-                    <p className={tutorintstyles.fullday}>{item.date}</p>
-                    <p className={tutorintstyles.hora}>{item.hour}</p>
+                    <p className={tutorintstyles.fullday}>
+                      {formatDate(item.date)}
+                    </p>
+                    <p className={tutorintstyles.hora}>
+                      {formatTime(item.hour)}
+                    </p>
                   </td>
                   <td className={styles.td}>
                     <p className={tutorintstyles.item}>{modalidad}</p>

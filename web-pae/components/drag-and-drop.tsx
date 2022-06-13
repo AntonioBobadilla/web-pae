@@ -1,4 +1,3 @@
-import React from 'react';
 import { FileUploader } from 'react-drag-drop-files';
 import { useAppDispatch } from 'store/hook';
 import { setFile } from 'store/reducers/schedule-tutoring';
@@ -19,7 +18,7 @@ const DragAndDrop = ({ file }: { file: File | null }) => {
           className={styles.input}
           handleChange={handleChange}
           name="file"
-          accept={fileTypes}
+          types={fileTypes}
           maxSize={100000}
           value={file}
         >

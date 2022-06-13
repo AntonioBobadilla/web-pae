@@ -34,14 +34,17 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
   React.useEffect(() => {
     fetch('https://server-pae.azurewebsites.net/isauthenticated/', {
       method: 'POST',
-      body: JSON.stringify({ token })
+      body: JSON.stringify({ token }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.message === 'no such token') {
           dispatch(setLogoutData());
           toast.error('Session expired');
-          push(`/login/${role}`);
+          push(`/${role}/login/`);
         }
       })
       .catch((err) => {

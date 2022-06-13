@@ -2,6 +2,7 @@ import ButtonTemplate from '@/components/button-template';
 import history from '@/css-admin/history.module.css';
 import styles from '@/css-admin/tutees.module.css';
 import createDate from '@/helpers/create-date';
+import formatDate from '@/helpers/format-date';
 import formatTime from '@/helpers/format-time';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
@@ -152,7 +153,7 @@ const History = () => {
                   <p>{subjectName}</p>
                 </td>
                 <td className={styles.td}>
-                  <p>{date}</p>
+                  <p>{formatDate(date)}</p>
                 </td>
                 <td className={styles.td}>
                   <p>{formatTime(hour)}</p>

@@ -7,7 +7,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import styles from '../css/components/searchBar.module.css';
 
-
 export type Subject = {
   name: string;
   code: string;
