@@ -64,7 +64,6 @@ const ToggleMenu = ({
       });
   };
 
-  const { t } = useTranslation('toggle-menu');
   const handleLogOut = () => {
     setVisible(true);
   };
@@ -148,7 +147,8 @@ export async function getStaticProps({ locale }: { locale: any }) {
     props: {
       ...(await serverSideTranslations(locale, [
         'toggle-menu',
-        'assigned-tutoring'
+        'assigned-tutoring',
+        'student-profile'
       ]))
     }
   };

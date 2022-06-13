@@ -150,7 +150,8 @@ export async function getStaticProps({ locale }: { locale: any }) {
     props: {
       ...(await serverSideTranslations(locale, [
         'toggle-menu',
-        'tutor-profile'
+        'tutor-profile',
+        'student-profile'
       ]))
     }
   };

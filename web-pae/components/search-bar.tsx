@@ -7,8 +7,6 @@ import styles from '../css/components/searchBar.module.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next'; 
 
-import { useTranslation } from 'next-i18next';  // add this
-
 
 export type Subject = {
   name: string;
@@ -122,7 +120,6 @@ const SearchBar = ({ suggestions, handleSuggestions }: SearchBarProps) => {
     }
     return null;
   };
-  const { t } = useTranslation('tutor-registration');
 
   return (
     <div className={styles.wrapper}>

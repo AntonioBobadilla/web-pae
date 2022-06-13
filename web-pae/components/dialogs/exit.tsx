@@ -2,6 +2,7 @@
 import Styles from '../../css/components/dialogs/exit.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
+import { useTranslation } from 'next-i18next';
 
 type ExitProps = {
   visible: boolean;
@@ -17,7 +18,9 @@ const Exit = ({
   handleExit,
   handleCancel,
   isLoading
-}: ExitProps) => (
+}: ExitProps) => {
+  const { t } = useTranslation('tutor-profile');
+  return ( 
   <ClosablePopup
     title={undefined}
     line={false}
@@ -27,12 +30,12 @@ const Exit = ({
   >
     <div className={Styles.main}>
       <span className={Styles.text}>
-        ¿Está seguro/a que quiere cerrar sesión?
+        {t('¿Está seguro/a que quiere cerrar sesión?')}
       </span>
       <div className={Styles.buttons}>
         <div className={Styles.button1}>
           <ButtonTemplate variant="cancel" onClick={handleCancel}>
-            NO, CANCELAR
+            {t('NO, CANCELAR') }
           </ButtonTemplate>
         </div>
         <div className={Styles.button2}>
@@ -42,12 +45,12 @@ const Exit = ({
             loading={isLoading}
             onClick={handleExit}
           >
-            SI
+            {t('SI')}
           </ButtonTemplate>
         </div>
       </div>
     </div>
   </ClosablePopup>
-);
+)};
 
 export default Exit;
