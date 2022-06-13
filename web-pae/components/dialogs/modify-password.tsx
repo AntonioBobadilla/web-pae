@@ -87,21 +87,14 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
     >
       <form className={formStyles.registerForm} onSubmit={onSubmit}>
         <div className={formStyles.input}>
-          <TextInput
+          <Password
             name="currentPassword"
-            type="password"
             placeholder={t('CONTRASEÑA ACTUAL*')}
             control={control}
             error={errors.currentPassword}
             rules={{
               required: t('Contraseña requerida'),
-              minLength: { value: 8, message: t('Contraseña muy corta') },
-              pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
-                message:
-                  t('Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial')
-              }
+              minLength: { value: 8, message: t('Contraseña muy corta') }
             }}
           />
         </div>
@@ -109,7 +102,7 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
           <Password
             name="newPassword"
             type="password"
-            placeholder= {t('NUEVA CONTRASEÑA*')}
+            placeholder={t('NUEVA CONTRASEÑA*')}
             control={control}
             error={errors.newPassword}
             rules={{
@@ -118,8 +111,9 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
               pattern: {
                 value:
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
-                message:
-                   t('Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial') 
+                message: t(
+                  'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
+                )
               }
             }}
           />
