@@ -47,7 +47,7 @@ const InputTextArea = ({ title, content }: InputTextAreaProps) => {
           id="content"
           value={content}
           maxLength={200}
-          placeholder="Duda especifica a tratar en asesoria"
+          placeholder="Duda especifica a tratar en asesoria*"
           className={itaStyles.content}
           onChange={handleChange2}
         />
