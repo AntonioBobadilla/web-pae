@@ -60,9 +60,10 @@ const Profile = () => {
   };
   const getData = () => {
     fetch(
-      `http://server-pae.azurewebsites.net/tutor/${myUser.id?.toLowerCase()}`,
+      `https://server-pae.azurewebsites.net/tutor/${myUser.id?.toLowerCase()}`,
       {
         method: 'GET',
+
         headers: {
           Authorization: `Token ${token}`
         }
