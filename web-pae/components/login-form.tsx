@@ -122,7 +122,7 @@ const LoginForm = ({
                 height={33}
               />
               <h1 className={styles.paeText}> | {t('LOG IN')}</h1>
-              <h1 className={styles.title}>Inicio de sesión</h1>
+              <h1 className={styles.title}>{t('LOG IN')}</h1>
             </div>
             <div className={styles.loginFields}>
               <div className={styles.component}>
@@ -132,11 +132,11 @@ const LoginForm = ({
                   control={control}
                   error={errors.email}
                   rules={{
-                    required: 'Matrícula requerida',
+                    required: t('Required Id'),
                     pattern: {
                       value: /^([A,a]{1}[0]{1}[0-9]{7}(@tec\.mx)*)/i,
                       message:
-                        'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+                        t('Invalid Email. E.g. A0XXXXXXX@tec.mx')
                     }
                   }}
                 />
@@ -149,8 +149,8 @@ const LoginForm = ({
                   control={control}
                   error={errors.password}
                   rules={{
-                    required: 'Contraseña requerida',
-                    minLength: { value: 8, message: 'Contraseña muy corta' }
+                    required: t('Required email'),
+                    minLength: { value: 8, message: 'Password too short' }
                   }}
                 />
               </div>

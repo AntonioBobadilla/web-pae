@@ -1,0 +1,16 @@
+{
+  "Results": "Results",
+  "Individual results": "Individual results",
+  "Edit polls": "Edit polls",
+  "Polls": "Polls",
+  "Enter new question": "Enter new question",
+  "Are your sure": "Are you sure you want to delete this question? Once deleted it will disappear from all the polls it was used",
+  "Cancel": "Cancel",
+  "Yes, delete": "Yes, delete",
+  "Are you sure modify": "Are you sure you want to modify the question? Once modified, all the polls where it was used will have the old question with the new one",
+  "Understood": "Understood",
+  "Totally disagree": "Totally disagree",
+  "Disagree": "Disagree",
+  "Agree": "Agree",
+  "Totally agree": "Totally agree"
+}

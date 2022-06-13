@@ -15,6 +15,7 @@ import Exit from '../dialogs/exit';
 import withAuthentication from '../navigation/with-authentication';
 import SideBar from '../sidebar';
 
+
 type LayoutProps = {
   router: Router;
   children: React.ReactNode;

@@ -21,7 +21,7 @@ exports[`Tutor Home Profile renders tutor home  page unchanged 1`] = `
           class="description"
         >
            
-          Perfil
+          Profile
            
         </p>
       </div>
@@ -42,7 +42,7 @@ exports[`Tutor Home Profile renders tutor home  page unchanged 1`] = `
           class="description"
         >
            
-          Asesorías asignadas
+          Assigned tutorings
            
         </p>
       </div>

@@ -2,13 +2,18 @@ import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ToggleMenuStudent from '@/components/toggle-menu-student';
 import { selectEmail, selectName } from '@/redux/user';
+import { useTranslation } from 'next-i18next'; // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
 import CardInformation from '../../components/card-information-student';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/student/profile.module.css';
 
+
 const Profile = () => {
+  const { t } = useTranslation('student-profile'); // add this
+
   const myUser = {
     name: useAppSelector(selectName),
     email: useAppSelector(selectEmail)
@@ -40,7 +45,7 @@ const Profile = () => {
         <p className={Styles.userName}>{myUser.name}</p>
         <p className={Styles.id}>{myUser.email}</p>
       </div>
-      <p className={Styles.tutorship}>Asesorías</p>
+      <p className={Styles.tutorship}>{t('Asesorías')}</p>
       <div className={Styles.cardInfo}>
         <CardInformation />
       </div>
@@ -62,6 +67,17 @@ const Profile = () => {
 
 // Add sidebar layout
 Profile.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Mi perfil">{page}</SidebarLayout>;
+  const { t } = useTranslation('student-profile'); // add this
+  return <SidebarLayout title={t('Mi perfil')}>{page}</SidebarLayout>;
 };
+
+
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['tutor-profile', 'student-profile', 'student-schedule-tutoring']))
+    }
+  };
+}
+
 export default Profile;

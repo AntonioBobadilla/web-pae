@@ -1,5 +1,6 @@
-import ClosablePopup from '../closable-popup';
+import { useTranslation } from 'next-i18next';
 import Styles from '../../css/components/dialogs/delete-question.module.css';
+import ClosablePopup from '../closable-popup';
 
 type props = {
   visible: boolean;
@@ -7,27 +8,26 @@ type props = {
   onClickCancel: any;
 };
 
-const ModifyQuestion = ({ visible, setVisible, onClickCancel }: props) => (
-  <ClosablePopup
-    title={undefined}
-    line={false}
-    visible={visible}
-    style={Styles.popUp}
-    setVisible={setVisible}
-  >
-    <div className={Styles.main}>
-      <span className={Styles.text}>
-        ¿Esta seguro que quiere modificar la pregunta? Una vez modificada todas
-        las encuestas donde se usó tendran las respuestas anteriores con la
-        nueva pregunta
-      </span>
-      <div className={Styles.buttons}>
-        <button onClick={onClickCancel} className={Styles.delete}>
-          Entendido
-        </button>
+const ModifyQuestion = ({ visible, setVisible, onClickCancel }: props) => {
+  const { t } = useTranslation('admin-polls');
+  return (
+    <ClosablePopup
+      title={undefined}
+      line={false}
+      visible={visible}
+      style={Styles.popUp}
+      setVisible={setVisible}
+    >
+      <div className={Styles.main}>
+        <span className={Styles.text}>{t('Are you sure modify')}</span>
+        <div className={Styles.buttons}>
+          <button onClick={onClickCancel} className={Styles.delete}>
+            {t('Understood')}
+          </button>
+        </div>
       </div>
-    </div>
-  </ClosablePopup>
-);
+    </ClosablePopup>
+  );
+};
 
 export default ModifyQuestion;

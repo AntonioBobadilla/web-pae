@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
 import type { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -18,6 +19,7 @@ import RegisterSubjects from '../../components/register-subjects';
 import StepsRegister from '../../components/steps-register';
 import styles from '../../css/tutor/registration.module.css';
 import { REGISTER, SCHEDULE, Steps, SUBJECTS } from '../../helpers/steps';
+
 
 const Registration: NextPage = () => {
   const router = useRouter();
@@ -157,4 +159,11 @@ const Registration: NextPage = () => {
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['tutor-profile']))
+    }
+  };
+}
 export default Registration;

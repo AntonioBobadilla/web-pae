@@ -5,6 +5,8 @@ import Tabs from '@/components/tabs';
 import styles from '@/css-admin/tutees.module.css';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
@@ -30,6 +32,7 @@ const Tutorings = () => {
   );
   const [typing, setTyping] = useState<any>(false);
   const [currentTab, setCurrentTab] = useState<any>('');
+  const { t } = useTranslation('admin-tutors');
   const removeDuplicates = (arr: any) =>
     arr.filter((item: any, index: any) => arr.indexOf(item) === index);
   const token = useAppSelector(selectToken);
@@ -170,12 +173,12 @@ const Tutorings = () => {
         >
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Número de horas</th>
-              <th className={styles.head}>Horarios</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Schedule')}</th>
             </tr>
           </thead>
           <tbody>
@@ -203,7 +206,7 @@ const Tutorings = () => {
                     onClick={() => showCalendar(item.schedules, item.name)}
                     className={styles.button}
                   >
-                    Ver
+                    {t('See')}
                   </button>
                 </td>
               </tr>
@@ -220,12 +223,12 @@ const Tutorings = () => {
         <table>
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Número de horas</th>
-              <th className={styles.head}>Horarios</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Schedule')}</th>
               <th className={styles.head} />
             </tr>
           </thead>
@@ -246,12 +249,12 @@ const Tutorings = () => {
         >
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Horarios</th>
-              <th className={styles.head}>Aceptar/rechazar</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Accept/reject')}</th>
             </tr>
           </thead>
           <tbody>
@@ -276,7 +279,7 @@ const Tutorings = () => {
                     onClick={() => showCalendar(item.schedules, item.name)}
                     className={styles.button}
                   >
-                    Ver
+                    {t('See')}
                   </button>
                 </td>
                 <td className={styles.td}>
@@ -285,13 +288,13 @@ const Tutorings = () => {
                       onClick={() => acceptTutee(item.registration_number)}
                       className={styles.accept}
                     >
-                      Aceptar
+                      {t('Accept')}
                     </button>
                     <button
                       onClick={() => deleteTutee(item.registration_number)}
                       className={styles.denied}
                     >
-                      Rechazar
+                      {t('Reject')}
                     </button>
                   </div>
                 </td>
@@ -310,17 +313,19 @@ const Tutorings = () => {
         <table>
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Horarios</th>
-              <th className={styles.head}>Aceptar/rechazar</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Accept/reject')}</th>
             </tr>
           </thead>
           <tbody />
         </table>
-        <p className={styles.emptyMessage}>No hay solicitudes disponibles</p>
+        <p className={styles.emptyMessage}>
+          {t('There is no requests available')}
+        </p>
       </div>
     );
   };
@@ -402,12 +407,12 @@ const Tutorings = () => {
         >
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Número de horas</th>
-              <th className={styles.head}>Horarios</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Schedule')}</th>
             </tr>
           </thead>
           <tbody>
@@ -435,7 +440,7 @@ const Tutorings = () => {
                     onClick={() => showCalendar(item.schedules, item.name)}
                     className={styles.button}
                   >
-                    Ver
+                    {t('See')}
                   </button>
                 </td>
               </tr>
@@ -453,18 +458,20 @@ const Tutorings = () => {
         <table>
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Número de horas</th>
-              <th className={styles.head}>Horarios</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Schedule')}</th>
               <th className={styles.head} />
             </tr>
           </thead>
           <tbody />
         </table>
-        <p className={styles.emptyMessage}>No hay asesores disponibles</p>
+        <p className={styles.emptyMessage}>
+          {t('There is no tutors avaliable')}
+        </p>
       </div>
     );
   };
@@ -479,12 +486,12 @@ const Tutorings = () => {
         >
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Horarios</th>
-              <th className={styles.head}>Aceptar/rechazar</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Accept/reject')}</th>
             </tr>
           </thead>
           <tbody>
@@ -509,7 +516,7 @@ const Tutorings = () => {
                     onClick={() => showCalendar(item.schedules, item.name)}
                     className={styles.button}
                   >
-                    Ver
+                    {t('See')}
                   </button>
                 </td>
                 <td className={styles.td}>
@@ -518,13 +525,13 @@ const Tutorings = () => {
                       onClick={() => acceptTutee(item.registration_number)}
                       className={styles.accept}
                     >
-                      Aceptar
+                      {t('Accept')}
                     </button>
                     <button
                       onClick={() => deleteTutee(item.registration_number)}
                       className={styles.denied}
                     >
-                      Rechazar
+                      {t('Reject')}
                     </button>
                   </div>
                 </td>
@@ -543,17 +550,19 @@ const Tutorings = () => {
         <table>
           <thead>
             <tr className={cx(styles.headRow, styles.tr)}>
-              <th className={styles.head}>Matricula</th>
-              <th className={styles.head}>Nombre</th>
-              <th className={styles.head}>Carrera</th>
-              <th className={styles.head}>Materias de asesoría</th>
-              <th className={styles.head}>Horarios</th>
-              <th className={styles.head}>Aceptar/rechazar</th>
+              <th className={styles.head}>{t('Registration number')}</th>
+              <th className={styles.head}>{t('Name')}</th>
+              <th className={styles.head}>{t('Major')}</th>
+              <th className={styles.head}>{t('Subjects for tutoring')}</th>
+              <th className={styles.head}>{t('Number of hours')}</th>
+              <th className={styles.head}>{t('Accept/reject')}</th>
             </tr>
           </thead>
           <tbody />
         </table>
-        <p className={styles.emptyMessage}>No hay solicitudes disponibles</p>
+        <p className={styles.emptyMessage}>
+          {t('There is no requests available')}
+        </p>
       </div>
     );
   };
@@ -575,7 +584,7 @@ const Tutorings = () => {
           fontWeight: '400'
         }}
       >
-        Buscar
+        {t('Search')}
       </p>
       <input
         style={{
@@ -593,7 +602,7 @@ const Tutorings = () => {
           backgroundColor: 'rgb(241, 241, 241)'
         }}
         type="text"
-        placeholder="NOMBRE*"
+        placeholder={t('NAME*')}
         onChange={
           currentTab == 'request'
             ? handleSearchSolicitudes
@@ -610,20 +619,20 @@ const Tutorings = () => {
         <div className={styles.tutorTab}>
           <Tabs
             handleClick={tutorsButton}
-            text="Mis Asesores"
+            text={t('My tutors')}
             active={currentTab == 'tutors'}
           />
         </div>
         <div className={styles.requestTab}>
           <Tabs
             handleClick={requestButton}
-            text="Solicitudes"
+            text={t('Requests')}
             active={currentTab == 'request'}
           />
         </div>
       </div>
       <div className={styles.tables}>
-        {pending && <div>Cargando datos...</div>}
+        {pending && <div>{t('Loading data')}</div>}
         {currentTab == 'request'
           ? conditionalRenderingSolicitudes()
           : conditionalRenderingAsesores()}
@@ -657,7 +666,19 @@ const Tutorings = () => {
 
 // Add sidebar layout
 Tutorings.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="ASESORES PAE">{page}</SidebarLayout>;
+  const { t } = useTranslation('admin-tutors');
+  return <SidebarLayout title={t('PAE TUTORS')}>{page}</SidebarLayout>;
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-tutors',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
 export default Tutorings;

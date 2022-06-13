@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import styles from '../../css/components/dialogs/denied-tutee.module.css';
 import ButtonTemplate from '../button-template';
@@ -18,31 +19,30 @@ const DeniedTutee = ({
     setConfirmDelete(true);
     setVisible(false);
   };
+  const { t } = useTranslation('admin-home');
 
   const onClickSave = () => {
     setVisible(false);
   };
   return (
     <ClosablePopup
-      title="Tutor rechazado"
+      title={t('Rejected tutor')}
       line
       visible={visible}
       style={styles.container}
       setVisible={setVisible}
     >
       <div className={styles.wrapper}>
-        <h2 className={styles.title}>
-          ¿Está segur@ de que desea rechazar la solicitud?
-        </h2>
+        <h2 className={styles.title}>{t('Are you sure to reject')}</h2>
         <div className={styles.buttons}>
           <div className={styles.button}>
             <ButtonTemplate variant="confirm" onClick={() => confirm()}>
-              SI
+              {t('YES')}
             </ButtonTemplate>
           </div>
           <div className={styles.button}>
             <ButtonTemplate variant="cancel" onClick={() => onClickSave()}>
-              NO, CANCELAR
+              {t('NO, CANCEL')}
             </ButtonTemplate>
           </div>
         </div>

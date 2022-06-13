@@ -1,4 +1,4 @@
-import React from 'react';
+import { useTranslation } from 'next-i18next';
 import styles from '../../css/components/dialogs/denied-tutee.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
@@ -14,6 +14,7 @@ const DeniedTutoring = ({
   setVisible,
   setConfirmDelete
 }: DeniedTuteeProps) => {
+  const { t } = useTranslation('admin-tutorings-requests');
   const confirm = () => {
     setConfirmDelete(true);
     setVisible(false);
@@ -24,7 +25,7 @@ const DeniedTutoring = ({
   };
   return (
     <ClosablePopup
-      title="Rechazar solicitud de asesoría"
+      title='Reject request'
       line
       visible={visible}
       style={styles.container}
@@ -32,17 +33,17 @@ const DeniedTutoring = ({
     >
       <div className={styles.wrapper}>
         <h2 className={styles.title}>
-          ¿Está segur@ de que desea rechazar la solicitud?
+          {t('Are you sure you want to reject the request')}
         </h2>
         <div className={styles.buttons}>
           <div className={styles.button}>
             <ButtonTemplate variant="confirm" onClick={() => confirm()}>
-              SI
+              {t('YES')}
             </ButtonTemplate>
           </div>
           <div className={styles.button}>
             <ButtonTemplate variant="cancel" onClick={() => onClickSave()}>
-              NO, CANCELAR
+              {t('NO, CANCEL')}
             </ButtonTemplate>
           </div>
         </div>

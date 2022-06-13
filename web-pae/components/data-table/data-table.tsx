@@ -1,7 +1,9 @@
+import { useTranslation } from 'next-i18next'; // add this
 import React from 'react';
 import styles from '../../css/components/dataTable.module.css';
 import FormatTime from '../../helpers/format-time';
 import { DataTableProps } from './types';
+
 
 function DataTable({
   meetings,
@@ -24,6 +26,7 @@ function DataTable({
       ),
     [meetings, tutors]
   );
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
 
   // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
   //   useTable({ columns, data });
@@ -48,9 +51,9 @@ function DataTable({
             {' '}
           </th>
 
-          <th className={styles.cell}>MODALIDAD</th>
+          <th className={styles.cell}>{t('MODALIDAD')}</th>
           <th className={styles.cell} style={{ backgroundColor: '#0277BD' }}>
-            ASESOR
+            {t('ASESOR')}
           </th>
         </tr>
       </thead>

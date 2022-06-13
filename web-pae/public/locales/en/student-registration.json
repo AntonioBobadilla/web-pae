@@ -1,0 +1,21 @@
+{
+    "Algo salio mal": "Something went wrong",
+    "REGISTRO": "REGISTRATION",
+    "Datos personales": "Personal information",
+    "NOMBRE COMPLETO*": "FULL NAME*",
+    "Nombre completo requerido": "Full name required",
+    "El nombre debe tener al menos 3 caracteres": "The name must have at least 3 characters",
+    "CORREO INSTITUCIONAL*": "INSTITUTIONAL MAIL*",
+    "Correo eléctrónico requerido": "Email required",
+    "Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx": "Invalid email. E.g. A0XXXXXXX@tec.mx",
+    "CARRERA*":"MAJOR*",
+    "Carrera requerida":"Major required",
+    "Carrera inválida. E.g. ARQ, LAD, MEC":"Invalid major. E.g. ARQ, LAD, MEC",
+    "Contraseña requerida":"Password required",
+    "Contraseña muy corta":"Short password",
+    "CONFIRMAR CONTRASEÑA*":"CONFIRM PASSWORD*",
+    "Confirmación de contraseña requerida":"Password confirmation required",
+    "CONCLUIR REGISTRO":"CONCLUDE REGISTRATION",
+    "CONTINUAR CON REGISTRO":"CONTINUE WITH REGISTRATION",
+    "Fecha seleccionada": "Selected date"
+}

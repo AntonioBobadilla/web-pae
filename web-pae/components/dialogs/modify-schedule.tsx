@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 import { selectToken } from '@/redux/user';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { useAppSelector } from 'store/hook';
@@ -161,9 +163,11 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     }
   };
 
+  const { t } = useTranslation('toggle-menu');
+
   return (
     <ClosablePopup
-      title="Modificar horario"
+      title={t('Modify Schedule')}
       line
       visible={visible}
       style={styles.container}
@@ -201,7 +205,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
         </Carousel>
         <div className={styles.button}>
           <ButtonTemplate variant="confirm" onClick={updateSchedule}>
-            GUARDAR
+            {t('SAVE')}
           </ButtonTemplate>
         </div>
       </div>
@@ -209,4 +213,14 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'assigned-tutoring',
+        'toggle-menu'
+      ]))
+    }
+  };
+}
 export default ModifySchedule;

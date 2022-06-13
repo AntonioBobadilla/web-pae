@@ -4,6 +4,8 @@ import SubjectForm from '@/components/subject-form';
 import Tabs from '@/components/tabs';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
@@ -23,7 +25,9 @@ const Subjects = () => {
   const [filteredArrayName, setFilteredArrayName] = useState<Subject[]>([]);
   const [editable, setEditable] = useState(true);
   const [editableName, setEditableName] = useState(true);
+  const { t } = useTranslation('admin-subjects');
   const token = useAppSelector(selectToken);
+
 
   const UFButton = () => {
     setCurrentTab('UF');
@@ -70,8 +74,10 @@ const Subjects = () => {
       return (
         <>
           {data.map((item, index) => {
-            const subjectId = item.code != null ? item.code : 'no hay clave';
-            const subjectName = item.name != null ? item.name : 'no hay nombre';
+            const subjectId =
+              item.code != null ? item.code : t('There is no code');
+            const subjectName =
+              item.name != null ? item.name : t('There is no name');
             return (
               <div key={index} className={styles.body}>
                 <span className={styles.clave}>{subjectId}</span>
@@ -90,15 +96,17 @@ const Subjects = () => {
       if (filteredArray.length === 0) {
         return (
           <span className={styles.error}>
-            *Lo sentimos, no existe una unidad de formación con esta clave.*
+            {t('There is no subject with such code')}
           </span>
         );
       }
       return (
         <>
           {filteredArray.map((item, index) => {
-            const subjectId = item.code != null ? item.code : 'no hay clave';
-            const subjectName = item.name != null ? item.name : 'no hay nombre';
+            const subjectId =
+              item.code != null ? item.code : t('There is no code');
+            const subjectName =
+              item.name != null ? item.name : t('There is no name');
             return (
               <div key={index} className={styles.body}>
                 <span className={styles.clave}>{subjectId}</span>
@@ -117,15 +125,17 @@ const Subjects = () => {
       if (filteredArrayName.length === 0) {
         return (
           <span className={styles.error}>
-            *Lo sentimos, no existe una unidad de formación con este nombre.*
+            {t('There is no subject with such name')}
           </span>
         );
       }
       return (
         <>
           {filteredArrayName.map((item, index) => {
-            const subjectId = item.code != null ? item.code : 'no hay clave';
-            const subjectName = item.name != null ? item.name : 'no hay nombre';
+            const subjectId =
+              item.code != null ? item.code : t('There is no code');
+            const subjectName =
+              item.name != null ? item.name : t('There is no name');
             return (
               <div key={index} className={styles.body}>
                 <span className={styles.clave}>{subjectId}</span>
@@ -142,8 +152,7 @@ const Subjects = () => {
     }
     return (
       <span className={styles.error}>
-        *No es posible realizar esta búsqueda, por favor intenta buscar la
-        Unidad de Formación solo por clave o solo por nombre*
+        {t('It is impossible to do this search')}
       </span>
     );
   };
@@ -220,7 +229,7 @@ const Subjects = () => {
         <div className={styles.searchBar}>
           <span className={styles.loading}>
             {' '}
-            <strong>Buscar</strong>
+            <strong>Search</strong>
           </span>{' '}
           <div className={styles.searchtop}>
             {editable && editableName ? (
@@ -230,7 +239,7 @@ const Subjects = () => {
                     backgroundColor: '#F1F1F1'
                   }}
                   type="text"
-                  placeholder="CLAVE*"
+                  placeholder={t('CODE*')}
                   className={styles.inputID}
                   onChange={handleChangeClave}
                   readOnly={!editable}
@@ -240,7 +249,7 @@ const Subjects = () => {
                     backgroundColor: '#F1F1F1'
                   }}
                   type="text"
-                  placeholder="NOMBRE*"
+                  placeholder={t('NAME*')}
                   className={styles.inputName}
                   onChange={handleChangeNombre}
                   readOnly={!editableName}
@@ -253,7 +262,7 @@ const Subjects = () => {
                     backgroundColor: '#F1F1F1'
                   }}
                   type="text"
-                  placeholder="CLAVE*"
+                  placeholder={t('CODE*')}
                   className={styles.inputID}
                   onChange={handleChangeClave}
                   readOnly={!editable}
@@ -263,7 +272,7 @@ const Subjects = () => {
                     backgroundColor: '#B9B6B6'
                   }}
                   type="text"
-                  placeholder="NO ES POSIBLE ESCRIBIR EN ESTE CAMPO"
+                  placeholder={t('IT IS NOT POSSIBLE TO WRITE IN THIS FIELD')}
                   className={styles.inputName}
                   onChange={handleChangeNombre}
                   readOnly={!editableName}
@@ -276,7 +285,7 @@ const Subjects = () => {
                     backgroundColor: '#B9B6B6'
                   }}
                   type="text"
-                  placeholder="NO ES POSIBLE ESCRIBIR EN ESTE CAMPO"
+                  placeholder={t('IT IS NOT POSSIBLE TO WRITE IN THIS FIELD')}
                   className={styles.inputID}
                   onChange={handleChangeClave}
                   readOnly={!editable}
@@ -286,7 +295,7 @@ const Subjects = () => {
                     backgroundColor: '#F1F1F1'
                   }}
                   type="text"
-                  placeholder="NOMBRE*"
+                  placeholder={t('NAME*')}
                   className={styles.inputName}
                   onChange={handleChangeNombre}
                   readOnly={!editableName}
@@ -300,20 +309,20 @@ const Subjects = () => {
         <div className={styles.UfTab}>
           <Tabs
             handleClick={UFButton}
-            text="Unidades de Formación"
+            text={t('Subjects')}
             active={currentTab == 'UF'}
           />
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddUFButton}
-            text="Agregar Unidad de Formación"
+            text={t('Add subject')}
             active={currentTab == 'addUF'}
           />
         </div>
       </div>
       <div className={styles.ufContainer}>
-        {pending && <div className={styles.loading}>Cargando datos...</div>}
+        {pending && <div className={styles.loading}>{t('Loading data')}</div>}
         <div
           className={currentTab == 'addUF' ? styles.addSubject : styles.hidden}
         >
@@ -323,9 +332,9 @@ const Subjects = () => {
           <div className={styles.down}>
             <div className={styles.tableRequest}>
               <div className={styles.headRow}>
-                <span className={styles.clave}>Clave</span>
-                <span className={styles.name}>Nombre</span>
-                <span className={styles.delete}>Eliminar</span>
+                <span className={styles.clave}>{t('Code')}</span>
+                <span className={styles.name}>{t('Name')}</span>
+                <span className={styles.delete}>{t('Delete')}</span>
               </div>
               <div className={styles.bodyContainer}>
                 {conditionalRendering()}
@@ -346,10 +355,21 @@ const Subjects = () => {
 };
 // Add sidebar layout
 Subjects.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <SidebarLayout title="ADMINISTRAR UNIDADES DE FORMACIÓN">
-      {page}
-    </SidebarLayout>
-  );
+  const { t } = useTranslation('admin-subjects');
+  return <SidebarLayout title={t('Manage subjects')}>{page}</SidebarLayout>;
 };
+
+export async function getStaticProps({ locale }: { locale: any }) {
+
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-subjects',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
+
 export default Subjects;
