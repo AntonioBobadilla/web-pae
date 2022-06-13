@@ -1,6 +1,8 @@
+import { selectToken } from '@/redux/user';
 import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import styles from '../css/components/editPolls.module.css';
 import DeleteQuestion from './dialogs/delete-question';
 import ModifyQuestion from './dialogs/modify-question';
@@ -15,6 +17,8 @@ const EditPolls = () => {
   const [popUp2, setPopUp2] = useState(false);
   const [id, setId] = useState(null);
   const { t } = useTranslation('admin-polls');
+  const token = useAppSelector(selectToken);
+
 
   const modifyQuestion = (e: any) => {
     visiblePopUp2();
@@ -59,7 +63,12 @@ const EditPolls = () => {
   };
 
   const getPollsfromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/question/')
+    fetch('https://server-pae.azurewebsites.net/question/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)
@@ -78,7 +87,10 @@ const EditPolls = () => {
   const deleteQuestion = () => {
     fetch(`https://server-pae.azurewebsites.net/question/${id}/`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {
@@ -98,7 +110,10 @@ const EditPolls = () => {
   const editQuestion = (id: any) => {
     fetch(`https://server-pae.azurewebsites.net/question/${id}/`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({ body: modifiedQuestion })
     })
       .then((res) => {
@@ -120,7 +135,10 @@ const EditPolls = () => {
   const addQuestion = (e: any) => {
     fetch('https://server-pae.azurewebsites.net/question/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({
         body: question
       })

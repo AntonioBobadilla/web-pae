@@ -40,7 +40,12 @@ const Tutorings = () => {
   const { t } = useTranslation('admin-tutorings-requests');
 
   const getDataFromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/tutoring/?status=PE')
+    fetch('https://server-pae.azurewebsites.net/tutoring/?status=PE', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         setData(data);
@@ -74,7 +79,10 @@ const Tutorings = () => {
       `https://server-pae.azurewebsites.net/changetutor/${objectToModify}`,
       {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
+        },
         body: JSON.stringify({ tutor: newAsesor.toLowerCase() }) // agregar json de update
       }
     )
@@ -106,7 +114,10 @@ const Tutorings = () => {
       `https://server-pae.azurewebsites.net/changetutoringlocation/${objectToModify}`,
       {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
+        },
         body: JSON.stringify({
           is_online: online,
           place: newPlace
@@ -182,7 +193,7 @@ const Tutorings = () => {
         if (!res.ok) {
           // error coming back from server
           throw Error('could not make POST request for that endpoint');
-        } else if (res.status === 204) {
+        } else if (res.status === 200) {
           getDataFromApi();
           toast('Tutoring rejected', {
             icon: '✅'
@@ -203,7 +214,10 @@ const Tutorings = () => {
   const acceptTutoring = (id: any) => {
     fetch(`https://server-pae.azurewebsites.net/updatetutoring/${id}/AP`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {

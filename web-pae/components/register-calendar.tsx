@@ -106,6 +106,7 @@ const RegisterCalendar = React.memo(
     const handleNextStep = () => {
       clearCells();
 
+      // console.log("okay")
       dispatch(
         setPeriod({ period: eventObj, name: periods[progressBarState] })
       );

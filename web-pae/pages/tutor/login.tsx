@@ -1,8 +1,7 @@
 import withAuthentication from '@/components/navigation/with-authentication';
 import type { NextPage } from 'next';
-import React from 'react';
-import LoginForm from '../../components/login-form';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import LoginForm from '../../components/login-form';
 
 const Login: NextPage = () => (
   <LoginForm
@@ -22,4 +21,3 @@ export async function getStaticProps({ locale }: { locale: any }) {
 }
 
 export default withAuthentication(Login);
-

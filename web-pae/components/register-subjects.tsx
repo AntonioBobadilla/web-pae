@@ -76,6 +76,12 @@ const RegisterSubjects = ({
   const { t } = useTranslation('student-home');
   return (
     <div className={styles.wrapper}>
+      <h3
+        className={styles.title}
+        style={{ marginTop: '4vh', fontWeight: 'lighter' }}
+      >
+        Agrega las materias de las que te gustaría dar asesoría.
+      </h3>
       <SearchBar
         handleSuggestions={(subject) => handleSuggestions(subject)}
         suggestions={subjectsFromApi}

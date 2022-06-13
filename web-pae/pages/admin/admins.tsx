@@ -1,8 +1,10 @@
 import AdminForm from '@/components/admin-form';
 import DeleteAdmin from '@/components/dialogs/delete-admin';
 import Tabs from '@/components/tabs';
+import { selectToken } from '@/redux/user';
 import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -15,6 +17,7 @@ const Subject = () => {
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
   const { t } = useTranslation('admin-admins');
+  const token = useAppSelector(selectToken);
 
   const AdminButton = () => {
     setCurrentTab('admins');
@@ -37,7 +40,12 @@ const Subject = () => {
   }, []);
 
   const getData = () => {
-    fetch('https://server-pae.azurewebsites.net/administrator/')
+    fetch('https://server-pae.azurewebsites.net/administrator/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then(function (data) {
         //console.log(data)
@@ -61,7 +69,10 @@ const Subject = () => {
     console.log(id);
     fetch('https://server-pae.azurewebsites.net/administrator/' + id + '/', {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {

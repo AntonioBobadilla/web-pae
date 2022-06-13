@@ -4,7 +4,7 @@ import createDate from 'helpers/create-date';
 import React from 'react';
 import Carousel from 'react-elastic-carousel';
 import { useAppSelector } from 'store/hook';
-import { selectID } from 'store/reducers/user';
+import { selectID, selectToken } from 'store/reducers/user';
 import cardTutorsStyles from '../css/components/cardTutors.module.css';
 import { Tutoring } from './card-info-student/types';
 import StudentQuestion from './dialogs/student-question';
@@ -17,9 +17,16 @@ const CardTutors = () => {
   const [tutoringObject, setTutoringObject] = React.useState<Tutoring>();
 
   const id = useAppSelector(selectID);
+  const token = useAppSelector(selectToken);
   React.useEffect(() => {
     fetch(
-      `https://server-pae.azurewebsites.net/tutoring/?status=AP&tutor=${id?.toLowerCase()}`
+      `https://server-pae.azurewebsites.net/tutoring/?status=AP&tutor=${id?.toLowerCase()}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
     )
       .then((res) => res.json())
       .then((data) => {

@@ -29,7 +29,7 @@ const Registration: NextPage = () => {
         toast.success(responseData.message);
 
         // redirect to home
-        setTimeout(() => push('/student/login'), 500);
+        setTimeout(() => push('/student/register-confirmation'), 500);
       } else {
         // toast error
         toast.error(responseData.message);

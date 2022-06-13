@@ -1,6 +1,6 @@
 import formStyles from '@/css-components/registerForm.module.css';
 import changePassword, { ModifyPasswordData } from 'helpers/change-password';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hook';
@@ -8,6 +8,7 @@ import { selectToken } from 'store/reducers/user';
 import styles from '../../css/components/dialogs/modify-password.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
+import Password from '../password';
 import TextInput from '../text-input';
 import { useTranslation } from 'next-i18next';  // add this
 
@@ -105,7 +106,7 @@ const ModifyPassword = ({ visible, setVisible }: ModifyPasswordProps) => {
           />
         </div>
         <div className={formStyles.input}>
-          <TextInput
+          <Password
             name="newPassword"
             type="password"
             placeholder= {t('NUEVA CONTRASEÑA*')}

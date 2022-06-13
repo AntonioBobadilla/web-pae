@@ -1,5 +1,8 @@
+import { selectToken } from '@/redux/user';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useAppSelector } from 'store/hook';
 import Styles from '../css/components/adminForm.module.css';
 import AdminAdded from './dialogs/admin-added';
 import Password from './password';
@@ -30,6 +33,7 @@ const SubjectForm = () => {
     getValues,
     formState: { errors }
   } = useForm<AdminFormData>({ defaultValues });
+  const token = useAppSelector(selectToken);
 
   const isValid = () => {
     setValidUF(true);
@@ -40,7 +44,10 @@ const SubjectForm = () => {
       data;
     fetch('https://server-pae.azurewebsites.net/administrator/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({
         user: {
           password,
@@ -52,21 +59,28 @@ const SubjectForm = () => {
       })
     })
       .then((res) => {
-        if (!res.ok) {
-          // error coming back from server
-          throw Error('could not make PUT request for that endpoint');
-        }
-        isValid();
-        reset();
+        const json = res.json();
+        const { status } = res;
 
-        return res.json();
+        return { data: json, status };
       })
-      .then((data) => {
-        console.log('ok');
-      })
+      .then(
+        (response: { data: Promise<{ detail: string }>; status: number }) => {
+          if (
+            response.status === 201 ||
+            response.status === 200 ||
+            response.status === 204
+          ) {
+            isValid();
+            reset();
+          } else {
+            toast.error('No tienes permisos');
+          }
+        }
+      )
 
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message);
       });
   };
 
@@ -92,7 +106,7 @@ const SubjectForm = () => {
           rules={{
             required: 'Matrícula o nómina requerida',
             pattern: {
-              value: /^([A,a]{1}[0]{1}[0-9]{7})/i,
+              value: /^([A,a,L,l]{1}[0-9]{8})/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX'
             }
           }}
@@ -132,7 +146,7 @@ const SubjectForm = () => {
           rules={{
             required: 'Correo eléctrónico requerido',
             pattern: {
-              value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
+              value: /^([A,a,L,l]{1}[0-9]{8}@tec\.mx)/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
             }
           }}

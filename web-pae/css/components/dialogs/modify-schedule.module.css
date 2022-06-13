@@ -1,16 +1,22 @@
 .container {
-    width: 70vw;
-    height: 85vh;
+  width: 70vw;
+  height: 85vh;
 }
 
 .wrapper {
-    width: 90%;
-    height: 90%;
-    margin:0 auto;
+  width: 90%;
+  height: 90%;
+  margin: 0 auto;
 }
 
 .button {
-    width: 200px;
-    height: 40px;
-    margin: auto;
+  width: 200px;
+  height: 40px;
+  margin: auto;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95vw;
+    height: 80vh;
+  }
 }

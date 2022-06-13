@@ -20,10 +20,9 @@ const EditModalidad = ({
   setNewModalidad,
   setNewPlace
 }: ModifyLanguageProps) => {
-  const [option, setOption] = useState<any>('');
-  const [place, setPlace] = useState<any>(modalidad.lugar);
-  const { t } = useTranslation('admin-tutorings-requests');
-
+    const { t } = useTranslation('admin-tutorings-requests');
+    const [option, setOption] = useState<any>(modalidad.forma);
+    const [place, setPlace] = useState<any>(modalidad.lugar);
   const onClickSave = () => {
     setVisible(false);
   };

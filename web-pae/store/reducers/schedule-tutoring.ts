@@ -54,7 +54,8 @@ export const getAvailableTutorings = createAsyncThunk(
   async (arg, thunkAPI) => {
     const { getState } = thunkAPI;
     const {
-      scheduleTutoring: { subject }
+      scheduleTutoring: { subject },
+      user: { token }
     } = getState() as RootState;
 
     const date = new Date();
@@ -63,7 +64,8 @@ export const getAvailableTutorings = createAsyncThunk(
       fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
         },
         body: JSON.stringify(data),
         cache: 'no-cache',
@@ -106,7 +108,10 @@ export const reserveTutoring = createAsyncThunk(
     formData.append('hour', selectedItem.hour.toString());
     formData.append('is_online', selectedItem.isOnline.valueOf().toString());
     formData.append('topic', title);
-    formData.append('doubt', content);
+
+    if (content !== '') {
+      formData.append('doubt', content);
+    }
     if (file !== null) {
       formData.append('file', file);
     }

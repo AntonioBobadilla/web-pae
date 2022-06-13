@@ -2,8 +2,10 @@ import DeleteAdmin from '@/components/dialogs/delete-subject';
 import { Subject } from '@/components/search-bar';
 import SubjectForm from '@/components/subject-form';
 import Tabs from '@/components/tabs';
+import { selectToken } from '@/redux/user';
 import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -24,6 +26,8 @@ const Subjects = () => {
   const [editable, setEditable] = useState(true);
   const [editableName, setEditableName] = useState(true);
   const { t } = useTranslation('admin-subjects');
+  const token = useAppSelector(selectToken);
+
 
   const UFButton = () => {
     setCurrentTab('UF');
@@ -43,7 +47,12 @@ const Subjects = () => {
     setCurrentTab('UF');
   }, []);
   const getData = () => {
-    fetch('https://server-pae.azurewebsites.net/subject/')
+    fetch('https://server-pae.azurewebsites.net/subject/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)
@@ -195,7 +204,10 @@ const Subjects = () => {
     console.log(id);
     fetch(`https://server-pae.azurewebsites.net/subject/${id}/`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {

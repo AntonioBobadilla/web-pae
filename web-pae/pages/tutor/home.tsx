@@ -1,9 +1,11 @@
-import React, { ReactElement } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; //translate the text
+import { ReactElement } from 'react';
 import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/tutor/home.module.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; //translate the text
 import { useTranslation } from 'next-i18next'; 
+
 
 
 const Home = () => {

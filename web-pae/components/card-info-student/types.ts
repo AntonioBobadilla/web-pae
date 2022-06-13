@@ -22,6 +22,13 @@ export interface Tutor {
   user: string;
 }
 
+export interface TutorObject extends Tutor {
+  subjects: {
+    subject: string;
+  }[];
+  completed_hours: number;
+}
+
 export interface Tutoring {
   date: string;
   doubt: string;
