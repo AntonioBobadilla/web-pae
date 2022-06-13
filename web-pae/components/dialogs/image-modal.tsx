@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../css/components/dialogs/modal-image.module.css';
 import registerStyles from '../../css/register.module.css';
 import ButtonTemplate from '../button-template';
@@ -10,10 +10,20 @@ type ModifyLanguageProps = {
   file: any;
 };
 
+
+
 const imageModal = ({ visible, setVisible, file }: ModifyLanguageProps) => {
+
+  const [newFile, setNewFile] = useState(file);
+
   const onClickSave = () => {
     setVisible(false);
   };
+
+  useEffect(() => {
+    let str = file.split('://');
+    setNewFile('https://'+str[1])
+  }, [])
   return (
     <ClosablePopup
       title="Archivo adjunto"
@@ -23,7 +33,7 @@ const imageModal = ({ visible, setVisible, file }: ModifyLanguageProps) => {
       setVisible={setVisible}
     >
       <div className={registerStyles.languageOptions}>
-        <img src={file} alt="" className={styles.image} />
+        <img src={newFile} alt="" className={styles.image} />
       </div>
     </ClosablePopup>
   );
