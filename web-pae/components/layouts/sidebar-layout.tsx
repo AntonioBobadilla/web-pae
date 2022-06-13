@@ -15,7 +15,6 @@ import Exit from '../dialogs/exit';
 import withAuthentication from '../navigation/with-authentication';
 import SideBar from '../sidebar';
 
-
 type LayoutProps = {
   router: Router;
   children: React.ReactNode;
@@ -31,6 +30,24 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
   const token = useAppSelector(selectToken);
   const role = useAppSelector(selectRole);
   const { t } = useTranslation('tutor-profile');
+
+  React.useEffect(() => {
+    fetch('https://server-pae.azurewebsites.net/isauthenticated/', {
+      method: 'POST',
+      body: JSON.stringify({ token })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === 'no such token') {
+          dispatch(setLogoutData());
+          toast.error('Session expired');
+          push(`/login/${role}`);
+        }
+      })
+      .catch((err) => {
+        toast.error('Something went wrong');
+      });
+  }, [route]);
 
   React.useEffect(() => {
     switch (role) {
