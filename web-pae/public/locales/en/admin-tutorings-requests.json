@@ -9,6 +9,8 @@
   "Schedule": "Schedule",
   "Modality": "Modality",
   "Face-to-face": "Face-to-face",
+  "En línea": "Online",
+  "Presencial": "Face-to-face",
   "Online": "Online",
   "Accept tutoring": "Accept tutoring",
   "Reject tutoring": "Reject tutoring",
@@ -25,5 +27,6 @@
   "NO, CANCEL": "NO, CANCEL",
   "Other available tutors": "Other available tutors",
   "Loading tutors": "Loading tutors",
-  "No available tutors for this tutoring": "No available tutors for this tutoring"
+  "No available tutors for this tutoring": "No available tutors for this tutoring",
+  "Total hours": "Total hours"
 }
