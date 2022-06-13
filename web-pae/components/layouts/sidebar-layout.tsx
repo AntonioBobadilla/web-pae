@@ -1,5 +1,6 @@
 import { reset } from '@/redux/schedule-tutoring';
 import post from 'helpers/post';
+import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { Router, withRouter } from 'next/router';
 import React from 'react';
@@ -13,7 +14,6 @@ import styles from '../../css/components/layouts/sidebarLayout.module.css';
 import Exit from '../dialogs/exit';
 import withAuthentication from '../navigation/with-authentication';
 import SideBar from '../sidebar';
-import { useTranslation } from 'next-i18next'; 
 
 type LayoutProps = {
   router: Router;

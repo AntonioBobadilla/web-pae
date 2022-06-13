@@ -106,7 +106,7 @@ const SubjectForm = () => {
           rules={{
             required: 'Matrícula o nómina requerida',
             pattern: {
-              value: /^([A,a]{1}[0]{1}[0-9]{7})/i,
+              value: /^([A,a,L,l]{1}[0-9]{8})/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX'
             }
           }}
@@ -146,7 +146,7 @@ const SubjectForm = () => {
           rules={{
             required: 'Correo eléctrónico requerido',
             pattern: {
-              value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
+              value: /^([A,a,L,l]{1}[0-9]{8}@tec\.mx)/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
             }
           }}

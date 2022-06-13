@@ -32,7 +32,12 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
 
   const getAllSubjectsFromTutor = () => {
     fetch(
-      'https://server-pae.azurewebsites.net/subjectbytutor/' + id.toLowerCase()
+      'https://server-pae.azurewebsites.net/subjectbytutor/' + id.toLowerCase(),
+      {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
     )
       .then((resp) => resp.json())
       .then((data) => {

@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/function-component-definition */
+import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,7 +17,6 @@ import login from '../helpers/login';
 import ButtonTemplate from './button-template';
 import { LoginData, loginDefaultValues } from './login-input';
 import TextInput from './text-input';
-import { useTranslation } from 'next-i18next'; 
 
 interface LoginFormProps {
   image: string;
@@ -170,7 +170,7 @@ const LoginForm = ({
                 <a className={styles.forgotPassword}>{t('Forgot password')}</a>
               </Link>
               <h2 className={styles.register}>
-              {t('Dont have account')}{' '}
+                {t('Dont have account')}{' '}
                 <Link href="/register">
                   <a className={styles.regLink}>{t('Sign up')}</a>
                 </Link>
