@@ -6,30 +6,32 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const ActivateAccount = () => {
   const { query, push } = useRouter();
-  const { token } = query;
 
   useEffect(() => {
-    post(
-      {
-        token
-      },
-      'https://server-pae.azurewebsites.net/verifyemail/'
-    ).then(({ status, responseData }) => {
-      try {
-        const { message, role } = responseData;
-        if (status === 200 || status === 201 || status === 204) {
-          // toast success
-          toast.success(message);
-          // redirect to home
-          setTimeout(() => push(`/${role}/login`), 1000);
-        } else {
-          // toast error
-          toast.error(message);
+    setTimeout(() => {
+      const { token } = query;
+      post(
+        {
+          token
+        },
+        'https://server-pae.azurewebsites.net/verifyemail/'
+      ).then(({ status, responseData }) => {
+        try {
+          const { message, role } = responseData;
+          if (status === 200 || status === 201 || status === 204) {
+            // toast success
+            toast.success(message);
+            // redirect to home
+            setTimeout(() => push(`/${role}/login`), 1000);
+          } else {
+            // toast error
+            toast.error(message);
+          }
+        } catch (err) {
+          toast.error('Algo salió mal');
         }
-      } catch (err) {
-        toast.error('Algo salió mal');
-      }
-    });
+      });
+    }, 200);
   }, []);
 
   return (
