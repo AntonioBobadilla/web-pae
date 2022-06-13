@@ -3,5 +3,9 @@
     "My Profile": "Mi Perfil",
     "Weekly Progress" : "Progreso de horas semanales",
     "Total Progress" : "Progreso de horas totales",
-    "Tutoring" : "Asesorías"
+    "Tutoring" : "Asesorías",
+    "Modify Subjects" : "Modificar materias",
+    "Subject added successfully" : "Materia agregada con éxito.",
+    "SAVE" : "GUARDAR",
+    "Modify Schedule" : "Modificar horario"
 }

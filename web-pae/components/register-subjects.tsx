@@ -10,6 +10,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import ButtonTemplate from './button-template';
 import SearchBar, { Subject } from './search-bar';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'; 
 
 interface RegisterSubjectsProps {
   previousStep: () => void;
@@ -71,6 +73,7 @@ const RegisterSubjects = ({
     changeValues(valuesSelected.filter(({ code }) => code !== itemToDelete));
   };
 
+  const { t } = useTranslation('student-home');
   return (
     <div className={styles.wrapper}>
       <SearchBar
@@ -79,7 +82,7 @@ const RegisterSubjects = ({
       />
       <div className={styles.selectedSubjects}>
         {valuesSelected.length !== 0 && (
-          <h2 className={styles.title}>MATERIAS SELECCIONADAS</h2>
+          <h2 className={styles.title}>{t('Selected subjects')}</h2>
         )}
         <div className={styles.values}>
           {valuesSelected.map((value, index) => (
@@ -108,7 +111,7 @@ const RegisterSubjects = ({
           disabled={valuesSelected.length === 0 || isLoading}
           loading={isLoading}
         >
-          CONCLUIR REGISTRO
+          {t('FINISH REGISTER')}
         </ButtonTemplate>
       </div>
       <Toaster position="top-right" reverseOrder={false} />

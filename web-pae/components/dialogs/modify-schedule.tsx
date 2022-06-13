@@ -5,6 +5,7 @@ import styles from '../../css/components/dialogs/modify-schedule.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import MyCalendar from '../frontend-calendar-full';
+import { useTranslation } from 'next-i18next'; 
 
 type ModifyLanguageProps = {
   visible: boolean;
@@ -150,9 +151,11 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     }
   };
 
+  const { t } = useTranslation('tutor-profile');
+
   return (
     <ClosablePopup
-      title="Modificar horario"
+      title={t('Modify Schedule')}
       line
       visible={visible}
       style={styles.container}
@@ -190,7 +193,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
         </Carousel>
         <div className={styles.button}>
           <ButtonTemplate variant="confirm" onClick={updateSchedule}>
-            GUARDAR
+          {t('SAVE')}
           </ButtonTemplate>
         </div>
       </div>

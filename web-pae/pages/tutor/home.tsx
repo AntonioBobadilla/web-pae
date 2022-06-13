@@ -3,29 +3,36 @@ import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/tutor/home.module.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; //translate the text
+import { useTranslation } from 'next-i18next'; 
 
-const Home = () => (
-  <div className={styles.cards}>
+
+const Home = () => {
+
+  const { t } = useTranslation('student-home');
+
+  return(
+    <div className={styles.cards}>
     <div className={styles.card}>
       <ImageCard
         image="/images/profileTutor.jpg"
-        description="Perfil"
+        description={t('Profile')}
         path="/tutor/profile"
       />
     </div>
     <div className={styles.card}>
       <ImageCard
         image="/images/history.jpeg"
-        description="Asesorías asignadas"
+        description={t('Assigned tutorings')}
         path="/tutor/assigned-tutorings"
       />
     </div>
   </div>
-);
+  )};
 
 // Add sidebar layout
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Inicio">{page}</SidebarLayout>;
+  const { t } = useTranslation('student-home');
+  return <SidebarLayout title={t('HOME')}>{page}</SidebarLayout>;
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {
