@@ -27,6 +27,7 @@ export interface TutorObject extends Tutor {
     subject: string;
   }[];
   completed_hours: number;
+  has_feeback: boolean;
 }
 
 export interface Tutoring {

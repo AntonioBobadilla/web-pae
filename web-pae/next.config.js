@@ -32,21 +32,16 @@ module.exports = {
         permanent: true
       }
     ];
-  },
-  nextConfig,
-  i18n
-};
-
-module.exports = {
-  i18n,
-  otherLanguages: ['es', 'tr'],
-  defaultLanguage: 'es',
-  fallbackLng: ['es']
+  }
 };
 
 module.exports = withPWA({
   pwa: {
     dest: 'public',
     runtimeCaching
-  }
+  },
+  i18n,
+  otherLanguages: ['es', 'tr'],
+  defaultLanguage: 'es',
+  fallbackLng: ['es']
 });
