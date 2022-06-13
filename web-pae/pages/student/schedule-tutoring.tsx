@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { useTranslation } from 'next-i18next'; // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 import { Meeting } from '@/components/data-table/types';
 import TutoringConfirmation from '@/components/tutoring/confirmation';
 import TutoringSubject from '@/components/tutoring/subject';
@@ -23,8 +26,6 @@ import {
 } from '../../helpers/student-steps';
 
 
-import { useTranslation } from 'next-i18next';  // add this
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 
 
 const ScheduleTutoring = () => {

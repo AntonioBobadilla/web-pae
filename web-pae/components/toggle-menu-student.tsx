@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import post from '@/helpers/post';
+import { useTranslation } from 'next-i18next'; // add this
 import { Router, withRouter } from 'next/router';
 import React from 'react';
 import toast from 'react-hot-toast';
@@ -7,7 +8,6 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenuStudent.module.css';
 import Exit from './dialogs/exit';
-import { useTranslation } from 'next-i18next';  // add this
 
 type ToggleMenuStudentProps = {
   onClickModifyPassword: () => void;

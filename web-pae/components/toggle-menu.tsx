@@ -1,4 +1,6 @@
 import post from '@/helpers/post';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Router, withRouter } from 'next/router';
 import React from 'react';
 import toast from 'react-hot-toast';
@@ -6,8 +8,6 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectRole, selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenu.module.css';
 import Exit from './dialogs/exit';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 type ToggleMenuProps = {
   router: Router;

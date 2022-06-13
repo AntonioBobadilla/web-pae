@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 import { selectToken } from '@/redux/user';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { useAppSelector } from 'store/hook';
@@ -7,8 +9,6 @@ import styles from '../../css/components/dialogs/modify-schedule.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import MyCalendar from '../frontend-calendar-full';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type ModifyLanguageProps = {
   visible: boolean;

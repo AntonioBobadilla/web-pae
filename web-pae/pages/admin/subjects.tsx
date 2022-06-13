@@ -4,12 +4,12 @@ import SubjectForm from '@/components/subject-form';
 import Tabs from '@/components/tabs';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 const Subjects = () => {
   const [currentTab, setCurrentTab] = useState('');
@@ -229,7 +229,7 @@ const Subjects = () => {
         <div className={styles.searchBar}>
           <span className={styles.loading}>
             {' '}
-            <strong>{'Search'}</strong>
+            <strong>Search</strong>
           </span>{' '}
           <div className={styles.searchtop}>
             {editable && editableName ? (

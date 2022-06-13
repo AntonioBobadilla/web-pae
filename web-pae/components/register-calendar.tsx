@@ -6,6 +6,8 @@ import {
   selectThirdPeriod,
   setPeriod
 } from '@/redux/create-tutor';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
@@ -15,8 +17,6 @@ import RegisterStyle from '../css/tutor/register.module.css';
 import ButtonTemplate from './button-template';
 import MyCalendar from './frontend-calendar';
 import ProgressBar from './progress-bar/progress-bar';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 interface RegisterCalendarProps {
   nextStep: () => void;

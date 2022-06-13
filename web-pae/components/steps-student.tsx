@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React from 'react';
+import { useTranslation } from 'next-i18next'; // add this
 import styles from '../css/components/StepsStudent.module.css';
 import {
   AVAILABLE_TUTORINGS,
@@ -7,7 +7,6 @@ import {
   SUBJECT,
   TOPIC
 } from '../helpers/student-steps';
-import { useTranslation } from 'next-i18next';  // add this
 
 interface StepsStudentProps {
   currentRoute: string | string[] | undefined;

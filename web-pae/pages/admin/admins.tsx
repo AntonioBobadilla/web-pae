@@ -3,12 +3,12 @@ import DeleteAdmin from '@/components/dialogs/delete-admin';
 import Tabs from '@/components/tabs';
 import { selectToken } from '@/redux/user';
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');

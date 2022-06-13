@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next';
-import React from 'react';
 import styles from '../../css/components/dialogs/denied-tutee.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
@@ -26,7 +25,7 @@ const DeniedTutoring = ({
   };
   return (
     <ClosablePopup
-      title={'Reject request'}
+      title='Reject request'
       line
       visible={visible}
       style={styles.container}

@@ -9,6 +9,7 @@ import {
   setFilteredMeetings,
   setSelectedItem
 } from '@/redux/schedule-tutoring';
+import { useTranslation } from 'next-i18next'; // add this
 import React from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import AvailableStyles from '../../css/components/tutoring/availableTutorings.module.css';
@@ -16,8 +17,6 @@ import AvailableTutCard from '../available-tutorings-card';
 import DailyBar from '../dailybar';
 import DataTable from '../data-table/data-table';
 import { AvailableTutoring } from '../data-table/types';
-import { useTranslation } from 'next-i18next';  // add this
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 
 const initialState = {
   isOnline: false,

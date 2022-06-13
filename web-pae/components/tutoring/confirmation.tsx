@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'; // add this
 import styles from '@/css-components/tutoring/confirmation.module.css';
 import formatTime from '@/helpers/format-time';
 import {
@@ -12,7 +13,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import ButtonTemplate from '../button-template';
 
-import { useTranslation } from 'next-i18next';  // add this
+
 
 
 const TutoringConfirmation = () => {

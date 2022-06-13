@@ -1,9 +1,9 @@
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import styles from '../css/components/calendar-full.module.css';
 import Cell from './frontend-calendar-cellComponent';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 interface MyCalendarProps {
   schedulesToShow: any;

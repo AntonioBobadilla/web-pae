@@ -1,8 +1,8 @@
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styles from '../css/components/calendar-view.module.css';
 import Cell from './frontend-calendar-cellComponentView';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 interface MyCalendarProps {
   changeColorOfCell: (cell: any) => void;

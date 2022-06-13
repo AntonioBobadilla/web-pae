@@ -4,14 +4,13 @@ import {
   selectSubjects,
   setSubjects
 } from '@/redux/create-tutor';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import ButtonTemplate from './button-template';
 import SearchBar, { Subject } from './search-bar';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
 
 interface RegisterSubjectsProps {
   previousStep: () => void;

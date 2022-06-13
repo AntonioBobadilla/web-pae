@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useTranslation } from 'next-i18next'; // add this
 import styles from '@/css-components/scheduleTutoring.module.css';
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
@@ -6,7 +7,7 @@ import { selectSubject, setSubject } from 'store/reducers/schedule-tutoring';
 import ButtonTemplate from '../button-template';
 import SearchBar, { Subject } from '../search-bar';
 
-import { useTranslation } from 'next-i18next';  // add this
+
 
 
 const TutoringSubject = ({

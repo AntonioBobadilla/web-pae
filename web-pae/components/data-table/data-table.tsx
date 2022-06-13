@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next'; // add this
 import React from 'react';
 import styles from '../../css/components/dataTable.module.css';
 import FormatTime from '../../helpers/format-time';
 import { DataTableProps } from './types';
-import { useTranslation } from 'next-i18next';  // add this
 
 
 function DataTable({

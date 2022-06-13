@@ -1,8 +1,7 @@
 import cx from 'classnames';
-import React from 'react';
+import { useTranslation } from 'next-i18next'; // add this
 import availableTutStyle from '../css/components/availableTutoringsCard.module.css';
 import ButtonTemplate from './button-template';
-import { useTranslation } from 'next-i18next';  // add this
 
 const IsLink = (props: { location: string }) => {
   const { location } = props;

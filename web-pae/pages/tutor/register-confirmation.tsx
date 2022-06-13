@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { NextPage } from 'next';
-import React from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ConfirmationPopup from '../../components/confirm-popup';
 import styles from '../../css/student/forgot-password.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
 
 
 const RegisterConfirmation: NextPage = () => (

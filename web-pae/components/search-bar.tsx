@@ -2,10 +2,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import cx from 'classnames';
 import Lexer from 'helpers/lexer';
-import React, { useState } from 'react';
-import styles from '../css/components/searchBar.module.css';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
+import { useState } from 'react';
+import styles from '../css/components/searchBar.module.css';
 
 
 export type Subject = {

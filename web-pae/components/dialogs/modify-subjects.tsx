@@ -1,5 +1,6 @@
 import stylesSubjects from '@/css-tutor/modify-subjects.module.css';
 import { selectToken } from '@/redux/user';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import styles from '../../css/components/dialogs/modify-password.module.css';
@@ -7,7 +8,6 @@ import registerStyles from '../../css/register.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import SearchBar from '../search-bar';
-import { useTranslation } from 'next-i18next';
 
 type ModifyLanguageProps = {
   visible: boolean;

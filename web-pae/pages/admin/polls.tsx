@@ -2,11 +2,11 @@ import EditPolls from '@/components/edit-polls';
 import PollIndividualResults from '@/components/poll-individual-results';
 import PollResults from '@/components/poll-results';
 import Tabs from '@/components/tabs';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/polls.module.css';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 const Polls = () => {
   const [currentTab, setCurrentTab] = useState('');

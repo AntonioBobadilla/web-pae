@@ -1,4 +1,6 @@
 /* eslint-disable no-nested-ternary */
+import { useTranslation } from 'next-i18next'; // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 import cx from 'classnames';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -12,8 +14,7 @@ import styles from '../../css/tutor/registration.module.css';
 import register from '../../helpers/student-register';
 
 
-import { useTranslation } from 'next-i18next';  // add this
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
+
 
 const Registration: NextPage = () => {
 

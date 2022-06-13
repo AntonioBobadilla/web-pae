@@ -1,10 +1,10 @@
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useEffect } from 'react';
 import { Period } from 'store/types';
 import styles from '../css/components/calendar.module.css';
 import Cell from './frontend-calendar-cellComponent';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'; 
 
 interface MyCalendarProps {
   eventObj: Period[];

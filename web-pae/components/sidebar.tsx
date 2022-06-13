@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/alt-text */
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import React from 'react';
 import sidebarStyles from '../css/components/sidebar.module.css';
 import adminStyles from '../css/components/sidebarAdmin.module.css';
-import { useTranslation } from 'next-i18next';
 
 interface SideBarProps {
   routing: {

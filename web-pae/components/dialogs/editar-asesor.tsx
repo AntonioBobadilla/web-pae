@@ -2,7 +2,6 @@
 import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import { selectToken } from '@/redux/user';
-import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import editAsesorStyles from '../../css/components/dialogs/edit-asesor.module.css';
 import ButtonTemplate from '../button-template';

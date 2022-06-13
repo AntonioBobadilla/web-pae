@@ -1,9 +1,9 @@
-import React, { ReactElement } from 'react';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { ReactElement } from 'react';
 import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/home.module.css';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 
 const Home = () => {
@@ -69,7 +69,6 @@ Home.getLayout = function getLayout(page: ReactElement) {
 
 export async function getStaticProps({ locale }: { locale: any }) {
 
-  //traductor pagina principal
   return {
     props: {
       ...(await serverSideTranslations(locale, ['admin-home', 'tutor-profile']))

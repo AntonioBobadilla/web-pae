@@ -2,13 +2,13 @@ import ModifyLanguage from '@/components/dialogs/modify-language';
 import ModifyPassword from '@/components/dialogs/modify-password';
 import ToggleMenuStudent from '@/components/toggle-menu-student';
 import { selectEmail, selectName } from '@/redux/user';
+import { useTranslation } from 'next-i18next'; // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 import React, { ReactElement } from 'react';
 import { useAppSelector } from 'store/hook';
 import CardInformation from '../../components/card-information-student';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import Styles from '../../css/student/profile.module.css';
-import { useTranslation } from 'next-i18next';  // add this
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 
 
 const Profile = () => {

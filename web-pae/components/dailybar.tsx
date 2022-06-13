@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import classNames from 'classnames';
-import React from 'react';
+import { useTranslation } from 'next-i18next'; // add this
 import Carousel from 'react-elastic-carousel';
 import styles from '../css/components/dailybar.module.css';
 import ItemDailyBar from './dailybar-item';
 import { Meeting } from './data-table/types';
-import { useTranslation } from 'next-i18next';  // add this
 
 
 function myArrow({

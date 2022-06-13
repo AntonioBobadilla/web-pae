@@ -34,8 +34,15 @@ module.exports = {
     ];
   },
   nextConfig,
-  i18n
+    i18n,
 };
+
+module.exports = {
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['en', 'es'],
+  }
+}
 
 module.exports = withPWA({
   pwa: {

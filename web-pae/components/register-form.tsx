@@ -1,4 +1,4 @@
-import React from 'react';
+import { useTranslation } from 'next-i18next';
 import { useForm } from 'react-hook-form';
 import { useAppSelector } from 'store/hook';
 import { selectRegisterData } from 'store/reducers/create-tutor';
@@ -6,7 +6,6 @@ import styles from '../css/components/registerForm.module.css';
 import ButtonTemplate from './button-template';
 import Password from './password';
 import TextInput from './text-input';
-import { useTranslation } from 'next-i18next'; 
 
 interface RegisterFormProps {
   nextStep: (data: StudentRegisterData) => void;

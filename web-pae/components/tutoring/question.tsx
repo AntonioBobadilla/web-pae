@@ -1,4 +1,5 @@
 import qStyles from '@/css-components/scheduleTutoringQuestion.module.css';
+import { useTranslation } from 'next-i18next'; // add this
 import { useAppSelector } from 'store/hook';
 import {
   selectContent,
@@ -9,7 +10,6 @@ import {
 import ButtonTemplate from '../button-template';
 import DragAndDrop from '../drag-and-drop';
 import InputTextArea from '../input-text-area';
-import { useTranslation } from 'next-i18next';  // add this
 
 const TutoringQuestion = ({
   handleNextStep

@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next'; // add this
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setContent, setTitle } from 'store/reducers/schedule-tutoring';
 import itaStyles from '../css/components/inputTextArea.module.css';
-import { useTranslation } from 'next-i18next';  // add this
 
 
 type InputTextAreaProps = {

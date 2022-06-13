@@ -1,6 +1,6 @@
-import ClosablePopup from '../closable-popup';
-import Styles from '../../css/components/dialogs/delete-question.module.css';
 import { useTranslation } from 'next-i18next';
+import Styles from '../../css/components/dialogs/delete-question.module.css';
+import ClosablePopup from '../closable-popup';
 
 type props = {
   visible: boolean;

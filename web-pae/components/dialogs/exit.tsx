@@ -1,8 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
+import { useTranslation } from 'next-i18next';
 import Styles from '../../css/components/dialogs/exit.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
-import { useTranslation } from 'next-i18next';
 
 type ExitProps = {
   visible: boolean;

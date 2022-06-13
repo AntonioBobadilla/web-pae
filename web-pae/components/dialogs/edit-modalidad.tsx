@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import styles from '../../css/components/dialogs/modify-password.module.css';
+import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 import stylesModalidad from '../../css/components/dialogs/edit-modalidad.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
-import { useTranslation } from 'next-i18next';
 
 type ModifyLanguageProps = {
   visible: boolean;

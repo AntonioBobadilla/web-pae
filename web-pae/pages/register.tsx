@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import ButtonTemplate from '../components/button-template';
 import ToggleButton from '../components/toggle-button';
 import styles from '../css/register.module.css';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Register: NextPage = () => {
   const router = useRouter();
@@ -78,7 +78,7 @@ const Register: NextPage = () => {
                   }
                   onClick={changeLanguageEs}
                 >
-                  <Link href='/register' locale={"es"}>
+                  <Link href='/register' locale="es">
                     <a>
                       <ToggleButton flagType="/images/mxflag.png" desc={t('Español')} />
                     </a>
@@ -90,7 +90,7 @@ const Register: NextPage = () => {
                   }
                   onClick={changeLanguageEn}
                 >
-                <Link href='/register' locale={"en"}>
+                <Link href='/register' locale="en">
                   <a>
                     <ToggleButton flagType="/images/usaflag.png" desc={t('Ingles')} />
                   </a>

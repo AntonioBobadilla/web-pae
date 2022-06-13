@@ -1,9 +1,9 @@
-import React, { ReactElement } from 'react';
+import { useTranslation } from 'next-i18next'; // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
+import { ReactElement } from 'react';
 import ImageCard from '../../components/image-card';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/tutor/home.module.css';
-import { useTranslation } from 'next-i18next';  // add this
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
 
 
 
