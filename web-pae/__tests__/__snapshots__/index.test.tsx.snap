@@ -78,12 +78,6 @@ exports[`Index renders index page unchanged 1`] = `
         <span
           class="mainText"
         >
-<<<<<<< HEAD
-           
-          Password recovery
-           
-        </p>
-=======
           <br />
           PROGRAMA 
           <br />
@@ -92,7 +86,6 @@ exports[`Index renders index page unchanged 1`] = `
           ESTUDIANTE
           <br />
         </span>
->>>>>>> 5896bbb6bab49c6802f883a92fd923799a0f8051
       </div>
       <div
         class="body"
@@ -154,9 +147,6 @@ exports[`Index renders index page unchanged 1`] = `
           </strong>
           y los
            
-<<<<<<< HEAD
-          Password recovery
-=======
           <strong
             class="bold"
           >
@@ -265,7 +255,6 @@ exports[`Index renders index page unchanged 1`] = `
           class="greetings"
         >
           ¡En PAE estamos encantados de poder ayudarte!
->>>>>>> 5896bbb6bab49c6802f883a92fd923799a0f8051
            
         </span>
       </div>
