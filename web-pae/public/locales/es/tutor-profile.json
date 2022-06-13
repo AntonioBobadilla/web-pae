@@ -1,13 +1,11 @@
 {
-  "Tutor-Student": "Plataforma Asesor-Estudiante",
-  "My Profile": "Mi Perfil",
-  "Dashboard": "Dashboard",
-  "Asesores PAE": "Asesores PAE",
-  "Solicitudes de asesorías": "Solicitudes de asesorías",
-  "Administrar materias": "Administrar materias",
-  "Historial de asesorías": "Historial de asesorías",
-  "Encuestas": "Encuestas",
-  "Administradores": "Administradores",
-  "Perfil": "Perfil",
-  "Agendar asesoría": "Agendar asesoría"
+    "Tutor-Student": "Plataforma Asesor-Estudiante",
+    "My Profile": "Mi Perfil",
+    "Weekly Progress" : "Progreso de horas semanales",
+    "Total Progress" : "Progreso de horas totales",
+    "Tutoring" : "Asesorías",
+    "Modify Subjects" : "Modificar materias",
+    "Subject added successfully" : "Materia agregada con éxito.",
+    "SAVE" : "GUARDAR",
+    "Modify Schedule" : "Modificar horario"
 }

@@ -6,7 +6,8 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectRole, selectToken, setLogoutData } from 'store/reducers/user';
 import tStyles from '../css/components/toggleMenu.module.css';
 import Exit from './dialogs/exit';
-import { useTranslation } from 'next-i18next'; 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 type ToggleMenuProps = {
   router: Router;
@@ -63,6 +64,7 @@ const ToggleMenu = ({
       });
   };
 
+  const { t } = useTranslation('toggle-menu');
   const handleLogOut = () => {
     setVisible(true);
   };
@@ -82,7 +84,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifySchedule()}
                 tabIndex={-1}
               >
-                {t('Modificar horario')}
+                {t('Modify schedule')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -92,7 +94,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifySubjects()}
                 tabIndex={-1}
               >
-                {t('Modificar materias')}
+                {t('Modify subjects')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -102,7 +104,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifyPassword()}
                 tabIndex={-1}
               >
-                {t('Modificar contraseña')}
+                {t('Modify password')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -112,7 +114,7 @@ const ToggleMenu = ({
                 onClick={() => onClickModifyLanguage()}
                 tabIndex={-1}
               >
-                {t('Modificar idioma')}
+                {t('Language')}
               </span>
             </li>
             <li className={tStyles.li}>
@@ -122,7 +124,7 @@ const ToggleMenu = ({
                 onClick={() => handleLogOut()}
                 tabIndex={-1}
               >
-                {t('Cerrar sesión')}
+                {t('Sign out')}
               </span>
             </li>
           </ul>
@@ -141,4 +143,14 @@ const ToggleMenu = ({
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'toggle-menu',
+        'assigned-tutoring'
+      ]))
+    }
+  };
+}
 export default withRouter(ToggleMenu);

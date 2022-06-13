@@ -5,6 +5,7 @@ import registerStyles from '../../css/register.module.css';
 import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
 import SearchBar from '../search-bar';
+import { useTranslation } from 'next-i18next';
 
 type ModifyLanguageProps = {
   visible: boolean;
@@ -103,7 +104,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
         return res.json();
       })
       .then((data) => {
-        console.log('ok MATERIA BORRADA PERRO');
+        console.log('ok MATERIA BORRADA');
         showSuccessModal();
         //onClickSuccessAcceptTutee()
         //window.location.reload(false);
@@ -121,9 +122,10 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
     deleteSubjectFromTutor(subjectCode);
   };
 
+  const { t } = useTranslation('tutor-profile');
   return (
     <ClosablePopup
-      title="Modificar materias"
+      title={t('Modify Subjects')}
       line
       visible={visible}
       style={styles.container}
@@ -134,7 +136,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
         style={{ flexDirection: 'column' }}
       >
         <div id="message" className={stylesSubjects.successMessage}>
-          <p>Materia agregada con éxito.</p>
+          <p>{t('Subject added successfully')}</p>
         </div>
         <div className={stylesSubjects.wrapperSearchBar}>
           <SearchBar
@@ -161,7 +163,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
       </div>
       <div className={styles.button}>
         <ButtonTemplate variant="confirm" onClick={() => onClickSave()}>
-          GUARDAR
+          {t('SAVE')}
         </ButtonTemplate>
       </div>
     </ClosablePopup>

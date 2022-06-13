@@ -40,7 +40,7 @@ exports[`Student Register Confirmation renders student register confirmation unc
             <h2
               class="title"
             >
-               ¡Registro completado! 
+              Registration completed
             </h2>
           </div>
           <div
@@ -49,7 +49,7 @@ exports[`Student Register Confirmation renders student register confirmation unc
             <p
               class="paragraph"
             >
-              Recibirás un correo cuando sea aprobado tu perfil
+              You will receive an email
             </p>
             <div
               class="icon"
@@ -62,7 +62,7 @@ exports[`Student Register Confirmation renders student register confirmation unc
               class="linkStyle"
               href="/student/login"
             >
-              Regresar a página de inicio
+              Return to home page
             </a>
           </div>
         </div>

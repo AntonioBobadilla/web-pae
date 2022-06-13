@@ -10,5 +10,10 @@
     "Dont have account": "¿No tienes cuenta?",
     "Notice of privacy": "Aviso de privacidad",
     "PASSWORD": "CONTRASEÑA",
-	"Sign up": "Registrarse"
+	"Sign up": "Registrarse",
+	"Required Id" : "Matrícula requerida",
+	"Invalid Email. E.g. A0XXXXXXX@tec.mx" : "Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx",
+	"Required email" : "Contraseña requerida",
+	"Password too short" : "Contraseña muy corta"
+
 }

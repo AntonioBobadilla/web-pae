@@ -66,6 +66,8 @@ const Profile = () => {
     getData();
   }, []);
 
+  const { t } = useTranslation('tutor-profile');
+
   return (
     <div className={Styles.main}>
       <ToggleMenu
@@ -83,9 +85,7 @@ const Profile = () => {
       </div>
       <div className={Styles.progress}>
         <div className={Styles.weekHours}>
-          <span className={Styles.progressText}>
-            Progreso de horas semanales
-          </span>
+          <span className={Styles.progressText}>{t('Weekly Progress')}</span>
           <div className={Styles.hoursContainer}>
             <div className={Styles.bar}>
               <ProgressBarHours progress={progress.weekHours} total={5} />
@@ -94,7 +94,7 @@ const Profile = () => {
           </div>
         </div>
         <div className={Styles.totalHours}>
-          <span className={Styles.progressText}>Progreso de horas totales</span>
+          <span className={Styles.progressText}>{t('Total Progress')}</span>
           <div className={Styles.hoursContainer}>
             <div className={Styles.bar}>
               <ProgressBarHours progress={progress.totalHours} total={180} />
@@ -105,7 +105,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <p className={Styles.tutorship}>Asesorías</p>
+      <p className={Styles.tutorship}>{t('Tutoring')}</p>
       <div className={Styles.cardInfo}>
         <CardInformation />
       </div>
@@ -145,10 +145,13 @@ Profile.getLayout = function getLayout(page: ReactElement) {
   return <SidebarLayout title={t('My Profile')}>{page}</SidebarLayout>;
 };
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['tutor-profile']))
+      ...(await serverSideTranslations(locale, [
+        'toggle-menu',
+        'tutor-profile'
+      ]))
     }
   };
 }

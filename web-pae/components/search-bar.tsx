@@ -4,6 +4,8 @@ import cx from 'classnames';
 import Lexer from 'helpers/lexer';
 import React, { useState } from 'react';
 import styles from '../css/components/searchBar.module.css';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'; 
 
 import { useTranslation } from 'next-i18next';  // add this
 
@@ -120,6 +122,7 @@ const SearchBar = ({ suggestions, handleSuggestions }: SearchBarProps) => {
     }
     return null;
   };
+  const { t } = useTranslation('tutor-registration');
 
   return (
     <div className={styles.wrapper}>
@@ -139,4 +142,11 @@ const SearchBar = ({ suggestions, handleSuggestions }: SearchBarProps) => {
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['tutor-registration']))
+    }
+  };
+}
 export default SearchBar;
