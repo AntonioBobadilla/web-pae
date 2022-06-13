@@ -20,7 +20,7 @@ AssignedTutorings.getLayout = function getLayout(page: ReactElement) {
 export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+      ...(await serverSideTranslations(locale, ['assigned-tutoring', 'tutor-profile']))
     }
   };
 }

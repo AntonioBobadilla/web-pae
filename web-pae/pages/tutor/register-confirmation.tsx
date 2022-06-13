@@ -20,7 +20,7 @@ const RegisterConfirmation: NextPage = () => (
 export async function getStaticProps({ locale }: { locale: any }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['tutor-confirmation']))
+      ...(await serverSideTranslations(locale, ['tutor-confirmation',  'tutor-profile']))
     }
   };
 }

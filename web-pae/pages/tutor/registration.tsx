@@ -18,6 +18,8 @@ import RegisterSubjects from '../../components/register-subjects';
 import StepsRegister from '../../components/steps-register';
 import styles from '../../css/tutor/registration.module.css';
 import { REGISTER, SCHEDULE, Steps, SUBJECTS } from '../../helpers/steps';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'; 
 
 
 const Registration: NextPage = () => {
@@ -158,4 +160,11 @@ const Registration: NextPage = () => {
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['tutor-profile']))
+    }
+  };
+}
 export default Registration;
