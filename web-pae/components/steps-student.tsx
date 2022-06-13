@@ -7,6 +7,7 @@ import {
   SUBJECT,
   TOPIC
 } from '../helpers/student-steps';
+import { useTranslation } from 'next-i18next';  // add this
 
 interface StepsStudentProps {
   currentRoute: string | string[] | undefined;
@@ -24,7 +25,11 @@ const StepsStudent = ({
   isTopicCompleted,
   isConfirmationCompleted,
   handleStep
-}: StepsStudentProps) => (
+}: StepsStudentProps) => {
+
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
+
+  return (
   // creo un Stateless Functional Component
 
   <div className={styles.stepsRegisterWrap}>
@@ -50,7 +55,7 @@ const StepsStudent = ({
             styles.active
         )}
       >
-        Unidad de formación
+        {t('Unidad de formación')}
       </p>
     </div>
 
@@ -83,7 +88,7 @@ const StepsStudent = ({
           currentRoute === AVAILABLE_TUTORINGS && styles.active
         )}
       >
-        Horario
+        {t('Horario')}
       </p>
     </div>
     <div className={styles.dots}>
@@ -104,7 +109,7 @@ const StepsStudent = ({
       <p
         className={cx(styles.itemText, currentRoute === TOPIC && styles.active)}
       >
-        Tema
+        {t('Tema')}
       </p>
     </div>
     <div className={styles.dots}>
@@ -133,9 +138,9 @@ const StepsStudent = ({
           currentRoute === CONFIRMATION && styles.active
         )}
       >
-        Confirmación
+        {t('Confirmación')}
       </p>
     </div>
   </div>
-);
+)};
 export default StepsStudent; // exporto la función

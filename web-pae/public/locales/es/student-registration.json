@@ -1,0 +1,20 @@
+{
+    "Algo salio mal": "Algo salio mal",
+    "REGISTRO": "REGISTRO",
+    "Datos personales": "Datos personales",
+    "NOMBRE COMPLETO*": "NOMBRE COMPLETO*",
+    "Nombre completo requerido": "Nombre completo requerido",
+    "El nombre debe tener al menos 3 caracteres": "El nombre debe tener al menos 3 caracteres",
+    "CORREO INSTITUCIONAL*": "CORREO INSTITUCIONAL*",
+    "Correo eléctrónico requerido": "Correo eléctrónico requerido",
+    "Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx": "Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx",
+    "CARRERA*":"CARRERA*",
+    "Carrera requerida":"Carrera requerida",
+    "Carrera inválida. E.g. ARQ, LAD, MEC":"Carrera inválida. E.g. ARQ, LAD, MEC",
+    "Contraseña requerida":"Contraseña requerida",
+    "Contraseña muy corta":"Contraseña muy corta",
+    "CONFIRMAR CONTRASEÑA*":"CONFIRMAR CONTRASEÑA*",
+    "Confirmación de contraseña requerida":"Confirmación de contraseña requerida",
+    "CONCLUIR REGISTRO":"CONCLUIR REGISTRO",
+    "CONTINUAR CON REGISTRO":"CONTINUAR CON REGISTRO"
+}
