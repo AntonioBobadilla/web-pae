@@ -51,10 +51,10 @@ const Profile = () => {
       .then((data) => {
         const newData = [...data];
         newData.sort((a, b) => {
-          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
             return -1;
           }
-          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
             return 1;
           }
           return 0;
@@ -64,7 +64,7 @@ const Profile = () => {
       .catch((err) => console.log(err.message));
   }, []);
   const progress = {
-    weekHours: 1,
+    weekHours: data?.weekly_completed_hours ?? 0,
     totalHours: data?.completed_hours ?? 0
   };
 
