@@ -7,7 +7,7 @@ import { selectToken } from '@/redux/user';
 import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 
@@ -671,7 +671,6 @@ Tutorings.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {
-
   //traductor pagina principal
   return {
     props: {
