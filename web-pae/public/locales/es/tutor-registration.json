@@ -13,5 +13,6 @@
     "CONFIRM PASSWORD" : "CONFIRMAR CONTRASEÑA",
     "Password confirmation required" : "La confirmación de la contraseña es requerida",
     "FINISH REGISTER" : "FINALIAR REGISTRO",
-    "CONTINUE WITH REGISTER" : "CONTINUAR REGISTRO"
+    "CONTINUE WITH REGISTER" : "CONTINUAR REGISTRO",
+    "Search a formation unit (Code/Name)" : "Busca una unidad de formación (Clave / Nombre)"
 }

@@ -13,7 +13,8 @@ const AssignedTutorings = () => (
 
 // Add sidebar layout
 AssignedTutorings.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Asesorías asignadas">{page}</SidebarLayout>;
+  const { t } = useTranslation('assigned-tutoring');
+  return <SidebarLayout title={t('Assigned tutoring')}>{page}</SidebarLayout>;
 };
 
 export async function getStaticProps({ locale }: { locale: any }) {

@@ -13,5 +13,6 @@
     "CONFIRM PASSWORD" : "CONFIRM PASSWORD",
     "Password confirmation required" : "Password confirmation required",
     "FINISH REGISTER" : "FINISH REGISTER",
-    "CONTINUE WITH REGISTER" : "CONTINUE WITH REGISTER"
+    "CONTINUE WITH REGISTER" : "CONTINUE WITH REGISTER",
+    "Search a formation unit (Code/Name)" : "Search a formation unit (Code/Name)"
 }
