@@ -1,6 +1,5 @@
-
-import { useTranslation } from 'next-i18next';
 import { selectToken } from '@/redux/user';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hook';
@@ -20,7 +19,7 @@ const SubjectForm = () => {
   };
 
   const addSubject = (e: any) => {
-    fetch('https://server-pae.azurewebsites.net/subject/', {
+    fetch('http://10.50.84.114:4008/subject/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

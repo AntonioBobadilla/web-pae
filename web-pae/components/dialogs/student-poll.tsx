@@ -36,7 +36,7 @@ const StudentPoll = ({
       };
     });
 
-    fetch('https://server-pae.azurewebsites.net/poll/', {
+    fetch('http://10.50.84.114:4008/poll/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

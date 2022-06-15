@@ -55,7 +55,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }
 
   React.useEffect(() => {
-    fetch(`https://server-pae.azurewebsites.net/tutor/${id?.toLowerCase()}`, {
+    fetch(`http://10.50.84.114:4008/tutor/${id?.toLowerCase()}`, {
       headers: {
         Authorization: `Token ${token}`
       }
@@ -117,7 +117,7 @@ const ModifySchedule = ({ visible, setVisible, id }: ModifyLanguageProps) => {
       schedules: [...data]
     };
 
-    fetch('https://server-pae.azurewebsites.net/modifyschedule/', {
+    fetch('http://10.50.84.114:4008/modifyschedule/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

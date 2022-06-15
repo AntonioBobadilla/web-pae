@@ -24,7 +24,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   const [subjectsFromTutor, setSubjectsFromTutor] = useState<any>([]);
 
   const getAllSubjects = () => {
-    fetch('https://server-pae.azurewebsites.net/subject/')
+    fetch('http://10.50.84.114:4008/subject/')
       .then((resp) => resp.json())
       .then((data) => {
         setSubjectsFromApi(data);
@@ -32,14 +32,11 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   };
 
   const getAllSubjectsFromTutor = () => {
-    fetch(
-      'https://server-pae.azurewebsites.net/subjectbytutor/' + id.toLowerCase(),
-      {
-        headers: {
-          Authorization: `Token ${token}`
-        }
+    fetch('http://10.50.84.114:4008/subjectbytutor/' + id.toLowerCase(), {
+      headers: {
+        Authorization: `Token ${token}`
       }
-    )
+    })
       .then((resp) => resp.json())
       .then((data) => {
         setSubjectsFromTutor(data);
@@ -63,7 +60,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   }, []);
 
   const insertSubjectOnTutor = (subject: any) => {
-    fetch('https://server-pae.azurewebsites.net/subjectbytutor/', {
+    fetch('http://10.50.84.114:4008/subjectbytutor/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -98,7 +95,7 @@ const ModifySubjects = ({ visible, setVisible, id }: ModifyLanguageProps) => {
   };
 
   const deleteSubjectFromTutor = (code: any) => {
-    fetch('https://server-pae.azurewebsites.net/subjectbytutor/', {
+    fetch('http://10.50.84.114:4008/subjectbytutor/', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

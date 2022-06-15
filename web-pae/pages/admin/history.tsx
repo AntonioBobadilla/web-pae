@@ -22,7 +22,7 @@ const History = () => {
   const token = useAppSelector(selectToken);
 
   const getData = () => {
-    fetch('https://server-pae.azurewebsites.net/tutoring/', {
+    fetch('http://10.50.84.114:4008/tutoring/', {
       method: 'GET',
       headers: {
         Authorization: `Token ${token}`
@@ -53,15 +53,12 @@ const History = () => {
       icon: '✔️'
     });
     // console.log(e.target.value, id);
-    fetch(
-      `https://server-pae.azurewebsites.net/updatetutoring/${id}/${e.target.value}`,
-      {
-        method: 'PUT',
-        headers: {
-          Authorization: `Token ${token}`
-        }
+    fetch(`http://10.50.84.114:4008/updatetutoring/${id}/${e.target.value}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Token ${token}`
       }
-    )
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data);

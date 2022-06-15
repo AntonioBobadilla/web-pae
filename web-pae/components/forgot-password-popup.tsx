@@ -10,8 +10,6 @@ import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
 
-
-
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
   loginUrl: string;
@@ -72,7 +70,7 @@ const ForgotPasswordPopup = ({
     setIsLoading(true);
     post(
       { email: data.email.toLowerCase(), user_type: user },
-      'https://server-pae.azurewebsites.net/resetpassword/'
+      'http://10.50.84.114:4008/resetpassword/'
     )
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);

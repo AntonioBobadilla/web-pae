@@ -42,7 +42,7 @@ const Tutorings = () => {
   const { t } = useTranslation('admin-tutorings-requests');
 
   const getDataFromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/tutoring/?status=PE', {
+    fetch('http://10.50.84.114:4008/tutoring/?status=PE', {
       method: 'GET',
       headers: {
         Authorization: `Token ${token}`
@@ -77,17 +77,14 @@ const Tutorings = () => {
   // función que realizara el update del tutor basado en el indice guardado en objectToModify
   const updateAsesor = () => {
     if (newAsesor == '') return;
-    fetch(
-      `https://server-pae.azurewebsites.net/changetutor/${objectToModify}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`
-        },
-        body: JSON.stringify({ tutor: newAsesor.toLowerCase() }) // agregar json de update
-      }
-    )
+    fetch(`http://10.50.84.114:4008/changetutor/${objectToModify}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
+      body: JSON.stringify({ tutor: newAsesor.toLowerCase() }) // agregar json de update
+    })
       .then((res) => {
         if (!res.ok) {
           // error coming back from server
@@ -112,20 +109,17 @@ const Tutorings = () => {
   const updatemodalidad = () => {
     const online = NewModalidad == 'En línea';
     if (objectToModify == 0) return;
-    fetch(
-      `https://server-pae.azurewebsites.net/changetutoringlocation/${objectToModify}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`
-        },
-        body: JSON.stringify({
-          is_online: online,
-          place: newPlace
-        }) // agregar json de update
-      }
-    )
+    fetch(`http://10.50.84.114:4008/changetutoringlocation/${objectToModify}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
+      body: JSON.stringify({
+        is_online: online,
+        place: newPlace
+      }) // agregar json de update
+    })
       .then((res) => {
         if (!res.ok) {
           // error coming back from server
@@ -181,16 +175,13 @@ const Tutorings = () => {
 
   // agregar token dinamico
   const del = () => {
-    fetch(
-      `https://server-pae.azurewebsites.net/updatetutoring/${TuteeIdToDelete}/CA`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`
-        }
+    fetch(`http://10.50.84.114:4008/updatetutoring/${TuteeIdToDelete}/CA`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
       }
-    )
+    })
       .then((res) => {
         if (!res.ok) {
           // error coming back from server
@@ -214,7 +205,7 @@ const Tutorings = () => {
   };
 
   const acceptTutoring = (id: any) => {
-    fetch(`https://server-pae.azurewebsites.net/updatetutoring/${id}/AP`, {
+    fetch(`http://10.50.84.114:4008/updatetutoring/${id}/AP`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

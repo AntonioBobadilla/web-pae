@@ -39,7 +39,7 @@ const Profile = () => {
   }, []);
   useEffect(() => {
     fetch(
-      `https://server-pae.azurewebsites.net/tutoring/?tutor=${myUser.id?.toLowerCase()}`,
+      `http://10.50.84.114:4008/tutoring/?tutor=${myUser.id?.toLowerCase()}`,
       {
         method: 'GET',
         headers: {
@@ -93,16 +93,13 @@ const Profile = () => {
     setModifyScheduleVisible(true);
   };
   const getData = () => {
-    fetch(
-      `https://server-pae.azurewebsites.net/tutor/${myUser.id?.toLowerCase()}`,
-      {
-        method: 'GET',
+    fetch(`http://10.50.84.114:4008/tutor/${myUser.id?.toLowerCase()}`, {
+      method: 'GET',
 
-        headers: {
-          Authorization: `Token ${token}`
-        }
+      headers: {
+        Authorization: `Token ${token}`
       }
-    )
+    })
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data)

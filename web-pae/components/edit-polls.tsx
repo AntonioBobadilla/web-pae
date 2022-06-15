@@ -19,7 +19,6 @@ const EditPolls = () => {
   const { t } = useTranslation('admin-polls');
   const token = useAppSelector(selectToken);
 
-
   const modifyQuestion = (e: any) => {
     visiblePopUp2();
     const element = e.target.parentElement.parentElement.childNodes[0];
@@ -63,7 +62,7 @@ const EditPolls = () => {
   };
 
   const getPollsfromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/question/', {
+    fetch('http://10.50.84.114:4008/question/', {
       method: 'GET',
       headers: {
         Authorization: `Token ${token}`
@@ -85,7 +84,7 @@ const EditPolls = () => {
   }, []);
 
   const deleteQuestion = () => {
-    fetch(`https://server-pae.azurewebsites.net/question/${id}/`, {
+    fetch(`http://10.50.84.114:4008/question/${id}/`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -108,7 +107,7 @@ const EditPolls = () => {
   };
 
   const editQuestion = (id: any) => {
-    fetch(`https://server-pae.azurewebsites.net/question/${id}/`, {
+    fetch(`http://10.50.84.114:4008/question/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -133,7 +132,7 @@ const EditPolls = () => {
   };
 
   const addQuestion = (e: any) => {
-    fetch('https://server-pae.azurewebsites.net/question/', {
+    fetch('http://10.50.84.114:4008/question/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

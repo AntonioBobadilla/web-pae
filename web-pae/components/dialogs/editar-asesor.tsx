@@ -1,7 +1,6 @@
-
-import { useTranslation } from 'next-i18next';
-import React, { useEffect, useState } from 'react';
 import { selectToken } from '@/redux/user';
+import { useTranslation } from 'next-i18next';
+import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import editAsesorStyles from '../../css/components/dialogs/edit-asesor.module.css';
 import ButtonTemplate from '../button-template';
@@ -66,7 +65,7 @@ const EditAsesor = ({
   };
 
   const getAsesores = () => {
-    fetch('https://server-pae.azurewebsites.net/alternatetutor/', {
+    fetch('http://10.50.84.114:4008/alternatetutor/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

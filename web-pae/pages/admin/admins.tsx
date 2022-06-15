@@ -37,7 +37,7 @@ const Subject = () => {
   }, []);
 
   const getData = () => {
-    fetch('https://server-pae.azurewebsites.net/administrator/', {
+    fetch('http://10.50.84.114:4008/administrator/', {
       method: 'GET',
       headers: {
         Authorization: `Token ${token}`
@@ -64,7 +64,7 @@ const Subject = () => {
 
   const deleteAdmin = () => {
     console.log(id);
-    fetch('https://server-pae.azurewebsites.net/administrator/' + id + '/', {
+    fetch('http://10.50.84.114:4008/administrator/' + id + '/', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

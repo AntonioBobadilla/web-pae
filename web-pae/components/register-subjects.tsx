@@ -32,9 +32,7 @@ const RegisterSubjects = ({
   const dispatch = useAppDispatch();
 
   const usefetch = async () => {
-    const response = await fetch(
-      'https://server-pae.azurewebsites.net/subject/'
-    );
+    const response = await fetch('http://10.50.84.114:4008/subject/');
     const data = await response.json();
     // console.log(data);
     setSubjectsFromApi(data);

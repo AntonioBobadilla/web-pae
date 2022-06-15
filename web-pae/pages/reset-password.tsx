@@ -70,7 +70,7 @@ const ChangePassword: NextPage = () => {
         token,
         new_password: data.newPassword
       },
-      'https://server-pae.azurewebsites.net/changepasswordtoken/'
+      'http://10.50.84.114:4008/changepasswordtoken/'
     )
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);

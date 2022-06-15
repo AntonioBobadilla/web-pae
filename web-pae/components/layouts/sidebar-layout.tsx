@@ -32,7 +32,7 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
   const { t } = useTranslation('tutor-profile');
 
   React.useEffect(() => {
-    fetch('https://server-pae.azurewebsites.net/isauthenticated/', {
+    fetch('http://10.50.84.114:4008/isauthenticated/', {
       method: 'POST',
       body: JSON.stringify({ token }),
       headers: {
@@ -101,7 +101,7 @@ const SidebarLayout = ({ router, children, title }: LayoutProps) => {
   const logOut = () => {
     // console.log(role);
     setIsLoading(true);
-    post({ token }, 'https://server-pae.azurewebsites.net/logout/')
+    post({ token }, 'http://10.50.84.114:4008/logout/')
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);
       })

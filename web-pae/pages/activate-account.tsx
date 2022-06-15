@@ -16,7 +16,7 @@ const ActivateAccount = () => {
       {
         token
       },
-      'https://server-pae.azurewebsites.net/verifyemail/'
+      'http://10.50.84.114:4008/verifyemail/'
     ).then(({ status, responseData }) => {
       try {
         const { message, role } = responseData;

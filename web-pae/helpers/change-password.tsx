@@ -5,24 +5,21 @@ export type ModifyPasswordData = {
 };
 async function changePassword(data: ModifyPasswordData, token: string) {
   try {
-    const response = await fetch(
-      'https://server-pae.azurewebsites.net/changepassword/',
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`
-        },
-        body: JSON.stringify({
-          password: data.currentPassword,
-          new_password: data.newPassword,
-          confirm_new_password: data.passwordConfirmation
-        }),
-        cache: 'no-cache',
-        credentials: 'same-origin'
-        // mode: 'cors'
-      }
-    );
+    const response = await fetch('http://10.50.84.114:4008/changepassword/', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
+      body: JSON.stringify({
+        password: data.currentPassword,
+        new_password: data.newPassword,
+        confirm_new_password: data.passwordConfirmation
+      }),
+      cache: 'no-cache',
+      credentials: 'same-origin'
+      // mode: 'cors'
+    });
     const status = await response.status;
     const responseData = await response.json();
 

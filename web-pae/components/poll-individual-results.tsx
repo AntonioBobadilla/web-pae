@@ -16,7 +16,7 @@ const PollIndividualResults = ({ curTab }: IndividualResultProps) => {
   const { t } = useTranslation('admin-polls');
   const token = useAppSelector(selectToken);
   const getPollsfromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/poll/', {
+    fetch('http://10.50.84.114:4008/poll/', {
       method: 'GET',
       headers: {
         Authorization: `Token ${token}`

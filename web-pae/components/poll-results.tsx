@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next';
 import { selectToken } from '@/redux/user';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store/hook';
 import styles from '../css/components/pollResults.module.css';
@@ -15,7 +15,7 @@ const PollResults = ({ curTab }: PollResultProps) => {
   const token = useAppSelector(selectToken);
 
   const getPollsfromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/pollresult/', {
+    fetch('http://10.50.84.114:4008/pollresult/', {
       method: 'GET',
       headers: {
         Authorization: `Token ${token}`

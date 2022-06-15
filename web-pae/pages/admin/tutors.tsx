@@ -71,7 +71,7 @@ const Tutorings = () => {
   };
 
   const getTuteesFromApi = () => {
-    fetch('https://server-pae.azurewebsites.net/tutor/', {
+    fetch('http://10.50.84.114:4008/tutor/', {
       method: 'GET',
       headers: {
         Authorization: `Token ${token}`
@@ -110,7 +110,7 @@ const Tutorings = () => {
   };
 
   const acceptTutee = (id: any) => {
-    fetch(`https://server-pae.azurewebsites.net/tutorisaccepted/${id}`, {
+    fetch(`http://10.50.84.114:4008/tutorisaccepted/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ const Tutorings = () => {
   };
 
   const del = () => {
-    fetch(`https://server-pae.azurewebsites.net/tutor/${TuteeIdToDelete}`, {
+    fetch(`http://10.50.84.114:4008/tutor/${TuteeIdToDelete}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

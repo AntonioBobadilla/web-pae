@@ -86,7 +86,7 @@ export const registerTutor = createAsyncThunk(
           }))
         ]
       },
-      'https://server-pae.azurewebsites.net/tutor/'
+      'http://10.50.84.114:4008/tutor/'
     );
   }
 );

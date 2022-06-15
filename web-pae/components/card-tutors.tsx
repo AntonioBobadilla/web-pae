@@ -20,7 +20,7 @@ const CardTutors = () => {
   const token = useAppSelector(selectToken);
   React.useEffect(() => {
     fetch(
-      `https://server-pae.azurewebsites.net/tutoring/?status=AP&tutor=${id?.toLowerCase()}`,
+      `http://10.50.84.114:4008/tutoring/?status=AP&tutor=${id?.toLowerCase()}`,
       {
         method: 'GET',
         headers: {

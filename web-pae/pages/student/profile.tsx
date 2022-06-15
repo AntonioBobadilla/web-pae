@@ -29,7 +29,7 @@ const Profile = () => {
 
   React.useEffect(() => {
     if (idTutoring !== 0) {
-      fetch(`https://server-pae.azurewebsites.net/question/`, {
+      fetch(`http://10.50.84.114:4008/question/`, {
         method: 'GET',
         headers: {
           Authorization: `Token ${token}`
@@ -47,15 +47,12 @@ const Profile = () => {
   }, [idTutoring]);
 
   React.useEffect(() => {
-    fetch(
-      `https://server-pae.azurewebsites.net/tutoring/?student=${id?.toLowerCase()}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Token ${token}`
-        }
+    fetch(`http://10.50.84.114:4008/tutoring/?student=${id?.toLowerCase()}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
       }
-    )
+    })
       .then((res) => res.json())
       .then((data: Tutoring[]) => {
         const newData: Tutoring[] = [...data];
