@@ -3,49 +3,53 @@
 /* eslint-disable react/default-props-match-prop-types */
 import DomHandler from 'helpers/dom-handler';
 import { useMountEffect, useUnmountEffect, useUpdateEffect } from 'hooks/hooks';
-import React, { ReactFragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 type PortalProps = {
   visible?: boolean;
   onMounted?: () => void;
   onUnmounted?: () => void;
-  element: ReactFragment;
-  appendTo?: string;
+  element: any;
+  appendTo?: any;
 };
 
-const Portal = React.memo(
-  ({ visible, onMounted, onUnmounted, element, appendTo }: PortalProps) => {
-    const [mountedState, setMountedState] = React.useState(
-      visible && DomHandler.hasDOM()
-    );
+const Portal = ({
+  visible,
+  onMounted,
+  onUnmounted,
+  element,
+  appendTo
+}: PortalProps) => {
+  const [mountedState, setMountedState] = React.useState(
+    visible && DomHandler.hasDOM()
+  );
 
-    useMountEffect(() => {
-      if (DomHandler.hasDOM() && !mountedState) {
-        setMountedState(true);
-        onMounted && onMounted();
-      }
-    });
-
-    useUpdateEffect(() => {
+  useMountEffect(() => {
+    if (DomHandler.hasDOM() && !mountedState) {
+      setMountedState(true);
       onMounted && onMounted();
-    }, [mountedState]);
-
-    useUnmountEffect(() => {
-      onUnmounted && onUnmounted();
-    });
-
-    const realElement = element;
-    if (realElement && mountedState) {
-      const realAppendTo = appendTo || document.body;
-      return realAppendTo === 'self'
-        ? realElement
-        : ReactDOM.createPortal(realElement, realAppendTo);
     }
+  });
 
-    return null;
+  useUpdateEffect(() => {
+    onMounted && onMounted();
+  }, [mountedState]);
+
+  useUnmountEffect(() => {
+    onUnmounted && onUnmounted();
+  });
+
+  const realElement = element;
+  if (realElement && mountedState) {
+    const realAppendTo = appendTo || document.body;
+    return realAppendTo === 'self'
+      ? realElement
+      : ReactDOM.createPortal(realElement, realAppendTo);
   }
-);
+
+  return null;
+};
 
 Portal.displayName = 'Portal';
 Portal.defaultProps = {

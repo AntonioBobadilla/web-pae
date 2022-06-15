@@ -39,12 +39,13 @@ exports[`Student Login renders tutor login page unchanged 1`] = `
             <h1
               class="paeText"
             >
-               | INICIO
+               | 
+              LOG IN
             </h1>
             <h1
               class="title"
             >
-              Inicio de sesión
+              LOG IN
             </h1>
           </div>
           <div
@@ -57,7 +58,7 @@ exports[`Student Login renders tutor login page unchanged 1`] = `
                 class="textInput"
                 id="email"
                 name="email"
-                placeholder="CORREO INSTITUCIONAL"
+                placeholder="INSTITUTIONAL EMAIL"
                 value=""
               />
             </div>
@@ -68,7 +69,7 @@ exports[`Student Login renders tutor login page unchanged 1`] = `
                 class="textInput"
                 id="password"
                 name="password"
-                placeholder="CONTRASEÑA"
+                placeholder="PASSWORD"
                 type="password"
                 value=""
               />
@@ -81,7 +82,7 @@ exports[`Student Login renders tutor login page unchanged 1`] = `
                 disabled=""
                 type="submit"
               >
-                INICIAR SESION
+                LOG IN
               </button>
             </div>
           </div>
@@ -92,25 +93,25 @@ exports[`Student Login renders tutor login page unchanged 1`] = `
               class="forgotPassword"
               href="/student/forgot-password"
             >
-              Olvidé mi contraseña
+              Forgot password
             </a>
             <h2
               class="register"
             >
-              ¿No tienes cuenta?
+              Dont have account
                
               <a
                 class="regLink"
                 href="/register"
               >
-                Regístrate
+                Sign up
               </a>
             </h2>
             <a
               class="privacy"
-              href="#"
+              href="/"
             >
-              Aviso de privacidad
+              Notice of privacy
             </a>
           </div>
         </div>

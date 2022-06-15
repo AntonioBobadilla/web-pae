@@ -1,0 +1,40 @@
+
+.container {
+    width: 30vw;
+}
+
+.wrapper {
+    width: 50%;
+    height: 100%;
+    padding:50px 0; 
+}
+.radioOptions {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.radioOption {
+    width: 100%;
+    height: 100%;
+    display: flex;    
+}
+
+.text {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.inputText {
+    width: 100%;
+    padding:10px;
+    margin-bottom: 50px;
+}
+
+.button {
+    width: 100%;
+    height: 35px;
+}

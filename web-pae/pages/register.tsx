@@ -1,13 +1,18 @@
 import type { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useState } from 'react';
 import ButtonTemplate from '../components/button-template';
 import ToggleButton from '../components/toggle-button';
 import styles from '../css/register.module.css';
 
 const Register: NextPage = () => {
   const router = useRouter();
+  const [selectableEn, setSelectableEn] = useState(true);
+  const [selectableEs, setSelectableEs] = useState(true);
 
   const studentHandle = () => {
     router.push('/student/registration');
@@ -16,7 +21,15 @@ const Register: NextPage = () => {
   const tutorHandle = () => {
     router.push('/tutor/registration');
   };
-
+  const changeLanguageEn = () => {
+    setSelectableEn(true);
+    setSelectableEs(false);
+  };
+  const changeLanguageEs = () => {
+    setSelectableEs(true);
+    setSelectableEn(false);
+  };
+  const { t } = useTranslation('tutor-profile');
   return (
     <div>
       <Head>
@@ -36,7 +49,7 @@ const Register: NextPage = () => {
           <div className={styles.register}>
             <div className={styles.paeRegister}>
               <img src="/images/pae-logo.png" className={styles.paeLogo} />
-              <h1 className={styles.paeText}> PAE | REGISTRO</h1>
+              <h1 className={styles.paeText}> PAE | {t('REGISTRO')} </h1>
             </div>
             <div className={styles.registerOptions}>
               <div className={styles.Button}>
@@ -45,7 +58,7 @@ const Register: NextPage = () => {
                   variant="primary"
                   className={styles.fontS}
                 >
-                  QUIERO UNA ASESORÍA
+                  { t('QUIERO UNA ASESORÍA')}
                 </ButtonTemplate>
               </div>
               <div className={styles.Button}>
@@ -54,16 +67,34 @@ const Register: NextPage = () => {
                   variant="secondary"
                   className={styles.fontS}
                 >
-                  QUIERO DAR UNA ASESORÍA
+                  {t('QUIERO DAR UNA ASESORÍA')}
                 </ButtonTemplate>
               </div>
               <h2 className={styles.language}>Idioma / Language</h2>
               <div className={styles.languageOptions}>
-                <div className={styles.toggle}>
-                  <ToggleButton flagType="/images/mxflag.png" desc="Español" />
+                <div
+                  className={
+                    selectableEs ? styles.toggle : styles.nonSelectable
+                  }
+                  onClick={changeLanguageEs}
+                >
+                  <Link href='/register' locale="es">
+                    <a>
+                      <ToggleButton flagType="/images/mxflag.png" desc={t('Español')} />
+                    </a>
+                  </Link>
                 </div>
-                <div className={styles.toggle}>
-                  <ToggleButton flagType="/images/usaflag.png" desc="English" />
+                <div
+                  className={
+                    selectableEn ? styles.toggle : styles.nonSelectable
+                  }
+                  onClick={changeLanguageEn}
+                >
+                <Link href='/register' locale="en">
+                  <a>
+                    <ToggleButton flagType="/images/usaflag.png" desc={t('Ingles')} />
+                  </a>
+                </Link>
                 </div>
               </div>
             </div>
@@ -73,5 +104,15 @@ const Register: NextPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: any }) {
+
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [ 'tutor-profile']))
+    }
+  };
+}
 
 export default Register;

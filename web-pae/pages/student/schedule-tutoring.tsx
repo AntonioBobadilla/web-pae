@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { useTranslation } from 'next-i18next'; // add this
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // add this
+import { Meeting } from '@/components/data-table/types';
 import TutoringConfirmation from '@/components/tutoring/confirmation';
 import TutoringSubject from '@/components/tutoring/subject';
 import {
   getAvailableTutorings,
   reserveTutoring
 } from '@/redux/schedule-tutoring';
-import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -21,7 +25,14 @@ import {
   TOPIC
 } from '../../helpers/student-steps';
 
-const ScheduleTutoring: NextPage = () => {
+
+
+
+const ScheduleTutoring = () => {
+
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
+
+
   const [step, setStep] = React.useState<string>(SUBJECT);
   const { query, push } = useRouter();
   const [isSubjectComplete, setIsSubjectComplete] = useState(true);
@@ -85,10 +96,17 @@ const ScheduleTutoring: NextPage = () => {
   const handleNextStepSubject = async () => {
     try {
       const data = await dispatch(getAvailableTutorings()).unwrap();
-      if (data && data.length > 0) {
+
+      const length = data.reduce(
+        (acc: any, curr: Meeting) => acc + curr.tutorings.length,
+        0
+      );
+      if (data && data.length > 0 && length > 0) {
         handleNextStep();
       } else {
-        // toast.error(error);
+        toast.error(
+          t('Lo sentimos, por el momento no hay asesorías disponibles para esa materia.')
+        );
       }
     } catch (err: any) {
       toast.error(err.message);
@@ -101,7 +119,7 @@ const ScheduleTutoring: NextPage = () => {
       if (status === 200 || status === 201 || status === 204) {
         handleNextStep();
       } else {
-        toast.error('No se pudo agendar la asesoría');
+        toast.error(t('No se pudo agendar la asesoría'));
       }
     } catch (err: any) {
       toast.error(err.message);
@@ -142,9 +160,19 @@ const ScheduleTutoring: NextPage = () => {
   );
 };
 
+
 // Add sidebar layout
 ScheduleTutoring.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Agendar asesoría">{page}</SidebarLayout>;
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
+  return <SidebarLayout title={t('Agendar asesoría')}>{page}</SidebarLayout>;
 };
+
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['tutor-profile','student-schedule-tutoring']))
+    }
+  };
+}
 
 export default ScheduleTutoring;

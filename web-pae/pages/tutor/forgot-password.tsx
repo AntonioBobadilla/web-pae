@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { NextPage } from 'next';
-import React, { useState } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useState } from 'react';
 import ForgotPasswordPopup from '../../components/forgot-password-popup';
 import PasswordConfirmationPopup from '../../components/password-confirmation-popup';
 import styles from '../../css/student/forgot-password.module.css';
@@ -25,4 +26,11 @@ const ForgotPassword: NextPage = () => {
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['student-forgot-password',  'tutor-profile']))
+    }
+  };
+}
 export default ForgotPassword;

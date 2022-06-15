@@ -24,7 +24,11 @@ interface ScheduleTutoringState {
 
 // Define the initial state using that type
 const initialState: ScheduleTutoringState = {
-  subject: null,
+  subject: {
+    name: '',
+    code: '',
+    semester: 0
+  },
   tutor: '',
   date: '',
   time: '',
@@ -50,8 +54,9 @@ export const getAvailableTutorings = createAsyncThunk(
   async (arg, thunkAPI) => {
     const { getState } = thunkAPI;
     const {
-      scheduleTutoring: { subject }
-    } = getState();
+      scheduleTutoring: { subject },
+      user: { token }
+    } = getState() as RootState;
 
     const date = new Date();
 
@@ -59,7 +64,8 @@ export const getAvailableTutorings = createAsyncThunk(
       fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
         },
         body: JSON.stringify(data),
         cache: 'no-cache',
@@ -69,7 +75,7 @@ export const getAvailableTutorings = createAsyncThunk(
 
     return post(
       {
-        subject: subject.code,
+        subject: subject?.code || '',
         initial_date_serializer: `${date.getFullYear()}-${
           date.getMonth() + 1
         }-${date.getDate() + 1}`,
@@ -77,7 +83,7 @@ export const getAvailableTutorings = createAsyncThunk(
           date.getDate() + 15
         }`
       },
-      'http://server-pae.azurewebsites.net/availabletutoring/'
+      'https://server-pae.azurewebsites.net/availabletutoring/'
     );
   }
 );
@@ -86,40 +92,45 @@ export const reserveTutoring = createAsyncThunk(
   'schedule-tutoring/reserve-tutoring',
   async (arg, thunkAPI) => {
     const { getState } = thunkAPI;
+    const state: RootState = getState() as RootState;
+
     const {
       scheduleTutoring: { date, subject, title, content, file, selectedItem },
       user: { token, id }
-    } = getState();
+    } = state;
+
+    const formData = new FormData();
+
+    formData.append('subject_id', subject?.code || '');
+    formData.append('student', id || '');
+    formData.append('tutor_id', selectedItem.tutor);
+    formData.append('date', date);
+    formData.append('hour', selectedItem.hour.toString());
+    formData.append('is_online', selectedItem.isOnline.valueOf().toString());
+    formData.append('topic', title);
+
+    if (content !== '') {
+      formData.append('doubt', content);
+    }
+    if (file !== null) {
+      formData.append('file', file);
+    }
+
+    formData.append('place', 'Zoom');
 
     const post = (data: any, url: string) =>
       fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-
           Authorization: `Token ${token}`
         },
-        body: JSON.stringify(data),
+        body: data,
         cache: 'no-cache',
         credentials: 'same-origin'
         // mode: 'cors'
       });
 
-    return post(
-      {
-        tutor_id: selectedItem.tutor,
-        student: id,
-        subject_id: subject.code,
-        date,
-        hour: selectedItem.hour,
-        is_online: selectedItem.isOnline,
-        topic: title,
-        doubt: content,
-        // file, //TODO
-        place: 'Zoom'
-      },
-      'http://server-pae.azurewebsites.net/tutoring/'
-    );
+    return post(formData, 'https://server-pae.azurewebsites.net/tutoring/');
   }
 );
 
@@ -128,7 +139,7 @@ export const scheduleTutoringSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setSubject: (state, action: PayloadAction<Subject>) => {
+    setSubject: (state, action: PayloadAction<Subject | null>) => {
       state.subject = action.payload;
     },
     setTutor: (state, action: PayloadAction<string>) => {

@@ -1,9 +1,8 @@
 import cx from 'classnames';
-import React from 'react';
 import cardInfoStyles from '../css/components/cardInfo.module.css';
 import ButtonTemplate from './button-template';
 
-const interpretation = (status: string) => {
+export const interpretation = (status: string) => {
   switch (status) {
     case 'pending':
       return 'Pendiente';
@@ -19,6 +18,8 @@ const interpretation = (status: string) => {
       return 'Aprobada';
     case 'CO':
       return 'Completada';
+    case 'CA':
+      return 'Cancelada';
     default:
       return 'Pendiente';
   }

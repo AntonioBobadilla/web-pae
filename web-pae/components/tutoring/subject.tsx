@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useTranslation } from 'next-i18next'; // add this
 import styles from '@/css-components/scheduleTutoring.module.css';
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
@@ -6,11 +7,15 @@ import { selectSubject, setSubject } from 'store/reducers/schedule-tutoring';
 import ButtonTemplate from '../button-template';
 import SearchBar, { Subject } from '../search-bar';
 
+
+
+
 const TutoringSubject = ({
   handleNextStep
 }: {
   handleNextStep: () => void;
 }) => {
+  const { t } = useTranslation('student-schedule-tutoring'); // add this
   const subject = useAppSelector(selectSubject);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((state) => state.scheduleTutoring.isLoading);
@@ -19,7 +24,7 @@ const TutoringSubject = ({
 
   const usefetch = async () => {
     const response = await fetch(
-      'http://server-pae.azurewebsites.net/subject/'
+      'https://server-pae.azurewebsites.net/subject/'
     );
     const data = await response.json();
     // console.log(data);
@@ -47,7 +52,7 @@ const TutoringSubject = ({
         suggestions={subjectsFromApi}
       />
       <div className={styles.selectedSubjects}>
-        <h2 className={styles.title}>Materia escogida</h2>
+        <h2 className={styles.title}>{t('Materia escogida')}</h2>
         <div className={styles.values}>
           {subject && (
             <div
@@ -75,7 +80,7 @@ const TutoringSubject = ({
           onClick={handleNextStep}
           loading={isLoading}
         >
-          BUSCAR ASESORÍAS
+          {t('BUSCAR ASESORÍAS')}
         </ButtonTemplate>
       </div>
     </div>

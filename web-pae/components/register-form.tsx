@@ -1,4 +1,4 @@
-import React from 'react';
+import { useTranslation } from 'next-i18next';
 import { useForm } from 'react-hook-form';
 import { useAppSelector } from 'store/hook';
 import { selectRegisterData } from 'store/reducers/create-tutor';
@@ -40,6 +40,8 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
   } = useForm<StudentRegisterData>({
     defaultValues: student ? studentRegisterDefaultValue : tutorDefaultValues
   });
+  const { t } = useTranslation('tutor-registration');
+
 
   // TODO: DELETE DATA ON NAVIGATE CHANGED
   // const { isDirty } = useFormState({ control });
@@ -51,14 +53,14 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
       <div className={styles.input}>
         <TextInput
           name="name"
-          placeholder="NOMBRE COMPLETO*"
+          placeholder={t('FULL NAME*')}
           control={control}
           error={errors.name}
           rules={{
-            required: 'Nombre completo requerido',
+            required: t('Full name required'),
             minLength: {
               value: 3,
-              message: 'El nombre debe tener al menos 3 caracteres'
+              message: t('The name must contain at least 3 characters')
             }
           }}
         />
@@ -66,14 +68,14 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
       <div className={styles.input}>
         <TextInput
           name="email"
-          placeholder="CORREO INSTITUCIONAL*"
+          placeholder={t('INSTITUTIONAL EMAIL*')}
           control={control}
           error={errors.email}
           rules={{
-            required: 'Correo eléctrónico requerido',
+            required: t('Required email'),
             pattern: {
               value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
-              message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+              message: t('Invalid email. E.g. A0XXXXXXX@tec.mx')
             }
           }}
         />
@@ -81,15 +83,15 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
       <div className={styles.input}>
         <TextInput
           name="major"
-          placeholder="CARRERA*"
+          placeholder={t('MAJOR*')}
           control={control}
           error={errors.major}
           style={{ textTransform: 'uppercase' }}
           rules={{
-            required: 'Carrera requerida',
+            required: t('Major required'),
             pattern: {
               value: /^[A-Za-z]{2,4}$/,
-              message: 'Carrera inválida. E.g. ARQ, LAD, MEC'
+              message: t('Invalid major. E.g. ARQ, LAD, MEC')
             }
           }}
         />
@@ -101,8 +103,8 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
           control={control}
           error={errors.password}
           rules={{
-            required: 'Contraseña requerida',
-            minLength: { value: 8, message: 'Contraseña muy corta' }
+            required: t('Password required'),
+            minLength: { value: 8, message: t('Password too short') }
           }}
         />
       </div>
@@ -110,11 +112,11 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
         <TextInput
           name="passwordConfirmation"
           type="password"
-          placeholder="CONFIRMAR CONTRASEÑA*"
+          placeholder={t('CONFIRM PASSWORD')}
           control={control}
           error={errors.passwordConfirmation}
           rules={{
-            required: 'Confirmación de contraseña requerida',
+            required: t('Password confirmation required'),
             validate: (value) => value === getValues().password
           }}
         />
@@ -126,7 +128,7 @@ const RegisterForm = ({ nextStep, student, isLoading }: RegisterFormProps) => {
           loading={isLoading}
           type="submit"
         >
-          {student ? 'CONCLUIR REGISTRO' : 'CONTINUAR CON REGISTRO'}
+          {student ? t('FINISH REGISTER') : t('CONTINUE WITH REGISTER')}
         </ButtonTemplate>
       </div>
     </form>

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// Siempre se importa react
 import progressBarStyles from '@/css-components/progressBarHours.module.css';
 import React from 'react';
 
@@ -25,5 +23,4 @@ const ProgressBarPassword = (props: {
   );
 };
 
-export default ProgressBarPassword; // exporto la función
-// <p className={progressBarStyles.barText}> {progress}/3 </p>
+export default ProgressBarPassword;

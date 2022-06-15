@@ -1,11 +1,14 @@
 import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useEffect } from 'react';
+import { Period } from 'store/types';
 import styles from '../css/components/calendar.module.css';
 import Cell from './frontend-calendar-cellComponent';
 
 interface MyCalendarProps {
-  eventObj: never[];
-  setEventObj: React.Dispatch<React.SetStateAction<never[]>>;
+  eventObj: Period[];
+  setEventObj: React.Dispatch<React.SetStateAction<Period[]>>;
   changeColorOfCell: (cell: any) => void;
   resetColorOfCell: (cell: any) => void;
 }
@@ -28,7 +31,7 @@ const MyCalendar = ({
   }, [eventObj]);
 
   // función que obtiene las celdas entre 2 horarios. Ej. celdas entre 7am y 10am.
-  const getCellsBetween = (startCell, finishCell) => {
+  const getCellsBetween = (startCell: any, finishCell: any) => {
     const start = startCell.getAttribute('id').split(' ');
     const dia = start[0];
     const horaInicio = start[1];
@@ -40,6 +43,8 @@ const MyCalendar = ({
     const numFinal = parseInt(horaFin.match(/(\d+)/)[0]);
 
     const numberCycles = numFinal - numInicio;
+
+    
 
     if (numberCycles == 1) {
       changeColorOfCell(startCell);
@@ -59,14 +64,14 @@ const MyCalendar = ({
     let finishCell = null;
     const cells = document.querySelectorAll('.data');
     eventObj.forEach((obj) => {
-      cells.forEach((cell) => {
+      cells.forEach((cell: any) => {
         const attr = cell.getAttribute('id').split(' ');
         const dia = attr[0];
         const hora = attr[1];
-        if (obj.dia === dia && obj.inicio === hora) {
+        if (obj.dia === dia && obj.inicio.toString() === hora) {
           startCell = cell;
         }
-        if (obj.dia === dia && obj.fin === hora) {
+        if (obj.dia === dia && obj.fin.toString() === hora) {
           finishCell = cell;
         }
       });
@@ -75,7 +80,7 @@ const MyCalendar = ({
   };
 
   // función que regresa solo números enteros de un string
-  const getOnlyNumbers = (string) => parseInt(string.replace(/\D/g, ''));
+  const getOnlyNumbers = (string: any) => parseInt(string.replace(/\D/g, ''));
 
   // // función que recibe los valores del formulario inicial.
   // const getValues = (dia, inicio, fin) => {
@@ -86,8 +91,8 @@ const MyCalendar = ({
   // };
 
   // función que obtiene la celda siguiente dado un string perteneciente al valor de una celda.
-  const getNextCell = (data) => {
-    let hora = parseInt(data.match(/\d+/g));
+  const getNextCell = (data: any) => {
+    let hora: any = parseInt(data.match(/\d+/g));
     hora += 1;
     hora = hora.toString();
     const amOpm = data.match(/[a-zA-Z]+/g);
@@ -98,7 +103,7 @@ const MyCalendar = ({
   };
 
   // función que al dar click en una celda la encuentra dado un string perteneciente al dia y hora.
-  const findSelectedCell = (data) => {
+  const findSelectedCell = (data: any) => {
     const splittedData = data.split(' ');
     const diaSelected = splittedData[0];
     const horaSelected = splittedData[1];
@@ -106,8 +111,8 @@ const MyCalendar = ({
     let Cell = null;
     let NextCell = null;
     const cells = document.querySelectorAll('.data');
-    cells.forEach((cell) => {
-      const attr = cell.getAttribute('id').split(' ');
+    cells.forEach((cell:any) => {
+      const attr: any = cell.getAttribute('id').split(' ');
       const dia = attr[0];
       const hora = attr[1];
 
@@ -125,14 +130,14 @@ const MyCalendar = ({
     };
   };
 
-  const checkDuplicates = (id) => {
+  const checkDuplicates = (id: any) => {
     const isFound = eventObj.some((element) => {
       if (element.id === id) return true;
     });
     return isFound;
   };
 
-  const deleteEventFromObj = (id) => {
+  const deleteEventFromObj = (id: any) => {
     const indexOfObject = eventObj.findIndex((object) => object.id === id);
     const copyOfEventObj = [...eventObj];
     copyOfEventObj.splice(indexOfObject, 1);
@@ -140,7 +145,7 @@ const MyCalendar = ({
   };
 
   // función que maneja el click en las celdas.
-  const getClick = (data) => {
+  const getClick = (data: any) => {
     const { dia, inicio, fin, cell } = findSelectedCell(data);
     const idData = `${dia} ${inicio}`;
     const inicioNumber = getOnlyNumbers(inicio);
@@ -166,6 +171,8 @@ const MyCalendar = ({
     return true;
   };
 
+  const { t } = useTranslation('assigned-tutoring');
+
   return (
     <div className={styles.wrapper}>
       {/* <AddEvent function={getValues} /> */}
@@ -173,11 +180,11 @@ const MyCalendar = ({
         <thead className={styles.tableHead}>
           <tr className={styles.border}>
             <th className={styles.heading}> </th>
-            <th className={styles.heading}>Lunes</th>
-            <th className={styles.heading}>Martes</th>
-            <th className={styles.heading}>Miercoles</th>
-            <th className={styles.heading}>Jueves</th>
-            <th className={styles.heading}>Viernes</th>
+            <th className={styles.heading}>{t('Monday')}</th>
+            <th className={styles.heading}>{t('Tuesday')}</th>
+            <th className={styles.heading}>{t('Wednesday')}</th>
+            <th className={styles.heading}>{t('Thursday')}</th>
+            <th className={styles.heading}>{t('Friday')}</th>
           </tr>
         </thead>
         <tbody>
@@ -291,4 +298,12 @@ const MyCalendar = ({
   );
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+ 
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+    }
+  };
+}
 export default MyCalendar;

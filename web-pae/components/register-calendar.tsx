@@ -1,12 +1,17 @@
+// eslint-disable
+
 import {
   selectFirstPeriod,
   selectSecondPeriod,
   selectThirdPeriod,
   setPeriod
 } from '@/redux/create-tutor';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from 'store/hook';
+import { Period } from 'store/types';
 import styles from '../css/components/register-calendar.module.css';
 import RegisterStyle from '../css/tutor/register.module.css';
 import ButtonTemplate from './button-template';
@@ -53,8 +58,9 @@ const RegisterCalendar = React.memo(
       2: useAppSelector(selectThirdPeriod),
       3: []
     };
+    const { t } = useTranslation('assigned-tutoring');
     const [title, setTitle] = useState(titles[0]);
-    const [eventObj, setEventObj] = useState([]);
+    const [eventObj, setEventObj] = useState<Period[]>([]);
     const dispatch = useAppDispatch();
 
     // funcion que cambia el color de la celda.
@@ -90,14 +96,17 @@ const RegisterCalendar = React.memo(
     };
 
     const clearCells = () => {
-      eventObj.forEach((cell: any) => {
-        resetColorOfCell(document.getElementById(cell.id));
-      });
+      if (eventObj) {
+        eventObj.forEach((cell: any) => {
+          resetColorOfCell(document.getElementById(cell.id));
+        });
+      }
     };
 
     const handleNextStep = () => {
       clearCells();
 
+      // console.log("okay")
       dispatch(
         setPeriod({ period: eventObj, name: periods[progressBarState] })
       );
@@ -125,14 +134,20 @@ const RegisterCalendar = React.memo(
         <div className={styles.calendar}>
           <div className={styles.header}>
             <h3 className={styles.title}>
-              Selecciona tu horario para el <strong> {title} </strong>
+              {t('Select your avaialability from')}
+              <strong> {title} </strong>
             </h3>
             <div
               className={styles.icon}
               onMouseEnter={() =>
-                toast('Da click y arrastra para seleccionar tu horario', {
-                  icon: '😣'
-                })
+                toast(
+                  t(
+                    'Click and drag to select your desired schedule. Remember to select at least 5 hours!'
+                  ),
+                  {
+                    icon: '😊'
+                  }
+                )
               }
             >
               <i className="bi bi-info-circle" />
@@ -149,7 +164,7 @@ const RegisterCalendar = React.memo(
         <div className={styles.buttons}>
           <div className={RegisterStyle.completed}>
             <div className={RegisterStyle.box}>
-              <p className={RegisterStyle.per}> Completado </p>
+              <p className={RegisterStyle.per}> {t('Completed')} </p>
               <div className={RegisterStyle.barDiv}>
                 <ProgressBar progress={progressBarState} />
               </div>
@@ -164,7 +179,7 @@ const RegisterCalendar = React.memo(
                 variant="secondary"
                 style={{ marginRight: '7.5px' }}
               >
-                ANTERIOR
+                {t('PREVIOUS')}
               </ButtonTemplate>
               <ButtonTemplate
                 onClick={handleNextStep}
@@ -172,7 +187,7 @@ const RegisterCalendar = React.memo(
                 style={{ marginLeft: '7.5px' }}
                 disabled={eventObj.length < 5}
               >
-                SIGUIENTE
+                {t('NEXT')}
               </ButtonTemplate>
             </div>
           </div>
@@ -182,5 +197,14 @@ const RegisterCalendar = React.memo(
     );
   }
 );
+
+export async function getStaticProps({ locale }: { locale: any }) {
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['assigned-tutoring']))
+    }
+  };
+}
 
 export default RegisterCalendar;

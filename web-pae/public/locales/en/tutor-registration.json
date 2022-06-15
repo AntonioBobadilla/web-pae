@@ -1,0 +1,18 @@
+{
+    "FULL NAME*": "FULL NAME*",
+    "Full name required": "Full name required",
+    "The name must contain at least 3 characters" : "The name must contain at least 3 characters",
+    "INSTITUTIONAL EMAIL*" : "INSTITUTIONAL EMAIL*",
+    "Required email" : "Required email",
+    "Invalid email. E.g. A0XXXXXXX@tec.mx" : "Invalid email. E.g. A0XXXXXXX@tec.mx",
+    "MAJOR*" : "MAJOR*",
+    "Major required" : "Major required",
+    "Invalid major. E.g. ARQ, LAD, MEC" : "Invalid major. E.g. ARQ, LAD, MEC",
+    "Password required" : "Password required",
+    "Password too short" : "Password too short",
+    "CONFIRM PASSWORD" : "CONFIRM PASSWORD",
+    "Password confirmation required" : "Password confirmation required",
+    "FINISH REGISTER" : "FINISH REGISTER",
+    "CONTINUE WITH REGISTER" : "CONTINUE WITH REGISTER",
+    "Search a formation unit (Code/Name)" : "Search a formation unit (Code/Name)"
+}

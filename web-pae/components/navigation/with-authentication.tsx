@@ -5,24 +5,17 @@ import { useAppSelector } from 'store/hook';
 import { selectRole, selectToken } from 'store/reducers/user';
 import LoadingScreen from '../transitions/loading-screen';
 
-type withAuthenticationProps = {
-  WrappedComponent: React.ComponentType<any>;
-};
-
-const withAuthentication = (WrappedComponent: withAuthenticationProps) => {
+const withAuthentication = (WrappedComponent: React.ComponentType<any>) => {
   const RequiresAuthentication = (props: any) => {
     // get user role from redux state
     const { push, asPath } = useRouter();
     const token = useAppSelector(selectToken);
     const role = useAppSelector(selectRole);
-    // const { role, setRole } = useRole();
-    // const { token, setToken } = useToken();
-    // const role = useAppSelector(selectRole);
     const [authorized, setAuthorized] = useState(false);
-    // const { token, setToken } = getToken();
 
     const publicPaths = useMemo(
       () => [
+        '/',
         '/login',
         '/forgot-password',
         '/registration',

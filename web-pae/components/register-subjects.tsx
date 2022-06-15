@@ -4,6 +4,7 @@ import {
   selectSubjects,
   setSubjects
 } from '@/redux/create-tutor';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -32,7 +33,7 @@ const RegisterSubjects = ({
 
   const usefetch = async () => {
     const response = await fetch(
-      'http://server-pae.azurewebsites.net/subject/'
+      'https://server-pae.azurewebsites.net/subject/'
     );
     const data = await response.json();
     // console.log(data);
@@ -71,15 +72,22 @@ const RegisterSubjects = ({
     changeValues(valuesSelected.filter(({ code }) => code !== itemToDelete));
   };
 
+  const { t } = useTranslation('student-home');
   return (
     <div className={styles.wrapper}>
+      <h3
+        className={styles.title}
+        style={{ marginTop: '4vh', fontWeight: 'lighter' }}
+      >
+        Agrega las materias de las que te gustaría dar asesoría.
+      </h3>
       <SearchBar
         handleSuggestions={(subject) => handleSuggestions(subject)}
         suggestions={subjectsFromApi}
       />
       <div className={styles.selectedSubjects}>
         {valuesSelected.length !== 0 && (
-          <h2 className={styles.title}>MATERIAS SELECCIONADAS</h2>
+          <h2 className={styles.title}>{t('Selected subjects')}</h2>
         )}
         <div className={styles.values}>
           {valuesSelected.map((value, index) => (
@@ -108,7 +116,7 @@ const RegisterSubjects = ({
           disabled={valuesSelected.length === 0 || isLoading}
           loading={isLoading}
         >
-          CONCLUIR REGISTRO
+          {t('FINISH REGISTER')}
         </ButtonTemplate>
       </div>
       <Toaster position="top-right" reverseOrder={false} />

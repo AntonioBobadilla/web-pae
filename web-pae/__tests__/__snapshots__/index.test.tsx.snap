@@ -22,11 +22,9 @@ exports[`Index renders index page unchanged 1`] = `
         >
           <a
             class="section"
-            href="#qs"
+            href="/#qs"
           >
-             
-            Quiénes somos
-             
+             Quiénes somos 
           </a>
           <a
             class="section"
@@ -38,11 +36,9 @@ exports[`Index renders index page unchanged 1`] = `
           </a>
           <a
             class="section"
-            href="#ubi"
+            href="/#ubi"
           >
-             
-            Ubicación
-             
+             Ubicación 
           </a>
         </div>
         <div
@@ -51,20 +47,21 @@ exports[`Index renders index page unchanged 1`] = `
           <div
             class="btn"
           >
-            <div
-              class="btn"
+            <button
+              class="logTutor"
             >
-              <button
-                class="login"
-              >
-                Ingresa
-              </button>
-              <button
-                class="signup"
-              >
-                Regístrate
-              </button>
-            </div>
+              Ingresa Tutor
+            </button>
+            <button
+              class="login"
+            >
+              Ingresa Estudiante
+            </button>
+            <button
+              class="signup"
+            >
+              Regístrate
+            </button>
           </div>
         </div>
       </div>
@@ -262,43 +259,68 @@ exports[`Index renders index page unchanged 1`] = `
         class="credits"
       >
         <div
-          class="legal"
+          class="sideBlock"
         >
           <span
-            class="creditsTitle"
+            class="sideBlockTitle"
           >
              Legal 
           </span>
-          <span
-            class="creditsTitle"
+          <a
+            class="sideBlockText"
+            href="/hacket/developers"
           >
-             Legal 
-          </span>
-          <span
-            class="creditsTitle"
+             Desarrolladores 
+          </a>
+          <a
+            class="sideBlockText"
+            href="/hacket/copy-rights"
           >
-             Legal 
-          </span>
+             
+            Derechos de autor de imágenes
+             
+          </a>
         </div>
         <div
           class="logoHacket"
         >
-          <img
-            class="hacketImg"
-            src="/images/hacket.png"
-          />
+          <a
+            class="logoHacketLink"
+            href="https://github.com/ZukiGA/hacket/wiki"
+          >
+            <img
+              class="hacketImg"
+              src="/images/hacket.png"
+            />
+          </a>
         </div>
         <div
-          class="credit"
+          class="sideBlock"
         >
-          Credits
+          <span
+            class="sideBlockTitle"
+          >
+             Credits 
+          </span>
+          <a
+            class="sideBlockText"
+            href="/hacket/terms"
+          >
+             Términos y conidicones 
+          </a>
+          <a
+            class="sideBlockText"
+            href="/hacket/privacy"
+          >
+             Política de privacidad 
+          </a>
         </div>
       </div>
       <div
         class="copyrights"
       >
         <span>
-          Registrada ® 
+          Copyright © 2022 Hacket, Inc. All rights reserved. 
         </span>
       </div>
     </div>

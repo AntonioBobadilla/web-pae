@@ -1,53 +1,55 @@
-import { ReactChild, ReactFragment, ReactPortal, useState } from 'react';
+import { useState } from 'react';
 import pStyles from '../css/components/poll.module.css';
 
 const Poll = (props: {
   question: string | null | undefined;
   name: string | undefined;
 }) => {
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useState('1');
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
+    // console.log(e.currentTarget.value);
     setAnswer(e.target.value);
   };
 
   return (
     <div className={pStyles.main}>
       <p className={pStyles.question}>{props.question}</p>
-      <div className={pStyles.form}>
+      <form
+        className={pStyles.form}
+        id={`pollForm${props.name}`}
+        onInput={handleChange}
+      >
         <input
           type="radio"
-          id="1"
+          id={`Tdisagree${props.name}`}
           name={props.name}
-          value="Tagree"
+          value="1"
           className={pStyles.rButton}
-          onChange={handleChange}
         />
         <input
           type="radio"
-          id="2"
+          id={`disagree${props.name}`}
           name={props.name}
-          value="agree"
+          value="2"
           className={pStyles.rButton}
-          onChange={handleChange}
         />
         <input
           type="radio"
-          id="3"
+          id={`agree${props.name}`}
           name={props.name}
-          value="disagree"
+          value="3"
           className={pStyles.rButton}
-          onChange={handleChange}
         />
         <input
           type="radio"
-          id="4"
+          id={`Tagree${props.name}`}
           name={props.name}
-          value="Tdisagree"
+          value="4"
           className={pStyles.rButton}
-          onChange={handleChange}
         />
-      </div>
+        <input id={`storeValue${props.name}`} type="hidden" value={answer} />
+      </form>
     </div>
   );
 };

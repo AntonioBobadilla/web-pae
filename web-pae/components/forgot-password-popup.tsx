@@ -1,13 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import post from 'helpers/post';
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import styles from '../css/components/forgot-password-popup.module.css';
 import ButtonTemplate from './button-template';
 import Popup from './popup';
 import TextInput from './text-input';
+
+
 
 interface ForgotPasswordPopupProps {
   setEmailSent: (data: boolean) => void;
@@ -27,6 +30,7 @@ const ForgotPasswordPopup = ({
   user
 }: ForgotPasswordPopupProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation('student-forgot-password');
 
   const {
     control,
@@ -68,7 +72,7 @@ const ForgotPasswordPopup = ({
     setIsLoading(true);
     post(
       { email: data.email.toLowerCase(), user_type: user },
-      'http://server-pae.azurewebsites.net/resetpassword/'
+      'https://server-pae.azurewebsites.net/resetpassword/'
     )
       .then(({ status, responseData }) => {
         handleStatus(status, responseData);
@@ -79,20 +83,22 @@ const ForgotPasswordPopup = ({
   });
 
   return (
-    <Popup title="Recuperación de contraseña" line style={styles.modal}>
+    <Popup title={t('Password recovery')} line style={styles.modal}>
       <form className={styles.form} onSubmit={onSubmit}>
         <div className={styles.input}>
-          <span className={styles.text}>Ingresa tu correo institucional</span>
+          <span className={styles.text}>
+            {t('Enter your institutional email')}
+          </span>
           <TextInput
             name="email"
             placeholder="A0XXXXXXX@tec.mx"
             control={control}
             error={errors.email}
             rules={{
-              required: 'Correo eléctrónico requerido',
+              required: t('Email required'),
               pattern: {
                 value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
-                message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
+                message: t('Invalid email. E.g. A0XXXXXXX@tec.mx')
               }
             }}
           />
@@ -104,16 +110,16 @@ const ForgotPasswordPopup = ({
             disabled={!isDirty || isLoading}
             loading={isLoading}
           >
-            RECUPERAR CONTRASEÑA
+            {t('Recover password')}
           </ButtonTemplate>
         </div>
       </form>
       <div className={styles.links}>
         <Link href={loginUrl} passHref>
-          <a>Login</a>
+          <a>{t('Login')}</a>
         </Link>
         <Link href={registerUrl} passHref>
-          <a>Registro</a>
+          <a>{t('Sign up')}</a>
         </Link>
       </div>
       <Toaster position="top-right" reverseOrder={false} />

@@ -1,0 +1,18 @@
+{
+    "Password recovery": "Password recovery",
+    "Enter your institutional email": "Enter your institutional email",
+    "email": "email",
+    "INSTITUTIONAL EMAIL": "INSTITUTIONAL EMAIL",
+    "Recover password": "Recover password",
+    "Login": "Log in",
+    "LOG IN": "LOGIN",
+    "Forgot password": "Forgot password",
+    "Dont have account": "Don't have an account?",
+    "Notice of privacy": "Notice of privacy",
+    "PASSWORD": "PASSWORD",
+    "Sign up": "Sign up",
+    "Required Id" : "Required Id",
+	  "Invalid Email. E.g. A0XXXXXXX@tec.mx" : "Invalid Email. E.g. A0XXXXXXX@tec.mx",
+	  "Required email" : "Required email",
+	  "Password too short" : "Password too short"
+  }

@@ -1,215 +1,210 @@
-import type { NextPage } from 'next';
-import React, { ReactElement, useEffect, useState } from 'react';
-import SidebarLayout from '../../components/layouts/sidebar-layout';
-import styles from '@/css-admin/tutees.module.css';
-import history from '@/css-admin/history.module.css';
-import cx from 'classnames';
-import useFetch from '@/hooks/useFetch';
-import CsvDownload from 'react-json-to-csv'
 import ButtonTemplate from '@/components/button-template';
+import history from '@/css-admin/history.module.css';
+import styles from '@/css-admin/tutees.module.css';
+import createDate from '@/helpers/create-date';
+import formatDate from '@/helpers/format-date';
+import formatTime from '@/helpers/format-time';
+import { selectToken } from '@/redux/user';
+import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { ReactElement, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import CsvDownload from 'react-json-to-csv';
+import { useAppSelector } from 'store/hook';
+import SidebarLayout from '../../components/layouts/sidebar-layout';
 
-const History: NextPage = () => {
-
-  const [currentTab, setCurrentTab] = useState('');
-
-  const [data, setData] = useState([]);
-  const [csvObj, setCsvObj] = useState([]);
-
-  let dummyData = [
-    {
-        "id": 15,
-        "date": "2022-05-26",
-        "hour": 8,
-        "status": "PE",
-        "is_online": true,
-        "topic": "123",
-        "doubt": null,
-        "file": "http://localhost:8000/media/tutoring/Screenshot_from_2021-02-08_18-49-08.png",
-        "tutor": {
-            "registration_number": "a01731000",
-            "email": "a01731000@tec.mx",
-            "name": "Bryan G. Arellano",
-            "completed_hours": 0,
-            "is_active": true,
-            "is_accepted": false,
-            "user": "tutora01731000"
-        },
-        "student": {
-            "registration_number": "a01731097",
-            "email": "a01731097@tec.mx",
-            "name": "Salvador Gaytan putito",
-            "is_active": false,
-            "user": "studenta01731097"
-        },
-        "subject": {
-            "code": "L0173",
-            "name": "TC3004B",
-            "semester": 1
-        }
-    },
-    {
-        "id": 16,
-        "date": "2022-05-30",
-        "hour": 8,
-        "status": "PE",
-        "is_online": true,
-        "topic": "123",
-        "doubt": null,
-        "file": "http://localhost:8000/media/tutoring/Screenshot_from_2021-02-08_18-49-08.png",
-        "tutor": {
-            "registration_number": "a01731000",
-            "email": "a01731000@tec.mx",
-            "name": "Bryan G. Arellano",
-            "completed_hours": 0,
-            "is_active": true,
-            "is_accepted": false,
-            "user": "tutora01731000"
-        },
-        "student": {
-            "registration_number": "a01731097",
-            "email": "a01731097@tec.mx",
-            "name": "Karen Rugerio Armenta",
-            "is_active": false,
-            "user": "studenta01731097"
-        },
-        "subject": {
-            "code": "L0173",
-            "name": "F1004B.1",
-            "semester": 1
-        }
-    },
-    {
-        "id": 17,
-        "date": "2022-06-01",
-        "hour": 9,
-        "status": "PE",
-        "is_online": true,
-        "topic": "123",
-        "doubt": null,
-        "file": "http://localhost:8000/media/tutoring/Screenshot_from_2021-02-08_18-49-08_z3ZCK3o.png",
-        "tutor": {
-            "registration_number": "a01731005",
-            "email": "a01731005@tec.mx",
-            "name": "Bryan G. Arellano",
-            "completed_hours": 0,
-            "is_active": false,
-            "is_accepted": false,
-            "user": "tutora01731005"
-        },
-        "student": {
-            "registration_number": "a01731097",
-            "email": "a01731097@tec.mx",
-            "name": "José Antonio Bobadilla García",
-            "is_active": false,
-            "user": "studenta01731097"
-        },
-        "subject": {
-            "code": "L0173",
-            "name": "TC2005B",
-            "semester": 1
-        }
-    }
-];
+const History = () => {
+  const [currentTab, setCurrentTab] = useState<any>('');
+  const { t } = useTranslation('admin-history');
+  const [data, setData] = useState<any>([]);
+  const [csvObj, setCsvObj] = useState<any>([]);
+  const token = useAppSelector(selectToken);
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/tutoring/')
-    .then((resp) => resp.json())
-    .then(function(data) {
-      //console.log(data)
-      setData(data);
+    fetch('https://server-pae.azurewebsites.net/tutoring/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        // console.log(data)
+        const newData = [...data];
+        newData.sort((a, b) => {
+          if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
+            return -1;
+          }
+          if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
+            return 1;
+          }
+          return 0;
+        });
+        setData(newData);
       })
-    .catch(function(error) {
-      console.log(error);
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const changeStatus = (id: number, e: any) => {
+    toast('Cambiando estado...', {
+      icon: '✔️'
     });
-  } 
+    // console.log(e.target.value, id);
+    fetch(
+      `https://server-pae.azurewebsites.net/updatetutoring/${id}/${e.target.value}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        // console.log(data);
+        getData();
+        toast.success('Cambio de estado exitoso');
+      })
+      .catch((error) => {
+        toast.error('Error al cambiar el estado');
+      });
+  };
 
   const createObjToCSV = () => {
-      let arrObj = [];
+    const arrObj:
+      | ((prevState: never[]) => never[])
+      | {
+          tutorName: any;
+          studentName: any;
+          subjectName: any;
+          date: any;
+          hour: any;
+        }[] = [];
+    data.map((item: any, index: any) => {
+      const tutorName =
+        item.tutor != null ? item.tutor.name : t('There is no tutor');
 
-      data.map(function (item,index) {
+      const studentName =
+        item.student != null ? item.student.name : t('There is no student');
 
-        let tutorName =  item.tutor != null ? item.tutor.name : "no hay tutor";
-        let studentName =  item.student != null ? item.student.name : "no hay estudiante";
-        let subjectName =  item.subject != null ? item.subject.name : "no hay materia";
-        let date =  item.date != null ? item.date : "no hay fecha";
-        let hour =  item.hour != null ? item.hour : "no hay hora";
+      const subjectName =
+        item.subject != null ? item.subject.name : t('There is no subject');
 
-        let obj = {tutorName, studentName, subjectName, date, hour};
+      const date = item.date != null ? item.date : t('There is no date');
+      const hour = item.hour != null ? item.hour : t('There is no hour');
 
-        arrObj.push(obj)
-      })
-      setCsvObj(arrObj);
-  }
-  
+      const obj = { tutorName, studentName, subjectName, date, hour };
+
+      (arrObj as unknown as any[]).push(obj);
+    });
+
+    setCsvObj(arrObj);
+  };
+
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
   useEffect(() => {
     createObjToCSV();
-  }, [data])
+  }, [data]);
 
   return (
     <div className={history.main}>
-      <button className={history.Mainbutton}>Asesorías solicitadas</button>
-      <table
-          className={styles.tableRequest}
-        >
+      <button className={history.Mainbutton}>{t('Requested tutorings')}</button>
+      <table className={styles.tableRequest}>
         <thead>
           <tr className={cx(styles.headRow, styles.tr)}>
-            <th className={styles.head}>Asesor</th>
-            <th className={styles.head}>Alumno</th>
-            <th className={styles.head}>Materia solicitada</th>
-            <th className={styles.head}>Fecha</th>
-            <th className={styles.head}>Hora</th>
+            <th className={styles.head}>{t('Tutor')}</th>
+            <th className={styles.head}>{t('Student')}</th>
+            <th className={styles.head}>{t('Requested subject')}</th>
+            <th className={styles.head}>{t('Date')}</th>
+            <th className={styles.head}>{t('Hour')}</th>
+            <th className={styles.head}>Status</th>
           </tr>
         </thead>
         <tbody>
-        { data.map(function (item,index) {
-
-            let tutorName =  item.tutor != null ? item.tutor.name : "no hay tutor";
-            let studentName =  item.student != null ? item.student.name : "no hay estudiante";
-            let subjectName =  item.subject != null ? item.subject.name : "no hay materia";
-            let date =  item.date != null ? item.date : "no hay fecha";
-            let hour =  item.hour != null ? item.hour : "no hay hora";
-
-
-              return (
-                <tr  className={styles.tr}>
-                  <td className={styles.td}>
-                    <p>{tutorName}</p>
-                  </td>
-                  <td className={styles.td}>
-                    <p>{studentName}</p>
-                  </td>
-                  <td className={styles.td}>
-                    <p>{subjectName}</p>
-                  </td>
-                  <td className={styles.td}>
-                    <p>{date}</p>
-                  </td>
-                  <td className={styles.td}>
-                    <p>{hour}</p>
-                  </td>
-                </tr>
-              );
-            })}
+          {data.map((item: any, index: any) => {
+            const tutorName =
+              item.tutor != null ? item.tutor.name : t('There is no tutor');
+            const studentName =
+              item.student != null
+                ? item.student.name
+                : t('There is no student');
+            const subjectName =
+              item.subject != null
+                ? item.subject.name
+                : t('There is no subject');
+            const date = item.date != null ? item.date : t('There is no date');
+            const hour = item.hour != null ? item.hour : t('There is no hour');
+            const status = item.status != null ? item.status : 'PE';
+            return (
+              <tr className={styles.tr}>
+                <td className={styles.td}>
+                  <p>{tutorName}</p>
+                </td>
+                <td className={styles.td}>
+                  <p>{studentName}</p>
+                </td>
+                <td className={styles.td}>
+                  <p>{subjectName}</p>
+                </td>
+                <td className={styles.td}>
+                  <p>{formatDate(date)}</p>
+                </td>
+                <td className={styles.td}>
+                  <p>{formatTime(hour)}</p>
+                </td>
+                <td className={styles.td}>
+                  <select
+                    name="status"
+                    id="status_selected"
+                    value={status}
+                    onChange={(e) => changeStatus(item.id, e)}
+                  >
+                    <option value="PE">Pendiente</option>
+                    <option value="AP">Aprobada</option>
+                    <option value="CO">Completada</option>
+                    <option value="CA">Cancelada</option>
+                  </select>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
-        </table>
-        <div className={history.buttonWrapper}>
-          <ButtonTemplate variant="primary">
-            <CsvDownload className={history.csvButton} filename={"historial-asesorias.csv"} data={csvObj} />
-          </ButtonTemplate>
-        </div>
-
-        
+      </table>
+      <div className={history.buttonWrapper}>
+        <ButtonTemplate variant="primary">
+          <CsvDownload
+            className={history.csvButton}
+            filename="historial-asesorias.csv"
+            data={csvObj}
+          />
+        </ButtonTemplate>
+      </div>
     </div>
-  )
+  );
 };
 
 // Add sidebar layout
 History.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Historial de asesorías">{page}</SidebarLayout>;
+  const { t } = useTranslation('admin-history');
+  return <SidebarLayout title={t('Tutoring records')}>{page}</SidebarLayout>;
 };
+
+export async function getStaticProps({ locale }: { locale: any }) {
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-history',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
 
 export default History;

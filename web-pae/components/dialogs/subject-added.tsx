@@ -1,5 +1,6 @@
-import ClosablePopup from '../closable-popup';
+import cx from 'classnames';
 import Styles from '../../css/components/dialogs/subject-added.module.css';
+import ClosablePopup from '../closable-popup';
 
 type props = {
   visible: boolean;
@@ -18,6 +19,7 @@ const SubjectAdded = ({ visible, setVisible }: props) => (
       <span className={Styles.text}>
         La unidad de formacion fue añadida correctamente
       </span>
+      <i className={cx('bi bi-calendar-check', Styles.icon)} />
     </div>
   </ClosablePopup>
 );

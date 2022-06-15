@@ -1,4 +1,3 @@
-// Siempre se importa react
 import progressBarStyles from '@/css-components/progressBarHours.module.css';
 import React from 'react';
 
@@ -26,5 +25,4 @@ const ProgressBarHours = (props: { progress: number; total: number }) => {
   );
 };
 
-export default ProgressBarHours; // exporto la función
-// <p className={progressBarStyles.barText}> {progress}/3 </p>
+export default ProgressBarHours;

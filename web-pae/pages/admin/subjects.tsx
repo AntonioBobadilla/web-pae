@@ -1,27 +1,36 @@
+import DeleteAdmin from '@/components/dialogs/delete-subject';
+import { Subject } from '@/components/search-bar';
 import SubjectForm from '@/components/subject-form';
-import cx from 'classnames';
 import Tabs from '@/components/tabs';
+import { selectToken } from '@/redux/user';
+import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/subjects.module.css';
-import DeleteAdmin from '@/components/dialogs/delete-subject';
 
-const Subject = () => {
+const Subjects = () => {
   const [currentTab, setCurrentTab] = useState('');
   const [popUp, setPopUp] = useState(false);
   const [id, setId] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Subject[]>([]);
   const [pending, setPending] = useState(true);
   const [clave, setClave] = useState('');
   const [nombre, setNombre] = useState('');
   const [typing, setTyping] = useState(false);
   const [typingName, setTypingName] = useState(false);
-  const [filteredArray, setFilteredArray] = useState([]);
-  const [filteredArrayName, setFilteredArrayName] = useState([]);
+  const [filteredArray, setFilteredArray] = useState<Subject[]>([]);
+  const [filteredArrayName, setFilteredArrayName] = useState<Subject[]>([]);
+  const [editable, setEditable] = useState(true);
+  const [editableName, setEditableName] = useState(true);
+  const { t } = useTranslation('admin-subjects');
+  const token = useAppSelector(selectToken);
 
   const UFButton = () => {
     setCurrentTab('UF');
-    location.reload();
+    getData();
   };
   const AddUFButton = () => {
     setCurrentTab('addUF');
@@ -29,7 +38,7 @@ const Subject = () => {
   const visiblePopUp = () => {
     setPopUp(true);
   };
-  const checkItemState = (idItem) => {
+  const checkItemState = (idItem: React.SetStateAction<any>) => {
     setId(idItem);
     visiblePopUp();
   };
@@ -37,14 +46,19 @@ const Subject = () => {
     setCurrentTab('UF');
   }, []);
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/subject/')
+    fetch('https://server-pae.azurewebsites.net/subject/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
-      .then(function (data) {
-        //console.log(data)
+      .then((data) => {
+        // console.log(data)
         setData(data);
         setPending(false);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -58,9 +72,11 @@ const Subject = () => {
     if (!typing && !typingName) {
       return (
         <>
-          {data.map(function (item, index) {
-            let subjectId = item.code != null ? item.code : 'no hay clave';
-            let subjectName = item.name != null ? item.name : 'no hay nombre';
+          {data.map((item, index) => {
+            const subjectId =
+              item.code != null ? item.code : t('There is no code');
+            const subjectName =
+              item.name != null ? item.name : t('There is no name');
             return (
               <div key={index} className={styles.body}>
                 <span className={styles.clave}>{subjectId}</span>
@@ -68,101 +84,129 @@ const Subject = () => {
                 <i
                   className={cx('bi bi-trash', styles.de)}
                   onClick={() => checkItemState(item.code)}
-                ></i>
+                />
               </div>
             );
           })}
         </>
-      );
-    } else if (typing && !typingName) {
-      return (
-        <>
-          {filteredArray.map(function (item, index) {
-            let subjectId = item.code != null ? item.code : 'no hay clave';
-            let subjectName = item.name != null ? item.name : 'no hay nombre';
-            return (
-              <div key={index} className={styles.body}>
-                <span className={styles.clave}>{subjectId}</span>
-                <span className={styles.name}>{subjectName}</span>
-                <i
-                  className={cx('bi bi-trash', styles.de)}
-                  onClick={() => checkItemState(item.code)}
-                ></i>
-              </div>
-            );
-          })}
-        </>
-      );
-    } else if (typingName && !typing) {
-      return (
-        <>
-          {filteredArrayName.map(function (item, index) {
-            let subjectId = item.code != null ? item.code : 'no hay clave';
-            let subjectName = item.name != null ? item.name : 'no hay nombre';
-            return (
-              <div key={index} className={styles.body}>
-                <span className={styles.clave}>{subjectId}</span>
-                <span className={styles.name}>{subjectName}</span>
-                <i
-                  className={cx('bi bi-trash', styles.de)}
-                  onClick={() => checkItemState(item.code)}
-                ></i>
-              </div>
-            );
-          })}
-        </>
-      );
-    } else {
-      return (
-        <span className={styles.error}>
-          *No es posible realizar esta búsqueda, por favor intenta buscar la
-          Unidad de Formación solamente por clave o solamente por nombre*
-        </span>
       );
     }
+    if (typing && !typingName) {
+      if (filteredArray.length === 0) {
+        return (
+          <span className={styles.error}>
+            {t('There is no subject with such code')}
+          </span>
+        );
+      }
+      return (
+        <>
+          {filteredArray.map((item, index) => {
+            const subjectId =
+              item.code != null ? item.code : t('There is no code');
+            const subjectName =
+              item.name != null ? item.name : t('There is no name');
+            return (
+              <div key={index} className={styles.body}>
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                />
+              </div>
+            );
+          })}
+        </>
+      );
+    }
+    if (typingName && !typing) {
+      if (filteredArrayName.length === 0) {
+        return (
+          <span className={styles.error}>
+            {t('There is no subject with such name')}
+          </span>
+        );
+      }
+      return (
+        <>
+          {filteredArrayName.map((item, index) => {
+            const subjectId =
+              item.code != null ? item.code : t('There is no code');
+            const subjectName =
+              item.name != null ? item.name : t('There is no name');
+            return (
+              <div key={index} className={styles.body}>
+                <span className={styles.clave}>{subjectId}</span>
+                <span className={styles.name}>{subjectName}</span>
+                <i
+                  className={cx('bi bi-trash', styles.de)}
+                  onClick={() => checkItemState(item.code)}
+                />
+              </div>
+            );
+          })}
+        </>
+      );
+    }
+    return (
+      <span className={styles.error}>
+        {t('It is impossible to do this search')}
+      </span>
+    );
   };
 
-  const handleChangeClave = (e) => {
+  const handleChangeClave = (e: any) => {
     setClave(e.target.value);
     filterClave(e.target.value);
     if (e.target.value != '') {
       setTyping(true);
+      setEditableName(false);
     } else {
       setTyping(false);
+      setEditableName(true);
     }
     conditionalRendering();
   };
-  const handleChangeNombre = (e) => {
+  const handleChangeNombre = (e: {
+    target: { value: React.SetStateAction<any> };
+  }) => {
     setNombre(e.target.value);
     filterNombre(e.target.value);
     if (e.target.value != '') {
       setTypingName(true);
+      setEditable(false);
     } else {
       setTypingName(false);
+      setEditable(true);
     }
     conditionalRendering();
   };
-  const filterClave = (clave) => {
-    let subjectsCopy = [...data];
+  const filterClave = (clave: string) => {
+    const subjectsCopy = [...data];
     console.log(subjectsCopy);
-    let filteredArray = subjectsCopy.filter((subject) =>
+    const filteredArray = subjectsCopy.filter((subject) =>
       subject.code.includes(clave.toUpperCase())
     );
     setFilteredArray(filteredArray);
   };
-  const filterNombre = (nombre) => {
-    let subjectsCopy = [...data];
+  const filterNombre = (nombre: string) => {
+    const subjectsCopy = [...data];
     console.log(subjectsCopy);
-    let filteredArrayName = subjectsCopy.filter((subject) =>
+    const filteredArrayName = subjectsCopy.filter((subject) =>
       subject.name.includes(nombre.toUpperCase())
     );
     setFilteredArrayName(filteredArrayName);
   };
+
   const deleteSubject = () => {
     console.log(id);
-    fetch('http://server-pae.azurewebsites.net/subject/' + id + '/', {
+    fetch(`https://server-pae.azurewebsites.net/subject/${id}/`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {
@@ -170,6 +214,7 @@ const Subject = () => {
           throw Error('could not make POST request for that endpoint');
         } else if (res.status == 204) {
           notVisiblePopUp();
+          window.location.reload();
           getData();
         }
         return res.json();
@@ -184,27 +229,79 @@ const Subject = () => {
         <div className={styles.searchBar}>
           <span className={styles.loading}>
             {' '}
-            <strong>Buscar</strong>
+            <strong>Search</strong>
           </span>{' '}
           <div className={styles.searchtop}>
-            <input
-              style={{
-                backgroundColor: '#F1F1F1'
-              }}
-              type="text"
-              placeholder="CLAVE*"
-              className={styles.inputclave}
-              onChange={handleChangeClave}
-            ></input>
-            <input
-              style={{
-                backgroundColor: '#F1F1F1'
-              }}
-              type="text"
-              placeholder="NOMBRE*"
-              className={styles.inputnombre}
-              onChange={handleChangeNombre}
-            ></input>
+            {editable && editableName ? (
+              <>
+                <input
+                  style={{
+                    backgroundColor: '#F1F1F1'
+                  }}
+                  type="text"
+                  placeholder={t('CODE*')}
+                  className={styles.inputID}
+                  onChange={handleChangeClave}
+                  readOnly={!editable}
+                />
+                <input
+                  style={{
+                    backgroundColor: '#F1F1F1'
+                  }}
+                  type="text"
+                  placeholder={t('NAME*')}
+                  className={styles.inputName}
+                  onChange={handleChangeNombre}
+                  readOnly={!editableName}
+                />
+              </>
+            ) : !editableName ? (
+              <>
+                <input
+                  style={{
+                    backgroundColor: '#F1F1F1'
+                  }}
+                  type="text"
+                  placeholder={t('CODE*')}
+                  className={styles.inputID}
+                  onChange={handleChangeClave}
+                  readOnly={!editable}
+                />
+                <input
+                  style={{
+                    backgroundColor: '#B9B6B6'
+                  }}
+                  type="text"
+                  placeholder={t('IT IS NOT POSSIBLE TO WRITE IN THIS FIELD')}
+                  className={styles.inputName}
+                  onChange={handleChangeNombre}
+                  readOnly={!editableName}
+                />
+              </>
+            ) : (
+              <>
+                <input
+                  style={{
+                    backgroundColor: '#B9B6B6'
+                  }}
+                  type="text"
+                  placeholder={t('IT IS NOT POSSIBLE TO WRITE IN THIS FIELD')}
+                  className={styles.inputID}
+                  onChange={handleChangeClave}
+                  readOnly={!editable}
+                />
+                <input
+                  style={{
+                    backgroundColor: '#F1F1F1'
+                  }}
+                  type="text"
+                  placeholder={t('NAME*')}
+                  className={styles.inputName}
+                  onChange={handleChangeNombre}
+                  readOnly={!editableName}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -212,40 +309,45 @@ const Subject = () => {
         <div className={styles.UfTab}>
           <Tabs
             handleClick={UFButton}
-            text="Unidades de Formación"
-            active={currentTab == 'UF' ? true : false}
-          ></Tabs>
+            text={t('Subjects')}
+            active={currentTab == 'UF'}
+          />
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddUFButton}
-            text="Agregar Unidad de Formación"
-            active={currentTab == 'addUF' ? true : false}
-          ></Tabs>
+            text={t('Add subject')}
+            active={currentTab == 'addUF'}
+          />
         </div>
       </div>
       <div className={styles.ufContainer}>
-        {pending && <div className={styles.loading}>Cargando datos...</div>}
+        {pending && <div className={styles.loading}>{t('Loading data')}</div>}
         <div
           className={currentTab == 'addUF' ? styles.addSubject : styles.hidden}
         >
-          <SubjectForm></SubjectForm>
+          <SubjectForm />
         </div>
         <div className={currentTab == 'UF' ? styles.subjects : styles.hidden}>
           <div className={styles.down}>
             <div className={styles.tableRequest}>
               <div className={styles.headRow}>
-                <span className={styles.clave}>Clave</span>
-                <span className={styles.name}>Nombre</span>
-                <span className={styles.delete}>Eliminar</span>
+                <span className={styles.clave}>{t('Code')}</span>
+                <span className={styles.name}>{t('Name')}</span>
+                <span className={styles.delete}>{t('Delete')}</span>
               </div>
-              {conditionalRendering()}
+              <div className={styles.quickfix}>
+                <div className={styles.bodyContainer}>
+                  {conditionalRendering()}
+                </div>
+              </div>
+
               <DeleteAdmin
                 visible={popUp}
                 setVisible={setPopUp}
                 onClickFunction={() => deleteSubject()}
                 onClickCancel={notVisiblePopUp}
-              ></DeleteAdmin>
+              />
             </div>
           </div>
         </div>
@@ -254,11 +356,21 @@ const Subject = () => {
   );
 };
 // Add sidebar layout
-Subject.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <SidebarLayout title="ADMINISTRAR UNIDADES DE FORMACIÓN">
-      {page}
-    </SidebarLayout>
-  );
+Subjects.getLayout = function getLayout(page: ReactElement) {
+  const { t } = useTranslation('admin-subjects');
+  return <SidebarLayout title={t('Manage subjects')}>{page}</SidebarLayout>;
 };
-export default Subject;
+
+export async function getStaticProps({ locale }: { locale: any }) {
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-subjects',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
+
+export default Subjects;

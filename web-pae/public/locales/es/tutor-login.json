@@ -1,0 +1,19 @@
+{
+	"Password recovery": "Recuperación de contraseña",
+	"Enter your institutional email": "Introduce tu correo institucional",
+	"email": "email",
+	"INSTITUTIONAL EMAIL": "CORREO INSTITUCIONAL",
+	"Recover password": "Recuperación de contraseña",
+	"Login": "Inicia sesión",
+    "LOG IN": "INICIAR SESIÓN",
+    "Forgot password": "Olvide mi contraseña",
+    "Dont have account": "¿No tienes cuenta?",
+    "Notice of privacy": "Aviso de privacidad",
+    "PASSWORD": "CONTRASEÑA",
+	"Sign up": "Registrarse",
+	"Required Id" : "Matrícula requerida",
+	"Invalid Email. E.g. A0XXXXXXX@tec.mx" : "Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx",
+	"Required email" : "Contraseña requerida",
+	"Password too short" : "Contraseña muy corta"
+
+}

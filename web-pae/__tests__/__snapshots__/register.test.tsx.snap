@@ -28,7 +28,9 @@ exports[`Register renders register page unchanged 1`] = `
             <h1
               class="paeText"
             >
-               PAE | REGISTRO
+               PAE | 
+              REGISTRO
+               
             </h1>
           </div>
           <div
@@ -63,40 +65,48 @@ exports[`Register renders register page unchanged 1`] = `
               <div
                 class="toggle"
               >
-                <div
-                  class="toggle"
+                <a
+                  href="/register"
                 >
-                  <img
-                    class="flag"
-                    src="/images/mxflag.png"
-                  />
-                  <p
-                    class="description"
+                  <div
+                    class="toggle"
                   >
-                     
-                    Español
-                     
-                  </p>
-                </div>
+                    <img
+                      class="flag"
+                      src="/images/mxflag.png"
+                    />
+                    <p
+                      class="description"
+                    >
+                       
+                      Español
+                       
+                    </p>
+                  </div>
+                </a>
               </div>
               <div
                 class="toggle"
               >
-                <div
-                  class="toggle"
+                <a
+                  href="/register"
                 >
-                  <img
-                    class="flag"
-                    src="/images/usaflag.png"
-                  />
-                  <p
-                    class="description"
+                  <div
+                    class="toggle"
                   >
-                     
-                    English
-                     
-                  </p>
-                </div>
+                    <img
+                      class="flag"
+                      src="/images/usaflag.png"
+                    />
+                    <p
+                      class="description"
+                    >
+                       
+                      Ingles
+                       
+                    </p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>

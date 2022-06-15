@@ -1,9 +1,7 @@
 import React from 'react';
 import styles from '../../css/components/dialogs/modify-password.module.css';
 import registerStyles from '../../css/register.module.css';
-import ButtonTemplate from '../button-template';
 import ClosablePopup from '../closable-popup';
-import ToggleButton from '../toggle-button';
 
 type ModifyLanguageProps = {
   visible: boolean;
@@ -23,7 +21,7 @@ const AcceptTutee = ({ visible, setVisible }: ModifyLanguageProps) => {
       setVisible={setVisible}
     >
       <div className={registerStyles.languageOptions}>
-        <p style={{'marginBottom':'50px'}}>¡Tutor aceptado con éxito!</p>
+        <p style={{ marginBottom: '50px' }}>¡Tutor aceptado con éxito!</p>
       </div>
     </ClosablePopup>
   );

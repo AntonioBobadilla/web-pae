@@ -40,7 +40,7 @@ exports[`Tutor Register Confirmation renders tutor register confirmation page un
             <h2
               class="title"
             >
-               ¡Registro completado! 
+              Registration completed
             </h2>
           </div>
           <div
@@ -49,7 +49,7 @@ exports[`Tutor Register Confirmation renders tutor register confirmation page un
             <p
               class="paragraph"
             >
-              Recibirás un correo cuando sea aprobado tu perfil
+              You will receive an email
             </p>
             <div
               class="icon"
@@ -62,7 +62,7 @@ exports[`Tutor Register Confirmation renders tutor register confirmation page un
               class="linkStyle"
               href="/tutor/login"
             >
-              Regresar a página de inicio
+              Return to home page
             </a>
           </div>
         </div>

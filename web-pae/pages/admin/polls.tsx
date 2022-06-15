@@ -1,12 +1,16 @@
 import EditPolls from '@/components/edit-polls';
+import PollIndividualResults from '@/components/poll-individual-results';
 import PollResults from '@/components/poll-results';
 import Tabs from '@/components/tabs';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ReactElement, useEffect, useState } from 'react';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/polls.module.css';
 
 const Polls = () => {
   const [currentTab, setCurrentTab] = useState('');
+  const { t } = useTranslation('admin-polls');
 
   const Results = () => {
     setCurrentTab('Results');
@@ -29,23 +33,23 @@ const Polls = () => {
         <div className={styles.resultsTab}>
           <Tabs
             handleClick={Results}
-            text="Resultados"
-            active={currentTab == 'Results' ? true : false}
-          ></Tabs>
+            text={t('Results')}
+            active={currentTab == 'Results'}
+          />
         </div>
         <div className={styles.indResultsTab}>
           <Tabs
             handleClick={IndResults}
-            text="Resultados individuales"
-            active={currentTab == 'IndResults' ? true : false}
-          ></Tabs>
+            text={t('Individual results')}
+            active={currentTab == 'IndResults'}
+          />
         </div>
         <div className={styles.editPollTab}>
           <Tabs
             handleClick={EditPoll}
-            text="Editar Encuestas"
-            active={currentTab == 'EditPoll' ? true : false}
-          ></Tabs>
+            text={t('Edit polls')}
+            active={currentTab == 'EditPoll'}
+          />
         </div>
       </div>
 
@@ -53,19 +57,19 @@ const Polls = () => {
         <div
           className={currentTab == 'Results' ? styles.results : styles.hidden}
         >
-          <PollResults></PollResults>
+          <PollResults curTab={currentTab == 'Results'} />
         </div>
         <div
           className={
             currentTab == 'IndResults' ? styles.indResults : styles.hidden
           }
         >
-          <PollResults></PollResults>
+          <PollIndividualResults curTab={currentTab == 'IndResults'} />
         </div>
         <div
           className={currentTab == 'EditPoll' ? styles.editPoll : styles.hidden}
         >
-          <EditPolls></EditPolls>
+          <EditPolls />
         </div>
       </div>
     </div>
@@ -74,7 +78,20 @@ const Polls = () => {
 
 // Add sidebar layout
 Polls.getLayout = function getLayout(page: ReactElement) {
-  return <SidebarLayout title="Encuestas">{page}</SidebarLayout>;
+  const { t } = useTranslation('admin-polls');
+  return <SidebarLayout title={t('Polls')}>{page}</SidebarLayout>;
 };
 
+export async function getStaticProps({ locale }: { locale: any }) {
+
+  //traductor pagina principal
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'admin-polls',
+        'tutor-profile'
+      ]))
+    }
+  };
+}
 export default Polls;

@@ -1,7 +1,11 @@
+import { selectToken } from '@/redux/user';
 import { useState } from 'react';
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useAppSelector } from 'store/hook';
 import Styles from '../css/components/adminForm.module.css';
 import AdminAdded from './dialogs/admin-added';
+import Password from './password';
 import TextInput from './text-input';
 
 interface AdminFormData {
@@ -22,6 +26,14 @@ const defaultValues = {
 
 const SubjectForm = () => {
   const [validUF, setValidUF] = useState(Boolean);
+  const {
+    control,
+    reset,
+    handleSubmit,
+    getValues,
+    formState: { errors }
+  } = useForm<AdminFormData>({ defaultValues });
+  const token = useAppSelector(selectToken);
 
   const isValid = () => {
     setValidUF(true);
@@ -30,45 +42,47 @@ const SubjectForm = () => {
   const addAdmin = (data: AdminFormData) => {
     const { password, email, registrationNumber, passwordConfirmation, name } =
       data;
-    fetch('http://server-pae.azurewebsites.net/administrator/', {
+    fetch('https://server-pae.azurewebsites.net/administrator/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      },
       body: JSON.stringify({
         user: {
-          password: password,
+          password,
           confirm_password: passwordConfirmation
         },
-        registration_number: registrationNumber,
-        email: email,
-        name: name
+        registration_number: registrationNumber.toLowerCase(),
+        email: email.toLowerCase(),
+        name
       })
     })
       .then((res) => {
-        if (!res.ok) {
-          // error coming back from server
-          throw Error('could not make PUT request for that endpoint');
-        }
-        isValid();
-        reset();
+        const json = res.json();
+        const { status } = res;
 
-        return res.json();
+        return { data: json, status };
       })
-      .then((data) => {
-        console.log('ok');
-      })
+      .then(
+        (response: { data: Promise<{ detail: string }>; status: number }) => {
+          if (
+            response.status === 201 ||
+            response.status === 200 ||
+            response.status === 204
+          ) {
+            isValid();
+            reset();
+          } else {
+            toast.error('No tienes permisos');
+          }
+        }
+      )
 
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message);
       });
   };
-
-  const {
-    control,
-    reset,
-    handleSubmit,
-    getValues,
-    formState: { errors }
-  } = useForm<AdminFormData>({ defaultValues });
 
   const onSubmit = handleSubmit((data) => addAdmin(data));
 
@@ -90,9 +104,9 @@ const SubjectForm = () => {
           control={control}
           error={errors.registrationNumber}
           rules={{
-            required: 'Matrícula requerida',
+            required: 'Matrícula o nómina requerida',
             pattern: {
-              value: /^([A,a]{1}[0]{1}[0-9]{7})/i,
+              value: /^([A,a,L,l]{1}[0-9]{8})/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX'
             }
           }}
@@ -132,12 +146,12 @@ const SubjectForm = () => {
           rules={{
             required: 'Correo eléctrónico requerido',
             pattern: {
-              value: /^([A,a]{1}[0]{1}[0-9]{7}@tec\.mx)/i,
+              value: /^([A,a,L,l]{1}[0-9]{8}@tec\.mx)/i,
               message: 'Correo eléctronico inválido. E.g. A0XXXXXXX@tec.mx'
             }
           }}
         />
-        <TextInput
+        <Password
           style={{
             backgroundColor: '#FFFFFF',
             height: '15%',
@@ -146,19 +160,11 @@ const SubjectForm = () => {
           }}
           className={Styles.inblock}
           name="password"
-          type="password"
-          placeholder="Contraseña*"
           control={control}
           error={errors.password}
           rules={{
             required: 'Contraseña requerida',
-            minLength: { value: 8, message: 'Contraseña muy corta' },
-            pattern: {
-              value:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/i,
-              message:
-                'Contraseña inválida. Debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
-            }
+            minLength: { value: 8, message: 'Contraseña muy corta' }
           }}
         />
         <TextInput
@@ -186,7 +192,7 @@ const SubjectForm = () => {
         </button>
       </div>
 
-      <AdminAdded visible={validUF} setVisible={setValidUF}></AdminAdded>
+      <AdminAdded visible={validUF} setVisible={setValidUF} />
     </form>
   );
 };

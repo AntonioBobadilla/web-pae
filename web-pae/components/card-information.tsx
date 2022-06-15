@@ -1,44 +1,16 @@
-import createDate from '@/helpers/create-date';
+import formatTime from '@/helpers/format-time';
 import formatDate from 'helpers/format-date';
-import React from 'react';
-import { useAppSelector } from 'store/hook';
-import { selectID } from 'store/reducers/user';
 import CardInfo from './card-info';
 import { Tutoring } from './card-info-student/types';
 
-const CardInformation = () => {
-  const [history, setHistory] = React.useState<Tutoring[]>([]);
-
-  const id = useAppSelector(selectID);
-
-  React.useEffect(() => {
-    fetch(
-      `http://server-pae.azurewebsites.net/tutoring/?tutor=${id?.toLowerCase()}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const newData = [...data];
-        newData.sort( 
-          (a, b) => {
-            if (createDate(b.date, b.hour) > createDate(a.date, a.hour)) {
-              return -1;
-            }
-            if (createDate(b.date, b.hour) < createDate(a.date, a.hour)) {
-              return 1;
-            }
-            return 0;
-          }
-        );
-        setHistory(newData);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
-
+const CardInformation = ({ history }: { history: Tutoring[] }) => {
   return (
     <>
       {history.map((historyItem) => (
         <CardInfo
-          date={formatDate(historyItem.date)}
+          date={
+            formatDate(historyItem.date) + ' ' + formatTime(historyItem.hour)
+          }
           subject={
             historyItem.subject === null ? '-' : historyItem.subject.name
           }

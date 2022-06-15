@@ -1,10 +1,12 @@
 import AdminForm from '@/components/admin-form';
+import DeleteAdmin from '@/components/dialogs/delete-admin';
 import Tabs from '@/components/tabs';
+import { selectToken } from '@/redux/user';
+import cx from 'classnames';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { useAppSelector } from 'store/hook';
 import SidebarLayout from '../../components/layouts/sidebar-layout';
 import styles from '../../css/admin/admins.module.css';
-import cx from 'classnames';
-import DeleteAdmin from '@/components/dialogs/delete-admin';
 
 const Subject = () => {
   const [currentTab, setCurrentTab] = useState('');
@@ -12,16 +14,17 @@ const Subject = () => {
   const [id, setId] = useState(null);
   const [data, setData] = useState([]);
   const [pending, setPending] = useState(true);
+  const token = useAppSelector(selectToken);
 
   const AdminButton = () => {
     setCurrentTab('admins');
-    location.reload();
+    getData();
   };
   const visiblePopUp = () => {
     setPopUp(true);
   };
 
-  const checkItemState = (idItem) => {
+  const checkItemState = (idItem: React.SetStateAction<null>) => {
     setId(idItem);
     visiblePopUp();
   };
@@ -34,7 +37,12 @@ const Subject = () => {
   }, []);
 
   const getData = () => {
-    fetch('http://server-pae.azurewebsites.net/administrator/')
+    fetch('https://server-pae.azurewebsites.net/administrator/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
       .then((resp) => resp.json())
       .then(function (data) {
         //console.log(data)
@@ -54,11 +62,14 @@ const Subject = () => {
     setPopUp(false);
   };
 
-  const deleteQuestion = () => {
+  const deleteAdmin = () => {
     console.log(id);
-    fetch('http://server-pae.azurewebsites.net/administrator/' + id + '/', {
+    fetch('https://server-pae.azurewebsites.net/administrator/' + id + '/', {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`
+      }
     })
       .then((res) => {
         if (!res.ok) {
@@ -83,14 +94,14 @@ const Subject = () => {
             handleClick={AdminButton}
             text="Administradores"
             active={currentTab == 'admins' ? true : false}
-          ></Tabs>
+          />
         </div>
         <div className={styles.addTab}>
           <Tabs
             handleClick={AddAdminButton}
             text="Agregar Administrador"
             active={currentTab == 'addAdmins' ? true : false}
-          ></Tabs>
+          />
         </div>
       </div>
 
@@ -107,7 +118,7 @@ const Subject = () => {
             </span>
           </div>
           <div className={styles.bottom}>
-            <AdminForm></AdminForm>
+            <AdminForm />
           </div>
         </div>
         <div
@@ -121,37 +132,39 @@ const Subject = () => {
                 <span className={styles.email}>Correo electrónico</span>
                 <span className={styles.delete}>Eliminar</span>
               </div>
-              {data.map(function (item, index) {
-                let adminId =
-                  item.registration_number != null
-                    ? item.registration_number
-                    : 'no hay clave';
-                let adminName = item.name != null ? item.name : 'no hay nombre';
-                let adminEmail = () => {
-                  if (item.email == null) {
-                    return 'no hay correo';
-                  }
-                  return item.email;
-                };
-
-                return (
-                  <div className={styles.body}>
-                    <span className={styles.clave}>{adminId}</span>
-                    <span className={styles.name}>{adminName}</span>
-                    <span className={styles.email}>{adminEmail()}</span>
-                    <i
-                      className={cx('bi bi-trash', styles.de)}
-                      onClick={() => checkItemState(item.registration_number)}
-                    ></i>
-                  </div>
-                );
-              })}
+              <div className={styles.adminsContainer}>
+                {data.map(function (item: any, index) {
+                  let adminId =
+                    item.registration_number != null
+                      ? item.registration_number
+                      : 'no hay clave';
+                  let adminName =
+                    item.name != null ? item.name : 'no hay nombre';
+                  let adminEmail = () => {
+                    if (item.email == null) {
+                      return 'no hay correo';
+                    }
+                    return item.email;
+                  };
+                  return (
+                    <div className={styles.body}>
+                      <span className={styles.clave}>{adminId}</span>
+                      <span className={styles.name}>{adminName}</span>
+                      <span className={styles.email}>{adminEmail()}</span>
+                      <i
+                        className={cx('bi bi-trash', styles.de)}
+                        onClick={() => checkItemState(item.registration_number)}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
               <DeleteAdmin
                 visible={popUp}
                 setVisible={setPopUp}
-                onClickFunction={() => deleteQuestion()}
+                onClickFunction={() => deleteAdmin()}
                 onClickCancel={notVisiblePopUp}
-              ></DeleteAdmin>
+              />
             </div>
           </div>
         </div>

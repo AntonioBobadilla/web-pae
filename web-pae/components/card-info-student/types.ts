@@ -22,6 +22,14 @@ export interface Tutor {
   user: string;
 }
 
+export interface TutorObject extends Tutor {
+  subjects: {
+    subject: string;
+  }[];
+  completed_hours: number;
+  weekly_completed_hours: number;
+}
+
 export interface Tutoring {
   date: string;
   doubt: string;
@@ -35,4 +43,5 @@ export interface Tutoring {
   topic: string;
   status: string;
   tutor: Tutor;
+  has_feeback: boolean;
 }
